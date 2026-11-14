@@ -1,0 +1,43 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+
+# Notebooks and editors
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Large mass spectrometry data (keep out of git; archive on Zenodo/GlycoPOST)
+*.mzML
+*.mzXML
+*.raw
+*.wiff
+*.mbi
+*.d/
+data/raw/
+
+# Cluster logs
+logs/
+*.out
+*.err
