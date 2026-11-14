@@ -1,0 +1,1684 @@
+[
+ {
+  "accession": "PXD053107",
+  "title": "Disruption of Glucose Homeostasis in Prey: Combinatorial Use of Weaponized Mimetics of Somatostatin and Insulin by a Fish-Hunting Cone Snail",
+  "projectDescription": "Venomous animals have evolved diverse molecular mechanisms to incapacitate prey and defend against predators. The majority of venom components characterized to date disrupt the nervous, locomotor, and cardiovascular system or causes tissue damage and degradation1. The discovery that certain species of fish-hunting cone snail use weaponized insulins to induce hypoglycemic shock in prey provided an unusual example for the use of toxins that target glucose homeostasis2. Here, we show that, in addition to insulins, the deadly fish hunter, Conus geographus, uses a selective agonist of the somatostatin receptor 2 (SSTR2) that potently blocks the release of the insulin-counteracting hormone glucagon, thereby exacerbating insulin-induced hypoglycemia in prey. The native toxin, Consomatin nG1, exists in several proteoforms that contain a minimized vertebrate somatostatin-like core motif connected to a heavily glycosylated N-terminal region. We demonstrate that the toxin\u2019s N-terminal tail aligns with a glycosylated somatostatin peptide previously identified from fish pancreas and plays an important role in activating the fish SSTR2. Collectively, these findings provide a stunning example of chemical mimicry, highlight the combinatorial nature of venom components, and establish glucose homeostasis as an effective target for prey capture.",
+  "dataProcessingProtocol": "Data analysis was performed using Preoteome Discoverer 2.5.0.400 (Thermo Fisher Scientific Inc.) for peak picking and Skyline 22.2.0.351 (ProteoWizard) for quality control and data integration.",
+  "sampleProcessingProtocol": "Subfraction # 32, containing glycopeptides, was dried and reconstituted in 10 \u03bcL water. O-glycan release, labeling and C18 nanoLC-MS/MS analysis was performed as described previously with minor adjustments66. Briefly, an in-solution nonreductive O-glycan release was performed, using 15 \u03bcL 34% hydroxylamine and 29% 1,8-diazabicyclo(5.4.0)undec-7-ene (DBU) in water67 (75 min at 37 \u00baC). Released glycans were purified by 2 mg of magnetic hydrazide beads (MagSi-S Hydrazide beads 1 \u03bcm, magtivio B.V., Nuth), labeled using 2-aminobenzamide, and purified by cotton hydrophilic interaction chromatography (HILIC) using solid phase extraction (SPE)68 and further purified using porous graphitic carbon (PGC) SPE69. Prior to analysis the glycans were dried and reconstituted in 10 \u03bcL water. One \u03bcL per sample was separated by nanoflow liquid chromatograph using a single analytical column setup packed with Reprosil-Pure-AQ C18 phase (Dr. Maisch, 1.9 \u03bcm in particle size, 30 cm in column length) in an EASY-nLC 1200 UHPLC (Thermo Fisher Scientific) using a PicoFrit Emitter (New Objectives, 75 \u03bcm in inner diameter). Mobile phase A was 0.1% formic acid (FA) in water, mobile phase B 0.1% FA in 80% ACN. A gradient from 2% to 38% mobile phase B in 20 min was used for elution of glycans. The emitter was interfaced to an Orbitrap Fusion Lumos MS (Thermo Fisher Scientific) via a nanoSpray Flex ion source. A precursor MS scan (m/z 275-1700, positive polarity) was acquired in the Orbitrap at a nominal resolution of 120,000, followed by Orbitrap higher-energy C-trap dissociation (HCD)-MS/MS at a nominal resolution of 30,000 of the 10 most abundant precursors in the MS spectrum (charge states 1 to 4). A minimum MS signal threshold of 50,000 was used to trigger data-dependent fragmentation events. HCD was performed with an energy of 27 % \u00b1 5 %, applying a 10 s dynamic exclusion window.",
+  "projectTags": [],
+  "keywords": [
+   "Chemical mimicry",
+   "Cone snail",
+   "Glucose homeostasis",
+   "Venom",
+   "Doppelganger peptide",
+   "Glycosylation",
+   "Toxins",
+   "Somatostatin",
+   "Cabals",
+   "Glycopeptides",
+   "Insulin",
+   "Weaponized hormones"
+  ],
+  "doi": "10.6019/PXD053107",
+  "otherOmicsLinks": [
+   "insdc.sra:SRR27535907",
+   "insdc.sra:SRR27535908",
+   "insdc.sra:SRR27535905",
+   "insdc.sra:SRR27535906",
+   "pride.project:PXD052869"
+  ],
+  "submissionType": "COMPLETE",
+  "publicationDate": "2024-06-26",
+  "updatedDate": "2024-06-14",
+  "submissionDate": "2024-06-14",
+  "downloadCount": 448,
+  "avgDownloadsPerFile": 74.666664,
+  "percentile": 16,
+  "yearlyDownloads": [
+   {
+    "year": "2024",
+    "count": 83
+   },
+   {
+    "year": "2025",
+    "count": 312
+   },
+   {
+    "year": "2026",
+    "count": 53
+   }
+  ],
+  "submitters": [
+   "Thomas Koch"
+  ],
+  "labPIs": [
+   "Helena Safavi-Hemami"
+  ],
+  "affiliations": [
+   "Department of Biochemistry, University of Utah"
+  ],
+  "instruments": [
+   "Orbitrap Fusion Lumos"
+  ],
+  "softwares": [
+   "ProteoWizard msconvert",
+   "Skyline"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "venom",
+   "Conus geographus (Geography cone) (Nubecula geographus)"
+  ],
+  "organisms": [
+   "Conus geographus (geography cone) (nubecula geographus)"
+  ],
+  "organismsPart": [
+   "Venom"
+  ],
+  "diseases": [],
+  "references": [
+   "Yeung HY, Ramiro IBL, Andersen DB, Koch TL, Hamilton A, Bj\u00f8rn-Yoshimoto WE, Espino S, Vakhrushev SY, Pedersen KB, de Haan N, Hipgrave Ederveen AL, Olivera BM, Knudsen JG, Br\u00e4uner-Osborne H, Schjoldager KT, Holst JJ, Safavi-Hemami H. Fish-hunting cone snail disrupts prey's glucose homeostasis with weaponized mimetics of somatostatin and insulin. Nat Commun. 2024 15(1):6408--pubMed:39164229--doi: 10.1038/s41467-024-50470-2"
+  ],
+  "experimentTypes": [
+   "Bottom-up proteomics"
+  ],
+  "projectFileNames": [
+   "ng1-resubmission-fig6b.mgf",
+   "ng1-resubmission-fig6a.mgf",
+   "ng1-resubmission-fig6a.mzid.gz",
+   "L20232002602a.raw",
+   "L20232002604a.raw",
+   "ng1-resubmission-fig6b.mzid.gz"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "<em>Released</em> <em>glycans</em> were purified by 2 mg of magnetic hydrazide beads (MagSi-S Hydrazide beads 1 \u03bcm, magtivio B.V., Nuth), labeled using 2-aminobenzamide, and purified by cotton hydrophilic interaction chromatography"
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD051107",
+  "title": "Ruminococcus torques is a keystone degrader of intestinal mucin glycoprotein, releasing oligosaccharides used by Bacteroides thetaiotaomicron",
+  "projectDescription": "Symbiotic interactions between humans and our communities of resident gut microbes (microbiota) play many roles in health and disease. Some gut bacteria utilize mucus as a nutrient source and can under certain conditions damage the protective barrier it forms, increasing disease susceptibility. We investigated how Ruminococcus torques\u2014a known mucin-degrader that remains poorly studied despite its implication in inflammatory bowel diseases (IBDs)\u2014 degrades mucin glycoproteins or their component O-linked glycans to understand its effects on the availability of mucin-derived nutrients for other bacteria. We found that R. torques utilizes both mucin glycoproteins and released oligosaccharides from gastric and colonic mucins, degrading these substrates with a panoply of mostly constitutively expressed, secreted enzymes. Investigation of mucin oligosaccharide degradation by R. torques revealed strong fucosidase, sialidase and \uf0621,4-galactosidase activities. There was a lack of detectable sulfatase and weak \u03b21,3-galactosidase degradation, resulting in accumulation of glycans containing these structures on mucin polypeptides. While the Gram-negative symbiont, Bacteroides thetaiotaomicron grows poorly on mucin glycoproteins, we demonstrate a clear ability of R. torques to liberate products from mucins, making them accessible to B. thetaiotaomicron. This work underscores the diversity of mucin-degrading mechanisms in different bacterial species and the probability that some species are contingent on others for the ability to more fully access mucin-derived nutrients. The ability of R. torques to directly degrade a variety of mucin and mucin glycan structures and unlock released glycans for other species suggests that it is a keystone mucin degrader, which may contribute to its association with IBD.",
+  "dataProcessingProtocol": "Proteins were identified by searching the generated MS/MS data against a database of all protein sequences present in R. torques VIII-239 using Proteome Discoverer v2.1). Parameters used were the same as previous, except for the use of a 0.1 kDa fragment tolerance.",
+  "sampleProcessingProtocol": "R. torques overnight cultures in YCFA with glucose were grown and centrifuged at 7,830rpm for 2 mins. Samples were filtered where noted using a 0.22 \uf06dM PVDF syringe filter. Proteins were precipitated using a pyrogallol red methanol molybdate (PRMM) solution. PRMM was made with 20% methanol, 0.05 mM pyrogallol red, 0.16 mM sodium molybdate, 1 mM sodium oxalate, 50 mM succinic acid and pH adjusted to pH 2. PRMM was added 1:1 with isolated supernatants, and pH was adjusted to pH of 3. Samples were incubated for 2 hours at room temperature and then overnight at 4\u00baC. Samples were then centrifuged for 60 mins at 10,000xg at 4\u00baC and pellets were washed with cold acetone. Centrifugation and washing were repeated once, and pellets were dried and resuspended in 8 M urea with 50 mM HEPES at pH 8.  Samples were submitted to the Proteomics Resource Facility (PRF) and were analyzed using high-resolution LC-MS/MS analysis per the protocol optimized by the PRF and previously described (Ostrowski MP et al, Nat. Microbiol. 7, 556-559 (2022). The following modifications were made from the previous protocol: cysteines were alkylated with 65 mM 2-Chloroacetamide, trypsin digestion was performed after diluting urea to <1.2 M and using 0.5 \u00b5g trypsin (Promega), and processed peptides were dissolved in 20 \u00b5l of buffer A. Peptides were resolved over a period of 90 min (2-25% buffer B in 45 min, 25-40% in 5 min, 40-90% in 5 min, then held at 90% buffer B for 5 min and equilibration with buffer A for 30 min).",
+  "projectTags": [],
+  "keywords": [
+   "Ruminococcus torques",
+   "Bacteria",
+   "Mucus"
+  ],
+  "doi": "",
+  "otherOmicsLinks": [
+   "geo:GSE262875"
+  ],
+  "submissionType": "PARTIAL",
+  "publicationDate": "2024-06-19",
+  "updatedDate": "2024-03-31",
+  "submissionDate": "2024-03-31",
+  "downloadCount": 1046,
+  "avgDownloadsPerFile": 80.46154,
+  "percentile": 37,
+  "yearlyDownloads": [
+   {
+    "year": "2024",
+    "count": 23
+   },
+   {
+    "year": "2025",
+    "count": 980
+   },
+   {
+    "year": "2026",
+    "count": 43
+   }
+  ],
+  "submitters": [
+   "Sadie Schaus "
+  ],
+  "labPIs": [
+   "Eric C Martens"
+  ],
+  "affiliations": [
+   "Department of Microbiology and Immunology, University of Michigan, Ann Arbor, MI, USA"
+  ],
+  "instruments": [
+   "Orbitrap Fusion",
+   "Q Exactive"
+  ],
+  "softwares": [
+   "Proteome Discoverer"
+  ],
+  "quantificationMethods": [
+   "Spectrum counting"
+  ],
+  "sampleAttributes": [
+   "Ruminococcus"
+  ],
+  "organisms": [
+   "Ruminococcus"
+  ],
+  "organismsPart": [],
+  "diseases": [],
+  "references": [
+   "null--pubMed:0--doi: 10.1128/MBIO.00039-24"
+  ],
+  "experimentTypes": [
+   "Bottom-up proteomics"
+  ],
+  "projectFileNames": [
+   "PRF_Q_2021_E_MART_704_51826.msf",
+   "PRF_Q_2021_E_MART_704_51827.raw",
+   "PRF_F_2021_E_MART_514_50517.msf",
+   "PRF_F_2021_E_MART_514_50516.raw",
+   "PRF_Q_2021_E_MART_704_51828.msf",
+   "PRF_Q_2021_E_MART_704_51825.raw",
+   "PRF_Q_2021_E_MART_704_51828.raw",
+   "PRF_F_2021_E_MART_514_50516.msf",
+   "PRF_Q_2021_E_MART_704_51826.raw",
+   "PRF_F_2021_E_MART_514_50517.raw",
+   "PRF_Q_2021_E_MART_704_51825.msf",
+   "PRF_Q_2021_E_MART_704_51827.msf",
+   "PXD051107_community_annotated.sdrf.tsv"
+  ],
+  "highlights": {
+   "projectDescription": [
+    "The ability of R. torques to directly degrade a variety of mucin and mucin glycan structures and unlock <em>released</em> <em>glycans</em> for other species suggests that it is a keystone mucin degrader, which may contribute"
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD050530",
+  "title": "Ion Mobility-Tandem Mass Spectrometry of Mucin-type O-Glycans",
+  "projectDescription": "The dense O-glycosylation of mucins plays an important role in the defensive properties of the mucus hydrogel. Aberrant glycosylation is often correlated with inflammation and pathology such as COPD, cancer, and Crohn\u2019s disease. The inherent complexity of glycans and the diversity in the O-core structure constitute fundamental challenges for the analysis of mucin-type O-glycans. Due to coexistence of multiple isomers, multidimensional workflows such as LC-MS are required. To separate the highly polar carbohydrates, porous graphitized carbon is often used as a stationary phase. However, LC-MS workflows are time-consuming and lack reproducibility. Here we present a rapid alternative for separating and identifying O-glycans released from mucins based on trapped ion mobility mass spectrometry. Compared to established LC-MS, the acquisition time is reduced from an hour to two minutes. To test the validity, the developed workflow was applied to sputum samples from cystic fibrosis patients to map O-glycosylation features associated with disease.",
+  "dataProcessingProtocol": "For protein identification, MaxQuant software (Version 2.0.3.0; Max Planck Institute of Biochemistry) and a decoy human UniProt database (2022-01) were used. The variable modifications oxidation (M), N-terminal acetylation, deamidation (N, Q) and the fixed modification carbamidomethyl cysteine were considered in the search. Peptides and proteins, which were identified with a false discovery rate of 1% were used for quantification. For quantification, match between runs and label-free quantitation (LFQ) algorithms were used.",
+  "sampleProcessingProtocol": "Glycomics: Porcine gastric mucin (PGM) was obtained from Sigma-Aldrich (U.S.A.). The healthy sputum was collected after induction with inhaled hypertonic saline (NaCl 6%) and the CF sample was collected after spontaneous expectoration. The clinical mucus samples were first heat-inactivated with adding an equal volume of 4% SDS, 100 mM Tris-HCl pH 8, 1 mM EDTA, 150 mM NaCl, 20 mM DTT, 80 mM CAA to the mucus, and heating at 95\u00b0C for 10 min. After cooling down, the samples were incubated with 25 U of benzonase for 15 min at room temperature. The mucins fraction of the samples was purified by size exclusion chromatography (SEC) on Superdex 200 (prep grade, Cytiva, USA) using an AZURA Multi Method FPLC System (Knauer, Germany). The separation was performed on 200 \u00b5L of inactivated sample, at 0.75 mL/min in 100 mM ammonium acetate. Absorbance was recorded at 214 nm. The mucin fraction was collected in the void volume, lyophilised, and resuspended in 200 \u00b5L H2O. O-glycans from PGM (2 mg/mL in H2O) and from the collected sputum mucins were released by reductive \u03b2-elimination. Samples (160 \u00b5L) were incubated with 20 \u00b5L 5 M NaBH4 and 20 \u00b5L 0.5 mM NaOH at 50\u00b0C for 16 h. The reaction was quenched with 20 \u00b5L acetic acid and samples were desalted on Dowex 50WX8 cation exchange beads (Sigma-Aldrich, USA). O-glycans were then enriched on a 50 mg Hypercarb SPE cartridge (Thermo Fischer) and dried in a SpeedVac. TIM-MS and TIM-MS/MS were performed on a timsTOF Pro spectrometer (Bruker, Bremen, Germany), equipped with an in-house 3D-printed offline nano-ESI source. Released glycans were dissolved in 50 mM ammonium acetate in H2O:MeOH (1:1). For each measurement, 5 \u03bcL of sample were introduced in a Pt/Pd-coated glass capillary emitter prepared in-house and ionized in negative ion mode nano-ESI. The instrument parameters were set as follows: capillary voltage 1.2 kV, end plate offset -0.5 kV, dry source temperature 150\u00b0C, D1 = 20 V, D2 = 30 V, D3 = -100 V, D4 = -450 V, D5 = 60 V, and D6 = -46 V. The TIMS separation was performed in nitrogen (N2). Ions reversed mobility 1/K0 was scanned between 0.6 V\u00b7s/cm2 and 1.6 V\u00b7s/cm2. The accumulation time and the ramp time were set to 20 ms and 1000 ms, respectively. The transfer time was fixed to 2 ms. Ions were selected in the quadrupole after mobility separation and fragmented in the collision cell, with collision energy varying from 25 to 120 eV. The data was acquired with Compass otofControl (version 6.2, Bruker). A calibration of the reversed mobility 1/K0 was performed using the ESI-Low-concentration tuning mix from Agilent. Proteomics: Sputum samples were inactivated in SDS buffer (2% SDS, 50 mM Tris-HCl pH 8, 0.5 mM EDTA) at 95\u00b0C for 10 min. After measuring the protein concentration using BCA assay, 100 \u00b5g protein were reduced and alkylated in SDS buffer with 20 mM DTT, 40 mM CAA and 75 mM NaCl at 95\u00b0C for 10 min. Subsequently, the mixture was incubated with 25 U benzonase for 15 min at room temperature and proteins were extracted using an SP3 protocol described for proteomics.55 Sera-Mag SpeedBeads (GE Healthcare, cat. no. 45152105050250 and 65152105050250) were prepared in a 1:1 mix at 50 mg/mL. Proteins were precipitated in 70% ACN and incubated with 5\u00b5L of the beads mix, at 1\u2009\u00b5g protein:2.5\u2009\u00b5g beads, for 20 minutes under shaking (800 rpm). The beads were washed twice with 70% ethanol and once with 100% ACN on a magnetic rack. After removal of the ACN, beads were resuspended in 50 mM ABC buffer and incubated with PNGase F for 1h at 37\u00b0C. Trypsin and LysC were added at 1:50 (enzyme:substrate) for overnight digestion. The supernatant was collected and desalted on C18 material. The analysis was performed using an EASY-nLC 1200 System coupled to an Orbitrap Exploris 480 mass spectrometer (Thermo Fisher Scientific). Peptides (2 \u00b5L at 1 \u00b5g/\u00b5L) were injected two and three times for healthy and CF samples, respectively. Peptides were separated at 45\u00b0C using a 20 cm reverse-phase column (Fused Silica Capillary I.D. 75 \u00b5m, CM Scientific), packed in-house with 1.9 \u00b5m C18-reprosil beads (r119.aq.0003, Dr. Maisch). Eluents A (3% ACN, 0.1% FA) and B (90% ACN, 0.1% FA) were used. Peptides were eluted at a flow rate of 250 nL/min, applying the following 200 min gradient: 2% to 3% B over 5 min, then from 3% to 20% B over 157 min, to 30% B over 30 min, to 60% B over 10 min, and finally to 90% over 1 min. The data was acquired using a top20 method in positive data-dependent acquisition mode using a Nanospray Flex\u2122 ion source ES072, at spray voltage 2000 V, and ion transfer tube temperature 275\u00b0C. The mass range was set to m/z 350-1600. The MS/MS spectra were generated using a normalized collision energy at 28. The unassigned charge states and charge states 1, 7, or higher were excluded from fragmentation. Dynamic exclusion was set to 20 s. The data was acquired using Thermo EASY-nLC 1200 and Orbitrap Exploris 480.",
+  "projectTags": [],
+  "keywords": [
+   "O-glycans; ion mobility; mass spectrometry; isomeric separation; dda; proteome"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2024-03-19",
+  "updatedDate": "2024-03-11",
+  "submissionDate": "2024-03-11",
+  "downloadCount": 1796,
+  "avgDownloadsPerFile": 81.63636,
+  "botCount": 616,
+  "hubCount": 1087,
+  "organicCount": 93,
+  "percentile": 54,
+  "yearlyDownloads": [
+   {
+    "year": "2024",
+    "count": 370
+   },
+   {
+    "year": "2025",
+    "count": 1295
+   },
+   {
+    "year": "2026",
+    "count": 131
+   }
+  ],
+  "submitters": [
+   "Marieluise Kirchner"
+  ],
+  "labPIs": [
+   "Kevin Pagel (Glycomics), Philipp Mertins (Proteomics)"
+  ],
+  "affiliations": [
+   "Kevin Pagel: Institute of Chemistry and Biochemistry, Freie Universit\u00e4t Berlin, Altensteinstra\u00dfe 23A, 14195 Berlin, Germany. Fritz Haber Institute of the Max Planck Society, Faradayweg 4\u20116, 14195 Berlin, Germany.  Philipp Mertins (Philipp.mertins@mdc-berlin.de) : Max Delbrueck Center for Molecular Medicine in the Helmholtz Association, Berlin, Germany. Berlin Institute of Health (BIH), Berlin, Germany."
+  ],
+  "instruments": [
+   "timsTOF Pro",
+   "Orbitrap Exploris 480"
+  ],
+  "softwares": [
+   "MaxQuant"
+  ],
+  "quantificationMethods": [
+   "Label free"
+  ],
+  "sampleAttributes": [
+   "Homo sapiens (Human)",
+   "cystic fibrosis",
+   "sputum",
+   "Sus scrofa domesticus (domestic pig)"
+  ],
+  "organisms": [
+   "Homo sapiens (human)",
+   "Sus scrofa domesticus (domestic pig)"
+  ],
+  "organismsPart": [
+   "Sputum"
+  ],
+  "diseases": [
+   "Cystic fibrosis"
+  ],
+  "references": [
+   "Bechtella L, Chunsheng J, Fentker K, Ert\u00fcrk GR, Safferthal M, Polewski \u0141, G\u00f6tze M, Graeber SY, Vos GM, Struwe WB, Mall MA, Mertins P, Karlsson NG, Pagel K. Ion mobility-tandem mass spectrometry of mucin-type O-glycans. Nat Commun. 2024 15(1):2611--pubMed:38521783--doi: 10.1038/s41467-024-46825-4"
+  ],
+  "experimentTypes": [
+   "Data-dependent acquisition",
+   "Bottom-up proteomics"
+  ],
+  "projectFileNames": [
+   "proteinGroups.txt",
+   "peptides.txt",
+   "220225_MRM_PGM_SEC_211221_NEG_IMS__LowMass_01.d.zip",
+   "mqpar.xml",
+   "Solo_20221007_KF_HS_Sputum_P98_1.raw",
+   "Solo_20221007_KF_HS_Sputum_C15_2.raw",
+   "Solo_20221007_KF_HS_Sputum_P98_3.raw",
+   "LB220801_MRM_CFSputum_SEC_2203_NEG_IMS600-1600_01.d.zip",
+   "LB220801_IMS_CFSputum_SEC_2203_NEG_IMS600-1600_01.d.zip",
+   "Solo_20221007_KF_HS_Sputum_C15_3.raw",
+   "parameters.txt",
+   "LB220801_MRM_CFSputum_SEC_2203_NEG_IMS600-1600_02.d.zip",
+   "220304_MRM_HealthySputum_161121_NEG_IMS600-1570_DoublyCharged_02.d.zip",
+   "220304_MRM_HealthySputum_161121_NEG_IMS600-1570_DoublyCharged_01.d.zip",
+   "proteinGroups.txt.old",
+   "Solo_20221007_KF_HS_Sputum_P98_2.raw",
+   "LB220801_IMS_PGM_SEC_2203_NEG_IMS600-1600_01.d.zip",
+   "220304_MRM_HealthySputum_161121_NEG_IMS600-1570_01.d.zip",
+   "220104_uniprot-proteome_UP000005640reviewed_yes_renamedForUpload.fasta",
+   "summary.txt",
+   "220225_MRM_PGM_SEC_211221_NEG_IMS__HighMass_01.d.zip",
+   "LB220801_IMS_HealthySputum_SEC_2203_NEG_IMS600-1600_01.d.zip"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "<em>Released</em> <em>glycans</em> were dissolved in 50 mM ammonium acetate in H2O:MeOH (1:1)."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD046510",
+  "title": "Plasma Glycomic Markers of Accelerated Biological Aging During Chronic HIV Infection",
+  "projectDescription": "People with HIV (PWH) experience an increased vulnerability to premature aging and inflammation-associated comorbidities, even when HIV replication is suppressed by antiretroviral therapy (ART). However, the factors that contribute to or are associated with this vulnerability remain uncertain. In the general population, alterations in the glycomes of circulating IgGs trigger inflammation and precede the onset of aging-associated diseases. Here, we investigate the IgG glycomes of cross-sectional and longitudinal samples from 1,216 women and men, both living with virally suppressed HIV and those without HIV. Our glycan-based machine learning models indicate that living with chronic HIV significantly accelerates the accumulation of pro-aging associated glycomic alterations. Consistently, PWH exhibit heightened expression of senescence associated glycan-degrading enzymes compared to their controls. These glycomic alterations correlate with elevated markers of inflammatory aging and the severity of comorbidities, potentially preceding the development of such comorbidities. Mechanistically, HIV-specific antibodies glycoengineered with these alterations exhibit reduced anti-HIV IgG-mediated innate immune functions. These findings hold significant potential for the development of glycomic based biomarkers and tools to identify and prevent premature aging and comorbidities in people living with chronic viral infections.",
+  "dataProcessingProtocol": "Glycoproteomics:  The resulting glycoproteomic data were processed in Byonic v5.2. and pGlyco3 searched against the IgG1 sequence and a custom library of N-glycans from human plasma including 24 glycotypes. The precursor mass tolerance and fragment mass tolerances were set to 5ppm and 10ppm respectively. Additional modifications including deamidation of N and Q, carboxymethylation of C, and oxidation of precursor were also included in the search. Assignments were made using Byonic software and manual interpretation. IgG1 glycopeptide assignments was based on the following criteria: Log prob >1, mass error less than 2 ppm (in the most cases), and retention time. Relative abundancies were calculated from the raw data using m/z\u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2s corresponding to the different charge states.   Glycomics:  GRITS software and Glyco Workbench 2 was used to identify the N-glycan structures (sodium adduct). Relative percentages were retrieved from MS1 level using m/z\u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2s for multiple charge states. FreeStyle 1.8 was used in order to pull out the peaks.",
+  "sampleProcessingProtocol": "Glycoproteomics: IgGs were reduced with 25 mM dithiothreitol (DTT) at 60\u00c3\u0192\u00e2\u20ac\u00b9\u00c3\u2026\u00c2\u00a1C for 40 minutes. The samples were further alkylated with 90 mM iodoacetamide (IAA) at room temperature for 20 mins. IgGs were desalted by 10 kDa centrifuge cartridges. Trypsin digestion was performed on reduced samples, 1:20/enzyme:protein ratio was used, and material was incubated at 37\u00c3\u0192\u00e2\u20ac\u00b9\u00c3\u2026\u00c2\u00a1C for 18 hours. Prior LC-MS/MS analysis all peptide/glycopeptides were filtered using 0.2 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcm filters.96 The peptides/glycopeptides were analyzed on an Ultimate 3000 RSLCnano connected to a Thermo Eclipse mass spectrometer. Nano-LC columns of 15 cm length with 75 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcm internal diameter, filled with 3 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcm C18 reverse phase material were used for chromatographic separation. The separation conditions were low to high acetonitrile in a solution containing 0.1% formic acid, and the separation time was 60 minutes. The precursor ion scan was acquired at 120k resolution in the Orbitrap analyzer and precursors at a time frame of 3 s were selected for subsequent fragmentation using stepped HCD (20, 30 and 40%). Charge state screening was enabled, and precursors with unknown charge state or a charge state of +1 were excluded. Dynamic exclusion was enabled (exclusion duration of 60 s). The centroided fragment ions were analyzed on an Orbitrap detector at 30k resolution.  Glycomics: 100 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcg of the material was reduced with 25 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of 25 mM DTT and incubated at 50\u00c3\u0192\u00e2\u20ac\u00b9\u00c3\u2026\u00c2\u00a1C for 30 min. After that samples were treated with 90mM iodoacetamide to alkylate. The samples were desalted by centrifugation via Amicon centrifuge filters (10k MWCO size). 3 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of PNGaseF was added to desalted samples followed by incubation at 37 \u00c3\u0192\u00e2\u20ac\u0161\u00c3\u201a\u00c2\u00b0C for 18 h to release the N-glycans. The released glycans were permethylated using sodium iodide in the presence of sodium hydroxide and DMSO. Addition of water quenched the permethylation reaction and permethylated N-glycans were extracted with dichloromethane. The dichloromethane layer was rinsed five times with water and dried via evaporation by nitrogen gas.97 Dried, permethylated glycans were re-dissolved in a solution of 100\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of water and 100\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of methanol for a total volume of 200\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL (with 1mM NaOH). Samples were then run on a Themo Orbitrap Fusion Tribrid tandem MS coupled to Ultimate 3000 RSLCnano. 10 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of N-glycans were injected into LC MS/MS and ran in the low to high organic solvent gradient for 72 minutes. The precursor ion scan was acquired at 120k resolution in the Orbitrap analyzer and precursors at a time frame of 3 s were selected for subsequent fragmentation using CID (45%). Charge states were targeted from 1 to 5.Dynamic exclusion was enabled (exclusion duration of 30s). The centroided fragment ions wereanalyzed on an Orbitrap detector at 15k resolution.",
+  "projectTags": [],
+  "keywords": [
+   "Hiv; glycome; igg; inflammation; aging; biological age; cancer; subclinical 51 atherosclerosis",
+   "Adcd",
+   "Adcc",
+   "Adcp"
+  ],
+  "doi": "10.6019/PXD046510",
+  "otherOmicsLinks": [
+   "geo:GSE254483"
+  ],
+  "submissionType": "COMPLETE",
+  "publicationDate": "2024-03-21",
+  "updatedDate": "2023-10-30",
+  "submissionDate": "2023-10-30",
+  "downloadCount": 978,
+  "avgDownloadsPerFile": 75.23077,
+  "percentile": 35,
+  "yearlyDownloads": [
+   {
+    "year": "2024",
+    "count": 145
+   },
+   {
+    "year": "2025",
+    "count": 752
+   },
+   {
+    "year": "2026",
+    "count": 81
+   }
+  ],
+  "submitters": [
+   "Sergei Shalygin"
+  ],
+  "labPIs": [
+   "Mohamed Abdel-Mohsen"
+  ],
+  "affiliations": [
+   "PI The Wistar Institute, Philadelphia, PA, USA;"
+  ],
+  "instruments": [
+   "Orbitrap Eclipse"
+  ],
+  "softwares": [],
+  "quantificationMethods": [
+   "TIC"
+  ],
+  "sampleAttributes": [
+   "Human immunodeficiency virus infectious disease",
+   "Homo sapiens (Human)",
+   "IgG short lived plasma cell"
+  ],
+  "organisms": [
+   "Homo sapiens (human)"
+  ],
+  "organismsPart": [
+   "Igg short lived plasma cell"
+  ],
+  "diseases": [
+   "Human immunodeficiency virus infectious disease"
+  ],
+  "references": [
+   "Giron LB, Liu Q, Adeniji OS, Yin X, Kannan T, Ding J, Lu DY, Langan S, Zhang J, Azevedo JLLC, Li SH, Shalygin S, Azadi P, Hanna DB, Ofotokun I, Lazar J, Fischl MA, Haberlen S, Macatangay B, Adimora AA, Jamieson BD, Rinaldo C, Merenstein D, Roan NR, Kutsch O, Gange S, Wolinsky SM, Witt MD, Post WS, Kossenkov A, Landay AL, Frank I, Tien PC, Gross R, Brown TT, Abdel-Mohsen M. Immunoglobulin G N-glycan markers of accelerated biological aging during chronic HIV infection. Nat Commun. 2024 15(1):3035--pubMed:38600088--doi: 10.1038/s41467-024-47279-4"
+  ],
+  "experimentTypes": [
+   "Bottom-up proteomics"
+  ],
+  "projectFileNames": [
+   "G0.raw",
+   "G0.mzid.gz",
+   "G0F.mzid.gz",
+   "G0F.raw",
+   "G0.mgf",
+   "G2F.mgf",
+   "G2.mzid.gz",
+   "G2F.raw",
+   "PXD046510_community_annotated.sdrf.tsv",
+   "G0F.mgf",
+   "G2.mgf",
+   "G2F.mzid.gz",
+   "G2.raw"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "The <em>released</em> <em>glycans</em> were permethylated using sodium iodide in the presence of sodium hydroxide and DMSO."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD042172",
+  "title": "Cell surface-specific N-glycoproteomics",
+  "projectDescription": "To understand the cellular functions of glycans and to exploit them as clinical targets it is essential to acquire information on their cell surface exposure. Here, we developed a sensitive and specific mass spectrometry method to globally study the N-glycoforms displayed at individual protein sites on the cell surface. This offers a valuable tool to discriminate between functionally relevant glycans and biosynthetic intermediates for future cellular glycoproteomic analyses.",
+  "dataProcessingProtocol": "Skyline for released glycans, PD/Byonic for glycoproteomics, DIA-NN for proteomics",
+  "sampleProcessingProtocol": "C18-LC-MS/MS for released glycans, glycoproteomics and proteomics",
+  "projectTags": [],
+  "keywords": [
+   "Glycoproteomics",
+   "Keratinocytes",
+   "Lc-ms/ms",
+   "N-glycan",
+   "Cell surface"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2024-01-26",
+  "updatedDate": "2023-05-12",
+  "submissionDate": "2023-05-12",
+  "downloadCount": 1594,
+  "avgDownloadsPerFile": 59.037037,
+  "botCount": 601,
+  "hubCount": 875,
+  "organicCount": 118,
+  "percentile": 51,
+  "yearlyDownloads": [
+   {
+    "year": "2024",
+    "count": 79
+   },
+   {
+    "year": "2025",
+    "count": 1433
+   },
+   {
+    "year": "2026",
+    "count": 82
+   }
+  ],
+  "submitters": [
+   "Noortje de Haan"
+  ],
+  "labPIs": [
+   "Hans Wandall"
+  ],
+  "affiliations": [
+   "Copenhagen Center for Glycomics, University of Copenhagen"
+  ],
+  "instruments": [
+   "Orbitrap Fusion Lumos"
+  ],
+  "softwares": [
+   "DIA-NN"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "keratinocyte",
+   "Homo sapiens (Human)",
+   "skin"
+  ],
+  "organisms": [
+   "Homo sapiens (human)"
+  ],
+  "organismsPart": [
+   "Keratinocyte",
+   "Skin"
+  ],
+  "diseases": [],
+  "references": [
+   "de Haan N, Song M, Grant OC, Ye Z, Khoder Agha F, Koed M\u00f8ller Aasted M, Woods RJ, Vakhrushev SY, Wandall HH. Sensitive and Specific Global Cell Surface <i>N</i>-Glycoproteomics Shows Profound Differences Between Glycosylation Sites and Subcellular Components. Anal Chem. 2023 95(47):17328-17336--pubMed:37956981--doi: 10.1021/acs.analchem.3c03626"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "20230213_Byonic.dat",
+   "AllProteomes.tsv",
+   "20200312_EXPL2_EvoPRI_ZY_SA_45min_DIA_NTERT_WT_4_4.raw",
+   "20220326_Lumos_LC1200_nanoFlex_NH22006_09_Ngly.raw",
+   "20220201_EXPL5_EvoPRI_ZY_Ming_NTERT1_Surface_30SPD_DIA_WT_51.raw",
+   "Surface.tsv",
+   "220914_Lumos_NH22015_EL_TCL_01.raw",
+   "220914_Lumos_NH22015_EL_TCL_02.raw",
+   "20200312_EXPL2_EvoPRI_ZY_SA_45min_DIA_NTERT_WT_5_5.raw",
+   "NH22006_Skyline_glycomics.dat",
+   "20200312_EXPL2_EvoPRI_ZY_SA_45min_DIA_NTERT_WT_6_6.raw",
+   "220914_Lumos_NH22015_EL_surf_02.raw",
+   "20220326_Lumos_LC1200_nanoFlex_NH22006_02_Ngly.raw",
+   "20220326_Lumos_LC1200_nanoFlex_NH22006_05_Ngly.raw",
+   "20220201_EXPL5_EvoPRI_ZY_Ming_NTERT1_Surface_30SPD_DIA_WT_59.raw",
+   "220914_Lumos_NH22015_FT_TCL_02.raw",
+   "220914_Lumos_NH22015_FT_surf_01.raw",
+   "220914_Lumos_NH22015_FT_TCL_01.raw",
+   "20220326_Lumos_LC1200_nanoFlex_NH22006_08_Ngly.raw",
+   "20200312_EXPL2_EvoPRI_ZY_SA_45min_DIA_NTERT_WT_1_1.raw",
+   "220914_Lumos_NH22015_FT_surf_02.raw",
+   "20220201_EXPL5_EvoPRI_ZY_Ming_NTERT1_Surface_30SPD_DIA_WT_55.raw",
+   "220914_Lumos_NH22015_EL_surf_01.raw",
+   "20200312_EXPL2_EvoPRI_ZY_SA_45min_DIA_NTERT_WT_2_2.raw",
+   "20220326_Lumos_LC1200_nanoFlex_NH22006_03_Ngly.raw",
+   "20220326_Lumos_LC1200_nanoFlex_NH22006_06_Ngly.raw",
+   "20200312_EXPL2_EvoPRI_ZY_SA_45min_DIA_NTERT_WT_3_3.raw"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "C18-LC-MS/MS for <em>released</em> <em>glycans</em>, glycoproteomics and proteomics"
+   ],
+   "dataProcessingProtocol": [
+    "Skyline for <em>released</em> <em>glycans</em>, PD/Byonic for glycoproteomics, DIA-NN for proteomics"
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD023448",
+  "title": "Esterification Reaction: An Unexpected Side Reaction During Glycopeptide and Glycan Storages in Formic Acid Solution",
+  "projectDescription": "Glycosylation is one of the most important co- and post-translational modifications on proteins. In glycomics and glycoproteomics studies, the released glycans or intact glycopeptides are analyzed by tandem mass spectrometry to achieve their large-scale analyses. Prior to LC-MS/MS analyses, the glycan and intact glycopeptide samples are normally dissolved in formic acid (FA) solution, and sometimes stored at -20 \u00b0C or lower temperatures. In this study, we show that an unexpected +28 Da modification would occur in a time-dependent manner when the glycan and glycopeptide samples were stored in FA solution at -20 \u00b0C. Additional evidences suggested that this unexpected modification should be mainly caused by the esterification reaction between the hydroxyl group of glycans and FA. As this modification would reduce the glycopeptide identification and/or increase false positive results, once the glycan and glycopeptide samples have been dissolved in FA solution, it should not be stored at -20 \u00b0C.",
+  "dataProcessingProtocol": "we added +28 Da modification to each N-glycans in the Byonic mammalian N-glycan database (for FA and TFA-treatment samples, +42.0105 Da and +96.9901 Da modifications were added to each N-glycans, respectively), and formed a new database with 309 normal N-glycans. Then all MS data of N-glycopeptides were searched again by Byonic with the new N-glycan database. All identified intact glycopeptides were filtered by a score of 300.",
+  "sampleProcessingProtocol": "About 50 mg frozen mouse brain and kidney tissues were homogenized in 0.3 ml of 8 M urea/1 M NH4HCO3 solution1 with ice incubation using a high-throughput tissue grinding machine (JingXin, China) at 60 Hz for 240 s. The crude extract was briefly sonicated until the solution was clear. Lysates was refined by centrifugation at 15,000 \u00d7 g at room temperature for 15 min and proteins were collected in the supernatant. Protein concentrations were determined by BCA protein assay reagent (Beyotime, China).  The proteins were then reduced by 5 mM dithiothreitol (DTT) at 37 \u00b0C for 1 h, and alkylated by 15 mM iodoacetamide (IAM) at room temperature in the dark for 30 min. Another 2.5 mM DTT was then added and incubated at room temperature for 10 min. The protein solution was diluted two times with deionized water prior to the first cycle of protein digestion by incubating the samples with the sequencing grade trypsin (Promega, USA, WI; proteins: enzyme, 100:1, w/w) at 37 \u00b0C for 2 h with shaking. The solutions were further diluted four-fold with deionized water and additional trypsin (proteins: enzyme, 100:1, w/w) was added and incubated at 37 \u00b0C overnight with shaking. The pH of the solution was adjusted with 50% TFA till pH < 2. The sample was centrifuged at 15,000 g for 15 min to remove any particulate matter and the peptide in supernatants was desalted by the C18 column (Waters, USA). Peptides were eluted from C18 column in 50% ACN/0.1% TFA solution and the peptide concentrations were measured by BCA reagent.",
+  "projectTags": [],
+  "keywords": [
+   "Glycoproteomics",
+   "Formic acid",
+   "Glycomics"
+  ],
+  "doi": "",
+  "otherOmicsLinks": [
+   "px:PXD004559",
+   "px:PXD041217",
+   "px:PXD005655",
+   "px:PXD005413",
+   "px:PXD005412",
+   "px:PXD005555",
+   "px:PXD001571",
+   "px:PXD005411",
+   "px:PXD005553",
+   "px:PXD022988",
+   "px:PXD001404",
+   "px:PXD011533",
+   "px:PXD035775",
+   "px:PXD010333"
+  ],
+  "submissionType": "PARTIAL",
+  "publicationDate": "2025-12-22",
+  "updatedDate": "2021-01-07",
+  "submissionDate": "2021-01-07",
+  "downloadCount": 409,
+  "avgDownloadsPerFile": 4.216495,
+  "botCount": 1,
+  "hubCount": 408,
+  "organicCount": 0,
+  "percentile": 15,
+  "yearlyDownloads": [
+   {
+    "year": "2025",
+    "count": 70
+   },
+   {
+    "year": "2026",
+    "count": 339
+   }
+  ],
+  "submitters": [
+   "Liuyi Dang"
+  ],
+  "labPIs": [
+   "Sun Shisheng"
+  ],
+  "affiliations": [
+   "College of Life Science, Northwest University, Xi\u2019an, 710069, P. R. China"
+  ],
+  "instruments": [
+   "Orbitrap Fusion Lumos"
+  ],
+  "softwares": [],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "kidney",
+   "brain",
+   "Mus musculus (Mouse)"
+  ],
+  "organisms": [
+   "Mus musculus (mouse)"
+  ],
+  "organismsPart": [
+   "Brain",
+   "Kidney"
+  ],
+  "diseases": [],
+  "references": [
+   "Kothlow K, Schramm HM, Markuson KA, Russell JH, Sutherland E, Veth TS, Zhang R, Duboff AG, Tejus VR, McDermott LE, Dr\u00e4ger LS, Riley NM. Extracting Informative Glycan-Specific Ions From Glycopeptide MS/MS Spectra With GlyCounter. Mol Cell Proteomics. 2025 24(12):101085--pubMed:41106479--doi: 10.1016/j.mcpro.2025.101085"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "28_mouse_kidney_max_-20_time_3day_50cm_130min.raw",
+   "28_mouse_kidney_max_TFA_0day_50cm_130min.raw",
+   "28_mouse_kidney_max_refrigerator_14day_50cm_130min_1_Byonic_Result.xlsx",
+   "28_mouse_brain_-20_1day_max_Byonic_28_Result.xlsx",
+   "28_mouse_brain_max_4_7months_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_-20_time_7day_50cm_130min.raw",
+   "28_mouse_kidney_max_acetic_acid_0day_50cm_130min.raw",
+   "28_mouse_brain_0day_max_1_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_14day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_brain_0day_max_2.raw",
+   "28_mouse_kidney_max_acetic_acid_14day_50cm_130min_42_Result.xlsx",
+   "28_mouse_kidney_max_1FA_7day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_14day_50cm_130min_2.raw",
+   "28_mouse_brain_max_4_7months_50cm_130min.raw",
+   "28_mouse_kidney_max_1FA_7day_50cm_130min.raw",
+   "28_mouse_brian_N2_-80_1day_max_Byonic_28_Result.xlsx",
+   "28_mouse_brain_max_4_7months_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_brain_max_N2_-80_7months_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_3day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_3_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_2_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_1_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_time_7day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_1FA_0day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_14day_50cm_130min_2_Byonic_Result.xlsx",
+   "28_mouse_brain_max_N2_-80_7months_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_0day_50cm_130min_1_Byonic_28_Result.xlsx",
+   "28_mouse_brain_4_1day_max_2_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_1FA_0day_50cm_130min.raw",
+   "28_mouse_brain_4_1day_max_1.raw",
+   "28_mouse_brain_-20_1day_max.raw",
+   "28_mouse_brain_-80_1day_max.xlsx",
+   "28_mouse_brain_max_N2_-80_7months_50cm_130min.raw",
+   "28_mouse_brian_N2_-80_1day_max.raw",
+   "28_mouse_kidney_max_TFA_7day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_brain_0day_max_1.raw",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_2.raw",
+   "28_mouse_kidney_max_-20_time_14day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_14day_50cm_130min_1_28_Result.xlsx",
+   "28_mouse_kidney_max_TFA_14day_50cm_130min.raw",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_3_28_Result.xlsx",
+   "28_mouse_kidney_max_TFA_14day_50cm_130min_96_Result.xlsx",
+   "28_mouse_brain_max_RT_7months_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_brain_max_-80_7months_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_7day_50cm_130min.raw",
+   "28_mouse_brain_max_-80_7months_50cm_130min.raw",
+   "28_mouse_kidney_max_0day_50cm_130min_2.raw",
+   "28_mouse_kidney_max_TFA_14day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_brain_0day_max_2_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_time_14day_50cm_130min_28_Result.xlsx",
+   "28_mouse_brain_max_RT_7months_50cm_130min.raw",
+   "28_mouse_kidney_max_1FA_0day_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_acetic_acid_14day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_TFA_0day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_3day_50cm_130min.raw",
+   "28_mouse_kidney_max_acetic_acid_14day_50cm_130min.raw",
+   "28_mouse_brain_max_-20_7months_50cm_130min.raw",
+   "28_mouse_kidney_max_acetic_acid_7day_50cm_130min_42_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_1.raw",
+   "28_mouse_brain_max_-20_7months_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_-20_time_3day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_0day_50cm_130min_2_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_0day_50cm_130min_1_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_1_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_1FA_14day_50cm_130min.raw",
+   "28_mouse_kidney_max_-20_time_14day_50cm_130min.raw",
+   "28_mouse_kidney_max_-20_RT_7day_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_time_3day_50cm_130min_28_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_14day_50cm_130min_1.raw",
+   "28_mouse_brain_RT_1day_max.raw",
+   "28_mouse_kidney_max_acetic_acid_7day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_brain_max_-20_7months_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_brain_max_RT_7months_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_TFA_7day_50cm_130min_96_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_7day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_-20_time_7day_50cm_130min_28_Result.xlsx",
+   "28_mouse_brain_RT_1day_max_Byonic_28_Result.xlsx",
+   "28_mouse_brain_4_1day_max_2.raw",
+   "28_mouse_brain_-80_1day_max.raw",
+   "28_mouse_brain_4_1day_max_1_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_14day_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_brain_max_-80_7months_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_-20_RT_14day_50cm_130min.raw",
+   "28_mouse_kidney_max_0day_50cm_130min_1.raw",
+   "28_mouse_kidney_max_-20_RT_3day_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_TFA_0day_50cm_130min_96_Result.xlsx",
+   "28_mouse_kidney_max_TFA_7day_50cm_130min.raw",
+   "28_mouse_kidney_max_acetic_acid_0day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_1FA_7day_50cm_130min_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_1FA_14day_50cm_130min_Byonic_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_14day_50cm_130min_2_28_Result.xlsx",
+   "28_mouse_kidney_max_acetic_acid_7day_50cm_130min.raw",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_2_28_Result.xlsx",
+   "28_mouse_kidney_max_refrigerator_7day_50cm_130min_3.raw",
+   "28_mouse_kidney_max_acetic_acid_0day_50cm_130min_42_Result.xlsx",
+   "28_mouse_kidney_max_0day_50cm_130min_2_Byonic_28_Result.xlsx",
+   "28_mouse_kidney_max_1FA_14day_50cm_130min_Byonic_28_Result.xlsx"
+  ],
+  "highlights": {
+   "projectDescription": [
+    "In glycomics and glycoproteomics studies, the <em>released</em> <em>glycans</em> or intact glycopeptides are analyzed by tandem mass spectrometry to achieve their large-scale analyses."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD023379",
+  "title": "N-Glycome and N-Glycoproteome of a Hematophagous Parasitic Nematode Haemonchus",
+  "projectDescription": "N-glycosylation is a physiologically vital post-translational modification of proteins in eukaryotic organisms. Initial work on Haemonchus contortus \u2013 an economically-important blood-sucking nematode of ruminants with a broad geographical distribution \u2013 has shown that the parasite harbors N-glycans with exclusive core chitobiose modifications, and severel immunogenic proteins (e.g., amino- and metallo-peptidases) in the adult worms are N-glycosylated. However, an informative atlas of N-glycosylation in H. contortus is not yet available. Herein, we report a total of 291 N-glycosylated proteins with 425 sites in this parasite. Functional analyses of glycoproteome revealed significant enrichment of the peptidase families (e.g., peptidase C1 and M1), many of which are potential vaccine targets. Besides, the glycan-rich conjugates are distributed primarily in the intestine and gonads of the adult worms. These data, taken together, provide a comprehensive insight into the N-glycosylation of a prevalent parasitic nematode, while underlining its significance for the infection and prophylaxis.",
+  "dataProcessingProtocol": "Spectra were obtained using the AB 5800 MALDI-MS instrument operated in the positive ionization mode (AB SCIEX, Concord, Canada). The dried glycan residues were reconstituted in 15 \u03bcL methanol solution. The matrix was prepared with 10 mg/mL DHB in 50% acetonitrile and 10 mM sodium acetate. 1 \u03bcL of permethylated glycan was mixed with 1 \u03bcL of freshly-prepared DHB prior to spotting on a MALDI-target plate and allowed to crystalize at room temperature. In total, 1000 laser shots were applied on each sample spot. MS/MS analyses were performed with air as CID gas using 2 kV collision energy. The final data were processed by DataExplorer 4.0 (AB SCIEX, Concord, Canada), and the selected spectra were annotated using GlycoWorkbench (2.1 build 146).  The MS/MS data were evaluated by MaxQuant software package (v1.5.2.8). Tandem mass spectra were searched against H. contortus entries in the UniProt database (24273 proteins) concatenated with reverse decoy database. Trypsin was specified as the cleavage enzyme allowing up to 2 missed cleavages. The mass tolerance for precursor ions was set at 20 ppm in the first search and 5 ppm in the main search. The mass tolerance for fragment ions was set as 0.02 Dalton. Carbamidomethyl on the cysteine residue was specified as a fixed modification and oxidation on methionine was specified as a variable modification. The false discovery rate was adjusted to \u22641%, and the minimum score for modified peptides was set \u226540.",
+  "sampleProcessingProtocol": "The worms were immersed in 500 \u00b5L of ice-cold lysis buffer (8 M urea, 1% Protease inhibitor cocktail), and then homogenized in a glass homogenizer for 20 min. The homogenate, kept on ice, was ultrasonicated at 30 s bursts for 5 min. The total parasite extract was centrifuged at 10.000g for 25 min, and the supernatant was were collected and the protein concentrations were detected using a BCA assay. Individual protein sample (400 ug) was reduced with 5 mM dithiothreitol at 56\u00b0C for 35 min, and then alkylated with 11 mM iodoacetamide at room temperature for 20 min in a darkroom. The urea concentration of the sample was diluted to less than 1 M with a 100 mM NH4HCO3 solution. Finally, trypsin was added at a mass ratio of 1:50 (trypsin/protein) for the first digestion (overnight), and a ratio of 1:100 (trypsin/protein) for an additional 5 h to ensure complete digestion. Glycopeptides were collected using a HILIC enrichment method. Briefly, peptides were reconstituted in 40 \u03bcL of loading buffer (80% ACN with 1% TFA), and then pipetted into a HILIC tip. After centrifugation (4000g, 20 min), retaining glycopeptides were washed three times with 40 \u03bcL loading buffer, and centrifuged to remove the residual non-glycopeptides. Afterward, glycopeptides were eluted three times with 20 \u03bcL of 10% ACN. Finally, enriched glycopeptides were divided into two equal parts and respectively dried by the centrifugal evaporator. The workflow of N-glycan preparation was based on a previous report with some modifications. Briefly, an aliquot of glycopeptides was incubated with 2 \u03bcL of PNGase F in 50 \u03bcl of PBS (pH 8.0) buffer at 37\u00baC for 24 h. PNGase F-cleaved glycans were then desalted and purified by PGC cartridges, essentially as described elsewhere. The remaining glycopeptides after PNGase F digestion were dried and then redissolved in 50 \u03bcL of sodium acetate solution (pH 4.5). After addition of 2 \u03bcL PNGase A enzyme, the sample was incubated at 37\u00b0C for 24 h. PNGase A-released glycans were isolated by PGC cartridges, as described above. Permethylation of glycans was performed following an established protocol. In brief, native glycan pools released by PNGase F and PNGase A were dissolved in 50 \u03bcL DMSO and 100 \u03bcL of DMSO-NaOH slurry, respectively. Afterwards, 50 \u03bcL of methyl iodide was added to each reaction mixture, followed by shaking (room temperature, 15 min). The reaction was terminated by addition of 500 \u00b5L of ultrapure water and 250 \u03bcL chloroform. After separation of the liquid phases, the upper layer was removed carefully, and the lower organic layer containing the permethylated glycans was washed three times with ultrapure water. Finally, the two organic phases were transferred to separate vials and dried by the centrifugal evaporator.   For N-glycoproteome analysis (three replicates), an aliquot of enriched glycopeptides was dissolved in 50 \u03bcL of 50 mM NH4HCO3 buffer (prepared using H218O) and deglycosylated by treatment with 2 \u03bcL PNGase F (37\u00b0C, 24 h). The fraction was subjected to HILIC enrichment, as outlined above. Peptides deglycosylated by PNGase F were collected from the HILIC tip effluent. The HILIC tip-bound glycopeptides were eluted and dried by the centrifugal evaporator, and finally reconstituted in 50 \u03bcL of 50 mM sodium acetate solution (in H218O). 2 \u03bcL of PNGase A enzyme was supplemented, followed by incubation at 37 \u00baC for 24 h. The PNGase F- and PNGase A-deglycosylated peptides were desalted using C18 ZipTips (manufacturer\u2019s protocol), dissolved in 0.1% formic acid (solvent A) and loaded onto a reversed-phase analytical column equipped with an EASY-nLC 1000 UPLC system. A gradient at a constant flow rate of 400 nL/min was programed to increase the solvent B (0.1% formic acid in 98% acetonitrile) from 6-23% in the first 26 min, followed by another 8 min from 23-35%, and then 3 min to reach 80%, and thereafter staying constant at 80% for the last 3 min. After UPLC, peptides were ionized by a nanospray ionization source (2.0 kV) and analyzed by MS/MS in Orbitrap FusionTM TribridTM (Thermo Fisher).",
+  "projectTags": [],
+  "keywords": [
+   "Haemonchus contortus",
+   "Glycopeptide",
+   "N-glycan",
+   "Mass spectrometry",
+   "N-glycosylation"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2021-09-09",
+  "updatedDate": "2021-01-04",
+  "submissionDate": "2021-01-04",
+  "downloadCount": 933,
+  "avgDownloadsPerFile": 49.105263,
+  "botCount": 280,
+  "hubCount": 641,
+  "organicCount": 12,
+  "percentile": 34,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 26
+   },
+   {
+    "year": "2022",
+    "count": 20
+   },
+   {
+    "year": "2023",
+    "count": 66
+   },
+   {
+    "year": "2024",
+    "count": 5
+   },
+   {
+    "year": "2025",
+    "count": 666
+   },
+   {
+    "year": "2026",
+    "count": 150
+   }
+  ],
+  "submitters": [
+   "Chunqun Wang"
+  ],
+  "labPIs": [
+   "Min Hu"
+  ],
+  "affiliations": [
+   "State Key Laboratory of Agricultural Microbiology, College of Veterinary Medicine, Huazhong Agricultural University"
+  ],
+  "instruments": [
+   "Orbitrap Fusion"
+  ],
+  "softwares": [
+   "Data Explorer",
+   "MaxQuant"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "whole body",
+   "Haemonchus contortus (Barber pole worm)"
+  ],
+  "organisms": [
+   "Haemonchus contortus (barber pole worm)"
+  ],
+  "organismsPart": [
+   "Whole body"
+  ],
+  "diseases": [],
+  "references": [
+   "Wang C, Gao W, Yan S, Zhu XQ, Suo X, Liu X, Gupta N, Hu M. N-glycome and N-glycoproteome of a hematophagous parasitic nematode <i>Haemonchus</i>. Comput Struct Biotechnol J. 2021 19:2486-2496--pubMed:34025939--doi: 10.1016/j.csbj.2021.04.038"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "7132PI_2_mqpar.xml",
+   "7132PI_1_mqpar.xml",
+   "ZA043PINg_HC_2.raw",
+   "7132PI_1.raw",
+   "7132PI_2_search.zip",
+   "Glycans_PNGase_F_and_PNGase_A_MS.zip",
+   "ZA043PINg_HC_2_search.zip",
+   "ZA043PINg_HC_3_mqpar.xml",
+   "ZA043PINg_HC_1_search.zip",
+   "7132PI_3.raw",
+   "7132PI_1_search.zip",
+   "7132PI_3_search.zip",
+   "ZA043PINg_HC_1.raw",
+   "7132PI_2.raw",
+   "ZA043PINg_HC_1_mqpar.xml",
+   "ZA043PINg_HC_3_search.zip",
+   "ZA043PINg_HC_3.raw",
+   "ZA043PINg_HC_2_mqpar.xml",
+   "7132PI_3_mqpar.xml"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "PNGase A-<em>released</em> <em>glycans</em> were isolated by PGC cartridges, as described above. Permethylation of glycans was performed following an established protocol."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD012459",
+  "title": "Carbo-loading in fungal lung pathogens: a quantitative analysis of CAZyme abundance and resulting glycan populations",
+  "projectDescription": "Herein we i) identify Coccidioides spp.-specific CAZymes by bioinformatically comparing the CAZyme repertoire (CAZome) of Coccidioides spp. to other common fungal lung pathogens and a non-pathogenic close fungal relative,  ii) experimentally evaluate Coccidioides spp. CAZyme abundance in vivo and in vitro, and iii) identify Coccidioides genus-specific N-glycans by experimentally determining the N-glycan population (N-glycome) of Coccidioides-infected lung tissues using tandem mass spectrometry. As far as we are aware, this is the first use of mass spectrometry to compare the N-glycomes and CAZomes of different fungal genera during infection in human hosts.",
+  "dataProcessingProtocol": "Glycan LC-MS/MS. Dried glycan extracts from dot-blotted and deglycosylated LCM tissues were solubilized in 10mM NH4HCO3 and analyzed by capillary-flow liquid chromatography electrospray tandem mass spectrometry (capLC-ESI-MS/MS) using a Thermo Fisher Scientific Q-Exactive Plus Mass Spectrometer (Thermo Fisher Scientific, Bremen, Germany) coupled to a Thermo Ultimate 3000 RSLCnano HPLC system configured with the capillary flow module. The glycan mixture is loaded onto a Hypercarb Porous Graphite Carbon column (Thermo) and chromatography is performed using 10mM ammonium bicarbonate buffer in both the A solvent (98%water/2%acetonitrile) and B solvent (80% acetonitrile/20% water),starting at 10%B and jumping to 20%B in 5 minutes then a 20%B to 55%B gradient over 60 minutes at 4.8 ul /min.  The Q-Exactive mass spectrometer experiment was a positive mode data dependent set up with an MS1 survey scan from 380-2000 m/z at resolution 70,000 (at 200m/z), AGC target of 1e6, and maximum injection time (MaxIT) of 75ms, followed by HCD MS/MS scans at resolution 17,500 on the top 13 ions having a charge state of +2, +3, or +4, with an AGC target of 2e5, and max IT of 300ms . This is followed by a second positive mode data dependent series of an MS1 survey scan from 600 -1600 m/z at 70,000 resolution, triggering HCD MS/MS scans on the top 5 ions having a charge state of +1 or +2. The ions selected for MS/MS are placed on an exclusion list for 20 seconds.    Glycan identification. Glycan MS/MS spectra were analyzed using SimGlycan v.5.60 (Premier Biosoft; Palo Alto, CA). Search parameters were underivatized, free glycans in positive ion mode with H+ and Na+ adducts. A 1 Da \u00b1 0.5 Da error tolerance was allowed. All glycosidic and cross-ring options were set to \u201cyes\u201d. Only precursor mass to charge ratios (m/z) which also had MS2 spectra were kept for analyses.",
+  "sampleProcessingProtocol": "Methods were performed in accordance with the protocol published by Jensen, et. al. 2012,29 with little deviation. In brief, glycoproteins from processed LCM FFPE tissues were spotted onto ethanol-wetted Immun-Blot\u00ae PVDF membrane (BioRad Laboratories; Hercules CA) and stained with Direct Blue 71 (MilliporeMilliporeSigma; Burlington MA) to visualize proteins. After washing in 40% ethanol, 10% acetic acid, followed by water to remove acid, membranes were blocked in 1% (w/v) polyvinylpyrrolidone (PVP40; MilliporeMilliporeSigma) in 50% (v/v)methanol.  Protein spots were excised with a clean disposable scalpel and put into individual wells of a flat-bottom polypropylene 96-well plate (Corning; Corning NY). N-glycans were released from the protein spots by adding 5ul of PNGase F (New England BioLabs, Ipswich MA), 10\u00b5l of water and incubating in a humidity chamber at 37\u00b0C overnight. The next day, the plate was sonicated in a water bath sonicator for 5 minutes prior to sample collection into microcentrifuge tubes. PVDF spots were washed twice with 20\u00b5l of water and washes were collected into the respective sample tube. Glycosylamines from the reducing terminus of PNGase F-released glycans were removed by the addition of 10\u00b5l of 100mM ammonium acetate (pH 5, MilliporeSigma) and incubation at RT for 1h. After drying samples in a SpeedVac concentrator at room temperature, free N-glycans were not reduced, but were desalted by using porous graphitic carbon (PGC) solid phase extraction (SPE) spin columns (Thermo Fisher Scientific, Waltham MA), using a modification to the Jansen et. al. protocol. Prior to sample loading, PGC SPE were washed in one column volume of 1M NaOH (MilliporeSigma), HPLC-grade water (Honeywell, Morris Plains, NJ), 30% acetic acid (MilliporeSigma), HPLC-grade water, and then equilibrated in 50% acetonitrile (ACN, Honeywell) with 0.1% triflouroacetic acid (TFA, MilliporeSigma) and then 5% ACN with 0.1% TFA. Samples were loaded onto the PGC SPE, spun out and then reloaded onto the column twice, prior to washing with one column volume of HPLC-grade water and one volume of 5% ACN with 0.1% TFA. Glycans were eluted by adding 1 column volume of 50% ACN with 0.1% TFA. Eluted glycans were dried in a SpeedVac concentrator at 37\u00b0C and frozen at -80\u00b0C until mass spectrometry.",
+  "projectTags": [
+   "Biomedical"
+  ],
+  "keywords": [
+   "Valley fever",
+   "Glycomics",
+   "Proteomics",
+   "Cazymes",
+   "Glycans",
+   "Coccidioides"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2019-11-11",
+  "updatedDate": "2019-01-22",
+  "submissionDate": "2019-01-22",
+  "downloadCount": 838,
+  "avgDownloadsPerFile": 36.434784,
+  "botCount": 260,
+  "hubCount": 576,
+  "organicCount": 2,
+  "percentile": 31,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 190
+   },
+   {
+    "year": "2022",
+    "count": 24
+   },
+   {
+    "year": "2023",
+    "count": 78
+   },
+   {
+    "year": "2024",
+    "count": 8
+   },
+   {
+    "year": "2025",
+    "count": 538
+   }
+  ],
+  "submitters": [
+   "Natalie Mitchell"
+  ],
+  "labPIs": [
+   "DOUGLAS LAKE"
+  ],
+  "affiliations": [
+   "PI/ PROFESSOR"
+  ],
+  "instruments": [
+   "LTQ Orbitrap Velos",
+   "Q Exactive"
+  ],
+  "softwares": [],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "lung",
+   "Homo sapiens (Human)"
+  ],
+  "organisms": [
+   "Homo sapiens (human)"
+  ],
+  "organismsPart": [
+   "Lung"
+  ],
+  "diseases": [],
+  "references": [
+   "Mitchell NM, Grys TE, Lake DF. Carbo-loading in Coccidioides spp.: a quantitative analysis of CAZyme abundance and resulting glycan populations. Glycobiology. 2019--pubMed:31691790--doi: 10.1093/glycob/cwz092"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "qe3_2018Jan31_GrysLake_P17194_2B.raw",
+   "4C.xls",
+   "qe3_2018Jan31_GrysLake_P17194_1A.raw",
+   "GlycanLCMSampleKey.xlsx",
+   "LCMglycan2A.xls",
+   "qe3_2018Jan31_GrysLake_P17194_4A.raw",
+   "1C.xls",
+   "qe3_2018Jan31_GrysLake_P17194_1C.raw",
+   "2B.xls",
+   "4B.xls",
+   "qe3_2018Jan31_GrysLake_P17194_3A.raw",
+   "qe3_2018Jan31_GrysLake_P17194_3C.raw",
+   "3C.xls",
+   "LCMglycan4A.xls",
+   "LCMglycan1A.xls",
+   "qe3_2018Jan31_GrysLake_P17194_4B.raw",
+   "qe3_2018Jan31_GrysLake_P17194_4C.raw",
+   "qe3_2018Jan31_GrysLake_P17194_3B.raw",
+   "LCMglycan3A.xls",
+   "2C.xls",
+   "qe3_2018Jan31_GrysLake_P17194_2C.raw",
+   "qe3_2018Jan31_GrysLake_P17194_2A.raw",
+   "3B.xls"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "Glycosylamines from the reducing terminus of PNGase F-<em>released</em> <em>glycans</em> were removed by the addition of 10\u00b5l of 100mM ammonium acetate (pH 5, MilliporeSigma) and incubation at RT for 1h."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD010308",
+  "title": "Grass carp serum IgM LC-ESI-MS/MS and MALDI-MS",
+  "projectDescription": "Glycosylation represents a major post-translational modification of proteins that can influence their structure and function.Telesot immunoglobulin M (IgM) is an especially important product of the immune system because it is the main Abs in seum and plays a critical role against defense infection. However, little is known regarding site-specific N-glycan characteristics in teleost IgM , LC-ESI-MS/MS was used to analysis deglycopeptides and glycopeptides of grass carp serum IgM, and MALDI-MS was used to analysis released carbohydrates by PNGaseF diestion of grass carp serum IgM.",
+  "dataProcessingProtocol": "De-glycopeptide and glycopeptide MS data were searched against grass carp IgM sequence (GenBank accession No ABD76396.1) using Proteome Discoverer V2.2 (Thermo Fisher Scientific). Annotation of the corresponding glycopeptide spectra was performed in using Byonic software v1.09 (Protein Metrics).MALDI-TOF data of  glycan assignment was analysis by GlycoMod software (http://web.expasy.org/glycomod/).",
+  "sampleProcessingProtocol": "The N-glycosylation sites Indentification was first checked via PNGase F digestion using LC-ESI-MS/MS, To determine site-specific glycan profiles at each of the four sites of the grass carp serum IgM was determined by analysis tryptic glycopeptides with LC-ESI-MS/MS by employing HCD fragmentation. MALDI-TOF analyses of released glycans was used to ndentifiy the carbohydrate moieties.",
+  "projectTags": [
+   "Biological"
+  ],
+  "keywords": [
+   "Immunoglobulin m",
+   "Grass carp",
+   "Maldi-ms",
+   "Lc-ms/ms)"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2018-11-29",
+  "updatedDate": "2018-08-23",
+  "submissionDate": "2018-07-04",
+  "downloadCount": 819,
+  "avgDownloadsPerFile": 54.6,
+  "botCount": 188,
+  "hubCount": 624,
+  "organicCount": 7,
+  "percentile": 30,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 16
+   },
+   {
+    "year": "2022",
+    "count": 14
+   },
+   {
+    "year": "2023",
+    "count": 18
+   },
+   {
+    "year": "2024",
+    "count": 63
+   },
+   {
+    "year": "2025",
+    "count": 614
+   },
+   {
+    "year": "2026",
+    "count": 94
+   }
+  ],
+  "submitters": [
+   "Yiling Su"
+  ],
+  "labPIs": [
+   "Hui Geng"
+  ],
+  "affiliations": [
+   "Hubei Key Laboratory of Genetic Regulation and Integrative Biology, School of Life Sciences, Central China Normal University, Wuhan, 430079, China"
+  ],
+  "instruments": [
+   "Q Exactive"
+  ],
+  "softwares": [
+   "Byonic",
+   "Proteome Discoverer"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "Ctenopharyngodon idella",
+   "blood plasma"
+  ],
+  "organisms": [
+   "Ctenopharyngodon idella"
+  ],
+  "organismsPart": [
+   "Blood plasma"
+  ],
+  "diseases": [],
+  "references": [
+   "Su YL, Wang B, Hu MD, Cui ZW, Wan J, Bai H, Yang Q, Cui YF, Wan CH, Xiong L, Zhang YA, Geng H. Site-Specific N-Glycan Characterization of Grass Carp Serum IgM. Front Immunol. 2018 9:2645--pubMed:30487799--doi: 10.3389/fimmu.2018.02645"
+  ],
+  "experimentTypes": [
+   "HDMSE"
+  ],
+  "projectFileNames": [
+   "MALDI.xlsx",
+   "GH_IgM1_201710009_WJ_100min_1.rar",
+   "syl_gc1_201712008_WB_100min_.rar",
+   "syl_gc2_201712008_WB_100min_2.rar",
+   "syl_gc3_201712008_WB_100min_2.rar",
+   "syl_gc3_201712008_WB_100min_2.raw",
+   "GH_IgM2_201710009_WJ_100min_1.raw",
+   "GH_IgM2_201710009_WJ_100min_1.rar",
+   "glyocpeptides_Byonic_182_com2.rar",
+   "syl_gc2_201712008_WB_100min_2.raw",
+   "GH_IgM1_201710009_WJ_100min_1.raw",
+   "SYL_GCGLYCO_201701004_WJ_100MIN_1.raw_20180118_Byonic_182N_Glycans_com2.rar",
+   "syl_gc1_201712008_WB_100min_.raw",
+   "SYL_GCGLYCO_201701004_WJ_100MIN_1.raw",
+   "HF01_20171017_QXH_LXY_2017YFF0205400_GIgM_F1_R1.raw"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "MALDI-TOF analyses of <em>released</em> <em>glycans</em> was used to ndentifiy the carbohydrate moieties."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD007267",
+  "title": "Probing endogenous peptide acceptor substrate specificities of TbSTT3A and TbSTT3B",
+  "projectDescription": "We performed glycoproteomics on endogenous parasite glycoproteins using sequential endoglycosidase-H and peptide-N-glycosidase-F digestions, the latter in the presence of H2[18O]. This allowed us to assess the relative occupancies of native N-glycosylation sites by endoglycosidase-H resistant N-glycans originating from Man5GlcNAc2-PP-dolichol transferred by TbSTT3A, and endoglycosidase-H sensitive N-glycans originating from Man9GlcNAc2-PP-dolichol transferred by TbSTT3B.",
+  "dataProcessingProtocol": "We extracted from the mascot result files all the peptides with an ion-score >20. From this we selected 350 glycosylated sites with a deamidation (Asn to [18O]Asp conversion) or Asn-N-HexNAc modification embedded in the N.^P[ST] consensus. The list was used to count the number of times (>=3) that these changes were detected for each peptide.",
+  "sampleProcessingProtocol": "Cells were harvested by centrifugation and osmotically lysed at 3.5 x108 cells/ml for 5 min at 37 oC in the presence of 0.1 \u00b5M 1-chloro-3-tosylamide-7-amino-2-heptone (TLCK), 1mM benzamidine, 1mM phenyl-methyl sulfonyl fluoride (PMSF), 1 \u00b5g/ml leupeptin, 1 \u00b5g/ml aprotinin and Phosphatase Inhibitor Mixture II (Calbiochem). Cell ghosts from a total of 3.5 x 109 trypanosomes, enriched for non-VSG cellular glycoproteins, were collected by centrifugation (16,000 g, 15 min, 4oC) and solubilised in 250 \u00b5l of detergent buffer (4% SDS, 0.1 M DTT, 0.1 M Tris-HCl, pH 7.5) using probe sonication for 30 s before and after heating to 85oC for 20 min. S-alkylation was performed by mixing with 250 \u00b5l of 8 M urea, 0.5 M iodoacetamide (IAA), 0.1 M Tris-HCl, pH 8.5, for 1 h, room temperature, in the dark. Unreacted IAA was quenched by the addition of 10 \u00b5l of the detergent buffer. After centrifugation (16,000 x g, 15 min) the supernatant was transferred to a filtration device with a 30 kDa molecular cut-off (Sartorius) and the majority of the detergent was removed by diafiltration with 8 M urea, 0.1 M Tris-HCl, pH 8.5 followed by lectin binding buffer (1 mM CaCl2, 1 mM MnCl2, 150 mM NaCl in 40 mM Tris-HCl, pH 7.4). An aliquot (400 \u00b5g protein) was mixed with 150 \u00b5l packed volume of ricin (RCA120)-agarose beads (Vector Laboratories) and rotated gently for 2 h. The beads were washed with lectin binding buffer and eluted with 300 \u00b5l of the same buffer containing 30 mg/ml lactose and 30 mg/ml galactose (Sigma-Aldrich) in 40 mM Tris-HCl, pH 7.4. After overnight incubation, the supernatant containing the eluted glycoproteins were collected by centrifugation (10,000 x g for 10 min). ConA-coupled agarose beads (0.15 ml packed volume, Vector Laboratories) was added to the recovered supernatant from the RCA120 pull-down and incubated at 4 oC for overnight. The beads were washed with lectin binding buffer and eluted with 300 \u00b5l of 0.5 M methyl-alpha-D-mannopyranoside (Sigma) in 40 mM Tris-HCl, pH 7.4. After gentle rotation for 2 h the supernatant containing glycoproteins were recovered by centrifugation. The RCA120 and ConA eluted glycoproteins were mixed, transferred to a 30 kDa filter, the buffer exchanged with 25 mM ammonium acetate, pH 5.5, and subjected to digestion with 180 mU endoglycosidase H (EndoH, Roche Applied Sciences) overnight at 37 oC. The EndoH released glycans were removed by centrifugation and the remaining material was exchanged into 40 mM ammonium bicarbonate buffer in H2[18O] (Sigma), and subsequently digested with 100 units of N-glycosidase F (PNGaseF, Roche) dissolved in H2[18O]. PNGaseF in the presence of H2[18O] converts Asn to [18O]Asp with a mass increment of 2.9890 Da that can be readily distinguished from spontaneous deamidation (mass increment of 0.9858 Da). After overnight incubation at 37 oC, the PNGaseF released glycans were removed by centrifugation and the deglycosylated proteins were diafiltered into 40 mM ammonium bicarbonate and subsequently digested with a mixture of 1:100 (enzyme: substrate) Lys-C and 1:20 trypsin (Roche) at 37 oC for 48 h. The peptides were collected by centrifugation through the filter, dried in Speedvac and desalted using Zip Tip C18 micro column (10 \u00b5l, Merck Millipore) prior liquid chromatography tandem mass spectrometry (LC-MS/MS). An alternative (glyco)peptide-based approach was also performed, based on the method of (74). An aliquot of the denatured and S-alkylated sample (400 \u00b5g) was first digested on a 10 kDa filter with a mix of Lys-C and trypsin, as described above. The (glyco)peptides were collected by centrifugation through the filter in lectin binding buffer and were mixed with lectin solution containing a mixture of ConA and RCA120 resulting in mixtures of (glyco)peptides and lectins with a mass proportion of 1:2. After gentle rotation for 2 h the mixtures were transferred to a 30 kDa filter, the lectin-captured glycopeptides were diafiltered into 25 mM ammonium acetate, pH 5.5, and subjected to EndoH digestion. After overnight incubation at 37oC, the EndoH released peptides (Asn N-GlcNAc residue) were collected by gentle centrifugation. The peptides containing EndoH resistant glycans still bound to lectins were diafiltered into 40 mM ammonium bicarbonate buffer in H2[18O] and digested with PNGaseF overnight at 37oC. The de-glycosylated peptides were collected by centrifugation, mixed with the EndoH released fraction, dried in a Speedvac and desalted using ZipTip C18 prior LC-MS/MS, which was performed as described above.",
+  "projectTags": [
+   "Biological"
+  ],
+  "keywords": [
+   "Glycoproteomics",
+   "Parasitology",
+   "Trypanosoma",
+   "Stt3",
+   "Glycoprotein biosynthesis",
+   "N-linked glycosylation",
+   "Oligosaccharyltransferase"
+  ],
+  "doi": "10.6019/PXD007267",
+  "otherOmicsLinks": [
+   "pride.project:PXD007237",
+   "px:PXD007236",
+   "px:PXD007237",
+   "px:PXD007238",
+   "pride.project:PXD007268",
+   "pride.project:PXD007236",
+   "px:PXD007268"
+  ],
+  "submissionType": "COMPLETE",
+  "publicationDate": "2017-09-20",
+  "updatedDate": "2017-08-14",
+  "submissionDate": "2017-08-14",
+  "downloadCount": 1711,
+  "avgDownloadsPerFile": 95.05556,
+  "percentile": 53,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 230
+   },
+   {
+    "year": "2022",
+    "count": 8
+   },
+   {
+    "year": "2023",
+    "count": 20
+   },
+   {
+    "year": "2024",
+    "count": 8
+   },
+   {
+    "year": "2025",
+    "count": 1225
+   },
+   {
+    "year": "2026",
+    "count": 220
+   }
+  ],
+  "submitters": [
+   "Michele Tinti"
+  ],
+  "labPIs": [
+   "Michael Ferguson"
+  ],
+  "affiliations": [
+   "The Wellcome Centre for Anti-Infectives Research Ferguson lab  School of Life Sciences University of Dundee Dow Street, Dundee DD1 5EH, Scotland, UK"
+  ],
+  "instruments": [
+   "LTQ Orbitrap Velos"
+  ],
+  "softwares": [
+   "Mascot"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "Trypanosoma brucei"
+  ],
+  "organisms": [
+   "Trypanosoma brucei"
+  ],
+  "organismsPart": [],
+  "diseases": [],
+  "references": [
+   "Jinnelov AAJ, Ali L, Tinti M, Ferguson MAJ. Single-subunit oligosaccharyltransferases of Trypanosoma brucei display different and predictable peptide acceptor specificities. J Biol Chem. 2017--pubMed:28928222--doi: 10.1074/jbc.m117.810945"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "F235663.mzid.gz",
+   "LA-1-ACN.RAW",
+   "PXD007267_community_annotated.sdrf.tsv",
+   "LA-A5.RAW",
+   "LA-3.RAW",
+   "mascot_daemon_merge.mgf",
+   "LA-A1.RAW",
+   "LA-7.RAW",
+   "LA-3-ACN.RAW",
+   "LA-5.RAW",
+   "LA-1.RAW",
+   "F235663.dat",
+   "LA-7-ACN.RAW",
+   "LA-5-ACN.RAW",
+   "LA-A7.RAW",
+   "LA-8.RAW",
+   "LA-2.RAW",
+   "LA-6.RAW"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "The EndoH <em>released</em> <em>glycans</em> were removed by centrifugation and the remaining material was exchanged into 40 mM ammonium bicarbonate buffer in H2[18O] (Sigma), and subsequently digested with 100 units of"
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD003677",
+  "title": "The metacaspase Mca1p restricts O-glycosylation during farnesol-induced apoptosis in Candida albicans",
+  "projectDescription": "Protein glycolysation is an essential posttranslational modification in eukaryotic cells. In pathogenic yeasts, it is involved in a large number of biological processes, such as protein folding quality control, cell viability and host/pathogen relationships. A link between protein glycosylation and apoptosis was established by the analysis of the phenotypes of oligosaccharyltransferase mutants in budding yeast. However, little is known about the contribution of glycosylation modifications to the adaptive response to apoptosis inducers. The cysteine protease metacaspase Mca1p plays a key role in the apoptotic response in Candida albicans triggered by the quorum sensing molecule farnesol. We subjected wild-type and mca1-deletion strains to farnesol stress and then studied the early phase of apoptosis release in quantitative glycoproteomics and glycomics experiments on cell-free extracts essentially devoid of cell walls. We identified and characterized 62 new glycosylated peptides with their glycan composition: 17 N-glycosylated, 45 O-glycosylated, and 81 additional sites of N-glycosylation. The glycosylated proteins were predicted as located mostly in the \u201cmembrane\u201d and \u201ccell wall\u201d compartments, but they were also related to the \u201cnucleus\u201d and the \u201cmitochondrial\u201d compartments. They were found to be involved in the control of protein folding, cell wall integrity and cell cycle regulation. We showed a general increase in the O-glycosylation of proteins in the mca1 deletion strain after farnesol challenge. We identified 44 new putative protein substrates of the metacaspase in the glycoprotein fraction enriched on concanavalin A. Most of these substrates are involved in protein folding or protein resolubilization and in mitochondrial functions. We show here that key Mca1p substrates, such as Cdc48p or Ssb1p, involved in degrading misfolded glycoproteins and in the protein quality control system, are themselves differentially glycosylated. We found putative substrates, such as Bgl2p, Srb1p or Ugp1p, that are involved in the biogenesis of glycans. We validated as a substrate of Mca1p the endo-beta-1,3-glucanase Bgl2p which is involved in the incorporation of newly synthetized mannoproteins in the cell wall. Our findings highlight a new role of the metacaspase in amplifying cell death processes by affecting several critical protein quality control systems through the alteration of the protein glycosylation machinery.",
+  "dataProcessingProtocol": "Quantitative analysis, in label-free experiments, of proteins and peptides from the different datasets. All MS and MS/MS data for protein samples were processed with Progenesis QI 2.0 (Nonlinear Dynamics, Newcastle, UK) for label-free quantification and with the Byonic search engine (Protein Metrics, version 2.3.5) (28). The abundances of the peptides obtained by the trypsin digestion of crude sample were normalized with Progenesis software, a procedure not directly applicable to samples obtained by ConA chromatography because the amount of bound material varied to the sample origin. The mass tolerance was set to 10 ppm for precursor ions and 20 ppm for fragments. The peptide identifications obtained with the search engine Byonic were validated if the two-dimensional Post Error Probabilities which include PSM FDR and protein FDR (2D PEP) (29) were lower than 0.01 (|log 2D PEP|>2). The following variable modifications were allowed: oxidation (M), phosphorylation (ST), acetylation (K) (2 by peptide maximum in the parameter rare modifications). An additional glycan database was used, containing the N-glycosylations (N) and O-glycosylations (ST) described in yeast and making it possible to investigate 12 O-glycosylation subtypes (from 1 to 12 mannose residues) and 14 N-glycosylation subtypes (1 N-acetylhexosamine or 2 N-acetylhexosamine with 0 to 12 mannose residues) simultaneously in the various datasets (one modification by peptide maximum in common modifications). The maximum number of missed cleavages was limited to two for all the proteases used. MS/MS data were used to search a C. albicans ORF database (# 6221) retrieved from the Candida Genome Database website (30) (http://www.candidagenome.org/). Between-subject analyses were carried out on the various datasets. Non-normalized abundances of the proteins eluted form ConA columns and normalized abundances of proteins from trypsin digests of crude sample with similar normalized abundance variations (ANOVA p-value < 0.05) were classified together by the AutoClass Bayesian clustering system (webserver Autoclass@IJM, http://ytat2.ijm.univ-paris-diderot.fr/) (31) and visualized with Javatreeview (http://jtreeview.sourceforge.net/). Proteins were considered to be putatively glycosylated if they were more abundant in the ConA column eluate than in the crude sample. Gene Ontology analyses were performed on each cluster in which putative glycosylated proteins were overrepresented and more abundant in mca1\u0394/\u0394-F conditions than in other conditions. These Gene Ontology analyses were carried out with the GO Slim mapper tool from the Candida Genome Database website. Similar GO analyses were performed for all the glycosylated proteins found in the various datasets. *Search for new potential substrates of Mca1p. We digested 10 \u00b5g of proteins after glycopeptide enrichment by ConA chromatography, for each set of conditions, with the GluC protease (12.5 \u00b5g/ml; Sigma Aldrich) overnight at 37\u00b0C in 20 \u00b5l of 20 mM phosphate buffer pH7.8. MS/MS data were processed with the Byonic search engine and Proteome Discoverer 1.4 (Thermo Scientific), using the same parameters as above, except for the enzyme parameter which was set to GluC and semi-specific. Peptides identified exclusively in WT-F conditions, in at least two of three replicates, were selected for further analysis. For substrate validation, label-free, between-subject approaches were applied to the GluC dataset, with Progenesis QI. The Mca1p-specific cleavage products identified were considered validated if more abundant in WT-F conditions than in the other conditions. ANOVA p-values below 0.05 after label-free analysis were used as a criterion for the selection of the best potential substrates. GO analyses were performed on the list of potential substrates with the GO Slim Mapper tool from the Candida Genome Database website. Variation probabilities were calculated with R software for each GO term.  *Quantitative analysis of the released glycans by TMT-labeling. Glycans were quantified and identified manually.",
+  "sampleProcessingProtocol": "*Enrichment in glycoproteins and glycopeptides by lectin-based affinity chromatography. We used cell extracts (500 \u00b5g of protein) from each set of conditions directly for glycoprotein(/peptide) enrichment with ConA A magnetic beads from the Pierce Glycosylation Isolation kit with ConA. We also digested 500 \u00b5g of cell protein from the various cell conditions overnight at 37\u00b0C with sequencing-grade trypsin (12.5 \u03bcg/ml; Promega) in 200 \u03bcl of 25 mmol/L NH4HCO3. The resulting peptides were loaded onto a ConA column and processed as described above to enrich the samples in glycopeptides. As a control, peptides from trypsin digests of crude samples were analyzed directly for protein quantification and glycopeptide identification. We obtained three fractions: (i) crude sample without enrichment, (ii) fraction corresponding to proteins eluted from the ConA column and (iii) fractions corresponding to peptides eluted from the ConA column. The proteins eluted from the ConA column were also digested in solution, according to the same digestion protocol. Equal amounts of sample were used for the analysis of fraction (i), whereas similar volumes of eluate were analyzed for fractions (ii) and (iii). *LC-MS/MS acquisition of peptide samples. We analyzed 2 \u00b5g of protein digests from crude samples and equal volumes of eluted proteins and peptides eluted from ConA columns from the different cell conditions in triplicate with an Orbitrap Fusion coupled to a Nano-LC Proxeon. Peptides were separated by chromatography with the following parameters: Acclaim PepMap100 C18 pre-column (2 cm, 75 \u03bcm i.d.), Pepmap-RSLC Proxeon C18 column (50 cm, 75 \u03bcm i.d.), 300 nl/min flow rate, gradient from 95 % solvent A (water, 0.1% formic acid) to 35% solvent B (100 % acetonitrile, 0.1% formic acid) over a period of 97 minutes, followed by column regeneration for 23 min, giving a total run time of 2 hours. Peptides were analyzed in the Orbitrap cell, at a resolution of 120,000 (at m/z 200), with a mass range of m/z 350-1550 (except for samples of isolated peptides from ConA columns with a mass range of 350-4000). Fragments were obtained by HCD activation with a collisional energy of 30 %, and a quadrupole isolation window of 1.6 Da. MS/MS data were acquired in the Orbitrap cell in top-speed mode, with a total cycle of 3 seconds at a resolution of 30,000. Precursor priority was highest charge state, followed by most intense. Peptides with charge states from 2 to 8 were selected for MS/MS acquisition.*Determination of N-glycosylation sites after treatment with the endoglycosidase H. We digested 20 \u00b5g of crude protein samples from the different conditions (WT, WT-farnesol, mca1\u0394/\u0394 and mca1\u0394/\u0394-farnesol) by the Endo H (2500 U for 20 \u00b5g; Promega) overnight at pH7.8 in 20 \u00b5l of a 50 mM NH4HCO3 buffer. Then deglycosylated proteins were digested by trypsin overnight. Peptides obtained were analyzed in LC-MS/MS with an Orbitrap Fusion coupled to a Nano-LC Proxeon 1000. *Quantitative analysis of the released glycans by TMT-labeling. Glycan release and labeling with TMT reporters were performed in accordance with the general instructions for the aminoxy-TMT sixplex kit (Thermo Scientific). We digested 1 mg of sample from each set of conditions with trypsin in 100 \u00b5l of 20 mM TEAB buffer overnight at 37\u00b0C. We added 5 \u00b5l of the glycosidase PNGase F (Prozyme) and the samples were incubated for 16 hours at 37\u00b0C. A conditioned Oasis (Waters) column was then used to separate peptides from the released glycans. Glycan fractions for the WT, WT-F, mca1\u0394/\u0394 and mca1\u0394/\u0394-F conditions were labeled with 126 (monoisotopic m/z = 126.12773), 127 (m/z = 127.1248 Da), 128 (128.1344 Da) and 129 (m/z = 129.1315 Da) labeling reagents, respectively. Labeled glycans were washed in 95 % methanol, in 10 % acetone and then combined in a 1:1 by volume ratio. A new Oasis column was used to discard excess aminoxy-TMT reagents. The released glycans were analyzed on an Orbitrap Fusion Tribrid mass spectrometer coupled to a Nano-LC Proxeon 1000. Peptides were separated by chromatography with the following parameters: Accucore Amide HILIC column (15 cm, 75 \u03bcm i.d., 2.6 \u03bcm, 150 \u00c5), 300 nl/min flow rate, gradient from 95% solvent B (100 % acetonitrile, 0.1 % formic acid) to 40 % solvent A (water, 0.1 % formic acid) over 100 minutes followed by column regeneration for 20 min, giving a total run time of 2 hours. Peptides were analyzed in two independent experiments, depending on the acquisition mass range (mass ranges of m/z 270-1000 and m/z 850-4000). In both cases, the instrument parameters were: full ion scan mode in the Orbitrap cell, at a resolution of 60,000 (at m/z 200) in positive mode. Fragments were obtained by HCD activation. MS/MS data were acquired in the Orbitrap cell, with a total cycle of 3 seconds, a resolution of 15,000, Precursor priority for MS/MS was highest charge state followed by most intense. Glycans with charge states from 1 to 8 were selected for MS/MS acquisition.",
+  "projectTags": [
+   "Biological"
+  ],
+  "keywords": [
+   "Candida albicans",
+   "Glycomics",
+   "Orbitrap fusion.",
+   "Ssb1",
+   "O-glycosylation",
+   "N-glycosylation",
+   "Erad",
+   "Glycoproteomics",
+   "Aminoxytmt",
+   "Bgl2",
+   "Glycans quantification",
+   "Farnesol",
+   "Cdc48",
+   "Pdi1",
+   "Metacaspase",
+   "Apoptosis"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2016-05-02",
+  "updatedDate": "2016-02-23",
+  "submissionDate": "2016-02-23",
+  "downloadCount": 7289,
+  "avgDownloadsPerFile": 60.741665,
+  "botCount": 2314,
+  "hubCount": 4894,
+  "organicCount": 81,
+  "percentile": 85,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 14
+   },
+   {
+    "year": "2022",
+    "count": 12
+   },
+   {
+    "year": "2023",
+    "count": 730
+   },
+   {
+    "year": "2024",
+    "count": 54
+   },
+   {
+    "year": "2025",
+    "count": 5449
+   },
+   {
+    "year": "2026",
+    "count": 1030
+   }
+  ],
+  "submitters": [
+   "Thibaut L\u00e9ger"
+  ],
+  "labPIs": [
+   "Jean-Michel Camadro"
+  ],
+  "affiliations": [
+   "Mass Spectrometry Laboratory, Institut Jacques Monod, UMR 7592, Univ Paris Diderot, CNRS, Sorbonne Paris Cit\u00e9, F-75205 Paris, France"
+  ],
+  "instruments": [
+   "Orbitrap Fusion ETD"
+  ],
+  "softwares": [
+   "Byonic",
+   "Progenesis QI",
+   "Proteome Discoverer"
+  ],
+  "quantificationMethods": [
+   "MS1 intensity based label-free quantification method",
+   "TMT"
+  ],
+  "sampleAttributes": [
+   "cell culture",
+   "vegetative cell (sensu Fungi)",
+   "Candida albicans (Yeast)"
+  ],
+  "organisms": [
+   "Candida albicans (yeast)"
+  ],
+  "organismsPart": [
+   "Cell culture",
+   "Vegetative cell (sensu fungi)"
+  ],
+  "diseases": [],
+  "references": [
+   "L\u00e9ger T, Garcia C, Camadro JM. The metacaspase Mca1p restricts O-glycosylation during farnesol-induced apoptosis in Candida albicans. Mol Cell Proteomics. 2016 Apr 28. pii: mcp.M116.059378--pubMed:27125826--doi: null"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "1502002-semi-GluC-MCA1F-2.pep.xml",
+   "1528008-trypsin-endoH-MCA1-F-1.raw",
+   "1528008-trypsin-endoH-WT-F-2.raw",
+   "1506002-aminoxy-TMT-850-4000-1.raw",
+   "1450005-F1_ConA-proteins-WT-1.raw",
+   "1506002-aminoxy-TMT-270-1000-1.raw",
+   "1502002-semi-GluC-WT-3.raw",
+   "1451004-crude-sample-WTF-3.raw",
+   "1528008-trypsin-endoH-WT-1.pep.xml",
+   "1502002-semi-GluC-WTF-2.raw",
+   "1528008-trypsin-endoH-MCA1-F-3.raw",
+   "1528008-trypsin-endoH-WT-F-1.pep.xml",
+   "1507008-ConA-peptides-MCA1F-2.raw",
+   "1450005-ConA-proteins-WT-3.raw",
+   "1528008-trypsin-endoH-MCA1-3.raw",
+   "1528008-trypsin-endoH-MCA1-F-3.pep.xml",
+   "1506002-aminoxy-TMT-270-1000-3.raw",
+   "1528008-trypsin-endoH-MCA1-2.pep.xml",
+   "1528008-trypsin-endoH-WT-2.raw",
+   "1507008-ConA-peptides-MCA1-3.raw",
+   "1450005-ConA-proteins-MCA1-2.raw",
+   "1506002-aminoxy-TMT-850-4000-3.raw",
+   "1451004-crude-sample-MCA1F-3.raw",
+   "1502002-semi-GluC-MCA1-3.raw",
+   "1451004-crude-sample-WTF-1.raw",
+   "1502002-semi-GluC-MCA1F-2.msf",
+   "1502002-semi-GluC-MCA1-2.pep.xml",
+   "1528008-trypsin-endoH-MCA1-1.raw",
+   "1502002-semi-GluC-MCA1F-3.pep.xml",
+   "1502002-semi-GluC-MCA1F-1.msf",
+   "1451004-crude-sample-MCA1F-2.raw",
+   "1502002-semi-GluC-MCA1F-1.pep.xml",
+   "1502002-semi-GluC-WTF-3.pep.xml",
+   "1502002-semi-GluC-WTF-3.msf",
+   "Byonic-files.zip",
+   "1528008-trypsin-endoH-MCA1-F-2.msf",
+   "1528008-trypsin-endoH-WT-1.msf",
+   "1507008-ConA-peptides-MCA1-1.raw",
+   "1528008-trypsin-endoH-MCA1-2.msf",
+   "1507008-ConA-peptides-WTF-3.raw",
+   "1450005-ConA-proteins-WTF-1.raw",
+   "1502002-semi-GluC-MCA1-1.raw",
+   "1507008-ConA-peptides-WT-2.raw",
+   "1528008-trypsin-endoH-WT-F-2.pep.xml",
+   "1528008-trypsin-endoH-WT-3.raw",
+   "1451004-crude-sample-MCA1-3.raw",
+   "1528008-trypsin-endoH-MCA1-F-2.pep.xml",
+   "1450005-ConA-proteins-MCA1F-2.raw",
+   "1502002-semi-GluC-WT-1.raw",
+   "1502002-semi-GluC-WTF-1.msf",
+   "1450005-ConA-proteins-WTF-3.raw",
+   "1451004-crude-sample-MCA1-1.raw",
+   "1502002-semi-GluC-MCA1F-3.raw",
+   "1528008-trypsin-endoH-WT-F-2.msf",
+   "1507008-ConA-peptides-WTF-1.raw",
+   "1502002-semi-GluC-MCA1-2.msf",
+   "1528008-trypsin-endoH-MCA1-3.pep.xml",
+   "1451004-crude-sample-WT-2.raw",
+   "1502002-semi-GluC-WT-2.msf",
+   "1502002-semi-GluC-WT-3.pep.xml",
+   "1502002-semi-GluC-MCA1-1.pep.xml",
+   "1502002-semi-GluC-MCA1-1.msf",
+   "1451004-crude-sample-WTF-2.raw",
+   "1528008-trypsin-endoH-WT-F-3.pep.xml",
+   "1528008-trypsin-endoH-WT-F-1.raw",
+   "1502002-semi-GluC-WTF-1.raw",
+   "1528008-trypsin-endoH-MCA1-F-2.raw",
+   "1502002-semi-GluC-WTF-2.pep.xml",
+   "1528008-trypsin-endoH-MCA1-2.raw",
+   "1528008-trypsin-endoH-WT-3.pep.xml",
+   "1450005-ConA-proteins-WT-2.raw",
+   "1502002-semi-GluC-WT-2.raw",
+   "1507008-ConA-peptides-MCA1F-1.raw",
+   "1506002-aminoxy-TMT-270-1000-2.raw",
+   "1502002-semi-GluC-WT-1.msf",
+   "1502002-semi-GluC-MCA1F-1.raw",
+   "C_albicans0514_cgd_database.fasta",
+   "1507008-ConA-peptides-MCA1-2.raw",
+   "1450005-label-free.zip",
+   "1502002-semi-GluC-WTF-3.raw",
+   "1528008-trypsin-endoH-MCA1-F-1.pep.xml",
+   "1502002-semi-GluC-MCA1F-3.msf",
+   "1502002-semi-GluC-MCA1-2.raw",
+   "1507008-ConA-peptides-WT-1.raw",
+   "1507008-ConA-peptides-MCA1F-3.raw",
+   "1507008-peptides.csv",
+   "1451004-label-free.zip",
+   "1528008-trypsin-endoH-WT-F-3.raw",
+   "1528008-trypsin-endoH-WT-3.msf",
+   "1528008-trypsin-endoH-MCA1-3.msf",
+   "1528008-trypsin-endoH-WT-1.raw",
+   "1450005-ConA-proteins-MCA1-1.raw",
+   "1506002-aminoxy-TMT-850-4000-2.raw",
+   "1502002-semi-GluC-WT-2.pep.xml",
+   "1528008-trypsin-endoH-WT-2.msf",
+   "1450005-ConA-proteins-MCA1-3.raw",
+   "1451004-crude-sample-WT-3.raw",
+   "1451004-crude-sample-MCA1F-1.raw",
+   "1507008-ConA-peptides-WT-3.raw",
+   "1528008-trypsin-endoH-WT-2.pep.xml",
+   "1451004-crude-sample-MCA1-2.raw",
+   "1507008-ConA-peptides-WTF-2.raw",
+   "1528008-trypsin-endoH-MCA1-F-3.msf",
+   "1528008-trypsin-endoH-WT-F-3.msf",
+   "1502002-semi-GluC-MCA1-3.msf",
+   "1502002-semi-GluC-MCA1F-2.raw",
+   "1450005-ConA-proteins-WTF-2.raw",
+   "1528008-trypsin-endoH-MCA1-1.msf",
+   "1450005-ConA-proteins-MCA1F-3.raw",
+   "1502002-semi-GluC-WT-3.msf",
+   "1451004-crude-sample-WT-1.raw",
+   "1528008-trypsin-endoH-MCA1-1.pep.xml",
+   "1528008-trypsin-endoH-MCA1-F-1.msf",
+   "1502002-semi-GluC-WT-1.pep.xml",
+   "1502002-semi-GluC-WTF-1.pep.xml",
+   "1502002-semi-GluC-MCA1-3.pep.xml",
+   "1450005-ConA-proteins-MCA1F-1.raw",
+   "1502002-semi-GluC-WTF-2.msf",
+   "1528008-trypsin-endoH-WT-F-1.msf",
+   "1502002-peptides.csv"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "*Quantitative analysis of the <em>released</em> <em>glycans</em> by TMT-labeling."
+   ],
+   "dataProcessingProtocol": [
+    "*Quantitative analysis of the <em>released</em> <em>glycans</em> by TMT-labeling. Glycans were quantified and identified manually."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD003498",
+  "title": "Influenza A virus- integrated glycomics, proteomics and glycoproteomics",
+  "projectDescription": "This study describes how site-specific glycosylation of Influenza A virus changes in response to pressures from the host immune system, thereby allowing the virus to evolve and escape neutralization. We compared the glycosylation patterns of different virus strains as they evolve and correlated this information with changes in biological activity. Furthermore, modelling and molecular dynamics studies were performed to understand the basis for glycan microheterogeneity and interactions of the virions with host-immune molecules.",
+  "dataProcessingProtocol": "Proteomics data were analyzed using PEAKS for error-tolerant database and de novo proteomics searches. Glycomics and glycoproteomics data were analyzed using an in-house data analysis pipeline, GlycReSoft.",
+  "sampleProcessingProtocol": "All samples were subjected to proteomics, glycomics and glycoprotemics experiments. Virus samples were deglycosylated and subjected to C18 LC-MS/MS for proteomics. Released glycans were subjected to HILIC-MS for glycomics. intact glycopeptides were analyzed by online HILIC enrichment and C18 LC-MS/MS.",
+  "projectTags": [
+   "Biomedical"
+  ],
+  "keywords": [
+   "Glycoproteomics",
+   "Hemagglutinin",
+   "Influenza",
+   "Glycomics",
+   "Lc-ms/ms"
+  ],
+  "doi": "10.6019/PXD003498",
+  "submissionType": "COMPLETE",
+  "publicationDate": "2016-04-26",
+  "updatedDate": "2016-01-21",
+  "submissionDate": "2016-01-21",
+  "downloadCount": 11142,
+  "avgDownloadsPerFile": 65.1579,
+  "botCount": 4463,
+  "hubCount": 6529,
+  "organicCount": 150,
+  "percentile": 91,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 110
+   },
+   {
+    "year": "2022",
+    "count": 1348
+   },
+   {
+    "year": "2023",
+    "count": 978
+   },
+   {
+    "year": "2024",
+    "count": 617
+   },
+   {
+    "year": "2025",
+    "count": 6562
+   },
+   {
+    "year": "2026",
+    "count": 1527
+   }
+  ],
+  "submitters": [
+   "Kshitij Khatri"
+  ],
+  "labPIs": [
+   "Joseph Zaia"
+  ],
+  "affiliations": [
+   "Center for Biomedical Mass Spectrometry, Department of Biochemistry, Boston University School of Medicine, Boston, MA 02118, United States of America"
+  ],
+  "instruments": [
+   "Q Exactive"
+  ],
+  "softwares": [
+   "MaxQuant"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "influenza",
+   "Homo sapiens (Human)",
+   "blood serum",
+   "Orthomyxoviridae"
+  ],
+  "organisms": [
+   "Homo sapiens (human)",
+   "Orthomyxoviridae"
+  ],
+  "organismsPart": [
+   "Blood serum"
+  ],
+  "diseases": [
+   "Influenza"
+  ],
+  "references": [
+   "Khatri K, Klein JA, White MR, Grant OC, Leymarie N, Woods RJ, Hartshorn KL, Zaia J. Integrated omics and computational glycobiology reveal structural basis for Influenza A virus glycan microheterogeneity and host interactions. Mol Cell Proteomics. 2016 Mar 16. pii: mcp.M116.058016--pubMed:26984886--doi: null"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "PR-08-chymo-GP-2.mgf",
+   "Phil-82-tryp-GP-3.mgf",
+   "AGP-tryp_O16_1.mgf",
+   "Phil-82_tryptic_O16_1_150507130718.mgf",
+   "AGP_glycoproteomics_20140918_01.d.zip",
+   "AGP-tryp_O16_3.raw",
+   "20140913_05_PR-08_1_annotated_spectra.tar.gz",
+   "Phil-BS_glycomics_20141103_03.d.zip",
+   "AGP_O16_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_tryptic_O16_3.raw",
+   "Phil-BS-tryp-GP-3.mgf",
+   "AGP-chymo_O16_1.raw",
+   "Phil-BS_glycoproteomics_integrated_omics.target-20150826-064756_on_20140905_03.mzML.results.glycopeptide_matches.csv",
+   "AGP_glycomics_20141030_04.d.zip",
+   "AGP-tryp_O16_1.raw",
+   "Phil-BS-chymo-GP-1.raw",
+   "Phil-82_chymo_O16_1.raw",
+   "PR-08-chymo-GP-2.raw",
+   "20140903_07_Phil-82_3_annotated_spectra.tar.gz",
+   "Phil-82-tryp-GP-1.mgf",
+   "AGP-tryp_O16_3.mgf",
+   "Phil-BS_chymo_O16-1.raw",
+   "integrated_omics.target-20151216-001501_on_20140912_06.mzML.results.glycopeptide_matches.csv",
+   "PR-08_glycomics_20141103_04.d.zip",
+   "PR-08_glycoproteomics_20140913_05.d.zip",
+   "Phil-82-tryp-GP-1.raw",
+   "Uniprot_all_IAV_combined-formatted-20150316_validated.fasta",
+   "Phil-82_glycomics_ResultOf20141101_03_isos.csv",
+   "Phil-82_tryptic_O16_1_150507130718.raw",
+   "Phil-BS_glycoproteomics_20140905_04.d.zip",
+   "PR-08_O16_tryp_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_glycoproteomics_20140903_06.d.zip",
+   "Phil-82_chymo_O16_3.raw",
+   "PR-08_O16_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_O16_tryp_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_glycomics_ResultOf20141031_07_isos.csv",
+   "Phil-BS-tryp-GP-1.mgf",
+   "AGP-chymo_O16_3.raw",
+   "PR-08_GP_tryp_peptides_1_1_0_new.mzid.gz",
+   "Phil-BS-chymo-GP-3.raw",
+   "Phil-BS_glycoproteomics_20140905_02.d.zip",
+   "Phil-BS-tryp-GP-2.raw",
+   "PR-08-tryptic_O16_1.mgf",
+   "Phil-82_glycoproteomics_integrated_omics.target-20150820-003935_on_20140903_06.mzML.results.glycopeptide_matches.csv",
+   "AGP_glycomics_ResultOf20141030_04_isos.csv",
+   "Phil-82_chymo_O16_2.mgf",
+   "PR-08_chymo_O16-2.raw",
+   "AGP_O16_tryp_peptides_1_1_0_new.mzid.gz",
+   "PR-08-tryp-GP-2.raw",
+   "Phil-BS_tryptic_O16_2.mgf",
+   "Phil-82_glycoproteomics_20140903_07.d.zip",
+   "Phil-BS_tryptic_O16_2.raw",
+   "Phil-BS_glycoproteomics_integrated_omics.target-20150826-073653_on_20140905_04.mzML.results.glycopeptide_matches.csv",
+   "Phil-82-chymo-GP2.raw",
+   "PR-08_chymo_O16-2.mgf",
+   "Phil-BS-chymo-GP-2.mgf",
+   "Phil-BS_chymo_O16-1.mgf",
+   "20140905_03_Phil-BS_2_annotated_spectra.tar.gz",
+   "PR-08_glycoproteomics_20140913_07.d.zip",
+   "PR-08_tryptic_O16_2.mgf",
+   "AGP-chymo-GP-3.mgf",
+   "Phil-BS_glycoproteomics_20140905_03.d.zip",
+   "PR-08-tryptic_O16_1.raw",
+   "AGP_GP_tryp_peptides_1_1_0_new.mzid.gz",
+   "PR-08_tryptic_O16_2.raw",
+   "AGP-chymo_O16_2.mgf",
+   "Phil-82_O16_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-BS_glycoproteomics_integrated_omics.target-20150826-060718_on_20140905_02.mzML.results.glycopeptide_matches.csv",
+   "PR-08-tryp-GP-2.mgf",
+   "AGP-tryp-GP-2.mgf",
+   "PR-08_glycomics_ResultOf20141031_04_isos.csv",
+   "Phil-82_tryptic_O16_2.mgf",
+   "AGP_GP_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_glycoproteomics_integrated_omics.target-20150820-012159_on_20140903_07.mzML.results.glycopeptide_matches.csv",
+   "Phil-82_glycomics_20141031_07.d.zip",
+   "Phil-82-chymo-GP2.mgf",
+   "Phil-BS_glycomics_20141103_02.d.zip",
+   "PR-08_glycoproteomics_20140913_06.d.zip",
+   "AGP_glycomics_ResultOf20141030_06_isos.csv",
+   "Phil-BS_O16_tryp_peptides_1_1_0_new.mzid.gz",
+   "AGP-chymo-GP-3.raw",
+   "AGP-tryp-GP-2.raw",
+   "20140903_06_Phil-82_2_annotated_spectra.tar.gz",
+   "PR-08_glycomics_20141103_05.d.zip",
+   "AGP-chymo_O16_2.raw",
+   "20140913_07_PR-08_3_annotated_spectra.tar.gz",
+   "Phil-82_tryptic_O16_2.raw",
+   "PR-08-chymo-GP-3.raw",
+   "PR-08-chymo-GP-1.mgf",
+   "AGP-tryp_O16_2.raw",
+   "AGP_glycomics_ResultOf20141031_02_isos.csv",
+   "PR-08_glycomics_ResultOf20141103_05_isos.csv",
+   "Phil-BS_glycomics_ResultOf20141101_04_isos.csv",
+   "Phil-BS_GP_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_GP_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-82_glycoproteomics_integrated_omics.target-20150820-000028_on_20140903_05.mzML.results.glycopeptide_matches.csv",
+   "Phil-82_glycoproteomics_20140903_05.d.zip",
+   "20140905_02_Phil-BS_1.tar_annotated_spectra.gz",
+   "AGP-chymo-GP-1.raw",
+   "Phil-82-chymo-GP3.mgf",
+   "integrated_omics.target-20151216-003508_on_20140918_01.mzML.results.glycopeptide_matches.csv",
+   "Phil-82-chymo-GP3.raw",
+   "Phil-BS-chymo-GP-3.mgf",
+   "Phil-BS_glycomics_ResultOf20141103_03_isos.csv",
+   "Supplementary_info_files.zip",
+   "Phil-82-tryp-GP-2.raw",
+   "Phil-BS-tryp-GP-2.mgf",
+   "Phil-82_chymo_O16_2.raw",
+   "AGP_glycomics_20141030_06.d.zip",
+   "PR-08_glycoproteomics_integrated_omics.target-20150820-145149_on_20140913_06.mzML.results.glycopeptide_matches.csv",
+   "Phil-BS_chymo_O16-3.mgf",
+   "Phil-BS-chymo-GP-2.raw",
+   "PR-08-chymo-GP-3.mgf",
+   "PR-08-chymo-GP-1.raw",
+   "AGP-tryp_O16_2.mgf",
+   "AGP-chymo-GP-1.mgf",
+   "Phil-BS_chymo_O16-2.raw",
+   "PR-08_glycomics_ResultOf20141103_04_isos.csv",
+   "Phil-82-tryp-GP-2.mgf",
+   "PR-08_glycomics_20141031_04.d.zip",
+   "Phil-BS-chymo-GP-1.mgf",
+   "20140905_04_Phil-BS_3_annotated_spectra.tar.gz",
+   "Phil-BS_tryptic_O16_1.mgf",
+   "AGP-tryp-GP-1.raw",
+   "Phil-BS_chymo_O16-2.mgf",
+   "PR-08_GP_chymo_peptides_1_1_0_new.mzid.gz",
+   "PR-08_chymo_O16-1.mgf",
+   "Phil-BS_glycomics_ResultOf20141103_02_isos.csv",
+   "Phil-82_glycomics_20141101_02.d.zip",
+   "Phil-BS_chymo_O16-3.raw",
+   "AGP-chymo-GP-2.mgf",
+   "PR-08_glycoproteomics_integrated_omics.target-20150820-152921_on_20140913_07.mzML.results.glycopeptide_matches.csv",
+   "PR-08_tryptic_O16_3.mgf",
+   "Phil-BS_O16_chymo_peptides_1_1_0_new.mzid.gz",
+   "Phil-BS-tryp-GP-1.raw",
+   "AGP-chymo_O16_3.mgf",
+   "Phil-82_chymo_O16_3.mgf",
+   "PR-08-tryp-GP-1.mgf",
+   "AGP-tryp-GP-1.mgf",
+   "Phil-BS_tryptic_O16_3.mgf",
+   "Phil-82-chymo-GP1.raw",
+   "PR-08_chymo_O16-1.raw",
+   "PR-08-tryp-GP-3.raw",
+   "20140913_06_PR-08_2_annotated_spectra.tar.gz",
+   "AGP_glycoproteomics_20140912_06.d.zip",
+   "Phil-BS_tryptic_O16_1.raw",
+   "Phil-82_glycomics_ResultOf20141101_02_isos.csv",
+   "PR-08_chymo_O16-3.mgf",
+   "Phil-BS_GP_tryp_peptides_1_1_0_new.mzid.gz",
+   "20140903_05_Phil-82_1_annotated_spectra.tar.gz",
+   "Phil-82-tryp-GP-3.raw",
+   "integrated_omics.target-20151215-235345_on_20140911_03.mzML.results.glycopeptide_matches.csv",
+   "AGP-chymo-GP-2.raw",
+   "AGP-tryp-GP-3.raw",
+   "Phil-82_glycomics_20141101_03.d.zip",
+   "PR-08_tryptic_O16_3.raw",
+   "PR-08-tryp-GP-3.mgf",
+   "AGP_glycomics_20141031_02.d.zip",
+   "AGP-tryp-GP-3.mgf",
+   "Phil-BS-tryp-GP-3.raw",
+   "AGP-chymo_O16_1.mgf",
+   "Phil-82_chymo_O16_1.mgf",
+   "PR-08_glycoproteomics_integrated_omics.target-20150820-141832_on_20140913_05.mzML.results.glycopeptide_matches.csv",
+   "Phil-82_GP_tryp_peptides_1_1_0_new.mzid.gz",
+   "PR-08-tryp-GP-1.raw",
+   "Phil-BS_glycomics_20141101_04.d.zip",
+   "AGP_glycoproteomics_20140911_03.d.zip",
+   "Phil-BS_tryptic_O16_3.raw",
+   "PR-08_chymo_O16-3.raw",
+   "Phil-82_tryptic_O16_3.mgf",
+   "Phil-82-chymo-GP1.mgf"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "<em>Released</em> <em>glycans</em> were subjected to HILIC-MS for glycomics. intact glycopeptides were analyzed by online HILIC enrichment and C18 LC-MS/MS."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ }
+]

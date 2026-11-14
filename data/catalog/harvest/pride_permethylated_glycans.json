@@ -1,0 +1,215 @@
+[
+ {
+  "accession": "PXD046510",
+  "title": "Plasma Glycomic Markers of Accelerated Biological Aging During Chronic HIV Infection",
+  "projectDescription": "People with HIV (PWH) experience an increased vulnerability to premature aging and inflammation-associated comorbidities, even when HIV replication is suppressed by antiretroviral therapy (ART). However, the factors that contribute to or are associated with this vulnerability remain uncertain. In the general population, alterations in the glycomes of circulating IgGs trigger inflammation and precede the onset of aging-associated diseases. Here, we investigate the IgG glycomes of cross-sectional and longitudinal samples from 1,216 women and men, both living with virally suppressed HIV and those without HIV. Our glycan-based machine learning models indicate that living with chronic HIV significantly accelerates the accumulation of pro-aging associated glycomic alterations. Consistently, PWH exhibit heightened expression of senescence associated glycan-degrading enzymes compared to their controls. These glycomic alterations correlate with elevated markers of inflammatory aging and the severity of comorbidities, potentially preceding the development of such comorbidities. Mechanistically, HIV-specific antibodies glycoengineered with these alterations exhibit reduced anti-HIV IgG-mediated innate immune functions. These findings hold significant potential for the development of glycomic based biomarkers and tools to identify and prevent premature aging and comorbidities in people living with chronic viral infections.",
+  "dataProcessingProtocol": "Glycoproteomics:  The resulting glycoproteomic data were processed in Byonic v5.2. and pGlyco3 searched against the IgG1 sequence and a custom library of N-glycans from human plasma including 24 glycotypes. The precursor mass tolerance and fragment mass tolerances were set to 5ppm and 10ppm respectively. Additional modifications including deamidation of N and Q, carboxymethylation of C, and oxidation of precursor were also included in the search. Assignments were made using Byonic software and manual interpretation. IgG1 glycopeptide assignments was based on the following criteria: Log prob >1, mass error less than 2 ppm (in the most cases), and retention time. Relative abundancies were calculated from the raw data using m/z\u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2s corresponding to the different charge states.   Glycomics:  GRITS software and Glyco Workbench 2 was used to identify the N-glycan structures (sodium adduct). Relative percentages were retrieved from MS1 level using m/z\u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u20ac\u017e\u00c2\u00a2s for multiple charge states. FreeStyle 1.8 was used in order to pull out the peaks.",
+  "sampleProcessingProtocol": "Glycoproteomics: IgGs were reduced with 25 mM dithiothreitol (DTT) at 60\u00c3\u0192\u00e2\u20ac\u00b9\u00c3\u2026\u00c2\u00a1C for 40 minutes. The samples were further alkylated with 90 mM iodoacetamide (IAA) at room temperature for 20 mins. IgGs were desalted by 10 kDa centrifuge cartridges. Trypsin digestion was performed on reduced samples, 1:20/enzyme:protein ratio was used, and material was incubated at 37\u00c3\u0192\u00e2\u20ac\u00b9\u00c3\u2026\u00c2\u00a1C for 18 hours. Prior LC-MS/MS analysis all peptide/glycopeptides were filtered using 0.2 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcm filters.96 The peptides/glycopeptides were analyzed on an Ultimate 3000 RSLCnano connected to a Thermo Eclipse mass spectrometer. Nano-LC columns of 15 cm length with 75 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcm internal diameter, filled with 3 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcm C18 reverse phase material were used for chromatographic separation. The separation conditions were low to high acetonitrile in a solution containing 0.1% formic acid, and the separation time was 60 minutes. The precursor ion scan was acquired at 120k resolution in the Orbitrap analyzer and precursors at a time frame of 3 s were selected for subsequent fragmentation using stepped HCD (20, 30 and 40%). Charge state screening was enabled, and precursors with unknown charge state or a charge state of +1 were excluded. Dynamic exclusion was enabled (exclusion duration of 60 s). The centroided fragment ions were analyzed on an Orbitrap detector at 30k resolution.  Glycomics: 100 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcg of the material was reduced with 25 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of 25 mM DTT and incubated at 50\u00c3\u0192\u00e2\u20ac\u00b9\u00c3\u2026\u00c2\u00a1C for 30 min. After that samples were treated with 90mM iodoacetamide to alkylate. The samples were desalted by centrifugation via Amicon centrifuge filters (10k MWCO size). 3 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of PNGaseF was added to desalted samples followed by incubation at 37 \u00c3\u0192\u00e2\u20ac\u0161\u00c3\u201a\u00c2\u00b0C for 18 h to release the N-glycans. The released glycans were permethylated using sodium iodide in the presence of sodium hydroxide and DMSO. Addition of water quenched the permethylation reaction and permethylated N-glycans were extracted with dichloromethane. The dichloromethane layer was rinsed five times with water and dried via evaporation by nitrogen gas.97 Dried, permethylated glycans were re-dissolved in a solution of 100\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of water and 100\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of methanol for a total volume of 200\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL (with 1mM NaOH). Samples were then run on a Themo Orbitrap Fusion Tribrid tandem MS coupled to Ultimate 3000 RSLCnano. 10 \u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of N-glycans were injected into LC MS/MS and ran in the low to high organic solvent gradient for 72 minutes. The precursor ion scan was acquired at 120k resolution in the Orbitrap analyzer and precursors at a time frame of 3 s were selected for subsequent fragmentation using CID (45%). Charge states were targeted from 1 to 5.Dynamic exclusion was enabled (exclusion duration of 30s). The centroided fragment ions wereanalyzed on an Orbitrap detector at 15k resolution.",
+  "projectTags": [],
+  "keywords": [
+   "Hiv; glycome; igg; inflammation; aging; biological age; cancer; subclinical 51 atherosclerosis",
+   "Adcd",
+   "Adcc",
+   "Adcp"
+  ],
+  "doi": "10.6019/PXD046510",
+  "otherOmicsLinks": [
+   "geo:GSE254483"
+  ],
+  "submissionType": "COMPLETE",
+  "publicationDate": "2024-03-21",
+  "updatedDate": "2023-10-30",
+  "submissionDate": "2023-10-30",
+  "downloadCount": 978,
+  "avgDownloadsPerFile": 75.23077,
+  "percentile": 35,
+  "yearlyDownloads": [
+   {
+    "year": "2024",
+    "count": 145
+   },
+   {
+    "year": "2025",
+    "count": 752
+   },
+   {
+    "year": "2026",
+    "count": 81
+   }
+  ],
+  "submitters": [
+   "Sergei Shalygin"
+  ],
+  "labPIs": [
+   "Mohamed Abdel-Mohsen"
+  ],
+  "affiliations": [
+   "PI The Wistar Institute, Philadelphia, PA, USA;"
+  ],
+  "instruments": [
+   "Orbitrap Eclipse"
+  ],
+  "softwares": [],
+  "quantificationMethods": [
+   "TIC"
+  ],
+  "sampleAttributes": [
+   "Human immunodeficiency virus infectious disease",
+   "Homo sapiens (Human)",
+   "IgG short lived plasma cell"
+  ],
+  "organisms": [
+   "Homo sapiens (human)"
+  ],
+  "organismsPart": [
+   "Igg short lived plasma cell"
+  ],
+  "diseases": [
+   "Human immunodeficiency virus infectious disease"
+  ],
+  "references": [
+   "Giron LB, Liu Q, Adeniji OS, Yin X, Kannan T, Ding J, Lu DY, Langan S, Zhang J, Azevedo JLLC, Li SH, Shalygin S, Azadi P, Hanna DB, Ofotokun I, Lazar J, Fischl MA, Haberlen S, Macatangay B, Adimora AA, Jamieson BD, Rinaldo C, Merenstein D, Roan NR, Kutsch O, Gange S, Wolinsky SM, Witt MD, Post WS, Kossenkov A, Landay AL, Frank I, Tien PC, Gross R, Brown TT, Abdel-Mohsen M. Immunoglobulin G N-glycan markers of accelerated biological aging during chronic HIV infection. Nat Commun. 2024 15(1):3035--pubMed:38600088--doi: 10.1038/s41467-024-47279-4"
+  ],
+  "experimentTypes": [
+   "Bottom-up proteomics"
+  ],
+  "projectFileNames": [
+   "G0.raw",
+   "G0.mzid.gz",
+   "G0F.mzid.gz",
+   "G0F.raw",
+   "G0.mgf",
+   "G2F.mgf",
+   "G2.mzid.gz",
+   "G2F.raw",
+   "PXD046510_community_annotated.sdrf.tsv",
+   "G0F.mgf",
+   "G2.mgf",
+   "G2F.mzid.gz",
+   "G2.raw"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "The dichloromethane layer was rinsed five times with water and dried via evaporation by nitrogen gas.97 Dried, <em>permethylated</em> <em>glycans</em> were re-dissolved in a solution of 100\u00c3\u0192\u00c5\u00bd\u00c3\u201a\u00c2\u00bcL of water and 100\u00c3\u0192\u00c5\u00bd\u00c3"
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ },
+ {
+  "accession": "PXD023379",
+  "title": "N-Glycome and N-Glycoproteome of a Hematophagous Parasitic Nematode Haemonchus",
+  "projectDescription": "N-glycosylation is a physiologically vital post-translational modification of proteins in eukaryotic organisms. Initial work on Haemonchus contortus \u2013 an economically-important blood-sucking nematode of ruminants with a broad geographical distribution \u2013 has shown that the parasite harbors N-glycans with exclusive core chitobiose modifications, and severel immunogenic proteins (e.g., amino- and metallo-peptidases) in the adult worms are N-glycosylated. However, an informative atlas of N-glycosylation in H. contortus is not yet available. Herein, we report a total of 291 N-glycosylated proteins with 425 sites in this parasite. Functional analyses of glycoproteome revealed significant enrichment of the peptidase families (e.g., peptidase C1 and M1), many of which are potential vaccine targets. Besides, the glycan-rich conjugates are distributed primarily in the intestine and gonads of the adult worms. These data, taken together, provide a comprehensive insight into the N-glycosylation of a prevalent parasitic nematode, while underlining its significance for the infection and prophylaxis.",
+  "dataProcessingProtocol": "Spectra were obtained using the AB 5800 MALDI-MS instrument operated in the positive ionization mode (AB SCIEX, Concord, Canada). The dried glycan residues were reconstituted in 15 \u03bcL methanol solution. The matrix was prepared with 10 mg/mL DHB in 50% acetonitrile and 10 mM sodium acetate. 1 \u03bcL of permethylated glycan was mixed with 1 \u03bcL of freshly-prepared DHB prior to spotting on a MALDI-target plate and allowed to crystalize at room temperature. In total, 1000 laser shots were applied on each sample spot. MS/MS analyses were performed with air as CID gas using 2 kV collision energy. The final data were processed by DataExplorer 4.0 (AB SCIEX, Concord, Canada), and the selected spectra were annotated using GlycoWorkbench (2.1 build 146).  The MS/MS data were evaluated by MaxQuant software package (v1.5.2.8). Tandem mass spectra were searched against H. contortus entries in the UniProt database (24273 proteins) concatenated with reverse decoy database. Trypsin was specified as the cleavage enzyme allowing up to 2 missed cleavages. The mass tolerance for precursor ions was set at 20 ppm in the first search and 5 ppm in the main search. The mass tolerance for fragment ions was set as 0.02 Dalton. Carbamidomethyl on the cysteine residue was specified as a fixed modification and oxidation on methionine was specified as a variable modification. The false discovery rate was adjusted to \u22641%, and the minimum score for modified peptides was set \u226540.",
+  "sampleProcessingProtocol": "The worms were immersed in 500 \u00b5L of ice-cold lysis buffer (8 M urea, 1% Protease inhibitor cocktail), and then homogenized in a glass homogenizer for 20 min. The homogenate, kept on ice, was ultrasonicated at 30 s bursts for 5 min. The total parasite extract was centrifuged at 10.000g for 25 min, and the supernatant was were collected and the protein concentrations were detected using a BCA assay. Individual protein sample (400 ug) was reduced with 5 mM dithiothreitol at 56\u00b0C for 35 min, and then alkylated with 11 mM iodoacetamide at room temperature for 20 min in a darkroom. The urea concentration of the sample was diluted to less than 1 M with a 100 mM NH4HCO3 solution. Finally, trypsin was added at a mass ratio of 1:50 (trypsin/protein) for the first digestion (overnight), and a ratio of 1:100 (trypsin/protein) for an additional 5 h to ensure complete digestion. Glycopeptides were collected using a HILIC enrichment method. Briefly, peptides were reconstituted in 40 \u03bcL of loading buffer (80% ACN with 1% TFA), and then pipetted into a HILIC tip. After centrifugation (4000g, 20 min), retaining glycopeptides were washed three times with 40 \u03bcL loading buffer, and centrifuged to remove the residual non-glycopeptides. Afterward, glycopeptides were eluted three times with 20 \u03bcL of 10% ACN. Finally, enriched glycopeptides were divided into two equal parts and respectively dried by the centrifugal evaporator. The workflow of N-glycan preparation was based on a previous report with some modifications. Briefly, an aliquot of glycopeptides was incubated with 2 \u03bcL of PNGase F in 50 \u03bcl of PBS (pH 8.0) buffer at 37\u00baC for 24 h. PNGase F-cleaved glycans were then desalted and purified by PGC cartridges, essentially as described elsewhere. The remaining glycopeptides after PNGase F digestion were dried and then redissolved in 50 \u03bcL of sodium acetate solution (pH 4.5). After addition of 2 \u03bcL PNGase A enzyme, the sample was incubated at 37\u00b0C for 24 h. PNGase A-released glycans were isolated by PGC cartridges, as described above. Permethylation of glycans was performed following an established protocol. In brief, native glycan pools released by PNGase F and PNGase A were dissolved in 50 \u03bcL DMSO and 100 \u03bcL of DMSO-NaOH slurry, respectively. Afterwards, 50 \u03bcL of methyl iodide was added to each reaction mixture, followed by shaking (room temperature, 15 min). The reaction was terminated by addition of 500 \u00b5L of ultrapure water and 250 \u03bcL chloroform. After separation of the liquid phases, the upper layer was removed carefully, and the lower organic layer containing the permethylated glycans was washed three times with ultrapure water. Finally, the two organic phases were transferred to separate vials and dried by the centrifugal evaporator.   For N-glycoproteome analysis (three replicates), an aliquot of enriched glycopeptides was dissolved in 50 \u03bcL of 50 mM NH4HCO3 buffer (prepared using H218O) and deglycosylated by treatment with 2 \u03bcL PNGase F (37\u00b0C, 24 h). The fraction was subjected to HILIC enrichment, as outlined above. Peptides deglycosylated by PNGase F were collected from the HILIC tip effluent. The HILIC tip-bound glycopeptides were eluted and dried by the centrifugal evaporator, and finally reconstituted in 50 \u03bcL of 50 mM sodium acetate solution (in H218O). 2 \u03bcL of PNGase A enzyme was supplemented, followed by incubation at 37 \u00baC for 24 h. The PNGase F- and PNGase A-deglycosylated peptides were desalted using C18 ZipTips (manufacturer\u2019s protocol), dissolved in 0.1% formic acid (solvent A) and loaded onto a reversed-phase analytical column equipped with an EASY-nLC 1000 UPLC system. A gradient at a constant flow rate of 400 nL/min was programed to increase the solvent B (0.1% formic acid in 98% acetonitrile) from 6-23% in the first 26 min, followed by another 8 min from 23-35%, and then 3 min to reach 80%, and thereafter staying constant at 80% for the last 3 min. After UPLC, peptides were ionized by a nanospray ionization source (2.0 kV) and analyzed by MS/MS in Orbitrap FusionTM TribridTM (Thermo Fisher).",
+  "projectTags": [],
+  "keywords": [
+   "Haemonchus contortus",
+   "Glycopeptide",
+   "N-glycan",
+   "Mass spectrometry",
+   "N-glycosylation"
+  ],
+  "doi": "",
+  "submissionType": "PARTIAL",
+  "publicationDate": "2021-09-09",
+  "updatedDate": "2021-01-04",
+  "submissionDate": "2021-01-04",
+  "downloadCount": 933,
+  "avgDownloadsPerFile": 49.105263,
+  "botCount": 280,
+  "hubCount": 641,
+  "organicCount": 12,
+  "percentile": 34,
+  "yearlyDownloads": [
+   {
+    "year": "2021",
+    "count": 26
+   },
+   {
+    "year": "2022",
+    "count": 20
+   },
+   {
+    "year": "2023",
+    "count": 66
+   },
+   {
+    "year": "2024",
+    "count": 5
+   },
+   {
+    "year": "2025",
+    "count": 666
+   },
+   {
+    "year": "2026",
+    "count": 150
+   }
+  ],
+  "submitters": [
+   "Chunqun Wang"
+  ],
+  "labPIs": [
+   "Min Hu"
+  ],
+  "affiliations": [
+   "State Key Laboratory of Agricultural Microbiology, College of Veterinary Medicine, Huazhong Agricultural University"
+  ],
+  "instruments": [
+   "Orbitrap Fusion"
+  ],
+  "softwares": [
+   "Data Explorer",
+   "MaxQuant"
+  ],
+  "quantificationMethods": [],
+  "sampleAttributes": [
+   "whole body",
+   "Haemonchus contortus (Barber pole worm)"
+  ],
+  "organisms": [
+   "Haemonchus contortus (barber pole worm)"
+  ],
+  "organismsPart": [
+   "Whole body"
+  ],
+  "diseases": [],
+  "references": [
+   "Wang C, Gao W, Yan S, Zhu XQ, Suo X, Liu X, Gupta N, Hu M. N-glycome and N-glycoproteome of a hematophagous parasitic nematode <i>Haemonchus</i>. Comput Struct Biotechnol J. 2021 19:2486-2496--pubMed:34025939--doi: 10.1016/j.csbj.2021.04.038"
+  ],
+  "experimentTypes": [
+   "Shotgun proteomics"
+  ],
+  "projectFileNames": [
+   "7132PI_2_mqpar.xml",
+   "7132PI_1_mqpar.xml",
+   "ZA043PINg_HC_2.raw",
+   "7132PI_1.raw",
+   "7132PI_2_search.zip",
+   "Glycans_PNGase_F_and_PNGase_A_MS.zip",
+   "ZA043PINg_HC_2_search.zip",
+   "ZA043PINg_HC_3_mqpar.xml",
+   "ZA043PINg_HC_1_search.zip",
+   "7132PI_3.raw",
+   "7132PI_1_search.zip",
+   "7132PI_3_search.zip",
+   "ZA043PINg_HC_1.raw",
+   "7132PI_2.raw",
+   "ZA043PINg_HC_1_mqpar.xml",
+   "ZA043PINg_HC_3_search.zip",
+   "ZA043PINg_HC_3.raw",
+   "ZA043PINg_HC_2_mqpar.xml",
+   "7132PI_3_mqpar.xml"
+  ],
+  "highlights": {
+   "sampleProcessingProtocol": [
+    "After separation of the liquid phases, the upper layer was removed carefully, and the lower organic layer containing the <em>permethylated</em> <em>glycans</em> was washed three times with ultrapure water."
+   ],
+   "prideArchiveType": [
+    "<em>MS</em>"
+   ]
+  }
+ }
+]
