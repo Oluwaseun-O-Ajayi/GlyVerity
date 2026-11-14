@@ -17,7 +17,24 @@ GlyVerity reads mzML, builds on [pyOpenMS](https://pyopenms.readthedocs.io), and
 
 ## Status
 
-In development. Not yet ready for use.
+In development (Phase 1). Not yet ready for use. Progress is logged in [DEVLOG.md](DEVLOG.md).
+
+## Install (development)
+
+```bash
+git clone https://github.com/Oluwaseun-O-Ajayi/GlyVerity.git
+cd GlyVerity
+python -m pip install -e ".[dev]"      # add ",ms" for pyOpenMS
+pytest -q
+```
+
+## Documentation
+
+* [Architecture](docs/architecture.md)
+* [Phase 1: prior art](docs/phase1/prior_art.md)
+* [Phase 1: claim verification](docs/phase1/claims_verification.md)
+* [Phase 1: go/no-go](docs/phase1/go_no_go.md)
+* [Dataset catalog](data/catalog/README.md)
 
 ## Author
 

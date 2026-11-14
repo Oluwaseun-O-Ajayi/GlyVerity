@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "glyverity"
+version = "0.0.1"
+description = "Artifact-aware, FDR-controlled glycan composition assignment for released-glycan LC-MS"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Oluwaseun O. Ajayi", email = "oluwaseun.ajayi@uga.edu" }]
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+[project.optional-dependencies]
+ms = ["pyopenms>=3.1"]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.urls]
+Homepage = "https://github.com/Oluwaseun-O-Ajayi/GlyVerity"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
