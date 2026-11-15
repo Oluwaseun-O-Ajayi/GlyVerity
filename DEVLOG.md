@@ -34,6 +34,20 @@
 * Most public data are PGC/reduced or C18/permethylated, not labelled HILIC. Decision: labelled
   HILIC is the validation core; the census includes all labels.
 
+* Lag re-run: +0.037 min, Pearson r 0.903 (window 15 to 50 min).
+* Hand check of windowed spectra (2+ and 3+ ions agree within 2 ppm in every case):
+  * 31.7 min (FLD and MS): Hex6HexNAc5NeuAc2 2-AB, +2.9 ppm. 36.8 min: Hex6HexNAc5NeuAc3 2-AB, +1.6 ppm.
+  * 30.7 min (MS only): neutral 2630.9995 Da. 35.8 min (MS only): neutral 2922.0940 Da.
+    They differ by one NeuAc (291.0945 Da). Each is 76.99 Da lighter than the 2-AB form of the
+    glycan eluting about 1 min later. No composition (Hex, HexNAc, dHex, NeuAc, NeuGc; free,
+    2-AB, reduced; acetyl, sulfate, phosphate, water loss) fits within 5 ppm.
+  * Hypothesis: free glycan + 43.0786 Da (reductive amination with a C3H9N amine) after a
+    +2 ppm calibration offset. Test: Y1 ion at m/z 265.1758 in MS2.
+* First-pass matcher lessons for Phase 2: rank by more than ppm; constrain charge by isotope
+  spacing; do not assume the monoisotopic peak is the most intense; the M+1 of a 2+ ion
+  (1355.5039) matched Man5-2AB 1+ at -4 ppm.
+* Added `scripts/ms2_diagnostic.py`.
+
 **Next**
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
@@ -77,6 +91,20 @@
 * IgG run confirmed: no MSScan files in AcqData.
 * Added `glyverity.annotate` and `scripts/peak_spectra.py`: summed MS1 spectra per window,
   isotope flags, and composition matching (free and 2-AB; H+, Na+, K+, NH4+; z 1 to 3).
+
+* Lag re-run: +0.037 min, Pearson r 0.903 (window 15 to 50 min).
+* Hand check of windowed spectra (2+ and 3+ ions agree within 2 ppm in every case):
+  * 31.7 min (FLD and MS): Hex6HexNAc5NeuAc2 2-AB, +2.9 ppm. 36.8 min: Hex6HexNAc5NeuAc3 2-AB, +1.6 ppm.
+  * 30.7 min (MS only): neutral 2630.9995 Da. 35.8 min (MS only): neutral 2922.0940 Da.
+    They differ by one NeuAc (291.0945 Da). Each is 76.99 Da lighter than the 2-AB form of the
+    glycan eluting about 1 min later. No composition (Hex, HexNAc, dHex, NeuAc, NeuGc; free,
+    2-AB, reduced; acetyl, sulfate, phosphate, water loss) fits within 5 ppm.
+  * Hypothesis: free glycan + 43.0786 Da (reductive amination with a C3H9N amine) after a
+    +2 ppm calibration offset. Test: Y1 ion at m/z 265.1758 in MS2.
+* First-pass matcher lessons for Phase 2: rank by more than ppm; constrain charge by isotope
+  spacing; do not assume the monoisotopic peak is the most intense; the M+1 of a 2+ ion
+  (1355.5039) matched Man5-2AB 1+ at -4 ppm.
+* Added `scripts/ms2_diagnostic.py`.
 
 **Next**
 * Extract the m/z values under the MS-only peaks and check them against labelled and
