@@ -36,6 +36,12 @@ confirmed and must not be cited until it is.
 | GlycReSoft glycopeptide engine | Klein, Carvalho, Zaia, Nat. Commun. 2024, doi:10.1038/s41467-024-50338-5 | Joint peptide and glycan FDR; glycan network smoothing |
 | HUPO HGI first study | Kawahara et al., Nat. Methods 2021, doi:10.1038/s41592-021-01309-x | Community benchmark design, glycoproteomics only |
 
+## General FDR guidance
+
+| Item | Reference | Why it matters |
+|---|---|---|
+| FDR taxonomy for omics | Burger, Ge, Li, "A unified and practical taxonomy for false discovery rate control in omics research", Nat. Biotechnol. Comment, 13 Nov 2026 (DOI pending) | Groups FDR methods as traditional, empirical-null, or target-decoy/knockoff. GlyVerity's composition FDR is in the target-decoy family, whose key assumption is decoy exchangeability. Cite it to justify the decoy checks in go/no-go condition 3. Not glycomics-specific; builds no tool |
+
 ## Libraries GlyVerity can build on
 
 | Library | Reference | Licence | Use |

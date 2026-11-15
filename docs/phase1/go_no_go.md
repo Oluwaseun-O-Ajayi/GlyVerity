@@ -54,7 +54,11 @@ profiles and characterized standards."
 3. Decoy design. Decide how MS1 decoys will be generated so that they share the property
    distributions of targets (mass defect, isotope pattern, retention behaviour). The FragPipe
    MBG design (+11 Da, shared RT and IM) is the nearest precedent; test whether +11 Da decoys
-   are trivially rejected by isotope-pattern scoring before adopting it.
+   are trivially rejected by isotope-pattern scoring before adopting it. Burger, Ge and Li
+   (Nat. Biotechnol. 2026) name decoy exchangeability as the assumption target-decoy methods
+   must justify; GlyVerity will report that check with every result. If decoys cannot be made
+   exchangeable, the fallback is an empirical-null estimate from standards or entrapment
+   compositions.
 
 ## Update 2026-11-14 (evening): PRIDE harvest screened
 
