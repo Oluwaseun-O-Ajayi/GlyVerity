@@ -57,7 +57,13 @@
 
 * Decision: no patent. GlyVerity stays open (MIT) for unrestricted adoption. Added CITATION.cff.
 
+* First real run (fetuin Agilent): FLD and MS both read. FLD dominated by an early saturated
+  peak (about 1 to 2 min, likely excess 2-AB); glycans elute about 18 to 46 min. MS TIC
+  alternates scan to scan, consistent with interleaved MS1 and MS/MS scans.
+* Reader now reads per-scan records, keeps MS1 scans when an MSLevel field exists, and reports
+  the fields found. Script takes `--window START END`. rainbow-api pinned to 1.5.5.
+
 **Next**
-* Run `inspect_agilent_d.py` on both Agilent runs on the cluster; check the inventory.
+* Re-run on the fetuin run with `--window 15 50`; confirm MS level counts.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.

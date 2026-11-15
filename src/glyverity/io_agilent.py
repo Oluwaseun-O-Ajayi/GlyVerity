@@ -69,14 +69,44 @@ def fld_traces(datafiles: Iterable[Any]) -> list[Trace]:
     return out
 
 
-def ms_tic(centroid_file: Any) -> Trace:
-    """Total ion current from a centroided MS data file (sum of intensities per scan)."""
+def ms_tic(centroid_file: Any, keep: np.ndarray | None = None) -> Trace:
+    """Total ion current from a centroided MS data file (sum of intensities per scan).
+
+    Parameters
+    ----------
+    keep:
+        Optional boolean mask, one entry per scan. Only scans where it is True
+        are used (for example MS1 scans only).
+    """
     times = _times(centroid_file)
-    tic = np.empty(times.size, dtype=float)
-    for i in range(times.size):
-        _, intensities = centroid_file.scan(i)
-        tic[i] = float(np.sum(intensities))
-    return Trace(str(centroid_file.name), "MS", times, tic, dict(centroid_file.metadata or {}))
+    idx = np.arange(times.size) if keep is None else np.flatnonzero(keep)
+    tic = np.empty(idx.size, dtype=float)
+    for j, i in enumerate(idx):
+        _, intensities = centroid_file.scan(int(i))
+        tic[j] = float(np.sum(intensities))
+    return Trace(str(centroid_file.name), "MS", times[idx], tic, dict(centroid_file.metadata or {}))
+
+
+def scan_records(acqdata_path: str) -> list[dict]:
+    """Per-scan records from MSScan.bin (scan time, MS level and other vendor fields).
+
+    Uses rainbow-api's MassHunter record reader. These are internal rainbow
+    functions, so the rainbow version is pinned in the optional dependency.
+    """
+    import os
+
+    from rainbow.agilent import masshunter as mh
+
+    types = mh.parse_scan_xsd(os.path.join(acqdata_path, "MSScan.xsd"))
+    return list(mh.read_scan_records(
+        os.path.join(acqdata_path, "MSScan.bin"), types, mh.count_scans(acqdata_path)))
+
+
+def ms1_mask(records: list[dict]) -> np.ndarray | None:
+    """Boolean mask of MS1 scans, or None if the records carry no ``MSLevel`` field."""
+    if not records or "MSLevel" not in records[0]:
+        return None
+    return np.array([int(r["MSLevel"]) == 1 for r in records])
 
 
 def read_d(path: str) -> tuple[list[InventoryItem], list[Trace], Trace | None]:
@@ -93,8 +123,22 @@ def read_d(path: str) -> tuple[list[InventoryItem], list[Trace], Trace | None]:
     except ImportError as exc:  # pragma: no cover - depends on environment
         raise ImportError("install the Agilent reader with: pip install 'glyverity[agilent]'") from exc
 
+    import os
+
     directory = rainbow.read(path, centroid=True)
     files = list(directory.datafiles)
     ms = [df for df in files if str(df.detector) == "MS" and hasattr(df, "scan")]
-    tic = ms_tic(ms[0]) if ms else None
+    tic = None
+    if ms:
+        records = scan_records(os.path.join(path, "AcqData"))
+        mask = ms1_mask(records)
+        if mask is not None and mask.size != len(ms[0].xlabels):
+            mask = None
+        tic = ms_tic(ms[0], keep=mask)
+        tic.metadata["scan_fields"] = sorted(records[0]) if records else []
+        tic.metadata["ms1_filtered"] = mask is not None
+        tic.metadata["n_scans_total"] = len(ms[0].xlabels)
+        if records and "MSLevel" in records[0]:
+            levels = [int(r["MSLevel"]) for r in records]
+            tic.metadata["ms_level_counts"] = {lv: levels.count(lv) for lv in sorted(set(levels))}
     return inventory(files), fld_traces(files), tic

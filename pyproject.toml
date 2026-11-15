@@ -20,7 +20,7 @@ classifiers = [
 
 [project.optional-dependencies]
 ms = ["pyopenms>=3.1"]
-agilent = ["rainbow-api>=1.5"]
+agilent = ["rainbow-api==1.5.5"]
 plot = ["matplotlib>=3.7"]
 dev = ["pytest>=7", "ruff>=0.4"]
 

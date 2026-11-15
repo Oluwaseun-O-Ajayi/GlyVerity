@@ -36,7 +36,14 @@ def write_trace(trace, path: Path, value_name: str) -> None:
             w.writerow([f"{t:.5f}", f"{v:.6g}"])
 
 
-def plot(fld, tic, out_base: Path) -> None:
+def _window(trace, lo, hi):
+    if lo is None or hi is None:
+        return trace.times, trace.values
+    m = (trace.times >= lo) & (trace.times <= hi)
+    return trace.times[m], trace.values[m]
+
+
+def plot(fld, tic, out_base: Path, lo=None, hi=None) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -54,9 +61,11 @@ def plot(fld, tic, out_base: Path) -> None:
     fig, axes = plt.subplots(2, 1, sharex=True, figsize=(3.5, 3.2), constrained_layout=True)
     for tr in fld:
         unit = tr.metadata.get("unit", "")
-        axes[0].plot(tr.times, tr.values, color="black", linewidth=0.7)
+        x, y = _window(tr, lo, hi)
+        axes[0].plot(x, y, color="black", linewidth=0.7)
         axes[0].set_ylabel(f"Fluorescence ({unit})" if unit else "Fluorescence")
-    axes[1].plot(tic.times, tic.values, color="black", linewidth=0.7)
+    x, y = _window(tic, lo, hi)
+    axes[1].plot(x, y, color="black", linewidth=0.7)
     axes[1].set_ylabel("MS TIC (counts)")
     axes[1].set_xlabel("Retention time (min)")
     for ax, letter in zip(axes, "AB"):
@@ -72,7 +81,10 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("run", type=Path, help="Agilent .d folder")
     ap.add_argument("out", type=Path, help="output folder")
+    ap.add_argument("--window", nargs=2, type=float, metavar=("START", "END"),
+                    help="plot only this retention-time window (min)")
     args = ap.parse_args(argv)
+    lo, hi = args.window if args.window else (None, None)
 
     if not args.run.is_dir():
         ap.error(f"not a folder: {args.run}")
@@ -91,8 +103,14 @@ def main(argv=None) -> int:
         write_trace(tic, args.out / "ms_tic.csv", "tic")
 
     print(f"FLD traces: {len(fld)}; MS TIC: {'yes' if tic is not None else 'no'}")
+    if tic is not None:
+        md = tic.metadata
+        print(f"scan record fields: {md.get('scan_fields')}")
+        print(f"MS level counts: {md.get('ms_level_counts', 'no MSLevel field')}")
+        print(f"TIC from MS1 scans only: {md.get('ms1_filtered')} "
+              f"({tic.times.size} of {md.get('n_scans_total')} scans)")
     if fld and tic is not None:
-        plot(fld, tic, args.out / "fld_vs_tic")
+        plot(fld, tic, args.out / "fld_vs_tic", lo, hi)
         print(f"figure: {args.out / 'fld_vs_tic.pdf'}")
     else:
         print("figure skipped: needs at least one FLD trace and the MS TIC")

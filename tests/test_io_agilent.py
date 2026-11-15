@@ -54,3 +54,21 @@ def test_inventory_reports_ranges():
     assert items[0].n_points == 3
     assert items[0].t_start == pytest.approx(0.5)
     assert items[0].t_end == pytest.approx(30.0)
+
+
+def test_tic_mask_keeps_selected_scans():
+    c = _Centroid([1.0, 1.1, 1.2], [
+        (np.array([500.0]), np.array([10.0])),
+        (np.array([200.0]), np.array([99.0])),
+        (np.array([500.0]), np.array([20.0])),
+    ])
+    tic = ia.ms_tic(c, keep=np.array([True, False, True]))
+    np.testing.assert_allclose(tic.times, [1.0, 1.2])
+    np.testing.assert_allclose(tic.values, [10.0, 20.0])
+
+
+def test_ms1_mask():
+    recs = [{"MSLevel": 1}, {"MSLevel": 2}, {"MSLevel": 1}]
+    np.testing.assert_array_equal(ia.ms1_mask(recs), [True, False, True])
+    assert ia.ms1_mask([{"ScanTime": 1.0}]) is None
+    assert ia.ms1_mask([]) is None
