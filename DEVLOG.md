@@ -51,7 +51,11 @@
   `~/glyverity_data/raw/zenodo_4705546`; MD5 sums match `data/catalog/checksums/`.
 * Both Agilent runs (fetuin, IgG) contain `FLD1.cg` (fluorescence) and `MSPeak.bin` (MS).
 
+* Added `glyverity.io_agilent` (reads FLD traces and MSPeak.bin centroids via rainbow-api 1.5.5,
+  LGPL-3.0, optional extra `agilent`) and `scripts/inspect_agilent_d.py` (inventory, CSV export,
+  FLD vs TIC figure). Tested on stand-in data only; not yet run on the real files.
+
 **Next**
-* Read `FLD1.cg` and `MSPeak.bin` into Python; plot fluorescence and MS TIC on one time axis.
+* Run `inspect_agilent_d.py` on both Agilent runs on the cluster; check the inventory.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.

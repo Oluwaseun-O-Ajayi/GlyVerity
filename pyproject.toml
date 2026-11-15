@@ -10,7 +10,7 @@ readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Oluwaseun O. Ajayi", email = "oluwaseun.ajayi@uga.edu" }]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["numpy>=1.24"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,6 +20,8 @@ classifiers = [
 
 [project.optional-dependencies]
 ms = ["pyopenms>=3.1"]
+agilent = ["rainbow-api>=1.5"]
+plot = ["matplotlib>=3.7"]
 dev = ["pytest>=7", "ruff>=0.4"]
 
 [project.urls]
