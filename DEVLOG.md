@@ -63,7 +63,18 @@
 * Reader now reads per-scan records, keeps MS1 scans when an MSLevel field exists, and reports
   the fields found. Script takes `--window START END`. rainbow-api pinned to 1.5.5.
 
+* Fetuin Agilent run, window 15 to 50 min: 2050 MS1 of 9346 scans (7296 MS2). FLD and MS1 TIC
+  share apexes near 19.4, 23.6, 26.8, 29.2, 31.7, 34.2, 36.8 and 39.6 min (read from the
+  figure, not yet computed). MS1 TIC peaks near 30.7 and 35.8 min (about 0.9e6) and smaller ones
+  near 33.3, 41.7 and 44.5 min have no FLD counterpart. Hypothesis to test: MS-only species
+  (unlabelled, in-source fragments, adducts, contaminants).
+* IgG Agilent run: MS not readable; the deposit lacks MSScan.bin, MSScan.xsd and MSTS.xml.
+* Added `glyverity.align.estimate_lag` (cross-correlation; tested on a known 0.12 min shift)
+  and lag reporting in the inspect script. pyproject licence moved to SPDX form.
+
 **Next**
-* Re-run on the fetuin run with `--window 15 50`; confirm MS level counts.
+* Measure the FLD to MS lag on the fetuin run.
+* Extract the m/z values under the MS-only peaks and check them against labelled and
+  unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.

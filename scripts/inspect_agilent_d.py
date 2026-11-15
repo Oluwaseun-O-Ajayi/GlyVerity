@@ -17,6 +17,7 @@ import argparse
 import csv
 from pathlib import Path
 
+from glyverity.align import estimate_lag
 from glyverity.io_agilent import read_d
 
 
@@ -109,6 +110,9 @@ def main(argv=None) -> int:
         print(f"MS level counts: {md.get('ms_level_counts', 'no MSLevel field')}")
         print(f"TIC from MS1 scans only: {md.get('ms1_filtered')} "
               f"({tic.times.size} of {md.get('n_scans_total')} scans)")
+    if fld and tic is not None and lo is not None:
+        lag, r = estimate_lag(fld[0].times, fld[0].values, tic.times, tic.values, (lo, hi))
+        print(f"MS lag relative to FLD: {lag:+.3f} min ({lag * 60:+.1f} s), correlation {r:.3f}")
     if fld and tic is not None:
         plot(fld, tic, args.out / "fld_vs_tic", lo, hi)
         print(f"figure: {args.out / 'fld_vs_tic.pdf'}")
