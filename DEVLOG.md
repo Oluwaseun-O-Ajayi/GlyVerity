@@ -55,6 +55,8 @@
   LGPL-3.0, optional extra `agilent`) and `scripts/inspect_agilent_d.py` (inventory, CSV export,
   FLD vs TIC figure). Tested on stand-in data only; not yet run on the real files.
 
+* Decision: no patent. GlyVerity stays open (MIT) for unrestricted adoption. Added CITATION.cff.
+
 **Next**
 * Run `inspect_agilent_d.py` on both Agilent runs on the cluster; check the inventory.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
