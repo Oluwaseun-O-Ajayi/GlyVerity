@@ -110,9 +110,24 @@
 * Summary now reports four classes: adduct/isotope, in-source fragment, side-product series,
   unflagged.
 
-**Next**
-* Re-run on the fetuin run with the corrected search space.
-* Phase 2 core: MS1 decoy design and q-values (go/no-go condition 3).
+* Re-run (476 compositions): all 8 main 2-AB glycans present and unflagged, including
+  Hex6HexNAc5NeuAc4. In-source fragments flagged: Hex5HexNAc5NeuAc1/2/3 2-AB as -Hex+NeuAc of
+  A3S2/A3S3/A3S4, co-eluting. Series unchanged (n=20, ratio 0.381, MAD 0.060, -0.91 min).
+* Ambiguous: Hex5HexNAc4NeuAc3 2-AB (36.33 min, FLD 1.89) flagged as Na adduct of
+  Hex9HexNAc5 2-AB (hypotheses 5.2 ppm apart). "Stronger explains weaker" cannot decide; needs
+  MS2 of m/z 1317.98 or a plausibility prior. Recorded as ambiguous, not artifact.
+* Methods notes: (1) relation errors are between theoretical masses, so residue-loss relations
+  are exact; evidence is co-elution plus the 10 ppm XIC window. (2) Area shares summed over
+  candidates depend on the search space (adduct/isotope 22% -> 32% when the space grew), because
+  one ion can fall in several candidates' windows. Not a census metric.
+
+**Next (Phase 2 design correction)**
+* Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then
+  classify it (labelled glycan, side product, adduct/isotope, in-source fragment, unexplained).
+  Shares of observed feature intensity are the census metric.
+* Common input format: write Agilent runs (via rainbow) to mzML with pyOpenMS; Thermo runs via
+  MSConvert; feature finding with OpenMS FeatureFinderMetabo or an envelope finder on centroids.
+* Then decoys and q-values at the feature-assignment level.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
@@ -232,9 +247,24 @@
 * Summary now reports four classes: adduct/isotope, in-source fragment, side-product series,
   unflagged.
 
-**Next**
-* Re-run on the fetuin run with the corrected search space.
-* Phase 2 core: MS1 decoy design and q-values (go/no-go condition 3).
+* Re-run (476 compositions): all 8 main 2-AB glycans present and unflagged, including
+  Hex6HexNAc5NeuAc4. In-source fragments flagged: Hex5HexNAc5NeuAc1/2/3 2-AB as -Hex+NeuAc of
+  A3S2/A3S3/A3S4, co-eluting. Series unchanged (n=20, ratio 0.381, MAD 0.060, -0.91 min).
+* Ambiguous: Hex5HexNAc4NeuAc3 2-AB (36.33 min, FLD 1.89) flagged as Na adduct of
+  Hex9HexNAc5 2-AB (hypotheses 5.2 ppm apart). "Stronger explains weaker" cannot decide; needs
+  MS2 of m/z 1317.98 or a plausibility prior. Recorded as ambiguous, not artifact.
+* Methods notes: (1) relation errors are between theoretical masses, so residue-loss relations
+  are exact; evidence is co-elution plus the 10 ppm XIC window. (2) Area shares summed over
+  candidates depend on the search space (adduct/isotope 22% -> 32% when the space grew), because
+  one ion can fall in several candidates' windows. Not a census metric.
+
+**Next (Phase 2 design correction)**
+* Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then
+  classify it (labelled glycan, side product, adduct/isotope, in-source fragment, unexplained).
+  Shares of observed feature intensity are the census metric.
+* Common input format: write Agilent runs (via rainbow) to mzML with pyOpenMS; Thermo runs via
+  MSConvert; feature finding with OpenMS FeatureFinderMetabo or an envelope finder on centroids.
+* Then decoys and q-values at the feature-assignment level.
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
