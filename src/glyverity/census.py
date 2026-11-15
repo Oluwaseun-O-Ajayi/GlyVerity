@@ -14,8 +14,10 @@ from dataclasses import dataclass, field
 import numpy as np
 
 from glyverity import chemistry as ch
+from glyverity.annotate import ISOTOPE_SPACING, enumerate_compositions
 from glyverity.candidates import Candidate, group_isomeric
 from glyverity.features import MSFeature
+from glyverity.layers import exchange_combos
 
 ADDUCT_FORMS = {  # name: (number of non-proton carriers, carrier)
     "Na": "Na+",
@@ -49,15 +51,55 @@ class Species:
         return float(sum(f.intensity for f, form in self.members if form == "H"))
 
 
+def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
+                   rt_tol: float = 0.05) -> tuple[list[MSFeature], int]:
+    """Merge co-eluting 1+ features spaced by 13C/z (z = 2, 3, 4) into one z-charged envelope.
+
+    The feature finder sometimes splits one multiply charged envelope into several 1+
+    features. The lowest-m/z feature of a chain becomes the monoisotopic peak; intensities are
+    summed. Returns the repaired list and the number of merged envelopes.
+    """
+    ones = sorted([f for f in features if f.charge == 1], key=lambda f: f.mz)
+    others = [f for f in features if f.charge != 1]
+    taken: set[int] = set()
+    merged: list[MSFeature] = []
+    for f in ones:
+        if f.feature_id in taken:
+            continue
+        best: list[MSFeature] = [f]
+        best_z = 1
+        for z in (4, 3, 2):
+            chain = [f]
+            while True:
+                target = chain[-1].mz + ISOTOPE_SPACING / z
+                nxt = [g for g in ones if g.feature_id not in taken and g not in chain
+                       and abs(g.mz - target) / target * 1e6 <= ppm and abs(g.rt - f.rt) <= rt_tol]
+                if not nxt:
+                    break
+                chain.append(max(nxt, key=lambda g: g.intensity))
+            if len(chain) > len(best):
+                best, best_z = chain, z
+        if best_z > 1:
+            taken.update(g.feature_id for g in best)
+            merged.append(MSFeature(f.feature_id, f.mz, best_z, f.rt,
+                                    float(sum(g.intensity for g in best)), len(best)))
+        else:
+            taken.add(f.feature_id)
+            merged.append(f)
+    n_merged = sum(1 for m in merged if m.charge > 1)
+    return others + merged, n_merged
+
+
 def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.2,
-                  max_adducts: int = 2) -> list[Species]:
+                  max_adducts: int = 4) -> list[Species]:
     """Group co-eluting features into species.
 
     Pass 1: features whose protonated neutral masses agree within ``ppm`` and whose apexes are
     within ``rt_tol`` min are charge states of one species. Pass 2: a whole species is absorbed
-    as adduct ions of a stronger co-eluting species when its (protonated) neutral mass equals
-    the parent's plus k x (adduct - H), k = 1..``max_adducts``, for Na+, K+ or NH4+. This keeps
-    the 2+ and 3+ sodium adduct ions together with their parent.
+    as ions of a stronger co-eluting species when its (protonated) neutral mass equals the
+    parent's plus any mixture of up to ``max_adducts`` Na+/K+/NH4+ exchanges (sialic acid salts
+    allow more exchanges than the charge) plus 0 to 4 13C steps (monoisotopic peak picked one
+    or more isotopes too high). This keeps adduct ions of every charge with their parent.
     """
     feats = sorted(features, key=lambda f: -f.intensity)
     species: list[Species] = []
@@ -77,9 +119,15 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
         _refresh(s)
         species.append(s)
 
-    # pass 2: absorb adduct species into stronger co-eluting parents
-    exchange = {name: ch.CHARGE_CARRIERS[carrier] - ch.PROTON_MASS
-                for name, carrier in ADDUCT_FORMS.items()}
+    # pass 2: absorb adduct and isotope-error species into stronger co-eluting parents
+    relations = []
+    for n in range(5):
+        if n:
+            relations.append((n, f"isotope+{n}", n * ISOTOPE_SPACING))
+        for counts, off in exchange_combos(max_adducts):
+            label = "+".join(f"{v}{k}" for k, v in counts.items()) + (f" M+{n}" if n else "")
+            relations.append((sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING))
+    relations.sort(key=lambda r: r[0])
     parents = sorted(species, key=lambda s: -s.intensity)
     absorbed: set[int] = set()
     for s in sorted(species, key=lambda s: s.intensity):
@@ -90,13 +138,10 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                     or parent.intensity <= s.intensity or abs(parent.rt - s.rt) > rt_tol):
                 continue
             hit = None
-            for name, d in exchange.items():
-                for k in range(1, max_adducts + 1):
-                    if abs(s.neutral_mass - (parent.neutral_mass + k * d)) / parent.neutral_mass \
-                            * 1e6 <= ppm:
-                        hit = f"{k}{name}"
-                        break
-                if hit:
+            for _, label, off in relations:
+                if abs(s.neutral_mass - (parent.neutral_mass + off)) / parent.neutral_mass \
+                        * 1e6 <= ppm:
+                    hit = label
                     break
             if hit:
                 parent.members.extend((f, hit) for f, _ in s.members)
@@ -149,6 +194,44 @@ def assign_species(species: Sequence[Species], compositions: Sequence[Mapping[st
             matches.append(c)
         out.append(Assignment(s, matches))
     return out
+
+
+def oxonium_ions() -> list[tuple[str, float]]:
+    """Singly charged non-reducing-end oxonium ions (B ions) of up to 5 residues, and their
+    water-loss forms when they contain a sialic acid."""
+    ranges = {"Hex": (0, 2), "HexNAc": (0, 2), "dHex": (0, 1), "NeuAc": (0, 2), "NeuGc": (0, 1)}
+    out = []
+    from glyverity.annotate import composition_string
+    for comp in enumerate_compositions(ranges):
+        if sum(comp.values()) > 5:
+            continue
+        m = ch.composition_mass(comp) + ch.PROTON_MASS
+        name = composition_string(comp)
+        out.append((name, m))
+        if comp.get("NeuAc") or comp.get("NeuGc"):
+            out.append((name + "-H2O", m - ch.WATER))
+    return out
+
+
+def reclassify_oxonium(assignments: Sequence[Assignment], classes: dict[int, str],
+                       ppm: float = 10.0, rt_tol: float = 0.2) -> int:
+    """Mark unassigned 1+ features that match an oxonium ion and co-elute with an assigned
+    glycan species as in-source fragments. Returns the number reclassified."""
+    ions = oxonium_ions()
+    glycan_rts = [a.species.rt for a in assignments
+                  if any(classes.get(f.feature_id) == "labelled glycan" for f, _ in a.species.members)
+                  or any(classes.get(f.feature_id) == "side-product series" for f, _ in a.species.members)]
+    n = 0
+    for a in assignments:
+        for f, _ in a.species.members:
+            if classes.get(f.feature_id) != "unassigned" or f.charge != 1:
+                continue
+            if not any(abs(f.rt - r) <= rt_tol for r in glycan_rts):
+                continue
+            if any(abs(f.mz - m) / m * 1e6 <= ppm for _, m in ions):
+                classes[f.feature_id] = "in-source fragment"
+                n += 1
+    return n
 
 
 CLASSES = ("labelled glycan", "other end group", "side-product series", "in-source fragment",

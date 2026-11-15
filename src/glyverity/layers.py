@@ -31,25 +31,46 @@ ADDUCT_EXCHANGE = {
 }
 
 
-def relation_offsets(max_adducts: int = 2, max_isotope: int = 5,
-                     min_isotope: int = -1) -> list[tuple[str, float]]:
-    """Mass offsets k*(adduct - H) + n*13C, excluding zero, with readable labels.
+def exchange_combos(max_total: int = 4) -> list[tuple[dict[str, int], float]]:
+    """All mixtures of Na+, K+ and NH4+ replacing H+ with 1..``max_total`` exchanges in total.
 
-    Negative ``n`` covers the case where the weaker candidate is lighter and its own isotope
-    channel (the XIC sums the monoisotopic and M+1 peaks) picks up the stronger candidate.
+    Exchanges are not limited by charge: sialic acid carboxylates form neutral Na and K salts,
+    so a 2+ ion can carry more than two non-proton cations.
     """
     out = []
-    for name, d in ADDUCT_EXCHANGE.items():
-        for k in range(max_adducts + 1):
-            for n in range(min_isotope, max_isotope + 1):
-                if k == 0 and n == 0:
+    names = list(ADDUCT_EXCHANGE)
+    for a in range(max_total + 1):
+        for b in range(max_total + 1 - a):
+            for c in range(max_total + 1 - a - b):
+                if a + b + c == 0:
                     continue
-                if k == 0 and name != "Na":
-                    continue  # pure isotope offsets listed once
-                iso = f"M{n:+d}" if n else "M+0"
-                label = f"{k}x{name} {iso}" if k else iso
-                out.append((label, k * d + n * ISOTOPE_SPACING))
+                counts = dict(zip(names, (a, b, c)))
+                out.append(({k: v for k, v in counts.items() if v},
+                            sum(n * ADDUCT_EXCHANGE[k] for k, n in counts.items())))
     return out
+
+
+def _exchange_label(counts: dict[str, int]) -> str:
+    return "+".join(f"{n}x{k}" for k, n in counts.items())
+
+
+def relation_offsets(max_adducts: int = 4, max_isotope: int = 5,
+                     min_isotope: int = -1) -> list[tuple[str, float]]:
+    """Mass offsets (mixed Na/K/NH4 exchanges) + n*13C, excluding zero, with readable labels.
+
+    Ordered from simplest (fewest exchanges and isotope steps) to most complex. Negative ``n``
+    covers a weaker, lighter candidate whose own M+1 channel picks up the stronger one.
+    """
+    rows = []
+    for n in range(min_isotope, max_isotope + 1):
+        if n != 0:
+            rows.append((abs(n), f"M{n:+d}", n * ISOTOPE_SPACING))
+        for counts, off in exchange_combos(max_adducts):
+            iso = f"M{n:+d}" if n else "M+0"
+            rows.append((sum(counts.values()) + abs(n), f"{_exchange_label(counts)} {iso}",
+                         off + n * ISOTOPE_SPACING))
+    rows.sort(key=lambda r: r[0])
+    return [(label, off) for _, label, off in rows]
 
 
 @register
@@ -59,7 +80,7 @@ class AdductIsotopeIsobar(EvidenceLayer):
     name = "adduct_isotope_isobar"
     version = "1"
 
-    def __init__(self, ppm: float = 5.0, rt_tol: float = 0.15, max_adducts: int = 2,
+    def __init__(self, ppm: float = 5.0, rt_tol: float = 0.15, max_adducts: int = 4,
                  max_isotope: int = 5, min_isotope: int = -1):
         self.ppm = ppm
         self.rt_tol = rt_tol

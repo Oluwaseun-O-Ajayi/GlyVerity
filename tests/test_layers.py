@@ -18,6 +18,7 @@ def _cand(comp, group, rt, area, fld=np.nan):
 def test_relation_offsets_contains_na_m4():
     offs = dict(relation_offsets())
     assert offs["1xNa M+4"] == pytest.approx(25.995, abs=1e-3)
+    assert offs["1xNa+1xK M+0"] == pytest.approx(59.938, abs=1e-3)
     assert offs["M-1"] == pytest.approx(-1.00335, abs=1e-4)
 
 

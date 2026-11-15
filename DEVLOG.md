@@ -139,6 +139,21 @@
   (now read, with --lag). Added an unassigned-feature report with deltas to co-eluting species.
   These shares are superseded by the next run.
 
+* Census run 2: 1139 features -> 892 species. C3H9N-RA SERIES (n=8, ratio 0.403, spread 0.059,
+  shift -0.89 min, fluorescence fraction 0.34). Shares: labelled 21.8%, other end group 2.9%,
+  side-product 7.7%, ISF 0.9%, adduct/isotope 0.3%, adduct ion 25.9%, ambiguous 0.4%,
+  unassigned 40.0%. Unassigned patterns (checked by arithmetic):
+  * mixed Na/K salts beyond the charge: 1530.5130 2+ = A3S3 + Na + K - 2H; 1395.9567 2+ =
+    A3S2 + 2Na + K - 3H (2.5 ppm);
+  * envelopes split into 1+ features (pairs 0.5017 apart) and monoisotopic picked +4 (1502.5533);
+  * oxonium ion 657.235 (NeuAc-Hex-HexNAc, 657.2349) co-eluting with main glycans;
+  * 2880.047 Da at 41.6 min (2+ 1441.0292, 3+ 961.0240), no FLD = free A3S3 + NH3 - O
+    (amino-alditol, 2880.0423, 1.6 ppm). Hypothesis; MS2 test: Y1 at 223.1288.
+* Added: mixed-cation exchange combos (up to 4, any mix of Na/K/NH4) in species grouping and
+  isobar layer; isotope-error relations (+1 to +4) in species grouping; `repair_charges`
+  (merge split envelopes); oxonium-ion reclassification; NH3-RA end group; amino-alditol Y1 in
+  `ms2_diagnostic.py`.
+
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then
   classify it (labelled glycan, side product, adduct/isotope, in-source fragment, unexplained).
@@ -293,6 +308,21 @@
   re-homed single features (now whole species are compared); (3) series test lacked FLD
   (now read, with --lag). Added an unassigned-feature report with deltas to co-eluting species.
   These shares are superseded by the next run.
+
+* Census run 2: 1139 features -> 892 species. C3H9N-RA SERIES (n=8, ratio 0.403, spread 0.059,
+  shift -0.89 min, fluorescence fraction 0.34). Shares: labelled 21.8%, other end group 2.9%,
+  side-product 7.7%, ISF 0.9%, adduct/isotope 0.3%, adduct ion 25.9%, ambiguous 0.4%,
+  unassigned 40.0%. Unassigned patterns (checked by arithmetic):
+  * mixed Na/K salts beyond the charge: 1530.5130 2+ = A3S3 + Na + K - 2H; 1395.9567 2+ =
+    A3S2 + 2Na + K - 3H (2.5 ppm);
+  * envelopes split into 1+ features (pairs 0.5017 apart) and monoisotopic picked +4 (1502.5533);
+  * oxonium ion 657.235 (NeuAc-Hex-HexNAc, 657.2349) co-eluting with main glycans;
+  * 2880.047 Da at 41.6 min (2+ 1441.0292, 3+ 961.0240), no FLD = free A3S3 + NH3 - O
+    (amino-alditol, 2880.0423, 1.6 ppm). Hypothesis; MS2 test: Y1 at 223.1288.
+* Added: mixed-cation exchange combos (up to 4, any mix of Na/K/NH4) in species grouping and
+  isobar layer; isotope-error relations (+1 to +4) in species grouping; `repair_charges`
+  (merge split envelopes); oxonium-ion reclassification; NH3-RA end group; amino-alditol Y1 in
+  `ms2_diagnostic.py`.
 
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then

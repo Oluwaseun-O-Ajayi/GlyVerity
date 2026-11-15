@@ -29,6 +29,8 @@ from glyverity.census import (
     assign_species,
     classify,
     group_species,
+    reclassify_oxonium,
+    repair_charges,
     unassigned_report,
 )
 from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
@@ -36,6 +38,7 @@ from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
 
 TAG_C3H9N = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
+NH3_RA = ch.formula_mass({"N": 1, "H": 3}) - ch.ATOMIC_MASS["O"]  # amino-alditol (hypothesis)
 SEARCH = {"Hex": (3, 9), "HexNAc": (2, 6), "dHex": (0, 1), "NeuAc": (0, 4), "NeuGc": (0, 1)}
 
 
@@ -66,10 +69,14 @@ def main(argv=None) -> int:
         print(f"mzML: {path}")
 
     feats = find_features(exp, ppm=args.ppm, noise=args.noise)
+    n_raw = len(feats)
+    feats, n_fix = repair_charges(feats, ppm=args.ppm)
     species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol)
-    print(f"{exp.getNrSpectra()} MS1 scans -> {len(feats)} features -> {len(species)} species")
+    print(f"{exp.getNrSpectra()} MS1 scans -> {n_raw} features ({n_fix} split envelopes "
+          f"re-merged, {len(feats)} after repair) -> {len(species)} species")
 
-    groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N}
+    groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N,
+              "NH3-RA": NH3_RA}
     comps = [c for c in an.enumerate_compositions(SEARCH)
              if c.get("HexNAc", 0) >= 2 and c.get("Hex", 0) >= 3
              and c.get("NeuAc", 0) + c.get("NeuGc", 0) <= c["HexNAc"] - 1]
@@ -97,6 +104,8 @@ def main(argv=None) -> int:
             by_key[e.feature_id].flags.append(f"side_product:{test}")
 
     cls = classify(asg, args.label)
+    n_ox = reclassify_oxonium(asg, cls, ppm=args.ppm, rt_tol=args.rt_tol)
+    print(f"oxonium ions reclassified as in-source fragments: {n_ox}")
     total = sum(f.intensity for f in feats)
     print(f"\nfeature intensity by class (n features, share of {total:.4g}):")
     for k in CLASSES:

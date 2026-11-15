@@ -111,3 +111,34 @@ def test_end_to_end_synthetic():
     assert len(got["in-source fragment"]) == 1
     assert len(got["other end group"]) == 1          # tag form (series needs >= 3 compositions)
     assert "unassigned" not in got
+
+
+def test_repair_split_envelope():
+    from glyverity.annotate import ISOTOPE_SPACING
+    from glyverity.census import repair_charges
+    mono = 1519.5226
+    feats = [MSFeature(0, mono, 1, 36.742, 1.8e5, 1),
+             MSFeature(1, mono + ISOTOPE_SPACING / 2, 1, 36.742, 2.3e5, 1),
+             MSFeature(2, 700.0, 1, 36.742, 1e4, 1)]
+    out, n = repair_charges(feats)
+    assert n == 1
+    z2 = [f for f in out if f.charge == 2]
+    assert len(z2) == 1 and z2[0].mz == mono and z2[0].intensity == pytest.approx(4.1e5)
+
+
+def test_mixed_salt_adduct_absorbed():
+    m = ch.glycan_neutral_mass({"Hex": 6, "HexNAc": 5, "NeuAc": 2}, "2-AB")
+    na, k = ch.CHARGE_CARRIERS["Na+"], ch.CHARGE_CARRIERS["K+"]
+    p = ch.PROTON_MASS
+    salt = m + 2 * (na - p) + (k - p)  # 2 Na + 1 K replacing 3 H (one as a neutral salt)
+    feats = [_f(0, m, 2, 31.70, 3e6), _f(1, salt, 2, 31.80, 2e5)]
+    sp = group_species(feats)
+    assert len(sp) == 1
+    assert any(form.startswith("2Na+1K") for _, form in sp[0].members)
+
+
+def test_oxonium_list_contains_neuac_hex_hexnac():
+    from glyverity.census import oxonium_ions
+    ions = dict(oxonium_ions())
+    assert ions["Hex1HexNAc1NeuAc1"] == pytest.approx(657.2349, abs=1e-4)
+    assert ions["HexNAc1"] == pytest.approx(204.0867, abs=1e-4)

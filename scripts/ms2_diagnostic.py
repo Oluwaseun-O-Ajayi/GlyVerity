@@ -13,6 +13,7 @@ Diagnostic ions (singly charged):
   Y1, free reducing GlcNAc          222.0972
   Y1, GlcNAc + 2-AB                 342.1660
   Y1, GlcNAc + tag (+43.0786 net)   265.1758   (hypothesis: C3H9N reductive amination)
+  Y1, GlcNAc amino-alditol          223.1288   (hypothesis: NH3 reductive amination, +1.0316)
 
 Usage
 -----
@@ -41,6 +42,7 @@ DIAGNOSTIC = {
     "Y1 free GlcNAc": GLCNAC_FREE + P,
     "Y1 GlcNAc+2-AB": GLCNAC_FREE + ch.LABELS["2-AB"].added_mass + P,
     "Y1 GlcNAc+tag(+43.0786)": GLCNAC_FREE + 43.0786 + P,
+    "Y1 GlcNAc amino-alditol": GLCNAC_FREE + ch.formula_mass({"N": 1, "H": 3}) - ch.ATOMIC_MASS["O"] + P,
 }
 
 
