@@ -90,6 +90,4 @@ Decision (2026-11-14): option 1. Labelled HILIC is the validation core; the cens
 
 ## Things to do outside the code
 
-* Read the FDA September 2025 PDF and confirm the "reproducible and reliable" wording and page.
-* Confirm the Zenodo 4705546 record contents in a browser.
 * Decide whether to shorten the GPST000788 embargo or arrange reviewer access.

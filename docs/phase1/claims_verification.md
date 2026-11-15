@@ -31,16 +31,24 @@ Checked 2026-11-14. Each claim is marked VERIFIED, CORRECTED or UNVERIFIED.
 * "Nobody has asked this of glycomics": no such study found in searches to date. Keep as
   "we found no equivalent analysis for glycomics", not as a certainty.
 
-## 3. FDA September 2025 guidance: CORRECTED (title)
+## 3. FDA September 2025 guidance: VERIFIED (title and wording corrected)
 
 * Document: "Development of Therapeutic Protein Biosimilars: Comparative Analytical Assessment
   and Other Quality-Related Considerations; Guidance for Industry", final, September 2025,
   docket FDA-2019-D-2102, Federal Register notice 2025-17226 (9 September 2025). It replaces the
   2019 draft and the 2015 "Quality Considerations" guidance.
-* A secondary source (Foley and Lardner, December 2025) reports that pages 11 to 12 say
-  characterization methods should give results that are "reproducible and reliable", and that
-  page 11 covers glycosylation profiling. The FDA PDF itself has not yet been read here.
-  Read the PDF and confirm page and wording before quoting.
+* Checked in the FDA PDF (page numbers are PDF pages of 26, checked by OOA 2026-11-15):
+  * p. 14: characterization methods "do not necessarily need to be validated", but should be
+    scientifically sound, fit for intended use, and give results that are "reproducible and
+    reliable". This applies to characterization methods in general, not to glycosylation
+    profiling specifically.
+  * p. 11: sponsors should understand product heterogeneity, citing "the nature, location, and
+    levels of glycosylation" as an example.
+  * p. 12: functional assays should be read alongside glycosylation and other attributes.
+* The brief's wording ("stresses glycosylation profiling that is reproducible and reliable")
+  joins two separate statements. Accurate wording: "FDA's 2025 biosimilar guidance asks that
+  characterization methods give reproducible and reliable results and that sponsors understand
+  the nature, location and levels of glycosylation."
 * Do not confuse with the separate 29 October 2025 draft guidance on comparative efficacy studies.
 * FDA guidances have no DOI. Cite by title, date and docket number.
 
