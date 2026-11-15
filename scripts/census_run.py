@@ -20,11 +20,19 @@ import csv
 import os
 from pathlib import Path
 
+import numpy as np
+
 from glyverity import annotate as an
 from glyverity import chemistry as ch
-from glyverity.census import CLASSES, assign_species, classify, group_species
+from glyverity.census import (
+    CLASSES,
+    assign_species,
+    classify,
+    group_species,
+    unassigned_report,
+)
 from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
-from glyverity.io_agilent import ms1_mask, scan_records
+from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
 
 TAG_C3H9N = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
@@ -39,6 +47,8 @@ def main(argv=None) -> int:
     ap.add_argument("--window", nargs=2, type=float, default=(15.0, 50.0))
     ap.add_argument("--ppm", type=float, default=10.0)
     ap.add_argument("--noise", type=float, default=100.0)
+    ap.add_argument("--lag", type=float, default=0.0, help="MS minus FLD time (min)")
+    ap.add_argument("--rt-tol", type=float, default=0.2, help="co-elution tolerance (min)")
     ap.add_argument("--mzml", action="store_true", help="also write the MS1 window as mzML")
     args = ap.parse_args(argv)
 
@@ -56,7 +66,7 @@ def main(argv=None) -> int:
         print(f"mzML: {path}")
 
     feats = find_features(exp, ppm=args.ppm, noise=args.noise)
-    species = group_species(feats, ppm=args.ppm)
+    species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol)
     print(f"{exp.getNrSpectra()} MS1 scans -> {len(feats)} features -> {len(species)} species")
 
     groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N}
@@ -66,17 +76,22 @@ def main(argv=None) -> int:
     asg = assign_species(species, comps, groups, ppm=args.ppm)
     cands = [c for a in asg for c in a.matches]
     by_key = {c.key: c for c in cands}
+    fl = fld_traces(files)
+    if fl:
+        for c in cands:
+            c.fld_at_apex = float(np.interp(c.apex_time - args.lag, fl[0].times, fl[0].values))
 
-    for e in AdductIsotopeIsobar(ppm=args.ppm, rt_tol=0.1).evaluate(cands):
+    for e in AdductIsotopeIsobar(ppm=args.ppm, rt_tol=args.rt_tol).evaluate(cands):
         by_key[e.feature_id].flags.append(f"isobar:{e.detail['relation']} of {e.detail['by']}")
-    for e in InSourceFragment(ppm=args.ppm, rt_tol=0.1).evaluate(cands):
+    for e in InSourceFragment(ppm=args.ppm, rt_tol=args.rt_tol).evaluate(cands):
         by_key[e.feature_id].flags.append(f"isf:-{e.detail['loss']} of {e.detail['by']}")
     for test in [g for g in groups if g != args.label]:
         layer = LabelSideProductSeries(args.label, test)
         ev = layer.evaluate([c for c in cands if not c.flags])
         s = layer.summary
         print(f"series {test} vs {args.label}: n={s.n}, ratio {s.ratio_median:.3f}, "
-              f"spread {s.ratio_spread:.3f}, shift {s.rt_shift_median:+.2f} min -> "
+              f"spread {s.ratio_spread:.3f}, shift {s.rt_shift_median:+.2f} min, "
+              f"fluorescence fraction {s.fluorescence_fraction:.2f} -> "
               f"{'SERIES' if s.is_series else 'not a series'}")
         for e in ev:
             by_key[e.feature_id].flags.append(f"side_product:{test}")
@@ -88,6 +103,11 @@ def main(argv=None) -> int:
         sub = [f for f in feats if cls.get(f.feature_id) == k]
         share = 100 * sum(f.intensity for f in sub) / total if total else 0.0
         print(f"  {k:24s} {len(sub):5d}  {share:5.1f}%")
+
+    print("\nstrongest unassigned features (delta = neutral minus co-eluting assigned species):")
+    for f, delta, near in unassigned_report(asg, cls):
+        d = f"{delta:+10.4f}" if np.isfinite(delta) else "         -"
+        print(f"  {f.mz:10.4f} z={f.charge} {f.rt:7.3f} min {f.intensity:11.0f}  {d}  {near}")
 
     sp_of = {f.feature_id: (a.species.species_id, form) for a in asg for f, form in a.species.members}
     best = {a.species.species_id: "; ".join(f"{c.name}({c.end_group}){'[' + ','.join(c.flags) + ']' if c.flags else ''}"

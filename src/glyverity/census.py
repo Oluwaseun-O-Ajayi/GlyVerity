@@ -49,15 +49,15 @@ class Species:
         return float(sum(f.intensity for f, form in self.members if form == "H"))
 
 
-def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.1,
+def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.2,
                   max_adducts: int = 2) -> list[Species]:
     """Group co-eluting features into species.
 
-    Pass 1: features whose protonated neutral masses agree within ``ppm`` and co-elute are
-    charge states of one species. Pass 2: a remaining feature is attached as an adduct ion
-    (1 to ``max_adducts`` Na+, K+ or NH4+ replacing protons) of a co-eluting species formed in
-    pass 1 if its neutral mass under that hypothesis agrees. Leftover features become their
-    own protonated species.
+    Pass 1: features whose protonated neutral masses agree within ``ppm`` and whose apexes are
+    within ``rt_tol`` min are charge states of one species. Pass 2: a whole species is absorbed
+    as adduct ions of a stronger co-eluting species when its (protonated) neutral mass equals
+    the parent's plus k x (adduct - H), k = 1..``max_adducts``, for Na+, K+ or NH4+. This keeps
+    the 2+ and 3+ sodium adduct ions together with their parent.
     """
     feats = sorted(features, key=lambda f: -f.intensity)
     species: list[Species] = []
@@ -74,40 +74,43 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
             if abs(neutral_for(g) - m) / m * 1e6 <= ppm:
                 s.members.append((g, "H"))
                 used.add(g.feature_id)
+        _refresh(s)
         species.append(s)
 
-    # pass 2: re-home single-member species that are adduct ions of a stronger species
-    by_strength = sorted(species, key=lambda s: -s.protonated_intensity)
+    # pass 2: absorb adduct species into stronger co-eluting parents
+    exchange = {name: ch.CHARGE_CARRIERS[carrier] - ch.PROTON_MASS
+                for name, carrier in ADDUCT_FORMS.items()}
+    parents = sorted(species, key=lambda s: -s.intensity)
     absorbed: set[int] = set()
     for s in sorted(species, key=lambda s: s.intensity):
-        if len(s.members) != 1 or s.species_id in absorbed:
+        if s.species_id in absorbed:
             continue
-        f = s.members[0][0]
-        for parent in by_strength:
-            if parent.species_id == s.species_id or parent.species_id in absorbed:
-                continue
-            if abs(parent.rt - f.rt) > rt_tol or parent.protonated_intensity <= f.intensity:
+        for parent in parents:
+            if (parent.species_id == s.species_id or parent.species_id in absorbed
+                    or parent.intensity <= s.intensity or abs(parent.rt - s.rt) > rt_tol):
                 continue
             hit = None
-            for name, carrier in ADDUCT_FORMS.items():
-                for k in range(1, min(max_adducts, f.charge) + 1):
-                    m = neutral_for(f, carrier, k)
-                    if abs(m - parent.neutral_mass) / parent.neutral_mass * 1e6 <= ppm:
+            for name, d in exchange.items():
+                for k in range(1, max_adducts + 1):
+                    if abs(s.neutral_mass - (parent.neutral_mass + k * d)) / parent.neutral_mass \
+                            * 1e6 <= ppm:
                         hit = f"{k}{name}"
                         break
                 if hit:
                     break
             if hit:
-                parent.members.append((f, hit))
+                parent.members.extend((f, hit) for f, _ in s.members)
                 absorbed.add(s.species_id)
                 break
-    out = [s for s in species if s.species_id not in absorbed]
-    for s in out:  # mass from protonated members, intensity weighted
-        prot = [(f, form) for f, form in s.members if form == "H"]
-        w = np.array([f.intensity for f, _ in prot])
-        s.neutral_mass = float(np.dot([neutral_for(f) for f, _ in prot], w) / w.sum())
-        s.rt = float(np.dot([f.rt for f, _ in prot], w) / w.sum())
-    return out
+    return [s for s in species if s.species_id not in absorbed]
+
+
+def _refresh(s: Species) -> None:
+    """Recompute a species' neutral mass and time from its protonated members."""
+    prot = [f for f, form in s.members if form == "H"]
+    w = np.array([f.intensity for f in prot])
+    s.neutral_mass = float(np.dot([neutral_for(f) for f in prot], w) / w.sum())
+    s.rt = float(np.dot([f.rt for f in prot], w) / w.sum())
 
 
 @dataclass
@@ -175,3 +178,25 @@ def classify(assignments: Sequence[Assignment], label: str) -> dict[int, str]:
         for f, form in a.species.members:
             out[f.feature_id] = cls if form == "H" else "adduct ion of a species"
     return out
+
+
+def unassigned_report(assignments: Sequence[Assignment], classes: Mapping[int, str],
+                      top: int = 20, rt_tol: float = 0.2) -> list[tuple[MSFeature, float, str]]:
+    """Strongest unassigned features, each with the neutral mass difference to the strongest
+    co-eluting assigned species (feature neutral, protonated, minus species neutral)."""
+    assigned = [a.species for a in assignments
+                if a.matches and any(classes.get(f.feature_id) not in (None, "unassigned")
+                                     for f, _ in a.species.members)]
+    label = {a.species.species_id: (a.matches[0].name + "(" + a.matches[0].end_group + ")")
+             for a in assignments if a.matches}
+    rows = []
+    feats = [f for a in assignments for f, _ in a.species.members
+             if classes.get(f.feature_id) == "unassigned"]
+    for f in sorted(feats, key=lambda f: -f.intensity)[:top]:
+        near = [s for s in assigned if abs(s.rt - f.rt) <= rt_tol]
+        if near:
+            s = max(near, key=lambda s: s.intensity)
+            rows.append((f, neutral_for(f) - s.neutral_mass, label[s.species_id]))
+        else:
+            rows.append((f, float("nan"), ""))
+    return rows

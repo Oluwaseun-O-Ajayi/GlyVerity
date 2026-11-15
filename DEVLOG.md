@@ -129,6 +129,16 @@
   background, MassTraceDetection returns no traces (min_sample_rate); keep noise below
   background. Synthetic end-to-end test classifies every planted feature correctly.
 
+* First census run (fetuin, pyOpenMS 3.6.0 on cluster): 668 MS1 scans -> 1139 features ->
+  987 species. Top features correct (A3S3, A3S2, A2S2 2-AB, labelled glycan). Shares:
+  labelled 23.1%, other end group 10.7%, ISF 0.7%, adduct/isotope 2.0%, adduct ion 11.6%,
+  ambiguous 0.4%, unassigned 51.5%. Three faults: (1) A3S3 2+ and 3+ apexes 0.14 min apart
+  split into two species (rt_tol 0.1 too tight; now 0.2); (2) [M+H+Na]2+ of A3S2 (1365.99,
+  6th strongest) unassigned because its 3+ partner formed a species first and pass 2 only
+  re-homed single features (now whole species are compared); (3) series test lacked FLD
+  (now read, with --lag). Added an unassigned-feature report with deltas to co-eluting species.
+  These shares are superseded by the next run.
+
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then
   classify it (labelled glycan, side product, adduct/isotope, in-source fragment, unexplained).
@@ -273,6 +283,16 @@
   `scripts/census_run.py`. pyOpenMS 3.6.0 finding: with the noise threshold above all
   background, MassTraceDetection returns no traces (min_sample_rate); keep noise below
   background. Synthetic end-to-end test classifies every planted feature correctly.
+
+* First census run (fetuin, pyOpenMS 3.6.0 on cluster): 668 MS1 scans -> 1139 features ->
+  987 species. Top features correct (A3S3, A3S2, A2S2 2-AB, labelled glycan). Shares:
+  labelled 23.1%, other end group 10.7%, ISF 0.7%, adduct/isotope 2.0%, adduct ion 11.6%,
+  ambiguous 0.4%, unassigned 51.5%. Three faults: (1) A3S3 2+ and 3+ apexes 0.14 min apart
+  split into two species (rt_tol 0.1 too tight; now 0.2); (2) [M+H+Na]2+ of A3S2 (1365.99,
+  6th strongest) unassigned because its 3+ partner formed a species first and pass 2 only
+  re-homed single features (now whole species are compared); (3) series test lacked FLD
+  (now read, with --lag). Added an unassigned-feature report with deltas to co-eluting species.
+  These shares are superseded by the next run.
 
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then

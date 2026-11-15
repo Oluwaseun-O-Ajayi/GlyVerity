@@ -26,6 +26,22 @@ def test_charge_states_and_adduct_grouped():
     assert main.neutral_mass == pytest.approx(m, rel=1e-9)
 
 
+def test_sodium_adduct_with_two_charge_states_absorbed():
+    m = ch.glycan_neutral_mass(A3S2, "2-AB")
+    feats = [_f(0, m, 2, 31.75, 1.7e6), _f(1, m, 3, 31.70, 1.7e6),
+             _f(2, m, 2, 31.70, 9.7e5, {"H+": 1, "Na+": 1}),
+             _f(3, m, 3, 31.70, 3e5, {"H+": 2, "Na+": 1})]
+    sp = group_species(feats)
+    assert len(sp) == 1
+    assert sorted(form for _, form in sp[0].members) == ["1Na", "1Na", "H", "H"]
+
+
+def test_charge_states_0p14_min_apart_grouped():
+    m = ch.glycan_neutral_mass({"Hex": 6, "HexNAc": 5, "NeuAc": 3}, "2-AB")
+    sp = group_species([_f(0, m, 3, 36.837, 2.2e6), _f(1, m, 2, 36.695, 1.1e6)])
+    assert len(sp) == 1
+
+
 def test_neutral_for_adduct():
     m = 2000.0
     f = _f(0, m, 3, 10.0, 1.0, {"H+": 2, "Na+": 1})
