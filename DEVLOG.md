@@ -492,7 +492,9 @@
   vs Hex/HexNAc/dHex/H2O, which also match biosynthetic neighbours) with their own cutoffs.
 * 1524.0330 (1+, 36.742 min) = A3S3 2-AB 2Na M+3 as 2+ (0.6 ppm, dRT 0.048 min) yet still
   unassigned. Hypothesis: not a lone feature (grouped in pass 1 with a partner), so it is never
-  re-read. Check its species in census_features.tsv.
+  re-read. Checked: feature 814, species 38, form H, class unassigned; no 762.5 partner. Still
+  to check: other members of species 38 (e.g. a 3+ at m/z 508.7), and the RT of the A3S3
+  2-AB parent species, since the re-read cutoff includes dRT (0.150 min).
 * Recurring +217.88 / +212.87 / +202.92 / +195.90 deltas on 2-AB parents: inspect isotope
   patterns (37Cl, 41K) before naming anything.
 * Then composition decoys and q-values (go/no-go condition 3).
