@@ -47,6 +47,17 @@
   spacing; do not assume the monoisotopic peak is the most intense; the M+1 of a 2+ ion
   (1355.5039) matched Man5-2AB 1+ at -4 ppm.
 * Added `scripts/ms2_diagnostic.py`.
+* MS2 result: the four MS-only precursors (1316.51, 878.01, 1462.05, 975.04) show glycan oxonium
+  ions (204.087, 366.140, 292.103, 274.092) and Y1 at 265.17 (GlcNAc + 43.08), and no 2-AB Y1
+  (342.166). The 2-AB controls 1355.00, 903.67 and 1000.70 show 342.165 and no 265.17
+  (1500.55 had 7 scans and showed neither). Conclusion: triantennary di- and trisialylated
+  glycans carrying a non-fluorescent reducing-end group of net +C3H9N-O (+43.0786 Da).
+  Predicted m/z for that group: 1316.5042, 878.0052, 1462.0519, 975.0370 (observed +0.9 to
+  +3.2 ppm, in line with the +2 ppm offset seen on the 2-AB glycans).
+* Possible origin (hypothesis): acetone was used to remove unreacted 2-AB after labelling with
+  cyanoborohydride (Zenodo record description); reductive amination with acetone can add an
+  isopropyl group. Not testable without new experiments; report masses and fragments only.
+* Added `glyverity.xic` and `scripts/label_series.py` (MS1 area per reducing-end group).
 
 **Next**
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
@@ -105,6 +116,17 @@
   spacing; do not assume the monoisotopic peak is the most intense; the M+1 of a 2+ ion
   (1355.5039) matched Man5-2AB 1+ at -4 ppm.
 * Added `scripts/ms2_diagnostic.py`.
+* MS2 result: the four MS-only precursors (1316.51, 878.01, 1462.05, 975.04) show glycan oxonium
+  ions (204.087, 366.140, 292.103, 274.092) and Y1 at 265.17 (GlcNAc + 43.08), and no 2-AB Y1
+  (342.166). The 2-AB controls 1355.00, 903.67 and 1000.70 show 342.165 and no 265.17
+  (1500.55 had 7 scans and showed neither). Conclusion: triantennary di- and trisialylated
+  glycans carrying a non-fluorescent reducing-end group of net +C3H9N-O (+43.0786 Da).
+  Predicted m/z for that group: 1316.5042, 878.0052, 1462.0519, 975.0370 (observed +0.9 to
+  +3.2 ppm, in line with the +2 ppm offset seen on the 2-AB glycans).
+* Possible origin (hypothesis): acetone was used to remove unreacted 2-AB after labelling with
+  cyanoborohydride (Zenodo record description); reductive amination with acetone can add an
+  isopropyl group. Not testable without new experiments; report masses and fragments only.
+* Added `glyverity.xic` and `scripts/label_series.py` (MS1 area per reducing-end group).
 
 **Next**
 * Extract the m/z values under the MS-only peaks and check them against labelled and
