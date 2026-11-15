@@ -31,8 +31,8 @@
 * `scripts/screen_pride.py` added: keyword triage, then manual check of protocols and files.
 * 17 in-scope PRIDE projects added to the catalog (2016 to 2026). Two run fluorescence and MS
   in the same LC run: PXD077477 (ProA and 2-AB) and PXD078897 (RapiFluor-MS).
-* Most public data are PGC/reduced or C18/permethylated, not labelled HILIC. Scope decision
-  needed (see `docs/phase1/go_no_go.md`).
+* Most public data are PGC/reduced or C18/permethylated, not labelled HILIC. Decision: labelled
+  HILIC is the validation core; the census includes all labels.
 
 **Next**
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.

@@ -86,7 +86,7 @@ glycans, or C18 with permethylated glycans. Two options:
    The chemistry module already separates label from composition, so this costs little.
 2. Restrict the census to labelled HILIC, accepting a much smaller census.
 
-Option 1 is recommended. It needs your decision before Phase 2 code is written.
+Decision (2026-11-14): option 1. Labelled HILIC is the validation core; the census includes all labels.
 
 ## Things to do outside the code
 
