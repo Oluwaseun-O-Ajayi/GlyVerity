@@ -93,9 +93,8 @@ Checked 2026-11-14. Each claim is marked VERIFIED, CORRECTED or UNVERIFIED.
   `MASOP00220_AB_CRL_07JAN2021_Fetuin_001.d.zip` (384.9 MB), IgG Agilent run (11.9 MB) and
   fetuin Orbitrap run `AB_23Apr20_0074_test_Fetuin.raw` (601.8 MB). MD5 sums are in
   `data/catalog/checksums/zenodo_4705546.md5`.
-* The IgG Agilent run (`MASOP00011_AB_0332_16DEC2020_hIgG_NoDE_40ul_001.d.zip`) contains a
-  fluorescence channel (`FLD1.cg`) and MS data (`MSPeak.bin`). The fetuin run's file list is
-  still to be checked for an FLD channel.
+* Downloaded to the cluster 2026-11-15; all three MD5 sums match. Both Agilent runs (fetuin and
+  IgG) contain a fluorescence channel (`FLD1.cg`) and MS data (`MSPeak.bin`).
 
 ## 9. Brief's problem statement: CORRECTED
 

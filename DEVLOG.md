@@ -39,3 +39,19 @@
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
 * Finish prior-art items marked "pending" and "not yet checked".
+
+## 2026-11-15
+
+**Goal:** Close the Phase 1 verification items and stage the first ground-truth data.
+
+**Done**
+* FDA September 2025 guidance wording checked against the PDF (pp. 11, 12, 14); claim reworded.
+* Scope decision recorded: labelled HILIC is the validation core; the census includes all labels.
+* Zenodo 4705546 (Smith 2021, CC BY 4.0): three runs downloaded to the cluster at
+  `~/glyverity_data/raw/zenodo_4705546`; MD5 sums match `data/catalog/checksums/`.
+* Both Agilent runs (fetuin, IgG) contain `FLD1.cg` (fluorescence) and `MSPeak.bin` (MS).
+
+**Next**
+* Read `FLD1.cg` and `MSPeak.bin` into Python; plot fluorescence and MS TIC on one time axis.
+* Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
+* Browse GlycoPOST and MassIVE; add rows to the catalog.
