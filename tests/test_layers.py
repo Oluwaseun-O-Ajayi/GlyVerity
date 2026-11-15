@@ -240,3 +240,23 @@ def test_tail_correction_still_rejects_fluorescent_form():
     assert layer.summary.n_fluorescence_pairs >= 1
     assert layer.summary.fluorescence_fraction > 0.7
     assert not layer.summary.is_series
+
+
+def test_duplicate_label_candidates_do_not_double_the_tail():
+    layer, cands = _tail_series(fluorescent=False)
+    dup = [_cand({"Hex": 3, "HexNAc": 4, "NeuAc": i}, "2-AB", c.apex_time + 0.01, 5e4,
+                 fld=c.fld_at_apex) for i, c in enumerate(cands) if c.end_group == "2-AB"]
+    layer.evaluate(cands + dup)
+    for r in layer.pairs:
+        assert not r["model_fail"]
+        assert r["fld_tail"] <= 1.1 * r["fld_test"] + 1e-9
+    assert layer.summary.is_series
+
+
+def test_fld_peaks_counts_each_peak_once():
+    from glyverity.layers import fld_peaks
+    t, y = _trace([(20.0, 5.0), (23.6, 2.0), (30.0, 0.01)])
+    pt, ph = fld_peaks(t, y)
+    assert len(pt) == 2
+    assert pt[0] == pytest.approx(20.0, abs=0.02)
+    assert ph[1] == pytest.approx(2.0 + 5.0 * np.exp(-3.6 / 0.6), rel=0.02)

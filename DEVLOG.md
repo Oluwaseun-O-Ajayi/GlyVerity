@@ -420,3 +420,23 @@
   from the test form. Rule set from 2-AB peaks only; applies to both series. Tests cover a
   non-fluorescent form on a tail (accepted) and a fluorescent one (rejected).
 * Tests: 65 passed.
+
+## 2026-11-15 (late, 4): run 6 exposed two faults
+
+* Run 6: 378 species; chance absorptions rose to 10.3% of absorbed features (5.7% before
+  dimers), decoy mean 73.5 vs 38.0. About 35 extra chance absorptions against 115 target
+  dimer features: the dimer relation as built had a chance rate near 30%. Cause: about 175
+  more offsets at twice the parent mass, and dimers allowed for features without a measured
+  charge ([2M+2zH]2z+ sits at the m/z of [M+zH]z+, so only isotope spacing tells them apart).
+  Fix: dimers only for species whose features all have 2 or more isotopes, never for re-read
+  1+ features. Decoy counts now reported per relation family.
+* Tail correction failed a sanity check: predicted tails exceeded observed FLD (6.14 vs 0.51
+  at 30.713 min; 15 vs 4.65 at 36.542 min). Cause: neighbours were taken from MS label
+  candidates, so co-eluting candidates counted one FLD peak several times, and weak
+  candidates carried a neighbour's FLD as their own height. Fix: FLD peaks detected in the
+  trace itself (each counted once, 1% prominence); a pair is dropped as a model failure if
+  the predicted tail exceeds the observed FLD by more than 10%.
+* Run-6 verdicts not used: C3H9N-RA "untested" and NH3-RA "SERIES" both came from the faulty
+  correction. The raw NH3-RA values at the two pairs far from strong peaks stand on their
+  own: 41.586 min FLD 0.092 vs 1.29 expected; 44.492 min 0.032 vs 0.236.
+* Tests: 69 passed.

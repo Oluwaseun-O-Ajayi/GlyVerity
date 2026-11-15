@@ -195,3 +195,27 @@ def test_noncovalent_dimer_absorbed_and_classified():
     asg = assign_species(sp, [{"Hex": 6, "HexNAc": 5, "NeuAc": 3}], GROUPS)
     assert classify(asg, "2-AB")[2] == "dimer ion"
     assert absorption_stats(group_species(feats, decoy_shift=0.41))["n"] == 0
+
+
+def test_dimer_needs_measured_charge():
+    from glyverity.census import absorption_stats
+    m = ch.glycan_neutral_mass({"Hex": 6, "HexNAc": 5, "NeuAc": 3}, "2-AB")
+    dimer = 2 * m + (ch.ATOMIC_MASS["Na"] - ch.ATOMIC_MASS["H"])
+    parent = [_f(0, m, 2, 36.79, 2e6), _f(1, m, 3, 36.80, 3e6)]
+    one_peak = MSFeature(2, ch.mz(dimer, 3, {"H+": 2, "Na+": 1}), 3, 36.84, 6e4, 1)
+    st = absorption_stats(group_species([*parent, one_peak]))
+    assert st["n:dimer"] == 0
+    # lone 1+ at the m/z of [2M+2H+...]2+ must not be re-read as a dimer
+    lone = MSFeature(3, (dimer + 2 * ch.PROTON_MASS) / 2, 1, 36.84, 6e4, 1)
+    st = absorption_stats(group_species([*parent, lone]))
+    assert st["n:dimer"] == 0
+
+
+def test_family_counts():
+    from glyverity.census import absorption_stats
+    m = ch.glycan_neutral_mass(A3S2, "2-AB")
+    feats = [_f(0, m, 2, 31.70, 5e6), _f(1, m, 2, 31.70, 8e5, {"H+": 1, "Na+": 1}),
+             _f(2, m + 1.0033548378, 3, 31.71, 4e5)]
+    st = absorption_stats(group_species(feats))
+    assert st["n:adduct"] == 1
+    assert st["n:isotope"] == 1

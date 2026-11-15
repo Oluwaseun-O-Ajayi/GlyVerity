@@ -26,6 +26,7 @@ from glyverity import annotate as an
 from glyverity import chemistry as ch
 from glyverity.census import (
     CLASSES,
+    FAMILIES,
     absorption_stats,
     assign_species,
     classify,
@@ -99,6 +100,12 @@ def main(argv=None) -> int:
         print(f"estimated chance absorptions: {dn / max(tgt['n'], 1):.1%} of absorbed features, "
               f"{di / max(tgt['intensity'], 1e-12):.1%} of absorbed intensity; re-read 1+: "
               f"{dr / max(tgt['n_reread'], 1):.1%} of features")
+        print("    by relation family (target features / decoy mean / estimated chance share):")
+        for fam in FAMILIES:
+            tn = tgt[f"n:{fam}"]
+            dm = float(np.mean([d[f"n:{fam}"] for d in dec]))
+            share = f"{dm / tn:.1%}" if tn else "-"
+            print(f"      {fam:<8} {tn:5d} {dm:7.1f}  {share}")
 
     groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N,
               "NH3-RA": NH3_RA}
@@ -131,15 +138,17 @@ def main(argv=None) -> int:
               f"{'SERIES' if s.is_series else 'not a series'}")
         if args.series_detail and layer.pairs:
             if layer.profile:
-                print(f"    tail correction from isolated {args.label} peaks: sides "
-                      f"{sorted(layer.profile)}")
+                sides = ", ".join(f"{'trailing' if k > 0 else 'leading'} from {v[2]} peaks"
+                                  for k, v in sorted(layer.profile.items()))
+                print(f"    tail correction: {layer.n_fld_peaks} FLD peaks; shape {sides}")
             print("    composition                     ref_rt  test_rt  ratio   FLD_ref  "
                   "FLD_test  FLD_expected  FLD_tail  used")
             for r in layer.pairs:
                 print(f"    {r['name']:<30} {r['ref_rt']:7.3f} {r['test_rt']:8.3f} {r['ratio']:6.3f} "
                       f"{r['fld_ref']:9.3g} {r['fld_test']:9.3g} {r['fld_expected']:13.3g} "
                       f"{r['fld_tail']:9.3g}  "
-                      f"{'yes' if r['used'] else 'no'}")
+                      f"{'yes' if r['used'] else 'no'}"
+                      f"{'  (model fail)' if r['model_fail'] else ''}")
         for e in ev:
             by_key[e.feature_id].flags.append(f"side_product:{test}")
 

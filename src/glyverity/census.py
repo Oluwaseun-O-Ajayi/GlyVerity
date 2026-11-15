@@ -102,7 +102,8 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     allow more exchanges than the charge) plus 0 to 4 13C steps (monoisotopic peak picked one
     or more isotopes too high), or minus a common in-source neutral loss (with 0 to 2 13C
     steps), or twice the parent (a non-covalent [2M + ...] dimer, with the same exchanges and
-    isotope errors; tried last). Absorbed members keep the relation as their ion form, so in-source fragments
+    isotope errors; tried last, and only for species whose features all have a measured
+    charge, i.e. two or more isotopes, because [2M+2zH]2z+ has the m/z of [M+zH]z+). Absorbed members keep the relation as their ion form, so in-source fragments
     are classified separately from adduct and isotope ions.
 
     ``decoy_shift`` (Da) is added to every pass-2 relation offset. With a shift that matches no
@@ -163,8 +164,12 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                 f1 = s.members[0][0]
                 trial += [(f1.mz * z - z * ch.PROTON_MASS, f" (read as {z}+)") for z in (2, 3)]
             hit = None
+            measured = all(f.n_isotopes >= 2 for f, _ in s.members)
             for mass, note in trial:
                 for _, label, off, k in relations:
+                    # a dimer needs a measured charge: [2M+2zH]2z+ sits at the m/z of [M+zH]z+
+                    if k == 2 and (note or not measured):
+                        continue
                     target = k * parent.neutral_mass + off
                     if abs(mass - target) / target * 1e6 <= ppm:
                         hit = label + note
@@ -178,16 +183,32 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     return [s for s in species if s.species_id not in absorbed]
 
 
+FAMILIES = ("adduct", "isotope", "isf", "dimer")
+
+
+def relation_family(form: str) -> str:
+    """Relation family of an absorbed ion form."""
+    if form.startswith("isf:"):
+        return "isf"
+    if form.startswith("dimer:"):
+        return "dimer"
+    if form.startswith("isotope+"):
+        return "isotope"
+    return "adduct"
+
+
 def absorption_stats(species: Sequence[Species]) -> dict[str, float]:
-    """Count features absorbed in pass 2 (ion form other than "H"), in total and for the
-    lone 1+ features re-read at a higher charge."""
+    """Count features absorbed in pass 2 (ion form other than "H"): in total, for lone 1+
+    features re-read at a higher charge, and per relation family (keys "n:<family>")."""
     out = {"n": 0, "intensity": 0.0, "n_reread": 0, "intensity_reread": 0.0}
+    out.update({f"n:{fam}": 0 for fam in FAMILIES})
     for s in species:
         for f, form in s.members:
             if form == "H":
                 continue
             out["n"] += 1
             out["intensity"] += f.intensity
+            out[f"n:{relation_family(form)}"] += 1
             if "(read as" in form:
                 out["n_reread"] += 1
                 out["intensity_reread"] += f.intensity
