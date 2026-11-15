@@ -25,7 +25,12 @@ from glyverity import annotate as an
 from glyverity import chemistry as ch
 from glyverity.candidates import extract_candidates
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
-from glyverity.layers import AdductIsotopeIsobar, LabelSideProductSeries, recurring_deltas
+from glyverity.layers import (
+    AdductIsotopeIsobar,
+    InSourceFragment,
+    LabelSideProductSeries,
+    recurring_deltas,
+)
 
 TAG_C3H9N = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
 SEARCH = {"Hex": (3, 9), "HexNAc": (2, 6), "dHex": (0, 1), "NeuAc": (0, 4), "NeuGc": (0, 1)}
@@ -56,7 +61,7 @@ def main(argv=None) -> int:
     groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N}
     comps = [c for c in an.enumerate_compositions(SEARCH)
              if c.get("HexNAc", 0) >= 2 and c.get("Hex", 0) >= 3
-             and c.get("NeuAc", 0) + c.get("NeuGc", 0) <= max(c["HexNAc"] - 2, 0)]
+             and c.get("NeuAc", 0) + c.get("NeuGc", 0) <= c["HexNAc"] - 1]
     from glyverity.candidates import group_isomeric
     print(f"{len(comps)} compositions ({len(group_isomeric(comps))} distinct formulas) x "
           f"{len(groups)} end groups")
@@ -69,6 +74,11 @@ def main(argv=None) -> int:
     for e in isobar.evaluate(live):
         by_key[e.feature_id].flags.append(
             f"isobar:{e.detail['relation']} of {e.detail['by']} ({e.score:+.1f} ppm)")
+
+    isf = InSourceFragment(ppm=args.isobar_ppm or args.ppm, rt_tol=0.15)
+    for e in isf.evaluate(live):
+        by_key[e.feature_id].flags.append(
+            f"isf:-{e.detail['loss']} of {e.detail['by']} ({e.score:+.1f} ppm)")
 
     for test in [g for g in groups if g != args.label]:
         layer = LabelSideProductSeries(args.label, test)
@@ -91,23 +101,27 @@ def main(argv=None) -> int:
                         f"{c.area:.0f}", f"{c.fld_at_apex:.3f}", "; ".join(c.flags),
                         ", ".join(c.alternative_names)])
 
-    print("\nsummary by end group (candidates, MS1 area):")
+    def kind(c):
+        if any(f.startswith("isobar") for f in c.flags):
+            return "adduct/isotope"
+        if any(f.startswith("isf") for f in c.flags):
+            return "in-source fragment"
+        if any(f.startswith("side_product") for f in c.flags):
+            return "side-product series"
+        return "unflagged"
+
+    kinds = ["adduct/isotope", "in-source fragment", "side-product series", "unflagged"]
+    print("\nMS1 area by end group and artifact type:")
+    print(f"  {'group':9s} {'n':>4s} " + " ".join(f"{k:>20s}" for k in kinds))
     tot_all = sum(c.area for c in live)
     for g in groups:
         sub = [c for c in live if c.end_group == g]
-        a = sum(c.area for c in sub)
-        iso = sum(c.area for c in sub if any(f.startswith("isobar") for f in c.flags))
-        side = sum(c.area for c in sub if any(f.startswith("side_product") for f in c.flags)
-                   and not any(f.startswith("isobar") for f in c.flags))
-        print(f"  {g:9s} {len(sub):4d} candidates | area {a:12.0f} | adduct/isotope {iso:10.0f} | "
-              f"side-product series {side:10.0f}")
-    iso_all = sum(c.area for c in live if any(f.startswith("isobar") for f in c.flags))
-    side_all = sum(c.area for c in live if any(f.startswith("side_product") for f in c.flags)
-                   and not any(f.startswith("isobar") for f in c.flags))
+        vals = [sum(c.area for c in sub if kind(c) == k) for k in kinds]
+        print(f"  {g:9s} {len(sub):4d} " + " ".join(f"{v:20.0f}" for v in vals))
     if tot_all:
-        print(f"\nof {tot_all:.0f} candidate MS1 area: adduct/isotope {100 * iso_all / tot_all:.1f}%, "
-              f"side-product series {100 * side_all / tot_all:.1f}%, "
-              f"unflagged {100 * (tot_all - iso_all - side_all) / tot_all:.1f}%")
+        shares = ", ".join(
+            f"{k} {100 * sum(c.area for c in live if kind(c) == k) / tot_all:.1f}%" for k in kinds)
+        print(f"\nof {tot_all:.0f} candidate MS1 area: {shares}")
 
     print("\nrecurring mass differences between co-eluting unflagged candidates (top 10):")
     for r in recurring_deltas(live)[:10]:

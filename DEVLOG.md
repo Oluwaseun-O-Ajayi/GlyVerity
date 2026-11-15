@@ -101,8 +101,17 @@
 * Conclusion: "unflagged" is not "real". A wide composition space yields coincidental
   matches; the decoy FDR step and a biosynthetic plausibility prior are needed next.
 
+* Confirmed: -1.0204 pairs flagged; 7 main 2-AB glycans unflagged. Error found: the search
+  filter (sialic acids <= HexNAc - 2) excluded Hex6HexNAc5NeuAc4, a real fluorescent glycan
+  (39.68 min). Filter relaxed to <= HexNAc - 1 (476 compositions, 392 formulas).
+* Delta mining surfaced -453.1482 Da x2 (Hex + NeuAc) between co-eluting 2-AB candidates and
+  the two main glycans: in-source loss of a sialylated galactose. Added `InSourceFragment`
+  layer (same end group, co-elution, weaker and lighter by a listed neutral loss).
+* Summary now reports four classes: adduct/isotope, in-source fragment, side-product series,
+  unflagged.
+
 **Next**
-* Re-run once to confirm the -1.0204 pairs are flagged and main 2-AB glycans are not.
+* Re-run on the fetuin run with the corrected search space.
 * Phase 2 core: MS1 decoy design and q-values (go/no-go condition 3).
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
@@ -214,8 +223,17 @@
 * Conclusion: "unflagged" is not "real". A wide composition space yields coincidental
   matches; the decoy FDR step and a biosynthetic plausibility prior are needed next.
 
+* Confirmed: -1.0204 pairs flagged; 7 main 2-AB glycans unflagged. Error found: the search
+  filter (sialic acids <= HexNAc - 2) excluded Hex6HexNAc5NeuAc4, a real fluorescent glycan
+  (39.68 min). Filter relaxed to <= HexNAc - 1 (476 compositions, 392 formulas).
+* Delta mining surfaced -453.1482 Da x2 (Hex + NeuAc) between co-eluting 2-AB candidates and
+  the two main glycans: in-source loss of a sialylated galactose. Added `InSourceFragment`
+  layer (same end group, co-elution, weaker and lighter by a listed neutral loss).
+* Summary now reports four classes: adduct/isotope, in-source fragment, side-product series,
+  unflagged.
+
 **Next**
-* Re-run once to confirm the -1.0204 pairs are flagged and main 2-AB glycans are not.
+* Re-run on the fetuin run with the corrected search space.
 * Phase 2 core: MS1 decoy design and q-values (go/no-go condition 3).
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.

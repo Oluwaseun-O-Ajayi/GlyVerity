@@ -88,6 +88,62 @@ class AdductIsotopeIsobar(EvidenceLayer):
         return out
 
 
+R = ch.RESIDUE_MASS
+NEUTRAL_LOSSES = {
+    "NeuAc": R["NeuAc"],
+    "NeuGc": R["NeuGc"],
+    "2NeuAc": 2 * R["NeuAc"],
+    "Hex+NeuAc": R["Hex"] + R["NeuAc"],
+    "Hex": R["Hex"],
+    "dHex": R["dHex"],
+    "HexNAc": R["HexNAc"],
+    "Hex+HexNAc": R["Hex"] + R["HexNAc"],
+    "H2O": ch.WATER,
+    "NeuAc+H2O": R["NeuAc"] + ch.WATER,
+}
+
+
+@register
+class InSourceFragment(EvidenceLayer):
+    """Flag a weaker candidate that co-elutes with a stronger one and is lighter by a common
+    in-source neutral loss (sialic acid, terminal Hex+NeuAc, hexose, fucose, HexNAc, water).
+
+    Both candidates must carry the same reducing-end group, since in-source fragmentation
+    removes residues from the non-reducing end. Co-elution within ``rt_tol`` is required.
+    """
+
+    name = "in_source_fragment"
+    version = "1"
+
+    def __init__(self, ppm: float = 10.0, rt_tol: float = 0.15,
+                 losses: dict[str, float] | None = None):
+        self.ppm = ppm
+        self.rt_tol = rt_tol
+        self.losses = dict(NEUTRAL_LOSSES if losses is None else losses)
+
+    def evaluate(self, features: Sequence[Candidate]) -> list[Evidence]:
+        live = [c for c in features if c.area > 0 and np.isfinite(c.apex_time) and not c.flags]
+        live.sort(key=lambda c: -c.area)
+        out, done = [], set()
+        for i, c in enumerate(live):
+            for d in live[:i]:
+                if (d.key in done or d.end_group != c.end_group
+                        or abs(c.apex_time - d.apex_time) > self.rt_tol):
+                    continue
+                loss = d.neutral_mass - c.neutral_mass
+                for name, m in self.losses.items():
+                    err = (loss - m) / c.neutral_mass * 1e6
+                    if abs(err) <= self.ppm:
+                        done.add(c.key)
+                        out.append(Evidence(c.key, self.name, "fragment_of", float(err),
+                                            {"by": d.key, "loss": name,
+                                             "rt_diff": c.apex_time - d.apex_time}))
+                        break
+                if c.key in done:
+                    break
+        return out
+
+
 @dataclass(frozen=True)
 class SeriesSummary:
     """Per-group statistics of a candidate side-product series."""

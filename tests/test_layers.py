@@ -144,3 +144,20 @@ def test_recurring_deltas_finds_repeated_pair():
     out = recurring_deltas(cands)
     assert out[0].count == 2
     assert out[0].delta == pytest.approx(24.011, abs=1e-3)
+
+
+def test_in_source_fragment_hex_neuac_loss():
+    from glyverity.layers import InSourceFragment
+    parent = _cand({"Hex": 6, "HexNAc": 5, "NeuAc": 2}, "2-AB", 31.70, 2.0e5)
+    frag = _cand({"Hex": 5, "HexNAc": 5, "NeuAc": 1}, "2-AB", 31.72, 1.0e4)
+    ev = InSourceFragment().evaluate([parent, frag])
+    assert ev[0].feature_id == frag.key
+    assert ev[0].detail["loss"] == "Hex+NeuAc"
+
+
+def test_in_source_fragment_needs_same_end_group_and_coelution():
+    from glyverity.layers import InSourceFragment
+    parent = _cand({"Hex": 6, "HexNAc": 5, "NeuAc": 2}, "2-AB", 31.70, 2.0e5)
+    other_end = _cand({"Hex": 5, "HexNAc": 5, "NeuAc": 1}, "tag", 31.70, 1.0e4)
+    late = _cand({"Hex": 5, "HexNAc": 5, "NeuAc": 1}, "2-AB", 33.0, 1.0e4)
+    assert InSourceFragment().evaluate([parent, other_end, late]) == []
