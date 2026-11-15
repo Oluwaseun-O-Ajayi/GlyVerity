@@ -512,3 +512,18 @@
   candidate and the parent's own features; absorbed members keep their own relation as
   "<own> via <species relation>". Test added that fails on the old code.
 * Tests: 72 passed. Re-run needed: dimer counts and the family cutoffs will change.
+
+## 2026-11-15 (late, 9): run 10 after the grouping fixes
+
+* 382 species at 10 ppm. Families (target / decoy / chance): adduct 359 / 21.8 / 6.1%,
+  isotope 39 / 0.2 / 0.6%, isf 52 / 23.5 / 45.2% (off), dimer 101 / 8.0 / 7.9%, re-read
+  160 / 12.8 / 8.0%. Cutoffs: adduct 0.822, isotope 0.869, dimer 0.755, re-read 0.619.
+  Final: 460 species, 603 absorptions (48.9% of intensity), chance share 4.6%.
+* 1524.0330 now absorbed (re-reads rose from 101 to 160 once absorbed members stopped
+  blocking the lone check). Dimer class barely changed (100 features, 2.7%): check its
+  members by charge next session before trusting it.
+* Shares: labelled 21.7%, other end group 7.2%, side-product 7.7%, ISF 2.9%, adduct/isotope
+  0.4%, adduct ion 46.1%, dimer 2.7%, ambiguous 0.2%, unassigned 11.1%.
+* Next: sialic-acid loss sub-family for in-source fragments (1355.5004, 904.0043 still
+  unassigned); dimer member check; +217.88 delta isotope patterns; then composition decoys
+  and q-values.
