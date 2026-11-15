@@ -245,3 +245,18 @@ def test_family_cut_uses_mass_and_time():
     assert len(group_species(off_mass, family_cut={"adduct": 0.2})) == 2
     assert len(group_species(off_time, family_cut={"adduct": 0.2})) == 2
     assert len(group_species(off_time, family_cut={"adduct": 0.5})) == 1
+
+
+def test_absorbed_member_does_not_block_reread_and_keeps_its_form():
+    m = ch.glycan_neutral_mass({"Hex": 6, "HexNAc": 5, "NeuAc": 3}, "2-AB")
+    two_na = m + 2 * (ch.ATOMIC_MASS["Na"] - ch.ATOMIC_MASS["H"])
+    lone_mz = (two_na + 2 * ch.PROTON_MASS) / 2  # true 2+ salt seen as one 1+ peak
+    parent = [_f(0, m, 2, 36.50, 2e6), _f(1, m, 3, 36.50, 3e6)]
+    lone = MSFeature(2, lone_mz, 1, 36.70, 2e5, 1)
+    # an ion that co-elutes with the lone feature only (0.40 min from the parent), absorbed first
+    tiny = MSFeature(3, lone_mz + 1.0033548378, 1, 36.90, 5e3, 1)
+    sp = group_species([*parent, lone, tiny])
+    assert len(sp) == 1
+    forms = {f.feature_id: form for f, form in sp[0].members}
+    assert "read as 2+" in forms[2]
+    assert forms[3].startswith("isotope+1 via ")

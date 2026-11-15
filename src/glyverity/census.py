@@ -104,8 +104,10 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     allow more exchanges than the charge) plus 0 to 4 13C steps (monoisotopic peak picked one
     or more isotopes too high), or minus a common in-source neutral loss (with 0 to 2 13C
     steps), or twice the parent (a non-covalent [2M + ...] dimer, with the same exchanges and
-    isotope errors; tried last, and only for species whose features all have a measured
-    charge, i.e. two or more isotopes, because [2M+2zH]2z+ has the m/z of [M+zH]z+). Absorbed members keep the relation as their ion form, so in-source fragments
+    isotope errors; tried last, and only when the features of both the candidate and the parent
+    have a measured charge, i.e. two or more isotopes, because [2M+2zH]2z+ has the m/z of
+    [M+zH]z+). Ions already absorbed into a species keep their own relation when that species
+    is absorbed in turn (form "<own> via <species relation>"). Absorbed members keep the relation as their ion form, so in-source fragments
     are classified separately from adduct and isotope ions.
 
     ``decoy_shift`` (Da) is added to every pass-2 relation offset. With a shift that matches no
@@ -167,13 +169,16 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
             if (parent.species_id == s.species_id or parent.species_id in absorbed
                     or parent.intensity <= s.intensity or abs(parent.rt - s.rt) > rt_tol):
                 continue
-            # a lone 1+ feature may be a multiply charged ion whose partner peaks were missed
+            # a lone 1+ feature may be a multiply charged ion whose partner peaks were missed;
+            # "lone" counts pass-1 members only, so ions already absorbed into s do not block it
+            own = [f for f, form in s.members if form == "H"]
             trial = [(s.neutral_mass, "")]
-            if len(s.members) == 1 and s.members[0][0].charge == 1:
-                f1 = s.members[0][0]
+            if len(own) == 1 and own[0].charge == 1:
+                f1 = own[0]
                 trial += [(f1.mz * z - z * ch.PROTON_MASS, f" (read as {z}+)") for z in (2, 3)]
             hit = None
-            measured = all(f.n_isotopes >= 2 for f, _ in s.members)
+            measured = all(f.n_isotopes >= 2 for f in own) and all(
+                f.n_isotopes >= 2 for f, form in parent.members if form == "H")
             for mass, note in trial:
                 for _, label, off, k in relations:
                     # a dimer needs a measured charge: [2M+2zH]2z+ sits at the m/z of [M+zH]z+
@@ -194,7 +199,9 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                 if hit:
                     break
             if hit:
-                parent.members.extend((f, hit) for f, _ in s.members)
+                # members s had absorbed keep their own relation, chained to s's relation
+                parent.members.extend((f, hit if form == "H" else f"{form} via {hit}")
+                                      for f, form in s.members)
                 absorbed.add(s.species_id)
                 break
     return [s for s in species if s.species_id not in absorbed]

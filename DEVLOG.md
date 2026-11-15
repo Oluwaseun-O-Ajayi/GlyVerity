@@ -498,3 +498,17 @@
 * Recurring +217.88 / +212.87 / +202.92 / +195.90 deltas on 2-AB parents: inspect isotope
   patterns (37Cl, 41K) before naming anything.
 * Then composition decoys and q-values (go/no-go condition 3).
+
+## 2026-11-15 (late, 8): two grouping bugs found from the 1524.0330 check
+
+* Species 38 = 1524.0330 (1+) plus feature 891 (1590.9753, 2+) labelled
+  "dimer:2M+3K+1NH4 M+3" of that 1+ ion, a likely chance match on an unidentified parent.
+  Because 891 was absorbed first, 1524.0330 no longer counted as lone and was never re-read
+  as the 2Na M+3 salt of A3S3 2-AB (0.6 ppm, dRT 0.05 min).
+* Second bug in the same table: when a species was absorbed, every member took the new
+  relation as its form, so ions it had absorbed lost their own relation (e.g. 2015.3848 1+
+  shown as an A3S3 dimer, which is impossible at that mass).
+* Fixes: "lone" counts pass-1 members only; dimers need measured charges on both the
+  candidate and the parent's own features; absorbed members keep their own relation as
+  "<own> via <species relation>". Test added that fails on the old code.
+* Tests: 72 passed. Re-run needed: dimer counts and the family cutoffs will change.
