@@ -70,9 +70,20 @@
   same-sign RT shift, fluorescence fraction). Tests reproduce the fetuin relations.
   `scripts/run_layers.py` applies both over 350 compositions x 3 end groups.
 
+* First `run_layers.py` run (fetuin): main 2-AB glycans unflagged; Hex8HexNAc6NeuAc1 2-AB
+  correctly flagged as the Na adduct of the C3H9N-RA form of Hex6HexNAc5NeuAc3 (+0.8 ppm).
+  Two flaws: (1) compositions with identical elemental formulas (dHex + NeuGc = Hex + NeuAc)
+  were separate rows with identical signal; (2) the series test paired noise rows minutes
+  apart (CV 1.3 to 1.5, mixed shift signs). Fixed: candidates merged by formula
+  (350 compositions -> 290 formulas, 60 with isomeric alternatives listed); series test now
+  pairs within 2 min, reference >= 1% of top, robust spread (MAD of log10 ratio) and
+  same-sign fraction >= 0.8.
+* Lead: two improbable 2-AB hits (Hex3HexNAc6NeuAc2/3NeuGc1) co-elute with the two main
+  glycans at +24.011 Da; no adduct-isotope relation within 5 ppm.
+
 **Next**
-* Run `run_layers.py` on the fetuin run; check that the six free + dHex hits and the
-  C3H9N-RA series are flagged and that the main 2-AB glycans are not.
+* Re-run `run_layers.py` on the fetuin run.
+* Delta-mining layer: recurring neutral mass differences between co-eluting candidates.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
@@ -152,9 +163,20 @@
   same-sign RT shift, fluorescence fraction). Tests reproduce the fetuin relations.
   `scripts/run_layers.py` applies both over 350 compositions x 3 end groups.
 
+* First `run_layers.py` run (fetuin): main 2-AB glycans unflagged; Hex8HexNAc6NeuAc1 2-AB
+  correctly flagged as the Na adduct of the C3H9N-RA form of Hex6HexNAc5NeuAc3 (+0.8 ppm).
+  Two flaws: (1) compositions with identical elemental formulas (dHex + NeuGc = Hex + NeuAc)
+  were separate rows with identical signal; (2) the series test paired noise rows minutes
+  apart (CV 1.3 to 1.5, mixed shift signs). Fixed: candidates merged by formula
+  (350 compositions -> 290 formulas, 60 with isomeric alternatives listed); series test now
+  pairs within 2 min, reference >= 1% of top, robust spread (MAD of log10 ratio) and
+  same-sign fraction >= 0.8.
+* Lead: two improbable 2-AB hits (Hex3HexNAc6NeuAc2/3NeuGc1) co-elute with the two main
+  glycans at +24.011 Da; no adduct-isotope relation within 5 ppm.
+
 **Next**
-* Run `run_layers.py` on the fetuin run; check that the six free + dHex hits and the
-  C3H9N-RA series are flagged and that the main 2-AB glycans are not.
+* Re-run `run_layers.py` on the fetuin run.
+* Delta-mining layer: recurring neutral mass differences between co-eluting candidates.
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.

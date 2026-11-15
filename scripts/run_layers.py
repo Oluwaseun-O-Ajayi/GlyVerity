@@ -55,7 +55,9 @@ def main(argv=None) -> int:
     comps = [c for c in an.enumerate_compositions(SEARCH)
              if c.get("HexNAc", 0) >= 2 and c.get("Hex", 0) >= 3
              and c.get("NeuAc", 0) + c.get("NeuGc", 0) <= max(c["HexNAc"] - 2, 0)]
-    print(f"{len(comps)} compositions x {len(groups)} end groups")
+    from glyverity.candidates import group_isomeric
+    print(f"{len(comps)} compositions ({len(group_isomeric(comps))} distinct formulas) x "
+          f"{len(groups)} end groups")
     cands = extract_candidates(ms, keep, comps, groups, tuple(args.window), args.ppm, fld, args.lag)
     live = [c for c in cands if c.area >= args.min_area]
     print(f"{len(live)} candidates with area >= {args.min_area:g}")
@@ -71,8 +73,8 @@ def main(argv=None) -> int:
         ev = layer.evaluate([c for c in live if not c.flags])
         s = layer.summary
         print(f"\nseries test {test} vs {args.label}: n={s.n}, ratio median {s.ratio_median:.3f}, "
-              f"CV {s.ratio_cv:.2f}, RT shift median {s.rt_shift_median:+.2f} min, "
-              f"same sign {s.rt_shift_same_sign}, fluorescence fraction "
+              f"spread (MAD log10) {s.ratio_spread:.3f}, RT shift median {s.rt_shift_median:+.2f} "
+              f"min, same sign {s.same_sign_fraction:.2f}, fluorescence fraction "
               f"{s.fluorescence_fraction:.2f} -> {'SERIES' if s.is_series else 'not a series'}")
         for e in ev:
             by_key[e.feature_id].flags.append(f"side_product:{test} of {e.detail['reference']}")
@@ -81,10 +83,11 @@ def main(argv=None) -> int:
     with path.open("w", newline="") as fh:
         w = csv.writer(fh, delimiter="\t")
         w.writerow(["composition", "end_group", "neutral_mass", "apex_min", "area", "fld_at_apex",
-                    "flags"])
+                    "flags", "isomeric_alternatives"])
         for c in sorted(live, key=lambda c: -c.area):
             w.writerow([c.name, c.end_group, f"{c.neutral_mass:.4f}", f"{c.apex_time:.3f}",
-                        f"{c.area:.0f}", f"{c.fld_at_apex:.3f}", "; ".join(c.flags)])
+                        f"{c.area:.0f}", f"{c.fld_at_apex:.3f}", "; ".join(c.flags),
+                        ", ".join(c.alternative_names)])
 
     print("\nsummary by end group (candidates, MS1 area):")
     tot_all = sum(c.area for c in live)

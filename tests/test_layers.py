@@ -47,6 +47,7 @@ def test_side_product_series_detected():
     layer = LabelSideProductSeries("2-AB", "tag")
     ev = layer.evaluate(cands)
     assert layer.summary.is_series
+    assert layer.summary.ratio_spread == pytest.approx(0.0, abs=1e-9)
     assert layer.summary.ratio_median == pytest.approx(0.43)
     assert layer.summary.rt_shift_median == pytest.approx(-1.0)
     assert len(ev) == 4
@@ -88,3 +89,29 @@ def test_extract_candidates_single_pass():
     assert found["Hex6HexNAc5NeuAc2|2-AB"].apex_intensity == pytest.approx(100.0)
     assert found["Hex5HexNAc4|free"].area == 0.0
     assert len(cands) == 4
+
+
+def test_isomeric_compositions_merged():
+    from glyverity.candidates import group_isomeric
+    a = {"Hex": 6, "HexNAc": 5, "NeuAc": 3}
+    b = {"Hex": 5, "HexNAc": 5, "dHex": 1, "NeuAc": 2, "NeuGc": 1}
+    groups = group_isomeric([b, a, {"Hex": 5, "HexNAc": 4}])
+    assert len(groups) == 2
+    merged = next(g for g in groups if len(g) == 2)
+    assert merged[0] == a  # display choice: fewer NeuGc
+
+
+def test_series_ignores_far_and_weak_pairs():
+    comps = [{"Hex": 6, "HexNAc": 5, "NeuAc": s} for s in range(1, 5)]
+    cands = []
+    for i, c in enumerate(comps):
+        cands.append(_cand(c, "2-AB", 26 + 3 * i, 1e5, fld=2.0))
+        cands.append(_cand(c, "tag", 25 + 3 * i, 0.43e5, fld=0.1))
+    # noise: a test form 6 min away and a negligible reference
+    noise = {"Hex": 3, "HexNAc": 6}
+    cands.append(_cand(noise, "2-AB", 20.0, 50.0, fld=0.1))
+    cands.append(_cand(noise, "tag", 26.0, 5e4, fld=0.0))
+    layer = LabelSideProductSeries("2-AB", "tag")
+    layer.evaluate(cands)
+    assert layer.summary.n == 4
+    assert layer.summary.is_series
