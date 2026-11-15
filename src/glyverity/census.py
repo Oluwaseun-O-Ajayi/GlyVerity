@@ -93,7 +93,7 @@ def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
 
 def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.25,
                   max_adducts: int = 4, decoy_shift: float = 0.0,
-                  family_ppm: Mapping[str, float] | None = None,
+                  family_cut: Mapping[str, float] | None = None,
                   record: list[tuple[str, float]] | None = None) -> list[Species]:
     """Group co-eluting features into species.
 
@@ -112,8 +112,11 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     chemistry, every absorption is a chance match, so decoy runs estimate how many target
     absorptions are coincidences (see :func:`absorption_stats`).
 
-    ``family_ppm`` sets a tighter mass tolerance per relation family (see
-    :func:`relation_family` and :func:`family_cutoffs`); ``record`` collects (family, ppm error)
+    Each candidate relation gets a score max(ppm error / ``ppm``, |retention difference| /
+    ``rt_tol``) in [0, 1]: adducts, isotope errors and in-source fragments form in the source,
+    so they co-elute exactly with their parent, while chance matches spread over both the mass
+    and the time window. ``family_cut`` sets a score cutoff per relation family (see
+    :func:`relation_family` and :func:`family_cutoffs`); ``record`` collects (family, score)
     for every absorption, for target and decoy runs alike.
     """
     feats = sorted(features, key=lambda f: -f.intensity)
@@ -178,12 +181,15 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                         continue
                     target = k * parent.neutral_mass + off
                     err = abs(mass - target) / target * 1e6
+                    if err > ppm:
+                        continue
                     fam = relation_family(label + note)
-                    limit = ppm if family_ppm is None else min(ppm, family_ppm.get(fam, ppm))
-                    if err <= limit:
+                    score = max(err / ppm, abs(parent.rt - s.rt) / rt_tol)
+                    limit = 1.0 if family_cut is None else family_cut.get(fam, 1.0)
+                    if score <= limit:
                         hit = label + note
                         if record is not None:
-                            record.append((fam, err))
+                            record.append((fam, score))
                         break
                 if hit:
                     break
@@ -213,16 +219,16 @@ def relation_family(form: str) -> str:
 
 def family_cutoffs(target: Sequence[tuple[str, float]],
                    decoys: Sequence[Sequence[tuple[str, float]]], fdr: float = 0.05,
-                   max_ppm: float = 10.0) -> dict[str, float]:
-    """Largest ppm tolerance per relation family whose estimated chance share is <= ``fdr``.
+                   max_score: float = 1.0) -> dict[str, float]:
+    """Largest score cutoff per relation family whose estimated chance share is <= ``fdr``.
 
-    For a cutoff c, the chance share is the mean number of decoy absorptions with error <= c
-    over the number of target absorptions with error <= c. Candidate cutoffs are the target
-    errors. A family with no cutoff meeting ``fdr`` gets 0 (no absorptions allowed).
+    For a cutoff c, the chance share is the mean number of decoy absorptions with score <= c
+    over the number of target absorptions with score <= c. Candidate cutoffs are the target
+    scores. A family with no cutoff meeting ``fdr`` gets 0 (no absorptions allowed).
     """
     out: dict[str, float] = {}
     for fam in FAMILIES:
-        te = np.sort([e for f, e in target if f == fam and e <= max_ppm])
+        te = np.sort([e for f, e in target if f == fam and e <= max_score])
         de = [np.array([e for f, e in d if f == fam]) for d in decoys]
         best = 0.0
         for i, c in enumerate(te):

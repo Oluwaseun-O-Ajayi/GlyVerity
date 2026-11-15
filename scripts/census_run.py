@@ -96,22 +96,24 @@ def main(argv=None) -> int:
             dec.append(absorption_stats(group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol,
                                                       decoy_shift=d, record=r)))
             drecs.append(r)
-        cut = family_cutoffs(rec, drecs, fdr=args.relation_fdr, max_ppm=args.ppm)
-        print(f"relation families at {args.ppm:g} ppm (target / decoy mean / chance share) and "
-              f"tolerance for <= {args.relation_fdr:.0%} chance:")
+        cut = family_cutoffs(rec, drecs, fdr=args.relation_fdr)
+        print(f"relation families at {args.ppm:g} ppm / {args.rt_tol:g} min (target / decoy mean / "
+              f"chance share) and score cutoff for <= {args.relation_fdr:.0%} chance "
+              f"(score = max(ppm/{args.ppm:g}, dRT/{args.rt_tol:g})):")
         for fam in FAMILIES:
             tn = tgt[f"n:{fam}"]
             dm = float(np.mean([d[f"n:{fam}"] for d in dec]))
             share = f"{dm / tn:6.1%}" if tn else "     -"
-            print(f"      {fam:<8} {tn:5d} {dm:7.1f}  {share}   -> {cut[fam]:.2f} ppm")
+            print(f"      {fam:<8} {tn:5d} {dm:7.1f}  {share}   -> {cut[fam]:.3f} "
+                  f"({cut[fam] * args.ppm:.1f} ppm, {cut[fam] * args.rt_tol:.3f} min)")
         rec = []
-        species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, family_ppm=cut,
+        species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, family_cut=cut,
                                 record=rec)
         drecs = []
         for d in shifts:
             r = []
             group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
-                          family_ppm=cut, record=r)
+                          family_cut=cut, record=r)
             drecs.append(r)
         nt = len(rec)
         nd = float(np.mean([len(r) for r in drecs]))

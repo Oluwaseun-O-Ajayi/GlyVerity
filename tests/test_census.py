@@ -226,19 +226,22 @@ def test_family_cutoffs_tighten_a_chance_dominated_family():
     from glyverity.census import family_cutoffs
     rng = np.random.default_rng(0)
     # adduct: 100 true matches within 2 ppm, decoys uniform; isf: target looks like decoys
-    target = [("adduct", e) for e in rng.uniform(0, 2, 100)] + \
-             [("isf", e) for e in rng.uniform(0, 10, 20)]
-    decoys = [[("adduct", e) for e in rng.uniform(0, 10, 5)] +
-              [("isf", e) for e in rng.uniform(0, 10, 18)] for _ in range(4)]
+    target = [("adduct", e) for e in rng.uniform(0, 0.2, 100)] + \
+             [("isf", e) for e in rng.uniform(0, 1, 20)]
+    decoys = [[("adduct", e) for e in rng.uniform(0, 1, 5)] +
+              [("isf", e) for e in rng.uniform(0, 1, 18)] for _ in range(4)]
     cut = family_cutoffs(target, decoys, fdr=0.05)
-    assert 1.5 <= cut["adduct"] <= 2.0
-    assert cut["isf"] < 1.0
+    assert 0.15 <= cut["adduct"] <= 0.2
+    assert cut["isf"] < 0.1
     assert cut["dimer"] == 0.0
 
 
-def test_family_ppm_limits_absorption():
+def test_family_cut_uses_mass_and_time():
     m = ch.glycan_neutral_mass(A3S2, "2-AB")
-    na = m + (ch.ATOMIC_MASS["Na"] - ch.ATOMIC_MASS["H"]) + m * 4e-6  # 4 ppm off
-    feats = [_f(0, m, 2, 31.70, 5e6), _f(1, na, 2, 31.70, 8e5)]
-    assert len(group_species(feats)) == 1
-    assert len(group_species(feats, family_ppm={"adduct": 2.0})) == 2
+    na = m + (ch.ATOMIC_MASS["Na"] - ch.ATOMIC_MASS["H"])
+    off_mass = [_f(0, m, 2, 31.70, 5e6), _f(1, na + m * 4e-6, 2, 31.70, 8e5)]  # 4 ppm, same RT
+    off_time = [_f(0, m, 2, 31.70, 5e6), _f(1, na, 2, 31.80, 8e5)]  # 0 ppm, 0.10 min later
+    assert len(group_species(off_mass)) == 1
+    assert len(group_species(off_mass, family_cut={"adduct": 0.2})) == 2
+    assert len(group_species(off_time, family_cut={"adduct": 0.2})) == 2
+    assert len(group_species(off_time, family_cut={"adduct": 0.5})) == 1

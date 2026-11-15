@@ -458,3 +458,18 @@
   final grouping, and the chance share is re-estimated after. Lone 1+ re-reads are their own
   family. This is target-decoy FDR control on the cleaning step, ahead of composition q-values.
 * Tests: 71 passed.
+
+## 2026-11-15 (late, 6): relation score uses mass and retention time
+
+* Run 8 (ppm-only family tolerances): adduct 5.81 ppm, isotope 7.53, in-source fragment 0
+  (off), dimer 7.32, re-read 1.25. Final chance share 7.5% (target 5%); unassigned 13.2%.
+* Real ions were cut: 1524.0330 as 2+ = A3S3 2-AB 2Na M+3 (0.6 ppm); 864.3259 as 3+ = A3S2
+  NH3-RA M+1 (2.2 ppm, same RT as 1002.7067); 1355.5004 (2+) and 904.0043 (3+) = A3S3 - NeuAc
+  M+1 (2.4 and 0.2 ppm). Mass error alone cannot separate them from chance among about 200
+  relations.
+* Score is now max(ppm/10, |dRT|/0.25 min). Source-formed ions co-elute exactly with their
+  parent; chance matches spread over the time window. Cutoffs per family are set on this
+  score by the decoys as before.
+* Open: cutoffs are chosen on the first grouping pass, so the final chance share can exceed
+  the target (7.5% vs 5% in run 8). Report the achieved value; iterate if it stays high.
+* Tests: 71 passed.
