@@ -92,6 +92,15 @@ glycans, or C18 with permethylated glycans. Two options:
 
 Decision (2026-11-14): option 1. Labelled HILIC is the validation core; the census includes all labels.
 
+## Update 2026-11-15: first real-data evidence
+
+In one public fetuin 2-AB run (Zenodo 4705546), two artifact types appear that fluorescence
+cannot see and composition search misreports: a non-fluorescent reducing-end series
+(+43.0786 Da, 30.4% of tag plus 2-AB MS1 signal) and six false "free fucosylated" glycans that
+are sodium-adduct isotope peaks. Details: `docs/findings/2026-11-15_zenodo4705546_fetuin.md`.
+This supports the gap statement on real data. It is one run; the census must show how common
+these are.
+
 ## Things to do outside the code
 
 * Decide whether to shorten the GPST000788 embargo or arrange reviewer access.

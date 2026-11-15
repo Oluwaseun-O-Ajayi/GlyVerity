@@ -58,8 +58,15 @@
   cyanoborohydride (Zenodo record description); reductive amination with acetone can add an
   isopropyl group. Not testable without new experiments; report masses and fragments only.
 * Added `glyverity.xic` and `scripts/label_series.py` (MS1 area per reducing-end group).
+* label_series result: tag/2-AB area 0.350 to 0.461 over 8 compositions (pooled 0.436, 30.4%
+  of tag plus 2-AB signal); tag elutes 0.48 to 1.15 min earlier. All six "free + dHex" hits are
+  the M+4 isotope of the Na adduct of the co-eluting 2-AB glycan (1.9 to 3.0 ppm). The script's
+  own summary line mixes in that interference and is not to be quoted.
+* Full record: `docs/findings/2026-11-15_zenodo4705546_fetuin.md`.
 
 **Next**
+* Turn the two artifact types into evidence layers: label side-product series (constant mass
+  delta, constant RT shift, no FLD) and adduct-isotope isobars (co-elution plus mass relation).
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
@@ -127,8 +134,15 @@
   cyanoborohydride (Zenodo record description); reductive amination with acetone can add an
   isopropyl group. Not testable without new experiments; report masses and fragments only.
 * Added `glyverity.xic` and `scripts/label_series.py` (MS1 area per reducing-end group).
+* label_series result: tag/2-AB area 0.350 to 0.461 over 8 compositions (pooled 0.436, 30.4%
+  of tag plus 2-AB signal); tag elutes 0.48 to 1.15 min earlier. All six "free + dHex" hits are
+  the M+4 isotope of the Na adduct of the co-eluting 2-AB glycan (1.9 to 3.0 ppm). The script's
+  own summary line mixes in that interference and is not to be quoted.
+* Full record: `docs/findings/2026-11-15_zenodo4705546_fetuin.md`.
 
 **Next**
+* Turn the two artifact types into evidence layers: label side-product series (constant mass
+  delta, constant RT shift, no FLD) and adduct-isotope isobars (co-elution plus mass relation).
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
