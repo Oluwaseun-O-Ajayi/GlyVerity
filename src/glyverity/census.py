@@ -81,8 +81,9 @@ def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
                 best, best_z = chain, z
         if best_z > 1:
             taken.update(g.feature_id for g in best)
-            merged.append(MSFeature(f.feature_id, f.mz, best_z, f.rt,
-                                    float(sum(g.intensity for g in best)), len(best)))
+            w = np.array([g.intensity for g in best])
+            rt = float(np.dot([g.rt for g in best], w) / w.sum())
+            merged.append(MSFeature(f.feature_id, f.mz, best_z, rt, float(w.sum()), len(best)))
         else:
             taken.add(f.feature_id)
             merged.append(f)
@@ -90,7 +91,7 @@ def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
     return others + merged, n_merged
 
 
-def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.2,
+def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.25,
                   max_adducts: int = 4) -> list[Species]:
     """Group co-eluting features into species.
 
@@ -143,11 +144,18 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
             if (parent.species_id == s.species_id or parent.species_id in absorbed
                     or parent.intensity <= s.intensity or abs(parent.rt - s.rt) > rt_tol):
                 continue
+            # a lone 1+ feature may be a multiply charged ion whose partner peaks were missed
+            trial = [(s.neutral_mass, "")]
+            if len(s.members) == 1 and s.members[0][0].charge == 1:
+                f1 = s.members[0][0]
+                trial += [(f1.mz * z - z * ch.PROTON_MASS, f" (read as {z}+)") for z in (2, 3)]
             hit = None
-            for _, label, off in relations:
-                if abs(s.neutral_mass - (parent.neutral_mass + off)) / parent.neutral_mass \
-                        * 1e6 <= ppm:
-                    hit = label
+            for mass, note in trial:
+                for _, label, off in relations:
+                    if abs(mass - (parent.neutral_mass + off)) / parent.neutral_mass * 1e6 <= ppm:
+                        hit = label + note
+                        break
+                if hit:
                     break
             if hit:
                 parent.members.extend((f, hit) for f, _ in s.members)
@@ -220,7 +228,7 @@ def oxonium_ions() -> list[tuple[str, float]]:
 
 
 def reclassify_oxonium(assignments: Sequence[Assignment], classes: dict[int, str],
-                       ppm: float = 10.0, rt_tol: float = 0.2) -> int:
+                       ppm: float = 10.0, rt_tol: float = 0.3) -> int:
     """Mark unassigned 1+ features that match an oxonium ion and co-elute with an assigned
     glycan species as in-source fragments. Returns the number reclassified."""
     ions = oxonium_ions()

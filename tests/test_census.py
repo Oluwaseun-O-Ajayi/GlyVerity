@@ -162,3 +162,15 @@ def test_repair_merges_peaks_0p26_min_apart():
              MSFeature(1, 1194.4162 + ISOTOPE_SPACING / 2, 1, 23.541, 2.9e5, 1)]
     out, n = repair_charges(feats)
     assert n == 1 and out[0].charge == 2
+
+
+def test_lone_1plus_feature_read_as_2plus_salt():
+    # A3S3 with one Na and one K replacing protons; OpenMS saw one peak and called it 1+
+    m = ch.glycan_neutral_mass({"Hex": 6, "HexNAc": 5, "NeuAc": 3}, "2-AB")
+    salt_mz = ch.mz(m, 2, {"Na+": 1, "K+": 1})  # true 2+ ion
+    parent = [_f(0, m, 2, 36.70, 2e6), _f(1, m, 3, 36.72, 3e6)]
+    lone = MSFeature(2, salt_mz, 1, 36.80, 2e5, 1)
+    sp = group_species([*parent, lone])
+    assert len(sp) == 1
+    forms = [form for _, form in sp[0].members]
+    assert any("read as 2+" in f for f in forms)

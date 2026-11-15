@@ -162,3 +162,30 @@ def test_in_source_fragment_needs_same_end_group_and_coelution():
     other_end = _cand({"Hex": 5, "HexNAc": 5, "NeuAc": 1}, "tag", 31.70, 1.0e4)
     late = _cand({"Hex": 5, "HexNAc": 5, "NeuAc": 1}, "2-AB", 33.0, 1.0e4)
     assert InSourceFragment().evaluate([parent, other_end, late]) == []
+
+
+def test_fluorescence_on_another_label_apex_is_not_counted():
+    # amino-alditol-like form elutes 3 min later, which lands on the next 2-AB glycan's FLD peak
+    comps = [{"Hex": 6, "HexNAc": 5, "NeuAc": s} for s in range(1, 6)]
+    cands = []
+    for i, c in enumerate(comps):
+        cands.append(_cand(c, "2-AB", 26 + 3 * i, 1e5, fld=2.0))
+        cands.append(_cand(c, "tag", 29 + 3 * i, 0.2e5, fld=2.0 if i < 4 else 0.0))
+    layer = LabelSideProductSeries("2-AB", "tag", max_shift=6)
+    ev = layer.evaluate(cands)
+    assert layer.summary.n_fluorescence_pairs == 1  # only the last pair is clear of 2-AB apexes
+    assert layer.summary.is_series
+    assert len(ev) == 5
+
+
+def test_series_without_fld_is_untested_not_rejected():
+    comps = [{"Hex": 6, "HexNAc": 5, "NeuAc": s} for s in range(1, 5)]
+    cands = []
+    for i, c in enumerate(comps):
+        cands.append(_cand(c, "2-AB", 26 + 3 * i, 1e5))
+        cands.append(_cand(c, "tag", 25 + 3 * i, 0.43e5))
+    layer = LabelSideProductSeries("2-AB", "tag")
+    layer.evaluate(cands)
+    assert layer.summary.n_fluorescence_pairs == 0
+    assert np.isnan(layer.summary.fluorescence_fraction)
+    assert layer.summary.is_series

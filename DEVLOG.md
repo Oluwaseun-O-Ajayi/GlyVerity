@@ -357,3 +357,27 @@
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
+
+## 2026-11-15 (late): series fluorescence check, lone 1+ features
+
+**Goal:** fix the two faults found in census run 4.
+
+* Run 4: 19 split envelopes merged; 585 species. C3H9N-RA SERIES (n=8, ratio 0.411, spread
+  0.024, shift -0.89 min, FF 0.34). NH3-RA n=8, ratio 0.188, spread 0.068, shift +4.57 min,
+  FF 3.11 -> rejected. Shares: labelled 21.5%, other end group 7.0%, side-product 7.7%,
+  ISF 3.9%, adduct/isotope 0.1%, adduct ion 41.4%, ambiguous 0.2%, unassigned 18.3%.
+* NH3-RA rejection traced to the test, not the data: forms eluting 4.6 min after their 2-AB
+  partner sit on other 2-AB glycans' FLD peaks, and a small ratio makes the expected FLD tiny.
+  Fix: pairs whose test apex lies within 0.3 min of any 2-AB apex are left out of the
+  fluorescence fraction; with no clear pair the result is "untested" and the decision rests on
+  ratio and shift consistency. This also lets the series test run on datasets with no FLD.
+* Free-isotope alternative for NH3-RA (+1.0034 vs +1.0316 Da) ruled out: the free
+  monoisotopic species is absent (free series n=0).
+* Split-envelope repair now uses intensity-weighted RT (1194.4162, A2S2 disodium salt, had
+  taken the first peak's time, 0.21 min from its parent).
+* Co-elution tolerance 0.2 -> 0.25 min; oxonium window 0.3 min (657.235 is 0.205 min from A3S4).
+* A lone 1+ feature that matches no relation is retried as 2+ and 3+ (1530.5130 = A3S3 Na+K
+  salt as 2+). Labelled "(read as z+)" so these can be counted separately.
+* Tests: 61 passed (3 new).
+
+**Next:** re-run census on the cluster; then decoys and q-values.
