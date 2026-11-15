@@ -92,7 +92,7 @@ def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
 
 
 def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.25,
-                  max_adducts: int = 4) -> list[Species]:
+                  max_adducts: int = 4, decoy_shift: float = 0.0) -> list[Species]:
     """Group co-eluting features into species.
 
     Pass 1: features whose protonated neutral masses agree within ``ppm`` and whose apexes are
@@ -103,6 +103,10 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     or more isotopes too high), or minus a common in-source neutral loss (with 0 to 2 13C
     steps). Absorbed members keep the relation as their ion form, so in-source fragments
     are classified separately from adduct and isotope ions.
+
+    ``decoy_shift`` (Da) is added to every pass-2 relation offset. With a shift that matches no
+    chemistry, every absorption is a chance match, so decoy runs estimate how many target
+    absorptions are coincidences (see :func:`absorption_stats`).
     """
     feats = sorted(features, key=lambda f: -f.intensity)
     species: list[Species] = []
@@ -134,6 +138,7 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
         for n in range(3):
             relations.append((2 + n, f"isf:-{loss}" + (f" M+{n}" if n else ""),
                               -m + n * ISOTOPE_SPACING))
+    relations = [(rank, label, off + decoy_shift) for rank, label, off in relations]
     relations.sort(key=lambda r: r[0])
     parents = sorted(species, key=lambda s: -s.intensity)
     absorbed: set[int] = set()
@@ -162,6 +167,22 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                 absorbed.add(s.species_id)
                 break
     return [s for s in species if s.species_id not in absorbed]
+
+
+def absorption_stats(species: Sequence[Species]) -> dict[str, float]:
+    """Count features absorbed in pass 2 (ion form other than "H"), in total and for the
+    lone 1+ features re-read at a higher charge."""
+    out = {"n": 0, "intensity": 0.0, "n_reread": 0, "intensity_reread": 0.0}
+    for s in species:
+        for f, form in s.members:
+            if form == "H":
+                continue
+            out["n"] += 1
+            out["intensity"] += f.intensity
+            if "(read as" in form:
+                out["n_reread"] += 1
+                out["intensity_reread"] += f.intensity
+    return out
 
 
 def _refresh(s: Species) -> None:

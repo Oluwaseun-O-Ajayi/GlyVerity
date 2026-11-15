@@ -381,3 +381,21 @@
 * Tests: 61 passed (3 new).
 
 **Next:** re-run census on the cluster; then decoys and q-values.
+
+## 2026-11-15 (late, 2): run 5 and a decoy check on grouping
+
+* Run 5: 428 species (585 in run 4). NH3-RA n=8, ratio 0.180, spread 0.034, shift +4.57 min,
+  fluorescence fraction 2.46 over 6 clear pairs -> still rejected. C3H9N-RA SERIES (ratio
+  0.424, spread 0.033, FF 0.19 over 5 clear pairs). Shares: labelled 21.4%, other end group
+  6.9%, side-product 7.7%, ISF 4.7%, adduct/isotope 0.1%, adduct ion 48.3%, ambiguous 0.1%,
+  unassigned 10.7%.
+* Concern: the unassigned drop (18.3 -> 10.7%) went almost entirely into "adduct ion"
+  (41.4 -> 48.3%). Pass 2 tests about 200 offsets, three charge readings for lone 1+ features
+  and several parents per window at 10 ppm, so chance matches are possible. Added a decoy
+  estimate: every relation offset is shifted by a non-chemical amount (0.23, 0.41, 0.59,
+  0.77 Da) and the absorptions counted. Not trusted until that is run.
+* A formula search for the recurring +217.878 Da delta (seen on two 2-AB parents) returns many
+  salt/acid combinations within 2 mDa. Not identified; a combinatorial search alone cannot
+  decide it. Needs the isotope pattern (37Cl, 41K) of those features.
+* NH3-RA: the fluorescence test is not being adjusted again to change its answer. Added
+  `--series-detail` to print each pair's FLD values for inspection.

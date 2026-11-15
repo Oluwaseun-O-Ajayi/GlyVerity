@@ -211,6 +211,7 @@ class LabelSideProductSeries(EvidenceLayer):
         self.max_ff = max_fluorescence_fraction
         self.fld_clearance = fld_clearance
         self.summary: SeriesSummary | None = None
+        self.pairs: list[dict] = []
 
     def evaluate(self, features: Sequence[Candidate]) -> list[Evidence]:
         def strongest(group):
@@ -241,12 +242,18 @@ class LabelSideProductSeries(EvidenceLayer):
         ref_apexes = [c.apex_time for c in features
                       if c.end_group == self.reference and c.area > 0 and np.isfinite(c.apex_time)]
         ff = []
+        self.pairs = []
         for r, t in pairs:
+            row = {"name": r.name, "ref_rt": r.apex_time, "test_rt": t.apex_time,
+                   "ratio": t.area / r.area, "fld_ref": r.fld_at_apex, "fld_test": t.fld_at_apex,
+                   "fld_expected": r.fld_at_apex * t.area / r.area, "used": False}
+            self.pairs.append(row)
             if not (r.fld_at_apex > 0 and np.isfinite(t.fld_at_apex)):
                 continue
             if any(abs(t.apex_time - a) < self.fld_clearance for a in ref_apexes):
                 continue
-            ff.append(t.fld_at_apex / (r.fld_at_apex * (t.area / r.area)))
+            row["used"] = True
+            ff.append(t.fld_at_apex / row["fld_expected"])
         ffm = float(np.median(ff)) if ff else np.nan
         consistent = n >= self.min_n and spread <= self.max_spread and same >= self.min_same_sign
         fluorescence_ok = (not ff) or ffm <= self.max_ff

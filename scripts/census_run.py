@@ -26,6 +26,7 @@ from glyverity import annotate as an
 from glyverity import chemistry as ch
 from glyverity.census import (
     CLASSES,
+    absorption_stats,
     assign_species,
     classify,
     group_species,
@@ -55,6 +56,10 @@ def main(argv=None) -> int:
     ap.add_argument("--max-shift", type=float, default=6.0,
                     help="largest retention shift between a label and a side-product form (min)")
     ap.add_argument("--mzml", action="store_true", help="also write the MS1 window as mzML")
+    ap.add_argument("--decoy-shifts", default="0.23,0.41,0.59,0.77",
+                    help="comma-separated Da shifts for decoy grouping runs ('' to skip)")
+    ap.add_argument("--series-detail", action="store_true",
+                    help="print every label/side-product pair with its fluorescence values")
     args = ap.parse_args(argv)
 
     import rainbow
@@ -76,6 +81,24 @@ def main(argv=None) -> int:
     species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol)
     print(f"{exp.getNrSpectra()} MS1 scans -> {n_raw} features ({n_fix} split envelopes "
           f"re-merged, {len(feats)} after repair) -> {len(species)} species")
+    total = sum(f.intensity for f in feats)
+    tgt = absorption_stats(species)
+    print(f"absorbed as adduct/isotope/ISF ions (target): {tgt['n']} features, "
+          f"{100 * tgt['intensity'] / total:.1f}% of intensity; re-read 1+: {tgt['n_reread']}, "
+          f"{100 * tgt['intensity_reread'] / total:.1f}%")
+    shifts = [float(x) for x in args.decoy_shifts.split(",") if x.strip()]
+    if shifts:
+        dec = [absorption_stats(group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol,
+                                              decoy_shift=d)) for d in shifts]
+        dn = np.mean([d["n"] for d in dec])
+        di = np.mean([d["intensity"] for d in dec])
+        dr = np.mean([d["n_reread"] for d in dec])
+        dri = np.mean([d["intensity_reread"] for d in dec])
+        print(f"absorbed (decoy, mean of {len(shifts)} shifts): {dn:.1f} features, "
+              f"{100 * di / total:.1f}% of intensity; re-read 1+: {dr:.1f}, {100 * dri / total:.1f}%")
+        print(f"estimated chance absorptions: {dn / max(tgt['n'], 1):.1%} of absorbed features, "
+              f"{di / max(tgt['intensity'], 1e-12):.1%} of absorbed intensity; re-read 1+: "
+              f"{dr / max(tgt['n_reread'], 1):.1%} of features")
 
     groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N,
               "NH3-RA": NH3_RA}
@@ -104,6 +127,13 @@ def main(argv=None) -> int:
         print(f"series {test} vs {args.label}: n={s.n}, ratio {s.ratio_median:.3f}, "
               f"spread {s.ratio_spread:.3f}, shift {s.rt_shift_median:+.2f} min, {fl} -> "
               f"{'SERIES' if s.is_series else 'not a series'}")
+        if args.series_detail and layer.pairs:
+            print("    composition                     ref_rt  test_rt  ratio   FLD_ref  "
+                  "FLD_test  FLD_expected  used")
+            for r in layer.pairs:
+                print(f"    {r['name']:<30} {r['ref_rt']:7.3f} {r['test_rt']:8.3f} {r['ratio']:6.3f} "
+                      f"{r['fld_ref']:9.3g} {r['fld_test']:9.3g} {r['fld_expected']:13.3g}  "
+                      f"{'yes' if r['used'] else 'no'}")
         for e in ev:
             by_key[e.feature_id].flags.append(f"side_product:{test}")
 

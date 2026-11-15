@@ -174,3 +174,11 @@ def test_lone_1plus_feature_read_as_2plus_salt():
     assert len(sp) == 1
     forms = [form for _, form in sp[0].members]
     assert any("read as 2+" in f for f in forms)
+
+
+def test_decoy_shift_breaks_real_adduct_relation():
+    from glyverity.census import absorption_stats
+    m = ch.glycan_neutral_mass(A3S2, "2-AB")
+    feats = [_f(0, m, 2, 31.70, 5e6), _f(1, m, 2, 31.70, 8e5, {"H+": 1, "Na+": 1})]
+    assert absorption_stats(group_species(feats))["n"] == 1
+    assert absorption_stats(group_species(feats, decoy_shift=0.41))["n"] == 0
