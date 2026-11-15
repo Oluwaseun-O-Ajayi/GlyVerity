@@ -26,7 +26,16 @@
 * Repositories (Zenodo, GlycoPOST, PRIDE, MassIVE) are not reachable from the build workspace;
   harvesting runs on the cluster.
 
+**Evening update**
+* PRIDE harvest run on the cluster and pushed (474 unique projects).
+* `scripts/screen_pride.py` added: keyword triage, then manual check of protocols and files.
+* 17 in-scope PRIDE projects added to the catalog (2016 to 2026). Two run fluorescence and MS
+  in the same LC run: PXD077477 (ProA and 2-AB) and PXD078897 (RapiFluor-MS).
+* Most public data are PGC/reduced or C18/permethylated, not labelled HILIC. Scope decision
+  needed (see `docs/phase1/go_no_go.md`).
+
 **Next**
-* Run `scripts/harvest_pride.py` on the cluster; browse GlycoPOST and MassIVE; fill the catalog.
+* Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
+* Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
 * Finish prior-art items marked "pending" and "not yet checked".

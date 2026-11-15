@@ -1,0 +1,475 @@
+accession,category,year,instruments,lab_pi,n_raw_files,release,glycopeptide,label_2AB,label_2AA,label_ProA,label_RFMS,label_InstantPC,permethylated,reduced,hilic,pgc,rp,ce,maldi,fluorescence,title
+PRD000276,unclear,2010,instrument model; Bruker Daltonics amaZon series,Bart Ghesquiere,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,interspecies comparison of GNA binding proteins
+PXD000699,unclear,2014,LTQ Orbitrap,John Crawford Samuelson,53,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Trichomonas vaginalis
+PXD001157,unclear,2014,6520A Quadrupole Time-of-Flight LC/MS,Joseph Zaia,23,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,Oligosaccharide Substrate Preferences of Human Extracellular Sulfatase Sulf2
+PXD001571,mixed,2015,Q Exactive,Hui Zhang,181,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Solid-phase extraction of N-linked glycans and glycosite-containing peptides (NGAG) for comprehensive characterization of glycoproteins
+PXD002107,glycopeptide_only,2015,Q Exactive,Hui Zhang,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomic Analyses of Prostate Cancer Cells
+PXD002210,unclear,2015,TripleTOF 5600,Michael Jennings,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,iTRAQ of NTHi phasevarions - iTRAQ quantitative mass spec of proteins differentially regulated by biphasic switching of modA methyltransferase alleles in the human pathogen non-typeable Haemophilus influenzae
+PXD002435,mixed,2015,Orbitrap Fusion ETD; Q Exactive,Benjamin Parker,84,1,1,0,0,0,0,0,0,0,1,0,0,0,0,1,Glycosylation analysis of TNF-alpha-induced insulin resistance
+PXD002803,glycopeptide_only,2015,LTQ,Henry LAM,3,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Direct glycan structure determination of intact N-linked glycopeptides by low-energy collision-induced association tandem mass spectrometry and predicted spectral library searching
+PXD002924,mixed,2015,LTQ Orbitrap Velos,Henrik Clausen,42,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Nucleocytoplasmic O-Man glycoproteome
+PXD003091,glycopeptide_only,2015,TripleTOF 5600,Benjamin Luke Schulz,44,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Yeast cell wall glycoproteomic SWATH-MS
+PXD003238,mixed,2015,Orbitrap Fusion ETD; Orbitrap Fusion,Henrik Clausen,72,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Mapping the O-mannose glycoproteome in Saccharomyces cerevisiae
+PXD003403,unclear,2016,Q Exactive HF; LTQ Orbitrap Elite,Gilberto B Domont,3,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Denaturing and native top-down venomics:  Mapping proteoforms and protein complexes from king cobra venom
+PXD003498,mixed,2016,Q Exactive,Joseph Zaia,72,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"Influenza A virus- integrated glycomics, proteomics and glycoproteomics"
+PXD003677,mixed,2016,Orbitrap Fusion ETD,Jean-Michel Camadro,66,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,The metacaspase Mca1p restricts O-glycosylation during farnesol-induced apoptosis in Candida albicans
+PXD003794,glycopeptide_only,2016,LTQ FT; LTQ,Brett Phinney,23,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Glycomic and proteomic analyses of malignant ascites fluid were used to identify  potential metastatic biomarkers of epithelial ovarian cancer : Partial
+PXD004243,mixed,2016,Bruker Daltonics HCT Series; Q Exactive,Morten Andersen,6,1,1,0,0,0,0,0,0,1,0,1,1,0,0,0,Automated N-glycopeptide identification in glycoproteomics
+PXD004289,glycopeptide_only,2016,Q Exactive,Salvatore Foti,4,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site-specific glycosylation of donkey milk lactoferrin investigated  by High Resolution Mass Spectrometry
+PXD004341,released_only,2016,Orbitrap Fusion ETD; LTQ Orbitrap Velos,Henrik Clausen,42,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,CHO O-Mannosylation independent of POMT1/2
+PXD004358,mixed,2016,Orbitrap Fusion ETD; LTQ Orbitrap Velos,Henrik Clausen,28,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Human O-Mannosylation independent of POMT1/2
+PXD004434,unclear,2016,6520A Quadrupole Time-of-Flight LC/MS; 6220 Time-of-Flight LC/MS,Carlito B. Lebrilla,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Human milk oligosaccharides and infant fecal oligosaccharides
+PXD004590,glycopeptide_only,2016,LTQ Orbitrap Velos; Orbitrap Fusion,Hans Wandall,63,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Characterisation of the human hemostatic O-glycoproteome
+PXD005145,mixed,2016,Q Exactive,Hui Zhang,17,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Comparison of Intact Glycopeptide Enrichment Methods Using Strong Anion Exchange and Hydrophilic Interaction Liquid Chromatography
+PXD005169,mixed,2016,Q Exactive,Morten Thaysen-Andersen,60,1,1,0,0,0,0,0,0,1,0,1,1,0,0,0,Mycobacterium tuberculosis Infection Manipulates the Glycosylation Machinery and the N-Glycoproteome of Human Macrophages and their Microparticles
+PXD005254,glycopeptide_only,2017,Q Exactive,Michael Hippler,21,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Chlamydomonas reinhardtii Mannosidase 1A and Xylosyltransferase1A N-glycosylation LC/MS-MS
+PXD005257,glycopeptide_only,2017,Q Exactive,Michael Hippler,6,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Chlamydomonas reinhardtii quantification of Mannosidase 1A and Xylosyltransferase1A
+PXD005503,unclear,2016,LTQ Orbitrap; Q Exactive Plus,Catherine E. Costello,7,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycosylated Proteins of Cryptosporidium parvum
+PXD005655,glycopeptide_only,2017,LTQ Orbitrap Elite,Sharon Pitteri,12,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Plasma Glycopeptide Enrichment
+PXD005708,mixed,2017,LTQ Orbitrap; Q Exactive,Michael Hippler,140,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,N-Glycoproteomic Analysis of Botryococcus Braunii
+PXD005804,mixed,2017,Q Exactive,Josef Penninger,87,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Comparative glycoproteomics of embryonic stem cells identifies new players in ricin toxicity
+PXD005859,glycopeptide_only,2017,amaZon Speed ETD,"Associate Professor Daniel Kolarich, PhD",13,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Glycoproteomics of Flagellin C9LY14 from Selenomonas sputigena
+PXD006031,glycopeptide_only,2017,LTQ Orbitrap,Sriram Neelamegham,29,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"A comprehensive, open-source platform for mass spectrometry based glycoproteomics data analysis"
+PXD006270,glycopeptide_only,2017,Orbitrap Fusion Lumos,Joshua L. Heazlewood,24,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Profiling the level of N-glycan structural heterogeneity in Arabidopsis N-glycoproteins
+PXD006400,released_only,2017,Q Exactive,Zhixin Tian,2,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,OVA N-glycans PGC-LC-MSMS -  Large-scale identification and visualization of N-glycans with primary structures using GlySeeker
+PXD006417,mixed,2017,Finnigan MAT instrument model,Brook L. Nunn,10,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,Protein recycling in Bering Sea Algal incubations
+PXD006435,released_only,2017,Q Exactive,Markus Aebi,101,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,Quantitative Profiling of N-linked Glycosylation Machinery in Yeast Saccharomyces cerevisiae
+PXD006567,mixed,2017,LTQ Orbitrap Elite,Peng George Wang,3,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,An Insight into Glyco-microheterogeneity of Plasma von Willebrand Factor (vWF) by Mass Spectrometry
+PXD006635,glycopeptide_only,2017,Orbitrap Fusion Lumos,Joshua L. Heazlewood,18,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Plant UDP-N-acetylglucosamine (UDP-GlcNAc) transporter (UGNT1) glycopeptide analysis
+PXD006813,mixed,2017,LTQ Orbitrap,José Alexandre Ferreira,4,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Bladder Tumours O-Glycoproteomics
+PXD006893,glycopeptide_only,2017,Q Exactive,Zhi Hong,21,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Arabidopsis thaliana seedling lectin enriched LC-MS
+PXD007037,glycopeptide_only,2017,LTQ FT,Terry Cyr,91,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,Topological N-glycosylation and site-specific N-glycan sulfation of influenza proteins in the highly expressed H1N1 candidate vaccines
+PXD007107,glycopeptide_only,2017,Orbitrap Fusion ETD,David Veesler,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,N-linked glycosylation of recombinant Porcine Delta Coronavirus spike protein ectodomain from drosophila S2 cells
+PXD007267,mixed,2017,LTQ Orbitrap Velos,Michael Ferguson,14,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Probing endogenous peptide acceptor substrate specificities of TbSTT3A and TbSTT3B
+PXD007572,mixed,2017,LTQ Orbitrap Velos,W. Andy Tao,47,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A pipeline for discovery and verification of glycoproteins from plasma-derived extracellular vesicles as breast cancer biomarkers
+PXD008158,released_only,2017,Q Exactive,Zhixin Tian,3,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,Large-scale identification and visualization of human Liver N-glycome enriched from LO2 cells
+PXD008687,released_only,2018,LTQ Orbitrap Velos,Yehia Mechref,18,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Enhanced Quantitative LC-MS/MS Analysis of N-linked Glycans Derived from Glycoproteins Using Sodium Deoxycholate Detergent
+PXD008855,glycopeptide_only,2018,Q Exactive,Joseph Zaia,8,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Proteoglycan sequencing -  Deep sequencing of complex proteoglycans: a novel strategy for high coverage and site-specific identification of glycosaminoglycan-linked peptides
+PXD008990,unclear,2018,Q Exactive,Joseph Zaia,144,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,Glycomic and Proteomic changes in aging brain nigrostriatal pathway
+PXD009014,unclear,2018,LTQ Orbitrap Elite,Farnusch Kaschani,43,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,Activity profiling of αlpha-glycosidases in plants
+PXD009048,glycopeptide_only,2018,Synapt MS,Risto Renkonen,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Bloodstream infection N-glycoproteomics
+PXD009123,glycopeptide_only,2018,Q TRAP,Jocelyn K. C. Rose,0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,"The secretome and N-glycosylation profiles of the charophycean green alga, Penium margaritaceum, resemble those of embryophytes"
+PXD009222,glycopeptide_only,2018,Orbitrap Fusion ETD,Terry Nguyen-Khuong,17,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,HEK-AXL glycopeptides supporting GlycopeptideGraphMS development
+PXD009453,unclear,2018,Orbitrap Fusion ETD; LTQ Orbitrap Velos,Hans Wandall,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,TAILS N-Terminomics and Proteomics Show Complex Regulation of Proteolytic Processing by O-glycosylation
+PXD009652,unclear,2018,LTQ Orbitrap Elite,Göran Larson,9,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,LC-MS/MS characterization of xyloside-primed glycosaminoglycans with cell-specific cytotoxic properties reveals structural diversity and novel glycan modifications
+PXD009716,glycopeptide_only,2018,LTQ Orbitrap Elite,Erdmann Rapp,2,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,glyXtoolMS Example Data Sets -  glyXtoolMS: An Open-Source Pipeline for Semiautomated Analysis of Glycopeptide Mass Spectrometry Data
+PXD009800,unclear,2018,Q Exactive,Gabriel Mazzucchelli,18,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Multi-Enzymatic Limited Digestion - the Next-Generation Sequencing for Proteomics
+PXD009808,released_only,2018,ultraflex,Prof. Peter Hoffmann,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,Raw N-glycan MALDI mass spectrometry imaging data on formalin-fixed mouse kidney
+PXD009906,mixed,2018,Q Exactive,Chiara GUerrera,48,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,GlycoProteomics in CDG (congenital disorder of glycosilation)
+PXD009955,glycopeptide_only,2018,Orbitrap Fusion ETD; LTQ Orbitrap Velos,Sergey Y. Vakhrushev,187,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,Deconstruction of the GalNAc-Type O-Glycosylation Capacity of Human HEK293 Cells
+PXD010035,mixed,2018,LTQ Orbitrap Velos,Yi-Ju Chen,24,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteome of Human lung cancer cell by LC-MSMS
+PXD010086,released_only,2018,ultraflex,Tero Satomaa,48,1,0,0,0,0,0,0,0,0,1,0,1,0,1,0,N-glycan profiling of Pseudomyxoma peritonei
+PXD010155,glycopeptide_only,2018,LTQ Orbitrap,Sergey Vakhrushev,32,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Probing the contribution of individual polypeptide GalNAc-transferase isoforms to the O-glycoproteome by inducible expression in isogenic cell lines
+PXD010290,glycopeptide_only,2018,Q Exactive,Hui Zhang,51,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Deciphering the roles of N-glycans on collagen-platelet interactions
+PXD010308,mixed,2018,Q Exactive,Hui Geng,7,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,Grass carp serum IgM LC-ESI-MS/MS and MALDI-MS
+PXD010333,glycopeptide_only,2018,Orbitrap Fusion Lumos,Albert J R Heck,9,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Analysis of intact mannose-6-phosphate glycopeptides
+PXD010454,released_only,2018,Q Exactive,Zhixin Tian,6,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,Comparative glycomics study of N-glycans in breast cancer cell line MCF7 versus normal cell line
+PXD010506,unclear,2018,LTQ Orbitrap Velos,Yehia Mechref,18,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,"Integrated Transcriptomics, Proteomics and Glycomics for a Deeper Insight of the Mechanism of  Breast Cancer Brain Metastasis: Emphasizing on Glycosylation"
+PXD010824,unclear,2018,Q Exactive,Mechthild Pohlschroder,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Characterizing of Haloferax volcanii Hvo_0405 as a Tat substrate
+PXD010911,mixed,2018,Q Exactive HF,Catherine E Costello,180,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Human Serum Immunoglobulin N-Glycosylation using nLC-MS/MS
+PXD011015,glycopeptide_only,2018,Q Exactive,Mechthild Pohlschroder,30,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,Characterizing N-Glycosylation of Pilins and Flagellins from Haloferax volcanii
+PXD011017,released_only,2018,Q Exactive,Christian G. Huber,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Dilute-and-Shoot Analysis of Therapeutic Monoclonal Antibody Variants in Fermentation Broth: A Method Capability Study
+PXD011063,glycopeptide_only,2019,Orbitrap Fusion,Sergey Vakhrushev,127,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glyco-DIA: a method for quantitative O-glycoproteomics with in silico-boosted glycopeptide libraries
+PXD011118,glycopeptide_only,2018,Orbitrap Fusion Lumos,Prof. Julia Maxson,2,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,A novel germline variant in CSF3R highlights the potent oncogenic effects of loss of N-glycosylation and its implication for therapeutic intervention
+PXD011214,glycopeptide_only,2018,LTQ Orbitrap Velos,Martin Pejchinovski,26,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,Urinary glycopeptide analysis for the investigation of novel biomarkers
+PXD011228,glycopeptide_only,2018,maXis,Manfred Wuhrer,5,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,IgA deglycosylation to identify glycosylation sites
+PXD011239,glycopeptide_only,2018,Q Exactive,David M. Lubman,39,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Intact N-glycopeptides in Serum Haptoglobin between HCC and Cirrhosis
+PXD011533,mixed,2018,Orbitrap Fusion Lumos,Joshua J. Coon,36,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomics with AI-ETD -  Capturing site-specific heterogeneity with large-scale N-glycoproteome analysis
+PXD011855,glycopeptide_only,2019,Orbitrap Fusion; LTQ Orbitrap Elite,Göran Larson,6,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,Identification of a chondroitin sulfate linkage region trisaccharide
+PXD012003,unclear,2018,Q Exactive,Sylwia Kedracka-Krok,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,An insight into the proteome of uveal melanoma-derived ectosomes reveals the presence of potentially useful biomarkers
+PXD012088,released_only,2018,Q-Tof Ultima; LTQ Orbitrap Velos,Solange Maria de Toledo Serrano,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Comparative analysis of high molecular mass subproteomes of Bothrops snake venoms
+PXD012107,glycopeptide_only,2018,Q Exactive,Michael Hippler,35,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Analysis of FucT and XylT1B mutants in C. reinhardtii
+PXD012459,released_only,2019,LTQ Orbitrap Velos; Q Exactive,DOUGLAS LAKE,11,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,Carbo-loading in fungal lung pathogens: a quantitative analysis of CAZyme abundance and resulting glycan populations
+PXD012629,glycopeptide_only,2019,Q Exactive,Catherine E Costello,34,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,VEGFR N-glycosylation
+PXD013140,mixed,2019,Orbitrap Fusion,Henrik Clausen,71,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,The Glycosylation Design Space for Recombinant Lysosomal Replacement Enzymes Produced in CHO Cells
+PXD013340,glycopeptide_only,2019,Orbitrap Fusion Lumos,Hui Zhang,78,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Impact of increased core fucosylation on the exosome proteome in prostate cancer
+PXD013440,released_only,2019,Q-Tof micro,James LaCourse,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,"Characterisation of a novel glycosylated glutathione transferase of Onchocerca ochengi, closest relative of the human river blindness parasite"
+PXD013629,released_only,2019,Q Exactive,ChengHsun Ho,315,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Plasma Proteome for Hepatobiliary Carcinomas
+PXD013657,mixed,2019,Q Exactive,Guy Smagghe,36,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Protein N-glycosylation is sex-related in Nilaparvata lugens adults
+PXD013676,mixed,2019,Orbitrap Fusion Lumos,Henrik Clausen,5,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,An Atlas of Human Glycosylation Pathways Enables Display of the Human Glycome by Gene Engineered Cells
+PXD013836,glycopeptide_only,2019,Q Exactive,Zhixin Tian,3,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Human Breast LC-MSMS -  Quantitative site- and structure-specific N-glycoproteomics characterization of differential N-glycosylation in MCF-7/ADR cancer stem cells
+PXD013930,mixed,2019,maXis,Laszlo Drahos,12,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Site-specific N-glycosylation of HeLa cell glycoproteins
+PXD014235,glycopeptide_only,2019,Orbitrap Fusion Lumos; LTQ Orbitrap Elite,Amy Chung,36,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,IgG purification- MS analysis - MS analysis was undertaken on human IgG purified using different approaches to assess purifity and potential alterations within the IgG N-linked glycans
+PXD014271,unclear,2019,Q Exactive,Morten Thaysen-Andersen,24,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,Protein paucimannosylation is a novel N-glycosylation signature of human cancers
+PXD014310,released_only,2019,ultraflex,Peter Hoffmann,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,Egg White as a quality control in MALDI Mass Spectrometry Imaging
+PXD014504,unclear,2019,LTQ Orbitrap Elite,Jonas Nilsson,40,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,Glycosaminoglycan Domain Mapping of cellular chondroitin/dermatan sulfates
+PXD014710,unclear,2019,Q Exactive,Christian G. Huber,165,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Towards middle-up analysis of polyclonal antibodies: subclass-specific N-glycosylation profiling of murine immunoglobulin G (IgG) by means of HPLC-MS
+PXD015179,glycopeptide_only,2019,Q Exactive HF,Lingjun Li,40,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Finding the Sweet Spot in ERLIC Mobile Phase for Simultaneous Enrichment of N-Glyco and Phosphopeptides
+PXD015335,glycopeptide_only,2019,Orbitrap Fusion,Huli Shen,49,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Multilayered N-glycoproteome Profiling Reveals Highly Heterogeneous and Dysregulated Protein N-glycosylations Related to Alzheimer’s Disease
+PXD015389,released_only,2019,Q Exactive,Stephano Marullo M.D. Ph.D.,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Sialic acid-mediated mechanical activation of β2 adrenergic receptors by bacterial pili
+PXD015429,glycopeptide_only,2019,LTQ Orbitrap Velos,Katrine Schjoldager,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Galnt11 differential tissue glycoproteomics
+PXD015622,mixed,2020,Q Exactive,Fuquan Yang,64,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Human serum N-linked intact glycopeptides LC-MS/MS
+PXD015660,glycopeptide_only,2019,Orbitrap Fusion Lumos; Q Exactive,Jean-Claude Twizere,45,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Proteome analysis of HeLa cells knocked down for EXT1 expression
+PXD015888,unclear,2019,LTQ,Cheng li,3,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,Analysis of the N-Glycoforms of a Chinese Yam (Dioscorea opposita Thunb.) Glycoprotein 30CYGPAnalysis of the N-Glycoforms of a Chinese Yam (Dioscorea opposita Thunb.) Glycoprotein 30CYGP
+PXD016175,glycopeptide_only,2019,Orbitrap Fusion Lumos,Yong Zhang,96,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Intact N-glycopeptide signatures of immunoglobulin G molecules in plasma from patients with prostate carcinoma and benign prostatic hyperplasia
+PXD016406,glycopeptide_only,2019,Orbitrap Fusion Lumos,Sun Lab,6,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Intact N-glycopeptides and proteomics from HCC tissue tumors with low and high AFP concentrations
+PXD016618,mixed,2019,LTQ Orbitrap Velos; Orbitrap Fusion,Sergey Vakhrushev,68,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,O-glycan initiation directs distinct biological pathways and controls epithelial differentiation
+PXD016865,glycopeptide_only,2019,Q Exactive,Zhixin Tian,15,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Human stomach LC-MSMS China Human Proteome Project
+PXD017060,mixed,2020,Orbitrap Fusion Lumos; 6550 iFunnel Q-TOF LC/MS; Q Exactive,Catherine E Costello,50,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,N-Glycosylation of the Epidermal Growth Factor Receptor (EGFR) Derived from Human Oral Squamous Carcinoma Cells with beta-Catenin/CREB-Binding Protein (CBP) Inhibition
+PXD017139,glycopeptide_only,2020,Orbitrap Fusion Lumos,Jun Li,9,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Site-specific N-glycan Analysis of Neonatal Mouse Hearts
+PXD017206,unclear,2020,TripleTOF 5600,Kate L. Seib,41,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,SWATH-MS proteome of Moraxella catarrhalis under iron restricted conditions
+PXD017513,glycopeptide_only,2020,Q Exactive,Prof. Joseph Zaia,36,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Serial In-solution digestion protocol for mass spectrometry-based glycomics and proteomics analysis
+PXD017609,glycopeptide_only,2020,Orbitrap Fusion,Celso A. Reis,9,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"ErbB2 Site-Specific α2,6-Sialylation Regulates Gastric Cancer Cell Sensitivity to Trastuzumab"
+PXD017646,mixed,2020,Orbitrap Fusion,Carolyn Bertozzi,111,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Optimal Dissociation Methods Differ for N- and O-glycopeptides
+PXD017655,unclear,2020,LTQ Orbitrap Velos,Taroh Kinoshita,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,GPI-glycan structures of human Prion from knock-in mice_LC-MSMS
+PXD017656,unclear,2020,LTQ Orbitrap Velos,Taroh Kinoshita,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,GPI-glycan structures of human Prion from a human brain
+PXD017914,glycopeptide_only,2020,Orbitrap Fusion,Celso A. Reis,12,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,EGFR N-Glycosylation Profile from Colorectal Cancer Cells
+PXD017941,glycopeptide_only,2020,LTQ Orbitrap Velos,Matthew Renfrow,20,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"Impact of glycan positioning on HIV-1 Env glycan shield density, function, and antibody recognition"
+PXD018208,glycopeptide_only,2020,Orbitrap Fusion Lumos; Q Exactive,Joseph Zaia,7,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Glycopeptide Relative Retention Time Prediction
+PXD018229,mixed,2020,TripleTOF 5600,Benjamin Schulz,182,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Analysis of coagulation factor IX in bioreactor cell culture media predicts yield and quality of purified product
+PXD018353,glycopeptide_only,2020,Q Exactive,Michael Hippler,32,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Altered N-glycan composition impacts flagella mediated adhesion in Chlamydomonas reinhardtii
+PXD018418,glycopeptide_only,2020,Orbitrap Fusion Lumos,Sergey Vakhrushev,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Essential functions of glycans in human epithelia dissected by a CRISPR/Cas9-engineered human  organotypic skin model
+PXD018502,glycopeptide_only,2020,Q Exactive,David M. Lubman,145,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Glycopeptide Biomarkers for HCC Detection in Patients with NASH
+PXD018506,mixed,2020,Orbitrap Fusion Lumos,Yong Zhang,69,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site-specific N-glycosylation Characterization of Recombinant SARS-CoV-2 Spike Proteins using High-Resolution Mass Spectrometry
+PXD018673,released_only,2020,ultraflex,Tero Satomaa,94,1,0,0,0,0,0,0,0,0,1,0,1,0,1,0,N-glycomic profiling of colorectal cancer according to tumor stage and location
+PXD018736,unclear,2020,Q Exactive HF,Joseph Zaia,394,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,"Characterization of human aging and Parkinson’s disease pre-frontal cortex by multi-omics: a glycomics, proteomics study."
+PXD018920,mixed,2020,Q Exactive HF,Joseph Zaia,65,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Influenza A hemagglutinin glycoproteomics similarity
+PXD019048,released_only,2020,Orbitrap Eclipse,Jan J. Enghild,15,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,A2M-3K DSSO cross-linking to identify the bait region position
+PXD019101,released_only,2020,Orbitrap Eclipse,Jan J. Enghild,90,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,CX-MS of DSSO-cross-linked A2M - Structural investigations of human α2-macroglobulin elucidate its native conformation and inhibitory mechanism
+PXD019372,glycopeptide_only,2020,Orbitrap Fusion,Benjamin Parker,39,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Proteomic and glycoproteomic analysis of myogenesis
+PXD019425,unclear,2020,ultraflex,Prof Peter Hoffmann,2,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,Altered N-linked Glycosylation in Endometrial Cancer
+PXD019443,mixed,2020,Q Exactive,Giuseppe Palmisano,48,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,"Deconstructing the regulation of protein, cellular origin and tumour grade-specific N and O-glycosylation associated with prostate cancer progression"
+PXD019770,glycopeptide_only,2020,Orbitrap Fusion Lumos,Lingjun Li,32,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Acetyl-CoA flux maintains intracellular crosstalk and modulats engagement of the secretory pathway
+PXD020032,mixed,2020,Orbitrap Fusion Lumos,John F. Cipollo,6,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Optimization of O-GIG for O-glycopeptide Characterization with Sialic Acid Linkage Determination-figure 5
+PXD020034,mixed,2020,Orbitrap Fusion Lumos,John F. Cipollo,6,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Optimization of O-GIG for O-glycopeptide Characterization with Sialic Acid Linkage Determination-Fig6
+PXD020039,mixed,2020,Orbitrap Fusion Lumos,John F. Cipollo,9,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Optimization of O-GIG for O-glycopeptide Characterization with Sialic Acid Linkage Determination -Figure 2
+PXD020048,mixed,2020,Orbitrap Fusion Lumos,John F. Cipollo,9,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Optimization of O-GIG for O-glycopeptide Characterization with Sialic Acid Linkage Determination-Fig3
+PXD020053,mixed,2020,Orbitrap Fusion Lumos,John F. Cipollo,12,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Optimization of O-GIG for O-glycopeptide Characterization with Sialic Acid Linkage Determination-Figure 4
+PXD020254,glycopeptide_only,2020,Orbitrap Fusion Lumos,Yong Zhang,66,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Optimized Workflow for In-depth N-glycosylation Analysis of 2D and 3D Breast Cancer Cell Cultures and Xenografted Tumors
+PXD020344,released_only,2020,Orbitrap Fusion Lumos,Paul J. Hensbergen,35,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycoproteins have a major role in MGL binding to colorectal cancer cell lines
+PXD020367,unclear,2020,LTQ Orbitrap Velos,Holger Kramer,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Autophagosome Proteomics of HEK293 cells
+PXD021006,glycopeptide_only,2020,Orbitrap Fusion,Benjamin Parker,39,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Proteomic and glycoproteomic analysis of myogenesis in L6 myoblasts
+PXD021131,mixed,2020,Q Exactive HF,Morten Thaysen-Andersen,32,0,1,0,0,0,0,0,0,1,0,1,1,0,0,0,The Bimodal Sugar Code of Neutrophil Myeloperoxidase
+PXD021196,glycopeptide_only,2020,Orbitrap Fusion Lumos; Q Exactive HF,Alexey Nesvizhskii,132,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Re-analysis of glycoproteomics data with MSFragger-Glyco
+PXD021275,released_only,2020,Bruker Daltonics flex series,"Heijs, Bram",0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,N-glycomic signature of stage II colorectal cancer and its association with the tumor microenvironment
+PXD021672,glycopeptide_only,2020,Q Exactive HF,Nicola Ternette,34,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Mapping the SARS-CoV-2 spike glycoprotein-derived peptidome presented by HLA class II on dendritic cells
+PXD021682,unclear,2020,Bruker Daltonics flex series,Bram Heijs,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,N-glycomic signature of stage II colorectal cancer and its association with the tumor microenvironment
+PXD022483,mixed,2020,Q Exactive Plus,Xiaojuan Liu,4,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Global profiling of N-glycosylated proteins in the diatom Phaeodactylum tricornutum
+PXD022546,glycopeptide_only,2020,Orbitrap Fusion Lumos,Richard D. Cummings,30,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Mannose Receptor glycoprotein ligands in A549 cells
+PXD022896,mixed,2020,Orbitrap Fusion Lumos,Yong Zhang,24,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Mucin-type O-glycosylation Landscapes of SARS-CoV-2 Spike Proteins
+PXD022988,glycopeptide_only,2020,Orbitrap Fusion Lumos,Lingjun Li,112,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,Counterion Optimization Dramatically Improves Selectivity for Phosphopeptides and Glycopeptides in Electrostatic Repulsion-Hydrophilic Interaction Chromatography (ERLIC)
+PXD023111,unclear,2020,Q Exactive HF,Nicolle H Packer,8,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Long term intrathecal administration of morphine vs baclofen: differences in CSF identified using multi-glycomics
+PXD023311,mixed,2020,Q Exactive Plus,Jinpeng Gao,22,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Novel Proteome and N-glycoproteome of the Thermophilic Fungus Chaetomium thermophilugm in Response to High Temperature
+PXD023379,mixed,2021,Orbitrap Fusion,Min Hu,6,1,1,0,0,0,0,0,1,0,1,1,1,0,1,0,N-Glycome and N-Glycoproteome of a Hematophagous Parasitic Nematode Haemonchus
+PXD023448,mixed,2021,Orbitrap Fusion Lumos,Sun Shisheng,35,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Esterification Reaction: An Unexpected Side Reaction During Glycopeptide and Glycan Storages in Formic Acid Solution
+PXD023483,glycopeptide_only,2021,Orbitrap Fusion Lumos,Associate Professor Wai-Hong Tham,4,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Nanobodies peptide/glycopeptide identification
+PXD023684,glycopeptide_only,2021,Orbitrap Fusion Lumos; Q Exactive HF,Albert J.R. Heck,57,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Allotype-specific glycosylation and cellular localization of HLA class I proteins
+PXD023726,unclear,2021,SCIEX instrument model,John Atack,12,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,SWATH-MS data showing differential protein expression due to the ModS methyltransferase of Streptococcus suis
+PXD023943,glycopeptide_only,2021,Orbitrap Fusion Lumos,Martin L Olsson,17,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomic and phenotypic elucidation of B4GALNT2 expression variants in the SID histo-blood group system
+PXD023951,glycopeptide_only,2021,Orbitrap Fusion Lumos,Kuan-Ting Pan,189,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Evaluation and Optimization of High-Field Asymmetric Waveform Ion Mobility Spectrometry for Multiplexed Quantitative Site-specific N-glycoproteomics
+PXD024022,unclear,2021,Synapt MS,Anne Dell,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"High mannose N-glycans on red blood cells as phagocytic ligands, mediating both sickle cell anaemia and resistance to malaria"
+PXD024060,glycopeptide_only,2021,Orbitrap Fusion Lumos,Caroline TOKARSKI,13,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Alteration of microbiota antibody-mediated immune selection contributes to dysbiosis in IBD
+PXD024195,glycopeptide_only,2021,Q Exactive HF,Lingjun Li,56,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,Complementary Proteome and Glycoproteome Access Revealed Through Comparative Analysis of Reversed Phase and Porous Graphitic Carbon Chromatography
+PXD024196,glycopeptide_only,2021,Q Exactive HF,Lingjun Li,18,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,Complementary Proteome and Glycoproteome Access Revealed Through Comparative Analysis of Reversed Phase and Porous Graphitic Carbon Chromatography
+PXD024230,glycopeptide_only,2021,Orbitrap Fusion; Q Exactive HF,Göran Larson,20,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"Proteoglycan profiling of human, rat and mouse insulin-secreting cells"
+PXD024489,released_only,2021,6520A Quadrupole Time-of-Flight LC/MS; Agilent instrument model,Peter Hoffmann,0,1,0,0,0,0,0,0,0,1,0,1,1,0,1,0,In-house packed porous graphitic carbon columns for liquid chromatography-mass spectrometry analysis of N-glycans
+PXD024672,mixed,2021,Q Exactive HF,Rong Deng,2,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Indentification of B7H3 WT/NQ N-Glycosites
+PXD024767,mixed,2021,Orbitrap Fusion Lumos; Q Exactive HF,Sergey Vakhrushev,8,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1. Site-specific O-glycosylation analysis of SARS-CoV-2 spike protein produced in insect and human cells
+PXD024835,mixed,2021,Q Exactive,Hartmut Schlüter,18,1,1,0,0,0,0,0,1,1,1,0,1,0,0,0,An integrated strategy reveals complex glycosylation of erythropoi-etin using top-down and bottom-up mass spectrometry
+PXD024851,unclear,2021,Orbitrap Fusion Lumos,Sergey Vakhrushev,17,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Display of the Human Mucinome with Defined O-Glycans by Gene Engineered Cells
+PXD025048,glycopeptide_only,2021,Orbitrap Fusion Lumos,Lingjun Li,64,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Analysis of Pancreatic Extracellular Matrix Protein Post-Translational Modifications via Electrostatic Repulsion-Hydrophilic Interaction Chromatography Coupled with Mass Spectrometry
+PXD025078,glycopeptide_only,2021,Orbitrap Fusion Lumos,Yong Zhang,36,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Sequential N/O-glycosylation analysis of heavily glycosylated HIV-1 gp120 by combination of electron-transfer/higher-energy collisional dissociation and stepped collision energy/higher-energy collisional dissociation (EThcD-sceHCD)
+PXD025150,mixed,2021,LTQ Orbitrap Elite,Jau-Song Yu,120,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,LC-MS/MS analysis of pancreatic cancer plasma
+PXD025285,glycopeptide_only,2021,Orbitrap Fusion Lumos,Dr. M. Osman Sheikh,11,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Endolysosomal processing of N-glycans on acid alpha-glucosidase is critical to attain the most active enzyme for hydrolyzing glycogen
+PXD025299,mixed,2021,Waters instrument model,Terry Nguyen-Khuong,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,Semi-automated Glycoproteomic Data Analysis of LC-MS data using GlycopeptideGraphMS in Lead and Process Development of Biologics
+PXD025344,mixed,2021,Orbitrap Fusion,Henrik Clausen,21,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Fruit fly O-GlcNAc glycoproteomics
+PXD025407,glycopeptide_only,2021,Orbitrap Fusion Lumos,Sergey Vakhrushev,26,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A systematic evaluation of fragmentation methods for unlabeled and isobaric mass tag-labeled O-glycopeptides
+PXD025455,glycopeptide_only,2021,Q Exactive HF,David M. Lubman,109,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,A Panel of Glycopeptides as Candidate Biomarkers for Early Diagnosis of NASH Hepatocellular Carcinoma Using a Stepped HCD Method and PRM Evaluation
+PXD025537,mixed,2021,Orbitrap Fusion,Stacy Malaker,28,1,1,0,0,0,0,0,0,0,0,0,1,0,1,0,On-tissue spatially-resolved glycoproteomics guided by N-glycan imaging reveal global dysregulation of canine glioma glycoproteomic landscape
+PXD025554,glycopeptide_only,2021,Orbitrap Fusion,Joost Snijder,18,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomics profiling of recombinant SARS-CoV-2 stabilized Spike construct
+PXD025585,glycopeptide_only,2021,Q Exactive,Ida Chiara Guerrera,10,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Identification and relative quantification of hFSH glycoforms in women sera by PRM MS based approach.
+PXD025640,unclear,2021,Q Exactive Plus,Gereon Poschmann,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Fungi hijack a plant apoplastic endoglucanase to release a ROS scavenging β-glucan decasaccharide to subvert immune responses
+PXD025805,glycopeptide_only,2021,Orbitrap Fusion Lumos,Paul J. Hensbergen,19,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Oxonium ion guided analysis of quantitative proteomics data reveals site-specific O-glycosylation of anterior gradient protein 2 (AGR2)
+PXD025826,mixed,2021,Bruker Daltonics flex series,Michel Salzet,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,On-tissue spatially-resolved glycoproteomics guided by N-glycan imaging reveal global dysregulation of canine glioma glycoproteomic landscape
+PXD025859,glycopeptide_only,2021,Orbitrap Fusion Lumos,Sun Shisheng,53,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Structural Interpretation of Glycosite-specific N-Glycans Using Tandem Mass Spectrometry
+PXD025886,mixed,2021,LTQ Orbitrap Elite,Lei Li,4,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Site-specific N- and O-glycosylation Analysis of Human Plasma Fibronectin
+PXD026301,unclear,2021,Orbitrap Fusion Lumos,Ping He,20,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Comparative proteomics reveal elevated CCN2 in NGLY1 deficient cells
+PXD026327,unclear,2021,Q Exactive HF,Daniel Figeys,64,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,Intestinal N-glycomics in pediatric ulcerative colitis
+PXD026431,unclear,2021,Q Exactive,Álvaro Acosta-Serrano,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Protein N-glycosylation of SARS-CoV-2 infection
+PXD026629,glycopeptide_only,2021,Q Exactive,Hongxiu Yu,27,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Precision N-glycoproteomics of murine peritoneal macrophage
+PXD026649,glycopeptide_only,2021,Orbitrap Fusion Lumos,Shisheng Sun,37,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Precision mapping of glycosite-specific glycans reveals distinctive N-glycosylation on human spermatozoa
+PXD026681,unclear,2021,LTQ Orbitrap,Prof Dr. Peter Hoffmann,70,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,NGLY1 deficiency perturbs cerebral development by affecting stress tolerability and neural stem cell signaling during neurogenesis
+PXD027174,glycopeptide_only,2021,Orbitrap Fusion Lumos,Yong Zhang,186,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Systems analysis of plasma IgG intact N-glycopeptides from pa-tients with chronic kidney diseases via combined electron-transfer/higher-energy collisional dissociation and stepped colli-sion energy/higher-energy collisional dissociation mass spectrom-etry within half an hour
+PXD027279,mixed,2021,Q Exactive HF,Joseph Zaia,43,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Data-independent acquisition mass spectrometry for site-specific glycoproteomics characterization of SARS-CoV-2 spike protein
+PXD027425,mixed,2021,Q Exactive HF,Joseph Zaia,43,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Data-independent acquisition mass spectrometry for site-specific glycoproteomics characterization of SARS-CoV-2 spike protein
+PXD027536,glycopeptide_only,2021,Orbitrap Fusion Lumos,John F. Cipollo,24,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,A Linkage- Specific Sialic Acid Labeling Strategy Reveals Different Site-Specific Glycosylation Patterns in SARS-CoV-2 Spike Protein Produced in CHO and HEK Cell Substrates
+PXD027571,unclear,2021,LTQ Orbitrap,Mei Yu,3,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,"The analysis of the α2,6-sialylated proteins in endometrium from porcine gestational day 15 by LC-MS/MS"
+PXD027664,glycopeptide_only,2021,Q Exactive HF,Dr. Morten Thaysen-Andersen,32,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,N-Acetyl-β-D-hexosaminidases mediate the generation of paucimannosidic proteins via a putative non-canonical truncation pathway in human neutrophils
+PXD028107,released_only,2021,Orbitrap Fusion Lumos,Peggi M. Angel,8,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,Defining the Tumor Microenvironment by Integration of Im-munohistochemistry and Extracellular Matrix Targeted Imaging Mass Spectrometry
+PXD028307,glycopeptide_only,2021,LTQ Orbitrap; Q Exactive,José Alexandre Ferreira,64,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Characterization of CD44s glycoproteoforms in bladder tumours and bladder cancer cell culture models
+PXD028437,glycopeptide_only,2021,maXis,Prof. Alain van Gool,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Impact of infection on proteome-wide glycosylation revealed by distinct signatures for bacterial and viral pathogens
+PXD028522,unclear,2021,Q Exactive,Ana Gisele da Costa Neves Ferreira,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Molecular architecture of the antiophidic protein DM64 and its binding specificity to myotoxin II from Bothrops asper venom
+PXD028931,glycopeptide_only,2022,Q Exactive Plus,Joseph Zaia,86,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,In-depth matrisome and glycoproteomic analysis of glioblastoma human brain tissue
+PXD028982,glycopeptide_only,2021,Orbitrap Fusion Lumos,Sergey Vakhrushev,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Installation of O-glycan sulfation capacities in human HEK293 cells
+PXD029189,unclear,2021,LTQ Orbitrap Velos,Taroh Kinoshita,2,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,GPI-glycan structures of Prion from PGAP4-KO mouse brains
+PXD029190,unclear,2021,LTQ Orbitrap Velos,Taroh Kinoshita,2,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,GPI-glycan structures of Prion from WT mouse brains
+PXD029269,glycopeptide_only,2021,Orbitrap Fusion Lumos,Lingjun Li,52,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"Boost-DiLeu: Enhanced Isobaric N,N-Dimethyl Leucine Tagging Strategy for Comprehensive Quantitative Glycoproteomic Analysis"
+PXD029295,glycopeptide_only,2021,Q Exactive,Motoko Takahashi,2,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,hepatocyte grwoth factor receptor (MET) LC-MSMS
+PXD029420,glycopeptide_only,2021,Orbitrap Eclipse,Kevin Brown Chandler,23,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Proteomic and Glycoproteomic Analyses of Fucosylated Glycoproteins in Head and Neck Cancer Cell Lines
+PXD029623,unclear,2021,Orbitrap Fusion Lumos,Sergey Vakhrushev,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Identification of global inhibitors of cellular glycosylation
+PXD029644,released_only,2021,Orbitrap Fusion Lumos,Hans Wandall,71,1,0,1,0,0,0,0,0,0,1,1,1,0,0,0,C18  nanoLC-MS and Glycogenomics to Facilitate O-Glycan profiling in Human Cells
+PXD029700,mixed,2022,Q Exactive HF,Joseph Zaia,116,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Improving statistical certainty of glycosylation similarity between influenza A virus variants using data-independent acquisition mass spectrometry
+PXD029746,glycopeptide_only,2021,Orbitrap Fusion,Jan Carette,12,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,The human disease gene TMEM251 is essential for lysosomal transport and viral infection
+PXD029775,glycopeptide_only,2021,Orbitrap Fusion Lumos,Lingjun Li,20,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,ATP-Coated Dual-functionalized Titanium (IV) IMAC Material for Simultaneous Enrichment and Separation of Glycopeptides and Phosphopeptides
+PXD029885,glycopeptide_only,2021,Orbitrap Fusion Lumos; Orbitrap Fusion,Sergey Vakhrushev,34,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Exploring glycosylation of mucins with O-glycodomain reporters expressed in glycoengineered HEK293 cells
+PXD029966,mixed,2021,TripleTOF 6600,Susan J Fisher,48,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Establishment of fetomaternal tolerance via glycan-mediated B cell suppression
+PXD030277,glycopeptide_only,2021,Orbitrap Fusion Lumos,Pengfei Li,9,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,"Glycoproteomics of human THP-1-derived M0, M1 and M2 macrophages"
+PXD030331,glycopeptide_only,2021,Orbitrap Eclipse; Synapt MS,John Kelly,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Identification of novel glycan modification on S-layer protein from Methanoculleus Marisnigri
+PXD030443,glycopeptide_only,2021,6520A Quadrupole Time-of-Flight LC/MS; Q Exactive,Ralf Reski,12,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Unexpected arabinosylation after humanization of plant protein N-glycosylation
+PXD030550,glycopeptide_only,2021,Orbitrap Fusion Lumos; Q Exactive HF,Catherine E. Costello,19,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Glycoproteoforms of Integrins α2 and β1 in Megakaryocytes in the Occurrence of Primary Myelofibrosis
+PXD030579,released_only,2021,LTQ Orbitrap Elite,Ellis C O'Neill,12,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycosylated proteins identified for the first time in the alga Euglena gracilis
+PXD030622,glycopeptide_only,2021,Orbitrap Fusion Lumos,Yong Zhang,9,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Comprehensive human plasma N-glycoproteome profiling based on EThcD-sceHCD-MS/MS
+PXD030670,mixed,2021,Q Exactive,Hua Xiao,27,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Hydrophilic interaction liquid chromatography contributes to integrated N-glycoproteomics analysis of human saliva for lung cancer
+PXD030804,unclear,2022,Orbitrap Fusion Lumos,Shisheng Sun,36,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,Precision structural interpretation of site-specific N-glycans in seminal plasma
+PXD030865,unclear,2022,Q Exactive,Naoshi Dohmae,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Identification of Distinct N-Glycosylation Patterns on Extracellular Vesicles from Small-Cell and Non-Small-Cell Lung Cancer Cells
+PXD030927,glycopeptide_only,2022,Orbitrap Exploris 480,Ying Zhou,3,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Comparative glycomics study on the surface of SKOV3 versus IOSE80 cell lines
+PXD031032,glycopeptide_only,2022,Orbitrap Fusion Lumos,Mingliang Ye,35,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Re-analysis of glycoproteomics data with Glyco-Decipher
+PXD031091,unclear,2022,Orbitrap Fusion,Fred H Gage,80,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,NGLY1 mutations cause protein aggregation in human neurons
+PXD031276,glycopeptide_only,2022,Orbitrap Fusion Lumos,Piaopiao Wen,30,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Proteome and glycoproteome analyses reveal the proteinProteome and glycoproteome analyses reveal the protein N-linked glycosylation specificity of STT3A and STT3B N-linked glycosylation specificity of STT3A and STT3B
+PXD031334,mixed,2022,Orbitrap Fusion Lumos; Q Exactive HF,Ekaterina Mirgorodskaya,12,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Site-specific N-glycolylation profiles in a5b1 integrin from rat liver
+PXD031355,mixed,2022,Orbitrap Fusion Lumos; Orbitrap Fusion,Adnan Halim,19,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A Bacterial Mannose Binding Lectin as a Tool for the Enrichment of C-and O- Mannosylated Peptides
+PXD031459,mixed,2022,Orbitrap Fusion,Joost Snijder,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycan shield of the ebolavirus envelope glycoprotein GP
+PXD031484,glycopeptide_only,2022,LTQ Orbitrap Elite,Marcus Hoffmann,6,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A Bacterial Mannose Binding Lectin as a Tool for the Enrichment of C-and O- Mannosylated Peptides
+PXD032149,glycopeptide_only,2022,Orbitrap Fusion Lumos,Lance Wells,59,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Origin of N-glycan site-specific heterogeneity glycopeptide analysis by LC-MSMS
+PXD032219,glycopeptide_only,2022,Orbitrap Fusion Lumos,Richard D. Cummings,95,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics Landscape of Asymptomatic and Symptomatic Human Alzheimer's Disease Brain
+PXD032275,glycopeptide_only,2022,Q Exactive,Zhixin Tian,12,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,monoclonal antibody NIST8671 LC-MS/MS
+PXD032328,mixed,2022,Orbitrap Fusion Lumos; Orbitrap Fusion,Adnan Halim,57,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,TMEM260  is a protein-specific O-mannosyltransferase
+PXD033226,glycopeptide_only,2022,Orbitrap Fusion Lumos; Q Exactive,Lingjun Li,93,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Enrichment and Fragmentation Approaches for Enhanced Detection and Characterization of Endogenous Glycosylated Neuropeptides
+PXD033342,glycopeptide_only,2022,Q Exactive HF,Sai Li,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,N-linked glycan analysis of native SARS-CoV-2 Delta variant Spike
+PXD033357,glycopeptide_only,2022,Orbitrap Eclipse,Dr. Parastoo Azadi,6,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Murine IgG (polyclonal) from Listeria Challenged pregnant dams
+PXD033441,unclear,2022,Q Exactive Plus,Yeon-Gu Kim,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Development of an in vitro screening system for synthetic signal peptide in mammalian cell-based protein production.
+PXD033766,released_only,2022,Q Exactive HF-X,John R. Yates III,48,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Human Immunoglobulin Repertoire-Guided Immunogen Design Targeting HIV V2-Apex Broadly Neutralizing Antibody Precursors
+PXD033871,unclear,2022,Q Exactive HF,Aleksandra Filipovska,30,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,A cooperative organelle biogenesis program in mammalian cells
+PXD033978,mixed,2022,Q Exactive Plus; Orbitrap Exploris 480,Albert Heck,52,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Charting the proteoform landscape of serum proteins in individual donors by high-resolution native mass spectrometry
+PXD034086,glycopeptide_only,2022,Orbitrap Fusion Lumos,Shisheng Sun,18,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Structural- and Site-specific N-glycosylation Characterization of COVID-19 Virus Spike with StrucGP
+PXD034130,glycopeptide_only,2022,Orbitrap Fusion Lumos,Weston Struwe,6,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,An N-glycan on the C2 domain of Jagged-1 is essential for Notch activation
+PXD034133,glycopeptide_only,2022,Orbitrap Fusion Lumos,Weston Struwe,6,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,An N-glycan on the C2 domain of Jagged-1 is essential for Notch activation
+PXD034354,glycopeptide_only,2022,Orbitrap Fusion Lumos,Lingjun Li,180,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,Higher Temperature Porous Graphitic Carbon Separations Differentially Impact Distinct Glycopeptide Classes
+PXD034364,glycopeptide_only,2022,Orbitrap Exploris 480,Akhilesh Pandey,48,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycoproteomics and proteomics in NGLY1 deficient patient-derived dermal fibroblasts
+PXD034602,glycopeptide_only,2022,Orbitrap Fusion Lumos,Paul J. Hensbergen,2,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,PTX3 structure determination using a hybrid cryo-electron microscopy and AlphaFold approach offers insights into ligand binding and complement activation
+PXD034845,glycopeptide_only,2022,timsTOF Pro 2,Albert J.R. Heck,83,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Oxonium Ion-Guided Ion Mobility-Assisted Glycoproteomics on the timsTOF Pro
+PXD035030,mixed,2022,Orbitrap Eclipse,Stacy A Malaker,35,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Comprehensive analysis of platelet glycoprotein Ibα glycosylation.
+PXD035301,glycopeptide_only,2022,timsTOF Pro 2,Minyong Chen,16,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Comparative analyses of the N-glycoproteomes in HCT116 cancer cells and their non-tumorigenic DNMT1/3b double knockout (DKO1) cells and insight into the Mannose-6-phosphate pathway
+PXD035664,mixed,2023,Orbitrap Fusion,Carolyn R. Bertozzi,4,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Mutational screens highlight glycosylation as a modulator of colony-stimulating factor 3 receptor (CSF3R) activity
+PXD035757,glycopeptide_only,2022,Orbitrap Fusion Lumos,Yong Zhang,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Site-specific N-glycosylation Characterization of Micro Disease-related Proteins Based on EThcD-sceHCD-MS/MS
+PXD035846,mixed,2022,Orbitrap Fusion Lumos,Sergey Vakhrushev,32,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Role of N-glycosylation in FcRIIIa interaction with IgG
+PXD035902,glycopeptide_only,2022,Orbitrap Fusion; Q Exactive HF; LTQ Orbitrap Elite,Linda Hsieh-Wilson,46,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Functional analysis of O-GlcNAcylation by networking of OGT interactors and substrates
+PXD036095,glycopeptide_only,2022,Q Exactive,Zhixin Tian,3,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Putative N-glycoprotein markers of MCF-7/ADR cancer stem cells from N-glycoproteomics characterization of the whole cell lysate
+PXD036097,unclear,2022,TripleTOF 5600,John M Atack,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"SWATH-MS demonstrates changes to protein expression due to a phase variable methyltransferase, ModA16, in Haemophilus influenzae biotype aegyptius"
+PXD036190,glycopeptide_only,2022,Orbitrap Fusion Lumos,Xing Chen,33,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"HeLa, HEK293T and mouse lung, heart and spleen LC-MS/MS"
+PXD036263,glycopeptide_only,2022,Orbitrap Fusion,Patrik Ellström,129,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"Expression of glycan receptors for influenza A viruses in mallards, chickens, and tufted ducks"
+PXD036273,unclear,2022,TripleTOF 5600,John Atack,18,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,SWATH-MS proteome of Actinobacillus pleuropneumoniae showing differential protein expression due to the ModP and ModQ phasevarions
+PXD036289,glycopeptide_only,2022,Orbitrap Fusion Lumos,Weston Struwe,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Revealing the effect of SARS-CoV-2 spike stabilisation on receptor binding dynamics with single molecule mass photometry
+PXD036339,glycopeptide_only,2022,Orbitrap Fusion Lumos,Xing Chen,6,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"HeLa, HEK293T and mouse lung, heart and spleen LC-MS/MS"
+PXD036468,mixed,2022,Q Exactive HF,Hui Zhang,449,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Differentially Expressed Glycoproteins in Pre- and Post-Digital Rectal Examination Urine Samples for Detecting Aggressive Prostate Cancer
+PXD036594,released_only,2022,timsTOF Pro,Gunnar Dittmar,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,prm-PASEF and g-dia-PASEF analysis of plasma samples from colorectal cancer and control patients
+PXD036667,glycopeptide_only,2022,Orbitrap Eclipse,Kevin B Chandler,58,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,AGP nLC-MS/MS and nLC-FAIMS-MS/MS
+PXD036704,released_only,2022,LTQ Orbitrap Velos; TSQ Vantage,Yehia Mechref,160,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,LC-MS/MS Isomeric Profiling of N-Glycans derived from Low-Abundant Serum Glycoproteins in Mild Cognitive Im-pairment Patients
+PXD036791,mixed,2022,Orbitrap Fusion Lumos; Orbitrap Fusion,Hans H. Wandall,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Global mapping of GalNAc-T isoform-specificities and O-glycosylation site-occupancy in a tissue-forming human cell line
+PXD037134,glycopeptide_only,2023,Q Exactive HF,Adriana Franco Paes Leme,55,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Comprehensive glycoprofiling of oral tumours associates N-glycosylation with lymph node metastasis and patient survival
+PXD037140,mixed,2022,Orbitrap Fusion,Min Hu,4,1,1,0,0,0,0,0,1,0,1,1,0,0,1,0,H11-induced immune protection is predominantly linked to N-glycan moieties
+PXD037158,glycopeptide_only,2022,Q Exactive HF,Robert S. Haltiwanger,51,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,O-fucosylation of Thrombospondin Type I Repeats on Thrombospondin 1 is dispensable for trafficking to Platelets
+PXD037415,glycopeptide_only,2023,Orbitrap Fusion Lumos,Richard D. Cummings,54,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Large-scale and Site-specific Mapping of Intact O-glycans on Glycopeptides with IMPa
+PXD037584,unclear,2022,LTQ Orbitrap Velos,Taroh Kinoshita,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,GPI-glycan structures of human Prion (M232R) from knock-in mice_LC-MSMS
+PXD038280,mixed,2022,LTQ Orbitrap,Franz H. Grus,28,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Lectin-based affinity enrichment and characterization of N-glycoproteins from the human tear film by mass spectrometry
+PXD038501,released_only,2022,Orbitrap Fusion Lumos,lingjun Li,16,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,High-throughput Quantitative Glycomics Enabled by 12-plex Isobaric Multiplex Labeling Reagents for Carbonyl-Containing Compound (SUGAR) Tags
+PXD038576,unclear,2022,Q Exactive,Joseph Zaia,107,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Integrative glycomic and proteomic analysis of mouse striatum and lateral hypothalamus following cocaine and methamphetamine treatment
+PXD038673,glycopeptide_only,2022,Orbitrap Fusion Lumos; Orbitrap Exploris 480,Kathirvel Alagesan,134,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,IMPROVED N- AND O-GLYCOPEPTIDE IDENTIFICATION USING HIGH-FIELD ASYMMETRIC WAVEFORM ION MOBILITY SPECTROMETRY (FAIMS)
+PXD038783,mixed,2022,Orbitrap Fusion Lumos; Orbitrap Fusion,Sergey Vakhrushev,20,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A Universal GlycoDesign for Lysosomal Replacement Enzymes to Improve Circulation Time and Biodistribution
+PXD038787,glycopeptide_only,2022,timsTOF Pro,Melissa Baerenfaenger,50,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,CSF glycoproteomics reveals brain-specific changes in glyco-sylation in congenital disorders of glycosylation
+PXD038810,unclear,2022,LTQ Orbitrap Velos,Dr. Ailin Lepletier,36,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,Integrative proteomics and transcriptomics of human T-cells reveals temporal changes in metabolic pathways following TCR-mediated activation
+PXD038932,glycopeptide_only,2022,Orbitrap Exploris 240,"Yoondam, Seo",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Development and validation of a method for analyzing the sialylated glycopeptides of recombinant erythropoietin in urine using LC-HRMS
+PXD039002,mixed,2022,Q Exactive,Jeremy M. Foster,18,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"N-glycosite mapping in Brugia malayi female worms, male worms, and microfilariae"
+PXD039144,glycopeptide_only,2023,Orbitrap Fusion Lumos,xing chen,6,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"HeLa, HEK293T and mouse lung, heart and spleen LC-MS/MS"
+PXD039247,glycopeptide_only,2023,Orbitrap Eclipse,Lance Wells,22,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,A hinge glycan regulates spike bending and impacts coronavirus infectivity
+PXD039319,unclear,2023,Orbitrap Fusion,Julia E. Neumann,104,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Multiomic profiling of medulloblastoma reveals subtype-specific targetable alterations at the proteome and N-glycan level
+PXD039334,unclear,2023,Orbitrap Fusion Lumos,Henrik Clausen,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Identification of global inhibitors of cellular glycosylation
+PXD039387,glycopeptide_only,2023,Orbitrap Fusion,Morten Thaysen-Andersen,15,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Spatiotemporal glycoproteome remodelling in neutrophils
+PXD039834,glycopeptide_only,2023,Q Exactive,Motoko Takahashi,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site-specific glycan analysis of epidermal growth factor receptor 2
+PXD039835,glycopeptide_only,2023,Q Exactive,Motoko Takahashi,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site-specific glycan analysis of CHO cell expressed epidermal growth factor receptor 2
+PXD039836,glycopeptide_only,2023,Q Exactive,Motoko Takahashi,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site-specific glycan analysis of epidermal growth factor receptor (EGFR)
+PXD039838,glycopeptide_only,2023,Q Exactive,Motoko Takahashi,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Site-specific glycan analysis of ErbB2 in breast cancer cell BT474
+PXD040716,glycopeptide_only,2023,timsTOF Pro 2,Hans J.C.T. Wessels,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,The GlycoPaSER prototype as a real-time N-glycopeptide identification tool based on the PaSER parallel computing platform
+PXD040718,glycopeptide_only,2023,timsTOF Pro 2,Hans Wessels,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,N-linked glycosylation of the M-protein variable region: Glycoproteogenomics reveals a new layer of personalized complexity in multiple myeloma.
+PXD040720,glycopeptide_only,2023,Orbitrap Fusion,Dr. Eliel Ruiz May,80,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Testing TMT-SPS-MS3 and label free approach in recalcitrant Mago (Mangifera indica L.) peel tissues
+PXD040769,glycopeptide_only,2023,Orbitrap Fusion Lumos,Henning Urlaub,36,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Functional genomics identifies extension of complex N-glycans as a mechanism to evade lysis by natural killer cells
+PXD040883,released_only,2023,autoflex,Liming Cheng,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,Profiling of Serum N-glycosylation in Non-small-cell Lung Cancer
+PXD040959,released_only,2023,autoflex,Xin Liu,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,Profiling of serum N-glycome in ovarian cancer by MALDI-MS
+PXD041124,glycopeptide_only,2023,Q Exactive HF-X,Juraj Lenco,118,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,"Easy, robust, and reproducible online acid cleavage of proteins in mobile phase for fast quantitative LC-MS bottom-up proteomics – application for ricin detection"
+PXD041204,released_only,2023,Q Exactive,Patrick R. Griffin,237,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Hydrogen deuterium exchange epitope mapping of glycosylated epitopes enabled by online immobilized glycosidase
+PXD041208,glycopeptide_only,2023,Orbitrap Fusion; Orbitrap Exploris 480,Joost Snijder,12,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycosylation profiling of 87G7
+PXD041217,glycopeptide_only,2023,Orbitrap Eclipse,Stacy Alyse Malaker,60,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,False positive glycopeptide identification through in-FAIMS glycan fragmentation.
+PXD041320,glycopeptide_only,2023,Orbitrap Exploris 480,Richard Strasser,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,In planta deglycosylation improves the SARS-CoV-2 neutralization activity of recombinant ACE2-Fc
+PXD041522,released_only,2023,Q Exactive HF-X,Agnes Hovasse,9,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Dynamic N-glycan rearrangement nucleates galectin-3 oligomers and drives endocytosis
+PXD041631,glycopeptide_only,2023,Orbitrap Fusion Lumos,Robert G. Mealer,10,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Mucin-type O-glycans enrich in white matter tracts
+PXD041642,glycopeptide_only,2023,Orbitrap Exploris 480,Chun-Peng Song,3,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,LC-MS/MS analysis of maize seedling leaf bases
+PXD042062,glycopeptide_only,2023,Orbitrap Fusion Lumos,Stephen E.,128,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Variation of Site-Specific Glycosylation Profiles of Recombinant Influenza Glycoproteins
+PXD042172,mixed,2023,Orbitrap Fusion Lumos,Hans Wandall,23,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Cell surface-specific N-glycoproteomics
+PXD042266,mixed,2023,Orbitrap Fusion,Joost Snijder,16,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Direct mass spectrometry-based detection and antibody sequencing of Monoclonal Gammopathy of Undetermined Significance from patient serum
+PXD042269,unclear,2023,Orbitrap Fusion,Giuseppe Danilo Norata,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Impact of asialoglycoprotein receptor and mannose receptor deficiency on murine plasma N-glycome profiles
+PXD042325,unclear,2023,Orbitrap Exploris 480,Łukasz Opaliński,9,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycosylation acts as a switch for FGFR1 trafficking between the plasma membrane and the nuclear envelope
+PXD042446,glycopeptide_only,2023,Orbitrap Eclipse; Orbitrap Exploris 480,"Akhilesh Pandey, M.D., Ph.D.",89,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A complement C4-derived glycopeptide as a novel biomarker for PMM2-CDG
+PXD042535,glycopeptide_only,2023,Q Exactive,Prof. Dr. Thorsten Buch,5,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Comparing different pregnant mare serum gonadotropin products: surprising differences in protein content and a new sialic acid O-acetylation
+PXD042685,mixed,2023,Orbitrap Fusion Lumos,Richard D Cummings,2,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,PSGL-1 N-terminal O-glycosylation
+PXD042701,mixed,2023,Orbitrap Exploris 480,Akhilesh Pandey,75,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,A Combinatorial Enzymatic Approach for Identifying O-glycopeptides
+PXD043185,unclear,2023,Orbitrap Fusion Lumos,Zheng Li,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Human Submandibular Gland cells,secretory proteins,LC-MS/MS"
+PXD043623,glycopeptide_only,2023,Orbitrap Exploris 480,Richard Strasser,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,An oligosaccharyltransferase from Leishmania donovani increases the N-glycan occupancy on plant-produced IgG1
+PXD043966,glycopeptide_only,2023,Orbitrap Eclipse,Kevin Brown Chandler,48,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Site-specific N-glycosylation analysis of recombinant FCγ receptor from human and mice.
+PXD043988,unclear,2023,Q Exactive Plus,Vincent Mocquet,6,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,"HTLV-1 Rex hijacks UPF1 in a CRM1 dependent manner, leading to NMD inhibition and revealing proviral roles of UPF1."
+PXD044353,glycopeptide_only,2023,Orbitrap Fusion Lumos; Orbitrap Fusion,Karli Reiding,18,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Genotype-dependent N-glycosylation and newly discovered O-glycosylation affecting HRG plasmin cleavage
+PXD044462,glycopeptide_only,2023,Orbitrap Exploris 480,Richard Strasser,10,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Impact of mutations on the plant-based production of recombinant SARS-CoV-2 RBD
+PXD044641,glycopeptide_only,2023,Orbitrap Fusion Lumos,Ganglong Yang,8,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"Site- and structure-specific glycosylation signatures of bovine, caprine, porcine and human milk-derived extracellular vesicles"
+PXD044781,glycopeptide_only,2023,Q Exactive HF,"Dr Juraj Lenco, Ph.D.",114,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Effect of lower formic acid concentration in the mobile phase in LC-MS proteomic experiments
+PXD045001,glycopeptide_only,2023,Q Exactive HF,Lian Li,16,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Proteome-wide discovery of human brain protein glycoforms and glycan modification changes in Alzheimer’s disease
+PXD045488,mixed,2023,Q Exactive HF,John Dalton,10,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycosylation of somatic extracts and secretome in the infective stage of the helminth Fasciola hepatica
+PXD045506,glycopeptide_only,2023,LTQ Orbitrap,Min-Chuan Huang,3,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Branched N-glycan of PD-L1 predicts immunotherapy responses in patients with recurrent/metastatic HNSCC
+PXD045512,unclear,2023,Q Exactive,Iain Benedict WILSON,2,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Recognition of highly branched N-glycans of the porcine whipworm by the immune system
+PXD045597,glycopeptide_only,2023,Orbitrap Fusion Lumos; Orbitrap Fusion,Adnan Halim,108,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Global view of domain-specific O-linked mannose glycosylation in glycoengineered cells
+PXD045860,released_only,2023,Q Exactive Plus,Fabrice BRay,12,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,O-GlcNAcylation controls pro-fibrotic transcriptional regulatory signaling in hepatic stellate cells
+PXD046012,released_only,2023,Q Exactive HF,Nicki Packer,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SSSMuG: Same Sample Sequential Multi-Glycomics
+PXD046405,mixed,2023,Orbitrap Fusion Lumos,Morten Thaysen-Andersen,60,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Position-specific N- and O-glycosylation of the reactive centre loop impacts neutrophil elastase-mediated proteolysis of corticosteroid-binding globulin
+PXD046494,glycopeptide_only,2023,Orbitrap Fusion,Göran Larson,8,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,"N-glycoproteomic analyses of human intestinal enteroids, varying in histo-blood group geno- and phenotypes, reveal a wide repertoire of fucosylated glycoproteins"
+PXD046510,mixed,2023,Orbitrap Eclipse,Mohamed Abdel-Mohsen,4,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,Plasma Glycomic Markers of Accelerated Biological Aging During Chronic HIV Infection
+PXD046796,unclear,2023,Q Exactive HF-X,Christina Ludwig,34,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Probing Blood Plasma Protein Glycosylation with Infrared Spectroscopy
+PXD046810,glycopeptide_only,2023,Orbitrap Exploris 480,Claes Wickstrom,4,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Characterization of MdpS: An In-depth Analysis of a MUC5B-Degrading Protease from Streptococcus oralis
+PXD047065,glycopeptide_only,2023,autoflex,Chuan-Chih Hsu,43,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,TIHAMAC: Streamlined Tandem IMAC-HILIC Workflow for Simultaneous and High-Throughput Plant Phosphoproteomics and N-glycoproteomics Analysis
+PXD047309,glycopeptide_only,2023,Q Exactive,Motoko Takahashi,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,N-glycoproteomics of CHO cell-expressed FGFR3
+PXD047679,glycopeptide_only,2023,Orbitrap Fusion; Orbitrap Exploris 480,Prof. Albert,35,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Higher-order structure and proteoforms of co-occurring C4b-binding protein assemblies in human serum
+PXD047863,mixed,2023,Orbitrap Eclipse; Orbitrap Exploris 480,Akhilesh Pandey,58,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Defining albumin as a glycoprotein with multiple N-linked glycosylation sites
+PXD047910,unclear,2023,Orbitrap Fusion Lumos,Catherine E. Costello,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,LC-MS/MS data for HCA mRNA antibodies
+PXD048024,glycopeptide_only,2023,Orbitrap Fusion,Adnan Halim,6,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Molecular-Level Architecture of Chlamydomonas reinhardtii’s Glycoprotein-Rich Cell Wall
+PXD048132,mixed,2023,Orbitrap Fusion Lumos; Q Exactive,Jiayang Li,44,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycoproteome profiling of rice
+PXD048188,glycopeptide_only,2024,Orbitrap Fusion Lumos,Xiangfeng Meng,6,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Human cholangiocarcinoma LC-MS/MS
+PXD048751,glycopeptide_only,2024,Orbitrap Fusion Lumos,Shisheng Sun,21,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,N-glycoproteimics of human serum proteins
+PXD048767,unclear,2024,Orbitrap Fusion; Q Exactive,Julia Neumann,129,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,Multiomic profiling of medulloblastoma reveals subtype-specific targetable alterations at the proteome and N-glycan level - Technical and Biological Validation
+PXD048964,glycopeptide_only,2024,Orbitrap Fusion Lumos,Pengfei Li,12,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site-specific N-glycoproteomic analysis of four M2 macrophage subtypes derived from human THP-1 cells
+PXD049091,glycopeptide_only,2024,Orbitrap Exploris 480,Xu Zhang,12,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Glycomics of Caco-2 cell differentiation
+PXD049172,glycopeptide_only,2024,Orbitrap Exploris 480,Johannes Stadlmann,22,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,Glycoproteomic and single-protein glycomic analyses reveal zwitterionic N-glycans on natural and recombinant proteins derived from insect cells
+PXD049429,glycopeptide_only,2024,Orbitrap Eclipse,Kevin Brown Chandler,32,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Site-Specific Glycosylation Analysis of Murine and Human Fcɣ Receptors IIA and IIB.
+PXD050012,unclear,2024,LTQ Orbitrap Velos,Rubén López-Cortés,7,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,High-throughput mass spectrometry analysis of N-glycans and protein markers after FUT8 knockdown in the syngeneic SW480/SW620 colorectal cancer cell model 
+PXD050139,glycopeptide_only,2024,Orbitrap Exploris 480,Richard Strasser,4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Implications of O-glycan modifications in the hinge region of a plant-produced SARS-CoV-2-IgA antibody on functionality
+PXD050173,glycopeptide_only,2024,ZenoTOF 7600,Benjamin L Schulz,50,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Electron-Activated Dissociation and Collision-Induced Dissociation Glycopeptide Fragmentation for Improved Glycoproteomics
+PXD050331,glycopeptide_only,2024,Orbitrap Fusion Lumos,Albert J. R. Heck,117,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,"Bovine colostrum, transitional and mature milk alpha-lactalbumin N-glycosylation"
+PXD050366,glycopeptide_only,2024,Orbitrap Fusion,Joost Snijder,4,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomics of recombinant Measles Virus F from Drosophila S2 cells
+PXD050530,released_only,2024,timsTOF Pro; Orbitrap Exploris 480,"Kevin Pagel (Glycomics), Philipp Mertins (Proteomics)",15,1,0,0,0,0,0,0,0,1,0,1,1,0,0,0,Ion Mobility-Tandem Mass Spectrometry of Mucin-type O-Glycans
+PXD051107,released_only,2024,Orbitrap Fusion; Q Exactive,Eric C Martens,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Ruminococcus torques is a keystone degrader of intestinal mucin glycoprotein, releasing oligosaccharides used by Bacteroides thetaiotaomicron"
+PXD051441,mixed,2024,Q Exactive HF,Dr. Iain Wilson,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomic and single-protein glycomic analyses reveal zwitterionic N-glycans on natural and recombinant proteins derived from insect cells
+PXD051492,glycopeptide_only,2024,Orbitrap Fusion,Joost Snijder,47,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycosylation profiling of Influenza A Virus H3 HA
+PXD051557,unclear,2024,Q Exactive,Mao Yang,12,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Proximity Labeling and Genetic Screening Reveals the Role of DSG2/Siglec-9 Axis in Suppressing Macrophage Phagocytosis
+PXD051592,glycopeptide_only,2024,Orbitrap Fusion Lumos,Morihisa Fujita,3,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,MYO18B promotes lysosomal exocytosis by facilitating focal adhesion maturation
+PXD051647,glycopeptide_only,2024,Orbitrap Fusion Lumos,Akhilesh Pandey,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Deciphering the Neurological Puzzle in ALG13-CDG Through Cutting-Edge Brain Organoid Modeling
+PXD051707,glycopeptide_only,2024,ultraflex; Synapt MS,Tongzhong Ju,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,Dual functional POGases Encompassing O-glycanase and Adhesin Activities
+PXD051738,released_only,2024,Orbitrap Fusion Lumos,Noortje de Haan,3,1,0,1,0,0,0,0,0,0,1,1,1,0,0,0,Binding of Akkermansia muciniphila to mucin is O-glycan specific
+PXD051771,mixed,2024,Orbitrap Fusion,Chun-Hung Lin,5,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,N-Glycosylation-Defective IL6 Alternatively Activates the SRC-YAP-SOX2 Axis to Drive Metastasis and EGFR TKI Resistance
+PXD051882,glycopeptide_only,2024,Q Exactive HF,Morten Thaysen-Andersen,32,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics and Proteomics analysis of Colorectal Cancer tissues
+PXD051907,glycopeptide_only,2024,Q Exactive HF,Morten Thaysen-Andersen,32,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics and proteomics analysis of PBMCs from Colorectal Cancer patients
+PXD051909,glycopeptide_only,2024,Q Exactive HF,Morten Thaysen-Andersen,13,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics and proteomics analysis of LIM2405 Cell Line
+PXD052172,mixed,2024,Orbitrap Eclipse,Tongzhong Ju,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,A chemoenzymatic method for simultaneous profiling N- and O-glycans on glycoproteins using one-pot format
+PXD052401,glycopeptide_only,2024,Q Exactive,Michael Hippler,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,The red alga Porphyridium as a host for molecular farming: Efficient production of immunologically active hepatitis C virus glycoprotein
+PXD052706,released_only,2024,Orbitrap Fusion Lumos,Guido Bommer,33,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Absence of the dolichol synthesis gene DHRSX leads to N-glycosylation defects in Lec5 and Lec9 Chinese hamster ovary cells
+PXD052748,mixed,2024,Orbitrap Eclipse,Catherine CL Wong,12,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycosylation landscape of CAR-T in AAVS1 and SPPL3 knockout
+PXD053107,mixed,2024,Orbitrap Fusion Lumos,Helena Safavi-Hemami,2,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,Disruption of Glucose Homeostasis in Prey: Combinatorial Use of Weaponized Mimetics of Somatostatin and Insulin by a Fish-Hunting Cone Snail
+PXD053293,glycopeptide_only,2024,Orbitrap Fusion Lumos,Shisheng Sun,9,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,"The analysis of site-specific O-acetylated N-glycans in human, rat, and mouse sera."
+PXD053534,glycopeptide_only,2024,Orbitrap Eclipse,Akhilesh Pandey,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Extensive hypoglycosylation of serum N-glycoproteins in SRD5A3 deficiency
+PXD053696,unclear,2024,Orbitrap Fusion,Prof. Dr. Hartmut Schlueter,12,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Hypoxia-induced adaptations of N-glycomes and proteomes in breast cancer cells and their secreted extracellular vesicles
+PXD053713,mixed,2024,Orbitrap Eclipse,Stacy A.,32,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Quantification and site-specific analysis of co-occupied N- and O-glycopeptides
+PXD054149,unclear,2024,Orbitrap Fusion Lumos,Jijie Chai,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycosylation facilitates the activation of a plant cell-surface receptor
+PXD054177,unclear,2024,Orbitrap Fusion Lumos,Jijie Chai,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycosylation facilitates the activation of a plant cell-surface receptor
+PXD054500,unclear,2024,Orbitrap Fusion Lumos,Jyoti Choudhary,168,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Comprehensive proteomic profiling of the differences between Cancer Associated Fibroblasts and KRAS mutated cancer cell lines
+PXD054718,glycopeptide_only,2024,Q Exactive HF,Jagroop Pandhal,12,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoprofile Comparison of SARS-CoV-2 Spike Proteins Expressed in CHO and HEK Cell Lines
+PXD054727,glycopeptide_only,2024,Q Exactive HF,José Alexandre Ferreira,10,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,E-selectin Affinity Glycoproteomics Reveals Neuroendocrine Proteins  and the Secretin Receptor as a Poor Prognosis Signature in Colorectal  Cancer
+PXD054828,mixed,2024,Orbitrap Fusion Lumos; Q Exactive,Xilong Li,24,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,N-Glycosylation profiling in rice
+PXD055045,unclear,2024,maXis,Qin Cao,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoprotein 2(GP2) glycosylation
+PXD055049,glycopeptide_only,2024,Orbitrap Eclipse,Stacy A. Malaker,28,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteoforms of osteoarthritis-associated lubricin in plasma and synovial fluid
+PXD055054,glycopeptide_only,2024,Orbitrap Eclipse,Nicholas M. Riley,25,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Autonomous Dissociation-type Selection for Glycoproteomics using a Real-Time Library Search
+PXD055157,unclear,2024,Q Exactive Plus,Yong Wan,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,MGAT1-Mediated Glycosylation Orchestrates Immune Checkpoints and Antitumor Immunity
+PXD055856,mixed,2024,Orbitrap Eclipse,Stacy Malaker,13,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,PNGaseF-generated N-glycans adduct onto peptides in the gas phase
+PXD055935,glycopeptide_only,2024,Q Exactive HF,He Huang,90,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,N-Glycoproteomic analysis reveals novel mechanism and clinical relevance in Colorectal Cancer
+PXD055957,glycopeptide_only,2024,Q Exactive HF,He Huang,90,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,N-Glycoproteomic analysis reveals novel mechanism and clinical relevance in Colorectal Cancer
+PXD056001,mixed,2024,Orbitrap Fusion Lumos,Xilong Li,3,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,N-glycoproteome profiling of rice
+PXD056562,mixed,2024,Orbitrap Fusion Lumos,Nicolle H Packer,38,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Recombinant CD52 Glycopeptide data
+PXD056661,glycopeptide_only,2024,Orbitrap Fusion Lumos,Albert J.R. Heck,36,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Spatial organization of the sperm cell glycoproteome
+PXD056942,unclear,2024,Orbitrap Fusion Lumos,Thaher Pelaseyed,29,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,BPP43_05035 is a Brachyspira pilosicoli cell surface adhesin that weakens the integrity of the epithelial barrier during infection
+PXD056996,glycopeptide_only,2024,Orbitrap Fusion,Rebeca Kawahara,116,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Proteomics of Extracellular Vesicles and tissue samples from High-Grade Serous Ovarian Carcinoma
+PXD057019,glycopeptide_only,2024,impact HD,David Falck,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Glycosylation signature of plasma IgA of critically ill COVID-19 patients
+PXD057036,unclear,2024,Orbitrap Fusion Lumos,Xu Li,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Gamma secretase complex and DOCK2 affinity interactome.
+PXD057634,unclear,2024,Q Exactive HF,Morten Thaysen-Andersen,34,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,"ST6GAL1-driven sialyl-linkage switching in polarizing macrophages promotes formation of α2,6-sialylated nanotubes in anti-inflammatory cells"
+PXD057756,glycopeptide_only,2024,Orbitrap Fusion,Akhilesh Pandey,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Mitochondrial dysfunction is a driver of cardiac complications in PGM1-CDG with implications for therapy
+PXD058040,glycopeptide_only,2024,Orbitrap Fusion,Katrine Schjoldager,4,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Map of the Neuronal Tissue O-glycoproteome Reveal Specific Traits in the Secretogranin Family
+PXD058153,glycopeptide_only,2024,Orbitrap Eclipse; Orbitrap Ascend,Nicholas M. Riley,86,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Improvements in glycoproteomics through architecture changes to the Orbitrap Tribrid MS platform
+PXD058644,glycopeptide_only,2024,Q Exactive HF,Weston Struwe,6,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Structural and Functional Glycosylation of the Abdala COVID-19 Vaccine
+PXD058813,unclear,2024,timsTOF Pro 2,Allan Stensballe,691,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Data in support of the hPOP Human Proteomics project
+PXD058963,mixed,2024,Orbitrap Eclipse; Q Exactive HF-X,Morten Thaysen-Andersen,17,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,RCL glycosylation of serum corticosteroid-binding globulin: implications in cortisol delivery and septic shock
+PXD059114,unclear,2024,timsTOF Pro,Robert L.,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Proteomic analysis of hPOP stool samples
+PXD059437,unclear,2025,LTQ,Rong Deng,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"LC-MS/MS to identify WT, 8NQ, N91/104/309/322Q and N91/104/309/322 B7H3 interaction"
+PXD059683,glycopeptide_only,2025,Q Exactive HF,Prof. Dr. Albert Sickmann,60,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,SpLICE: A reference database enabling in depth proteome and PTM analysis of mouse immune cells
+PXD059755,glycopeptide_only,2025,Q Exactive HF,Morten Thaysen-Andersen,10,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics and proteomics analysis of Colorectal Cancer and adjacent normal FFPE tissues
+PXD060053,mixed,2025,Orbitrap Fusion Lumos,Kevin P. Campbell,3,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,N-glycomics and glycoproteomics of LARGE1dTM
+PXD060153,glycopeptide_only,2025,Q Exactive,José Alexandre Ferreira,48,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Aggressive Gastric Cancer Overexpresses Trimmed N-Glycans and Exhibits Distinct Glycoproteome Signatures Predictive of Poor Prognosis
+PXD060683,unclear,2025,TripleTOF 6600,Susana B,24,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,"A comparative proteomic, transcriptomic and glycomic analysis of extracellular vesicle isolation techniques highlights ExoGAG efficiency for a more complete identification of breast milk molecular signaling pathways"
+PXD060785,glycopeptide_only,2025,Orbitrap Ascend; Synapt MS,Kelly Lee,5,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Structural Dynamic Impacts of Mosaic SARS-CoV-2 Spike Heterotrimer
+PXD060969,released_only,2025,5800 TOF/TOF,Chunqun Wang,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,Identification and validation of protective glycoproteins in Haemonchus contortus H11
+PXD061247,glycopeptide_only,2025,timsTOF HT,Chuan-Chih Hsu,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,Integrated Single-Tip IMAC-HILIC Enrichment Enables Simultaneous and Efficient Analysis of Plant Phosphoproteomics and N-glycoproteomics
+PXD061371,glycopeptide_only,2025,Orbitrap Fusion,Lingjun Li,30,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,High-Throughput Simultaneous Quantification of Glycopeptides and Phosphopeptides Enabled by 12-plex DiLeu Isobaric Tags and Dual-Functional Titanium(IV)-IMAC Material
+PXD061804,mixed,2025,Orbitrap Eclipse,Stacy Malaker,41,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,GlycoFASP: A Universal Method to Prepare Complex Mixtures for O-Glycoproteomic Analysis
+PXD062030,mixed,2025,Orbitrap Fusion Lumos; Orbitrap Fusion,Adnan Halim,4,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,KIAA1549-BRAF O-mannosylation in mNSC cells
+PXD062381,mixed,2025,Synapt MS; Q Exactive,Weston Struwe,84,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Nipah G glycosylation site provides stability for receptor engagement
+PXD062559,glycopeptide_only,2025,Orbitrap Fusion Lumos,Peter A. van Veelen,72,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Site-specific profiling of structure and function of IgM B cell receptor glycans
+PXD062603,glycopeptide_only,2025,Orbitrap Exploris 480,Fredrik Leo,14,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,MdpS and MdpS2 structurally and functionally diverge to regulate Streptococcus oralis mucin degradation
+PXD062628,mixed,2025,Orbitrap Fusion,Stacy Malaker,9,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Quantification and site-specific analysis of co-occupied N- and O-glycopeptides
+PXD063489,mixed,2025,Orbitrap Fusion Lumos; Orbitrap Exploris 480,Joost Snijder,61,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Atypical features of cetacean coronavirus spikes highlight structural plasticity of the S glycoprotein
+PXD063671,glycopeptide_only,2025,Q Exactive Plus,José Alexandre Ferreira,24,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycomics and Glycoproteomics Reveal Distinct Oligomannose Carriers Across Bladder Cancer Stages
+PXD063988,glycopeptide_only,2025,ZenoTOF 7600,Albert JR Heck,108,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Deep Coverage and Extended Sequence Reads Obtained with a Single Archaeal Protease Expedite de novo Protein Sequencing by Mass Spectrometry
+PXD064579,glycopeptide_only,2025,Orbitrap Exploris 480,Morten Thaysen-Andersen,6,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics of healthy and Fut8-KO mice platelet lysates
+PXD064837,glycopeptide_only,2025,timsTOF Pro 2,Hans JCT Wessels,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomics analysis of Complement Factor H and its effect on complement regulatory function during Streptococcus pneumoniae-associated hemolytic uremic syndrome
+PXD065024,glycopeptide_only,2025,Q Exactive HF-X; Orbitrap Exploris 240,Morten Thaysen-Andersen,74,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Serum AGP-1-sLex glycoforms report on survivorship of patients with septic shock upon admission to intensive care unit
+PXD065112,released_only,2025,impact II,Beatrice Trastoy,12,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Molecular basis of Fab-dependent IgA antibody recognition by gut-associated metallopeptidases
+PXD065180,released_only,2025,LTQ Orbitrap Velos,Prof. Dr. Thilo Kaehne,19,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,"Raider of the lost N glycans – Localizing rare, easily overlooked IgG N glycans with sulfation or bisecting LacNAc"
+PXD065269,unclear,2025,Q Exactive HF,Shi Yan,3,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,Anisakis E/S products and EVs analysed by LC-MS/MS
+PXD065422,glycopeptide_only,2025,Orbitrap Fusion,Ian Walah,2,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycans on Non-Structural Protein 1 Prevent Premature T-cell Mediated Dengue Virus Clearance
+PXD065786,released_only,2025,Synapt MS,Glenn Masson,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,HDX-MS of Human Histidine Rich Glycoprotein (HRG)
+PXD066382,mixed,2025,Orbitrap Exploris 240,Naoshi Dohmae,26,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Asparagine-linked glycosylation mediates glucose sensing for cell fate decision
+PXD066459,released_only,2025,timsTOF fleX,Peggi Angel,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,Spatial Proteomics of the Normal Breast Collagen Stroma: Links to BI-RADS Categories and Body Mass Index (Pooled Samples)
+PXD066494,glycopeptide_only,2025,Orbitrap Eclipse,Kevin Chandler,48,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Human Bone Morphogenetic Protein Receptor 2 (BMPR2) N-Glycopeptides
+PXD066790,unclear,2025,Q Exactive,Wangsheng Zhu,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Determination of N-glycosylation level of ZmLecRK1-ECD by Mass spectrometry
+PXD066844,mixed,2025,Orbitrap Exploris 480,Richard Strasser,10,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,Mannosidic glycans on misfolded Arabidopsis SUBEX glycopeptides
+PXD067150,glycopeptide_only,2025,Q Exactive HF,xiaoyu hu,2,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Investigation of the aging process of C. elegans using integrated quantitative proteomics and N-glycoproteomics
+PXD067987,glycopeptide_only,2025,Orbitrap Exploris 480,Tiago Oliveira,63,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics of breast cancer cell lines
+PXD068411,unclear,2025,Orbitrap Exploris 480,Nicolle H. Packer,8,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Reduction of charged glycoconjugates in TANGO2 KO mouse brain
+PXD068910,mixed,2025,Orbitrap Fusion,Chunqun Wang,2,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Site- and Structure-Specific Characterization of Glycoproteins of H11: Potent Vaccine Candidates against Parasitic Worm Haemonchus
+PXD069554,glycopeptide_only,2025,Q Exactive HF; Q Exactive,Juraj Lenčo,252,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Propionic acid outperforms formic and acetic acid in MS sensitivity for high-flow reversed-phase LC-MS bottom-up proteomics (I)
+PXD069705,glycopeptide_only,2025,ZenoTOF 7600,Edward Kerr,40,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteome of the peritrophic matrix from the larval stage of the Australian sheep blowfly
+PXD070406,unclear,2025,Q Exactive Plus,Andrea Petretto,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,IgM hyposialylation drives podocyte injury in pediatric and young adult patients with podocytopathies
+PXD070547,glycopeptide_only,2025,Q Exactive HF,Zhixin Tian,219,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,A comprehensive landscape of human organ N-glycoproteome
+PXD070746,glycopeptide_only,2025,Orbitrap Exploris 480; Q Exactive HF,Shi Yan,9,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,Theileria parva Muguga (TpM) schizonts LC-MS/MS
+PXD070840,glycopeptide_only,2025,Orbitrap Fusion,Kaspar Locher,8,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,LC-MS/MS of glycopeptides with oligo-mannose glycans
+PXD071027,glycopeptide_only,2025,LTQ Orbitrap,Xinyan Wu,23,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"N-glycosylation of AXL receptor tyrosine kinase regulates its stability, phosphorylation and oncogenic function"
+PXD071440,glycopeptide_only,2025,Orbitrap Ascend,Hongyi Liu,72,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Dose-Dependent Inhibition of Protein Glycosylation Reveals Crosstalk Between Glycosylation and Phosphorylation in EGF Signaling Pathways
+PXD071664,unclear,2025,Orbitrap Fusion,Daniel Kolarich,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Carbonic Anhydrase 3 Overexpression Modulates Signal-ling Pathways Associated with Cellular Stress Resilience and Proteostasis
+PXD071666,glycopeptide_only,2025,Orbitrap Fusion,Carolyn Bertozzi,270,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Thermal Proteome Prodiling and Glycoproteomics of U937 cells
+PXD071742,glycopeptide_only,2025,Orbitrap Ascend; timsTOF HT,Hui Zhang,49,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Characterizing the Effects of Protein Glycosylation Perturbation on Phosphorylation Signaling
+PXD071770,unclear,2025,Orbitrap Fusion,Daniel Kolarich,20,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Carbonic Anhydrase 3 Overexpression Modulates Signal-ling Pathways Associated with Cellular Stress Resilience and Proteostasis
+PXD071784,glycopeptide_only,2025,Orbitrap Eclipse,Kevin Brown Chandler,84,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Parallel Reaction Monitoring to Assess High-Affinity N-Glycoforms of the Human Fcγ Receptor IIIa (CD16a)
+PXD072144,glycopeptide_only,2025,Orbitrap Fusion Lumos,Kaspar P. Locher,12,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,Functional assays of human ALG9
+PXD072704,glycopeptide_only,2026,Orbitrap Eclipse,Benjamin Schulz,30,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Influenza A virus infection perturbs host cell glycosylation profiles
+PXD073349,glycopeptide_only,2026,Orbitrap Exploris 480,Peter A. van Veelen,17,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Molecular characterization of patient-derived Follicular Lymphoma and Chronic Lymphocytic Leukemia B cell receptor variable domain glycans
+PXD073937,unclear,2026,Orbitrap Fusion,Adnan Halim,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Truncated N-glycans destabilize POMT1 and POMT2 but do not limit cellular O-mannosylation in HEK293 cells
+PXD074569,glycopeptide_only,2026,Synapt MS,Olga Gornik,879,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomic and genetic analysis of N-glycosylation of complement component C3 reveals immune pathway regulation
+PXD074575,glycopeptide_only,2026,timsTOF HT,Alexey Nesvizhskii,6,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Expanding glycopeptide identification with Match-Between-Glycans (MBG) in FragPipe
+PXD074672,glycopeptide_only,2026,Orbitrap Fusion Lumos,Stephen E. Stein,270,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Site-Specific Glycosylation Profiling of Protein Subunit and Inactivated Virus Vaccines
+PXD074760,glycopeptide_only,2026,Orbitrap Exploris 240,Morten Andersen,55,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Mouse tissue glycoproteome atlas
+PXD075438,glycopeptide_only,2026,LTQ Orbitrap,Ramon sun,4,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Glycoproteomics of Human and Mouse Brains in Alzheimer’s Disease
+PXD077477,mixed,2026,LTQ Orbitrap,daebong moon,12,1,1,1,0,1,0,0,0,0,0,0,1,0,0,1,Relative Quantitative Analysis of Site-Specific N-Linked Glycosylation in Hyperglycosylated In-terferon-β via Mass Spectrometry
+PXD077483,mixed,2026,Orbitrap Fusion Lumos,Fikri Avci,2,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,Recombinant Ag85B Glycoproteomics
+PXD078618,glycopeptide_only,2026,Orbitrap Ascend,Manuel Mayr,49,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Hyalectan Remodeling Contributes to Aortic Stenosis: Insights from Glycoproteomics
+PXD078897,mixed,2026,Q Exactive HF-X,Juraj Lenčo,313,1,1,0,0,0,1,0,0,0,1,0,0,0,0,1,A unified HILIC-FLD-MS workflow for simultaneous peptide and released N-glycan mapping of protein biopharmaceuticals
+PXD079900,unclear,2026,Orbitrap Exploris 480,Sebastian Lourido,7,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,Glycan bead precipitation of proteins from Toxoplasma gondii lysate
+PXD080115,unclear,2026,ZenoTOF 7600,Freda Jen,60,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Quantitative SWATH Proteomic Analysis of Campylobacter jejuni and Campylobacter coli Following Exposure to the Antimicrobial Ionophore PBT2
+PXD080194,glycopeptide_only,2026,Orbitrap Fusion Lumos,Maria Blomqvist,91,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,Glycoproteomics identify disease-associated N-glycans and reduced occupancy of glycosylation sites in PMM2-CDG
+PXD080424,glycopeptide_only,2026,Orbitrap Eclipse,Stacy A. Malaker,18,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,"Screening of the transcriptome, mucinome, and O‐/N‐glycans of the intestinal goblet cell model HT29‐MTX during zinc deficiency"
+PXD080682,released_only,2026,Orbitrap Fusion Lumos,Alexander Leitner,12,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Crosslinking mass spectrometry of the α/β subunit interface in urinary and recombinant human chorionic gonadotropin (hCG)
+PXD081064,released_only,2026,Orbitrap Fusion Lumos; Q Exactive,Paolo Nanni,24,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,N-Terminal Protein Sequencing by Nicotinic Acid Derivatization and MS Analysis
+PXD083032,unclear,2026,Q Exactive HF,Ilan Rosenshine,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,surface proteome of WT vs. MGAT1 KO HeLa cells
+PXD084162,glycopeptide_only,2026,Orbitrap Fusion,Martin Fascione,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,Characterisation of prostate cancer sialome re-engineering via CMAH transfection
+PXD086038,released_only,2026,Q Exactive HF,Jean-Philippe Julien,6,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,Identification of N-glycosylation sites on HHV glycoprotein B trimers
+PXD086697,released_only,2026,Q Exactive,Jean-Philippe Julien,6,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,"Identification of N-glycosylation sites on HHV glycoprotein B trimers (HSV-1, EBV, HCMV)"

@@ -56,6 +56,38 @@ profiles and characterized standards."
    MBG design (+11 Da, shared RT and IM) is the nearest precedent; test whether +11 Da decoys
    are trivially rejected by isotope-pattern scoring before adopting it.
 
+## Update 2026-11-14 (evening): PRIDE harvest screened
+
+Source: `data/catalog/harvest/` (PRIDE search, 8 keywords, 474 unique projects), screened by
+`scripts/screen_pride.py` into `data/catalog/pride_screened.csv`, then checked by hand against
+each record's protocols and file list. Counts below are from that check.
+
+* 17 PRIDE projects are in scope (released-glycan LC-MS with raw files listed), spanning
+  2016 to 2026 with 2019 missing. The decade span is met from PRIDE alone, before GlycoPOST and
+  MassIVE are added.
+* Labels in those 17 (plus two with label not yet confirmed): permethylated 4, reduced 4,
+  native 3, 2-AB 3, reduced and permethylated 2, ProA and 2-AB 1, RapiFluor-MS 1,
+  isobaric tag 1.
+* Condition 1 (ground truth), progress: two PRIDE projects run fluorescence and MS on the same
+  LC, PXD077477 (ProA and 2-AB, Orbitrap Fusion, Ex/Em 310/370 nm) and PXD078897 (RapiFluor-MS,
+  HILIC-FLD-MS, Q Exactive HF-X). Together with the Zenodo 2-AB set and the GPST000578
+  standards, that covers 3 labels. Not yet met: whether the fluorescence channel is stored in
+  the deposited raw files has to be checked by opening one file from each.
+
+### New finding that changes scope
+
+Labelled HILIC, the biopharma QC workflow the brief targets, is a small share of public
+repository data (3 of 17 in-scope PRIDE projects: PXD003498 native HILIC, PXD077477,
+PXD078897). Most public released-glycan LC-MS data are research workflows: PGC with reduced
+glycans, or C18 with permethylated glycans. Two options:
+
+1. Keep labelled HILIC as the validation core (where fluorescence ground truth exists) and
+   make the census label-agnostic, so permethylated, reduced and native data count too.
+   The chemistry module already separates label from composition, so this costs little.
+2. Restrict the census to labelled HILIC, accepting a much smaller census.
+
+Option 1 is recommended. It needs your decision before Phase 2 code is written.
+
 ## Things to do outside the code
 
 * Read the FDA September 2025 PDF and confirm the "reproducible and reliable" wording and page.
