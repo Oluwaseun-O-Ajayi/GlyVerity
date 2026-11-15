@@ -52,6 +52,8 @@ def main(argv=None) -> int:
     ap.add_argument("--noise", type=float, default=100.0)
     ap.add_argument("--lag", type=float, default=0.0, help="MS minus FLD time (min)")
     ap.add_argument("--rt-tol", type=float, default=0.2, help="co-elution tolerance (min)")
+    ap.add_argument("--max-shift", type=float, default=6.0,
+                    help="largest retention shift between a label and a side-product form (min)")
     ap.add_argument("--mzml", action="store_true", help="also write the MS1 window as mzML")
     args = ap.parse_args(argv)
 
@@ -93,7 +95,7 @@ def main(argv=None) -> int:
     for e in InSourceFragment(ppm=args.ppm, rt_tol=args.rt_tol).evaluate(cands):
         by_key[e.feature_id].flags.append(f"isf:-{e.detail['loss']} of {e.detail['by']}")
     for test in [g for g in groups if g != args.label]:
-        layer = LabelSideProductSeries(args.label, test)
+        layer = LabelSideProductSeries(args.label, test, max_shift=args.max_shift)
         ev = layer.evaluate([c for c in cands if not c.flags])
         s = layer.summary
         print(f"series {test} vs {args.label}: n={s.n}, ratio {s.ratio_median:.3f}, "

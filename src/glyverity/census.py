@@ -17,7 +17,7 @@ from glyverity import chemistry as ch
 from glyverity.annotate import ISOTOPE_SPACING, enumerate_compositions
 from glyverity.candidates import Candidate, group_isomeric
 from glyverity.features import MSFeature
-from glyverity.layers import exchange_combos
+from glyverity.layers import NEUTRAL_LOSSES, exchange_combos
 
 ADDUCT_FORMS = {  # name: (number of non-proton carriers, carrier)
     "Na": "Na+",
@@ -52,7 +52,7 @@ class Species:
 
 
 def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
-                   rt_tol: float = 0.05) -> tuple[list[MSFeature], int]:
+                   rt_tol: float = 0.3) -> tuple[list[MSFeature], int]:
     """Merge co-eluting 1+ features spaced by 13C/z (z = 2, 3, 4) into one z-charged envelope.
 
     The feature finder sometimes splits one multiply charged envelope into several 1+
@@ -99,7 +99,9 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     as ions of a stronger co-eluting species when its (protonated) neutral mass equals the
     parent's plus any mixture of up to ``max_adducts`` Na+/K+/NH4+ exchanges (sialic acid salts
     allow more exchanges than the charge) plus 0 to 4 13C steps (monoisotopic peak picked one
-    or more isotopes too high). This keeps adduct ions of every charge with their parent.
+    or more isotopes too high), or minus a common in-source neutral loss (with 0 to 2 13C
+    steps). Absorbed members keep the relation as their ion form, so in-source fragments
+    are classified separately from adduct and isotope ions.
     """
     feats = sorted(features, key=lambda f: -f.intensity)
     species: list[Species] = []
@@ -127,6 +129,10 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
         for counts, off in exchange_combos(max_adducts):
             label = "+".join(f"{v}{k}" for k, v in counts.items()) + (f" M+{n}" if n else "")
             relations.append((sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING))
+    for loss, m in NEUTRAL_LOSSES.items():  # in-source fragments, with isotope error 0..2
+        for n in range(3):
+            relations.append((2 + n, f"isf:-{loss}" + (f" M+{n}" if n else ""),
+                              -m + n * ISOTOPE_SPACING))
     relations.sort(key=lambda r: r[0])
     parents = sorted(species, key=lambda s: -s.intensity)
     absorbed: set[int] = set()
@@ -236,6 +242,7 @@ def reclassify_oxonium(assignments: Sequence[Assignment], classes: dict[int, str
 
 CLASSES = ("labelled glycan", "other end group", "side-product series", "in-source fragment",
            "adduct/isotope", "adduct ion of a species", "ambiguous", "unassigned")
+ADDUCT_ION = "adduct ion of a species"  # adduct, salt or isotope-error ion of a stronger species
 
 
 def classify(assignments: Sequence[Assignment], label: str) -> dict[int, str]:
@@ -259,7 +266,12 @@ def classify(assignments: Sequence[Assignment], label: str) -> dict[int, str]:
         else:
             cls = "labelled glycan" if live[0].end_group == label else "other end group"
         for f, form in a.species.members:
-            out[f.feature_id] = cls if form == "H" else "adduct ion of a species"
+            if form == "H":
+                out[f.feature_id] = cls
+            elif form.startswith("isf:"):
+                out[f.feature_id] = "in-source fragment"
+            else:
+                out[f.feature_id] = ADDUCT_ION
     return out
 
 

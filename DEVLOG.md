@@ -154,6 +154,17 @@
   (merge split envelopes); oxonium-ion reclassification; NH3-RA end group; amino-alditol Y1 in
   `ms2_diagnostic.py`.
 
+* Census run 3: 6 split envelopes merged; 630 species. C3H9N-RA SERIES (n=8, ratio 0.421,
+  spread 0.033). Shares: labelled 21.7%, other end group 7.2%, side-product 7.7%, ISF 2.7%,
+  adduct/isotope 0.1%, adduct ion 38.8%, ambiguous 0.2%, unassigned 21.6%.
+* MS2 of the 2880 Da species: 961.02 (3+) shows Y1 223.1278 (amino-alditol, -4.9 ppm, 4.9%)
+  and neither 342.166 nor 265.176; 1441.03 (2+) shows no Y1 of any kind. Controls clean
+  (1000.70: 342 only; 975.04: 265 only). Amino-alditol supported, not proven.
+* Fixes: split-envelope repair window 0.05 -> 0.3 min (real pairs 0.1 to 0.26 min apart);
+  series max shift 2 -> 6 min (NH3-RA elutes about 4.8 min after 2-AB); in-source losses
+  with 0 to 2 isotope errors added to species grouping and classified as in-source
+  fragments (e.g. 1355.5004 2+ = A3S3 - NeuAc, M+1 picked).
+
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then
   classify it (labelled glycan, side product, adduct/isotope, in-source fragment, unexplained).
@@ -323,6 +334,17 @@
   isobar layer; isotope-error relations (+1 to +4) in species grouping; `repair_charges`
   (merge split envelopes); oxonium-ion reclassification; NH3-RA end group; amino-alditol Y1 in
   `ms2_diagnostic.py`.
+
+* Census run 3: 6 split envelopes merged; 630 species. C3H9N-RA SERIES (n=8, ratio 0.421,
+  spread 0.033). Shares: labelled 21.7%, other end group 7.2%, side-product 7.7%, ISF 2.7%,
+  adduct/isotope 0.1%, adduct ion 38.8%, ambiguous 0.2%, unassigned 21.6%.
+* MS2 of the 2880 Da species: 961.02 (3+) shows Y1 223.1278 (amino-alditol, -4.9 ppm, 4.9%)
+  and neither 342.166 nor 265.176; 1441.03 (2+) shows no Y1 of any kind. Controls clean
+  (1000.70: 342 only; 975.04: 265 only). Amino-alditol supported, not proven.
+* Fixes: split-envelope repair window 0.05 -> 0.3 min (real pairs 0.1 to 0.26 min apart);
+  series max shift 2 -> 6 min (NH3-RA elutes about 4.8 min after 2-AB); in-source losses
+  with 0 to 2 isotope errors added to species grouping and classified as in-source
+  fragments (e.g. 1355.5004 2+ = A3S3 - NeuAc, M+1 picked).
 
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then

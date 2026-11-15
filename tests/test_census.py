@@ -142,3 +142,23 @@ def test_oxonium_list_contains_neuac_hex_hexnac():
     ions = dict(oxonium_ions())
     assert ions["Hex1HexNAc1NeuAc1"] == pytest.approx(657.2349, abs=1e-4)
     assert ions["HexNAc1"] == pytest.approx(204.0867, abs=1e-4)
+
+
+def test_isf_with_isotope_error_is_fragment_not_adduct():
+    a3s3 = {"Hex": 6, "HexNAc": 5, "NeuAc": 3}
+    m = ch.glycan_neutral_mass(a3s3, "2-AB")
+    frag = m - ch.RESIDUE_MASS["NeuAc"] + 1.0033548378  # -NeuAc, monoisotopic picked +1
+    feats = [_f(0, m, 3, 36.84, 2.2e6), _f(1, frag, 2, 36.70, 1.4e5)]
+    asg = assign_species(group_species(feats), [a3s3], GROUPS)
+    cls = classify(asg, "2-AB")
+    assert cls[0] == "labelled glycan"
+    assert cls[1] == "in-source fragment"
+
+
+def test_repair_merges_peaks_0p26_min_apart():
+    from glyverity.annotate import ISOTOPE_SPACING
+    from glyverity.census import repair_charges
+    feats = [MSFeature(0, 1194.4162, 1, 23.797, 2.7e5, 1),
+             MSFeature(1, 1194.4162 + ISOTOPE_SPACING / 2, 1, 23.541, 2.9e5, 1)]
+    out, n = repair_charges(feats)
+    assert n == 1 and out[0].charge == 2
