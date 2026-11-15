@@ -473,3 +473,26 @@
 * Open: cutoffs are chosen on the first grouping pass, so the final chance share can exceed
   the target (7.5% vs 5% in run 8). Report the achieved value; iterate if it stays high.
 * Tests: 71 passed.
+
+## 2026-11-15 (late, 7): run 9, chance share under target
+
+* Run 9 (score = max(ppm/10, dRT/0.25)): cutoffs adduct 0.822 (8.2 ppm, 0.206 min), isotope
+  0.869, dimer 0.755, re-read 0.600 (6.0 ppm, 0.150 min), in-source fragment 0 (off).
+  Final: 470 species, 593 absorptions (48.1% of intensity), decoy mean 27.5, estimated
+  chance share 4.6% (target 5%). Shares: labelled 21.7%, other end group 7.2%, side-product
+  7.7%, ISF 3.1% (oxonium and candidate-level ISF only), adduct/isotope 0.2%, adduct ion
+  45.5%, dimer 2.6%, ambiguous 0.2%, unassigned 11.9%.
+* Series verdicts unchanged: C3H9N-RA SERIES (ratio 0.416, spread 0.035, FF 0.19 over 5
+  pairs); NH3-RA not a series on fluorescence (FF 2.57), classed as other end group.
+
+**Next session**
+* In-source fragments are still off: the family pools 10 losses x 3 isotope errors, so
+  decoy matches are dense. Real ones are in the unassigned list (1355.5004 2+ and 904.0043
+  3+ = A3S3 2-AB - NeuAc M+1; dRT 0.095 and 0.047 min). Try sub-families (sialic acid losses
+  vs Hex/HexNAc/dHex/H2O, which also match biosynthetic neighbours) with their own cutoffs.
+* 1524.0330 (1+, 36.742 min) = A3S3 2-AB 2Na M+3 as 2+ (0.6 ppm, dRT 0.048 min) yet still
+  unassigned. Hypothesis: not a lone feature (grouped in pass 1 with a partner), so it is never
+  re-read. Check its species in census_features.tsv.
+* Recurring +217.88 / +212.87 / +202.92 / +195.90 deltas on 2-AB parents: inspect isotope
+  patterns (37Cl, 41K) before naming anything.
+* Then composition decoys and q-values (go/no-go condition 3).
