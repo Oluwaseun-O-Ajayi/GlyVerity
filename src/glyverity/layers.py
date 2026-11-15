@@ -31,17 +31,23 @@ ADDUCT_EXCHANGE = {
 }
 
 
-def relation_offsets(max_adducts: int = 2, max_isotope: int = 5) -> list[tuple[str, float]]:
-    """Mass offsets k*(adduct - H) + n*13C, excluding the zero offset, with readable labels."""
+def relation_offsets(max_adducts: int = 2, max_isotope: int = 5,
+                     min_isotope: int = -1) -> list[tuple[str, float]]:
+    """Mass offsets k*(adduct - H) + n*13C, excluding zero, with readable labels.
+
+    Negative ``n`` covers the case where the weaker candidate is lighter and its own isotope
+    channel (the XIC sums the monoisotopic and M+1 peaks) picks up the stronger candidate.
+    """
     out = []
     for name, d in ADDUCT_EXCHANGE.items():
         for k in range(max_adducts + 1):
-            for n in range(max_isotope + 1):
+            for n in range(min_isotope, max_isotope + 1):
                 if k == 0 and n == 0:
                     continue
                 if k == 0 and name != "Na":
                     continue  # pure isotope offsets listed once
-                label = f"{k}x{name} M+{n}" if k else f"M+{n}"
+                iso = f"M{n:+d}" if n else "M+0"
+                label = f"{k}x{name} {iso}" if k else iso
                 out.append((label, k * d + n * ISOTOPE_SPACING))
     return out
 
@@ -54,10 +60,10 @@ class AdductIsotopeIsobar(EvidenceLayer):
     version = "1"
 
     def __init__(self, ppm: float = 5.0, rt_tol: float = 0.15, max_adducts: int = 2,
-                 max_isotope: int = 5):
+                 max_isotope: int = 5, min_isotope: int = -1):
         self.ppm = ppm
         self.rt_tol = rt_tol
-        self.offsets = relation_offsets(max_adducts, max_isotope)
+        self.offsets = relation_offsets(max_adducts, max_isotope, min_isotope)
 
     def evaluate(self, features: Sequence[Candidate]) -> list[Evidence]:
         live = [c for c in features if c.area > 0 and np.isfinite(c.apex_time)]

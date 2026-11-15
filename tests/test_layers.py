@@ -18,6 +18,7 @@ def _cand(comp, group, rt, area, fld=np.nan):
 def test_relation_offsets_contains_na_m4():
     offs = dict(relation_offsets())
     assert offs["1xNa M+4"] == pytest.approx(25.995, abs=1e-3)
+    assert offs["M-1"] == pytest.approx(-1.00335, abs=1e-4)
 
 
 def test_free_fucosylated_explained_by_na_isotope_of_2ab():
@@ -123,6 +124,14 @@ def test_isotope_shadow_flagged_at_10ppm():
     assert AdductIsotopeIsobar(ppm=5).evaluate([real, shadow]) == []
     ev = AdductIsotopeIsobar(ppm=10).evaluate([real, shadow])
     assert ev[0].detail["relation"] == "M+1"
+
+
+def test_lighter_shadow_flagged():
+    strong = _cand({"Hex": 6, "HexNAc": 6, "dHex": 1, "NeuAc": 1}, "2-AB", 27.8, 5.07e4)
+    weak = _cand({"Hex": 5, "HexNAc": 6, "NeuAc": 1, "NeuGc": 1}, "2-AB", 27.8, 3.0e4)
+    ev = AdductIsotopeIsobar(ppm=10).evaluate([strong, weak])
+    assert ev[0].feature_id == weak.key
+    assert ev[0].detail["relation"] == "M-1"
 
 
 def test_recurring_deltas_finds_repeated_pair():

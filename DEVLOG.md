@@ -92,8 +92,18 @@
   coincidence rather than a label side-product.
 * Summary now split by artifact type; added `recurring_deltas` (report-only).
 
+* Re-run (10 ppm isobar): adduct/isotope 22.0%, side-product series 12.1%, unflagged 65.8%
+  of candidate MS1 area. Series stable (n=20, ratio 0.381, MAD 0.077, shift -0.90 min).
+  Recurring deltas: -1.0204 x4 (lighter weaker candidate's M+1 channel on the stronger one's
+  monoisotopic peak; fixed by allowing n = -1 in isobar offsets); +15.9949 and +31.9898
+  (NeuGc vs NeuAc, Hex vs dHex), -41.9841 (2-AB vs Hex), +25.0316 (-2 Hex + HexNAc + dHex):
+  composition arithmetic between hypotheses, mostly improbable compositions.
+* Conclusion: "unflagged" is not "real". A wide composition space yields coincidental
+  matches; the decoy FDR step and a biosynthetic plausibility prior are needed next.
+
 **Next**
-* Re-run `run_layers.py`; read the recurring-delta list (expect +24.011 Da x2).
+* Re-run once to confirm the -1.0204 pairs are flagged and main 2-AB glycans are not.
+* Phase 2 core: MS1 decoy design and q-values (go/no-go condition 3).
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
@@ -195,8 +205,18 @@
   coincidence rather than a label side-product.
 * Summary now split by artifact type; added `recurring_deltas` (report-only).
 
+* Re-run (10 ppm isobar): adduct/isotope 22.0%, side-product series 12.1%, unflagged 65.8%
+  of candidate MS1 area. Series stable (n=20, ratio 0.381, MAD 0.077, shift -0.90 min).
+  Recurring deltas: -1.0204 x4 (lighter weaker candidate's M+1 channel on the stronger one's
+  monoisotopic peak; fixed by allowing n = -1 in isobar offsets); +15.9949 and +31.9898
+  (NeuGc vs NeuAc, Hex vs dHex), -41.9841 (2-AB vs Hex), +25.0316 (-2 Hex + HexNAc + dHex):
+  composition arithmetic between hypotheses, mostly improbable compositions.
+* Conclusion: "unflagged" is not "real". A wide composition space yields coincidental
+  matches; the decoy FDR step and a biosynthetic plausibility prior are needed next.
+
 **Next**
-* Re-run `run_layers.py`; read the recurring-delta list (expect +24.011 Da x2).
+* Re-run once to confirm the -1.0204 pairs are flagged and main 2-AB glycans are not.
+* Phase 2 core: MS1 decoy design and q-values (go/no-go condition 3).
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
