@@ -189,3 +189,54 @@ def test_series_without_fld_is_untested_not_rejected():
     assert layer.summary.n_fluorescence_pairs == 0
     assert np.isnan(layer.summary.fluorescence_fraction)
     assert layer.summary.is_series
+
+
+def _trace(peaks, sigma=0.25, tail=0.6):
+    """FLD trace: Gaussian rise and exponential decay (detector tailing) at each (apex, height)."""
+    t = np.linspace(10, 60, 5001)
+    y = np.zeros_like(t)
+    for a, h in peaks:
+        d = t - a
+        y += h * np.where(d < 0, np.exp(-0.5 * (d / sigma) ** 2), np.exp(-d / tail))
+    return t, y
+
+
+def _tail_series(fluorescent):
+    comps = [{"Hex": 6, "HexNAc": 5, "NeuAc": s} for s in range(5)]
+    ref_rt = [20.0, 26.0, 32.0, 38.0, 44.0]
+    peaks, cands = [], []
+    for c, a in zip(comps, ref_rt):
+        peaks.append((a, 5.0))
+    # an extra labelled glycan right before each test form, so the test apex sits on its tail
+    extra = [(a + 3.6, 5.0) for a in ref_rt[:4]]
+    tests = [(c, a + 4.0) for c, a in zip(comps, ref_rt)]
+    if fluorescent:
+        peaks += [(b, 5.0 * 0.2) for _, b in tests]
+    t, y = _trace(peaks + extra)
+    for c, a in zip(comps, ref_rt):
+        cands.append(_cand(c, "2-AB", a, 1e5, fld=float(np.interp(a, t, y))))
+    for i, (b, _) in enumerate(extra):
+        cands.append(_cand({"Hex": 7 + i, "HexNAc": 6}, "2-AB", b, 1e5,
+                           fld=float(np.interp(b, t, y))))
+    for c, b in tests:
+        cands.append(_cand(c, "tag", b, 0.2e5, fld=float(np.interp(b, t, y))))
+    return LabelSideProductSeries("2-AB", "tag", max_shift=6, fld_trace=(t, y)), cands
+
+
+def test_tail_correction_accepts_nonfluorescent_form_on_a_tail():
+    layer, cands = _tail_series(fluorescent=False)
+    raw = LabelSideProductSeries("2-AB", "tag", max_shift=6)
+    raw.evaluate(cands)
+    assert raw.summary.fluorescence_fraction > 0.5  # uncorrected tails look like fluorescence
+    layer.evaluate(cands)
+    assert layer.summary.n_fluorescence_pairs >= 1
+    assert layer.summary.fluorescence_fraction < 0.2
+    assert layer.summary.is_series
+
+
+def test_tail_correction_still_rejects_fluorescent_form():
+    layer, cands = _tail_series(fluorescent=True)
+    layer.evaluate(cands)
+    assert layer.summary.n_fluorescence_pairs >= 1
+    assert layer.summary.fluorescence_fraction > 0.7
+    assert not layer.summary.is_series

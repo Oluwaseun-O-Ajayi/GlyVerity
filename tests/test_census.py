@@ -182,3 +182,16 @@ def test_decoy_shift_breaks_real_adduct_relation():
     feats = [_f(0, m, 2, 31.70, 5e6), _f(1, m, 2, 31.70, 8e5, {"H+": 1, "Na+": 1})]
     assert absorption_stats(group_species(feats))["n"] == 1
     assert absorption_stats(group_species(feats, decoy_shift=0.41))["n"] == 0
+
+
+def test_noncovalent_dimer_absorbed_and_classified():
+    from glyverity.census import absorption_stats
+    m = ch.glycan_neutral_mass({"Hex": 6, "HexNAc": 5, "NeuAc": 3}, "2-AB")
+    dimer = 2 * m + (ch.ATOMIC_MASS["Na"] - ch.ATOMIC_MASS["H"]) + 2 * 1.0033548378
+    feats = [_f(0, m, 2, 36.79, 2e6), _f(1, m, 3, 36.80, 3e6), _f(2, dimer, 3, 36.84, 6e4)]
+    sp = group_species(feats)
+    assert len(sp) == 1
+    assert "dimer:2M+1Na M+2" in [form for _, form in sp[0].members]
+    asg = assign_species(sp, [{"Hex": 6, "HexNAc": 5, "NeuAc": 3}], GROUPS)
+    assert classify(asg, "2-AB")[2] == "dimer ion"
+    assert absorption_stats(group_species(feats, decoy_shift=0.41))["n"] == 0

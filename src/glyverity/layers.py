@@ -181,6 +181,51 @@ class SeriesSummary:
     is_series: bool
 
 
+def fld_tail_profile(times: np.ndarray, values: np.ndarray, apexes: Sequence[float],
+                     heights: Sequence[float], window: float = 2.5, n_grid: int = 101,
+                     min_peaks: int = 2) -> dict[int, tuple[np.ndarray, np.ndarray]]:
+    """Median normalised FLD peak shape on each side of an apex, from isolated peaks.
+
+    A side of a reference peak is used when no other reference apex lies within ``window`` min
+    on that side. Returns {+1: (dt, profile), -1: (dt, profile)} for the trailing and leading
+    side; a side with fewer than ``min_peaks`` isolated peaks is left out. Profiles are made
+    non-increasing so that a later peak on the free side cannot add to the predicted tail.
+    """
+    dt = np.linspace(0.0, window, n_grid)
+    ap = np.asarray(apexes, float)
+    out: dict[int, tuple[np.ndarray, np.ndarray]] = {}
+    for side in (1, -1):
+        rows = []
+        for a, h in zip(ap, heights):
+            if not (h > 0 and np.isfinite(a)):
+                continue
+            ahead = side * (ap - a)
+            if np.any((ahead > 0) & (ahead <= window)):
+                continue
+            prof = np.interp(a + side * dt, times, values) / h
+            rows.append(np.minimum.accumulate(np.clip(prof, 0.0, None)))
+        if len(rows) >= min_peaks:
+            out[side] = (dt, np.median(np.vstack(rows), axis=0))
+    return out
+
+
+def predicted_tail(t: float, apexes: Sequence[float], heights: Sequence[float],
+                   profile: dict[int, tuple[np.ndarray, np.ndarray]]) -> float:
+    """FLD expected at time ``t`` from the tails of the given reference peaks."""
+    total = 0.0
+    for a, h in zip(apexes, heights):
+        if not (h > 0 and np.isfinite(a)) or t == a:
+            continue
+        side = 1 if t > a else -1
+        if side not in profile:
+            continue
+        dt, prof = profile[side]
+        d = abs(t - a)
+        if d <= dt[-1]:
+            total += h * float(np.interp(d, dt, prof))
+    return total
+
+
 @register
 class LabelSideProductSeries(EvidenceLayer):
     """Detect a reducing-end side-product series relative to a fluorescent reference label.
@@ -200,7 +245,8 @@ class LabelSideProductSeries(EvidenceLayer):
     def __init__(self, reference: str, test: str, min_n: int = 3, max_spread: float = 0.1,
                  max_shift: float = 2.0, min_ref_fraction: float = 0.01,
                  min_same_sign: float = 0.8, max_fluorescence_fraction: float = 0.5,
-                 fld_clearance: float = 0.3):
+                 fld_clearance: float = 0.3,
+                 fld_trace: tuple[np.ndarray, np.ndarray] | None = None):
         self.reference = reference
         self.test = test
         self.min_n = min_n
@@ -210,6 +256,8 @@ class LabelSideProductSeries(EvidenceLayer):
         self.min_same_sign = min_same_sign
         self.max_ff = max_fluorescence_fraction
         self.fld_clearance = fld_clearance
+        self.fld_trace = fld_trace
+        self.profile: dict[int, tuple[np.ndarray, np.ndarray]] = {}
         self.summary: SeriesSummary | None = None
         self.pairs: list[dict] = []
 
@@ -239,21 +287,36 @@ class LabelSideProductSeries(EvidenceLayer):
         spread = float(np.median(np.abs(logr - np.median(logr))))
         med_shift = float(np.median(shifts))
         same = float(np.mean(np.sign(shifts) == np.sign(med_shift))) if med_shift != 0 else 0.0
-        ref_apexes = [c.apex_time for c in features
-                      if c.end_group == self.reference and c.area > 0 and np.isfinite(c.apex_time)]
+        refs = [c for c in features
+                if c.end_group == self.reference and c.area > 0 and np.isfinite(c.apex_time)]
+        ref_apexes = [c.apex_time for c in refs]
+        ref_heights = [c.fld_at_apex if np.isfinite(c.fld_at_apex) else 0.0 for c in refs]
+        self.profile = {}
+        if self.fld_trace is not None:
+            self.profile = fld_tail_profile(self.fld_trace[0], self.fld_trace[1],
+                                            ref_apexes, ref_heights)
         ff = []
         self.pairs = []
         for r, t in pairs:
             row = {"name": r.name, "ref_rt": r.apex_time, "test_rt": t.apex_time,
                    "ratio": t.area / r.area, "fld_ref": r.fld_at_apex, "fld_test": t.fld_at_apex,
-                   "fld_expected": r.fld_at_apex * t.area / r.area, "used": False}
+                   "fld_expected": r.fld_at_apex * t.area / r.area, "fld_tail": np.nan,
+                   "used": False}
             self.pairs.append(row)
             if not (r.fld_at_apex > 0 and np.isfinite(t.fld_at_apex)):
                 continue
-            if any(abs(t.apex_time - a) < self.fld_clearance for a in ref_apexes):
-                continue
-            row["used"] = True
-            ff.append(t.fld_at_apex / row["fld_expected"])
+            if self.profile:
+                tail = predicted_tail(t.apex_time, ref_apexes, ref_heights, self.profile)
+                row["fld_tail"] = tail
+                if tail > row["fld_expected"]:
+                    continue
+                row["used"] = True
+                ff.append(max(t.fld_at_apex - tail, 0.0) / row["fld_expected"])
+            else:
+                if any(abs(t.apex_time - a) < self.fld_clearance for a in ref_apexes):
+                    continue
+                row["used"] = True
+                ff.append(t.fld_at_apex / row["fld_expected"])
         ffm = float(np.median(ff)) if ff else np.nan
         consistent = n >= self.min_n and spread <= self.max_spread and same >= self.min_same_sign
         fluorescence_ok = (not ff) or ffm <= self.max_ff

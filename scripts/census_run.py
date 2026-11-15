@@ -118,21 +118,27 @@ def main(argv=None) -> int:
     for e in InSourceFragment(ppm=args.ppm, rt_tol=args.rt_tol).evaluate(cands):
         by_key[e.feature_id].flags.append(f"isf:-{e.detail['loss']} of {e.detail['by']}")
     for test in [g for g in groups if g != args.label]:
-        layer = LabelSideProductSeries(args.label, test, max_shift=args.max_shift)
+        trace = (np.asarray(fl[0].times) + args.lag, np.asarray(fl[0].values)) if fl else None
+        layer = LabelSideProductSeries(args.label, test, max_shift=args.max_shift,
+                                       fld_trace=trace)
         ev = layer.evaluate([c for c in cands if not c.flags])
         s = layer.summary
-        fl = (f"fluorescence fraction {s.fluorescence_fraction:.2f} "
+        fl_txt = (f"fluorescence fraction {s.fluorescence_fraction:.2f} "
               f"({s.n_fluorescence_pairs} clear pairs)" if s.n_fluorescence_pairs
               else "fluorescence untested")
         print(f"series {test} vs {args.label}: n={s.n}, ratio {s.ratio_median:.3f}, "
-              f"spread {s.ratio_spread:.3f}, shift {s.rt_shift_median:+.2f} min, {fl} -> "
+              f"spread {s.ratio_spread:.3f}, shift {s.rt_shift_median:+.2f} min, {fl_txt} -> "
               f"{'SERIES' if s.is_series else 'not a series'}")
         if args.series_detail and layer.pairs:
+            if layer.profile:
+                print(f"    tail correction from isolated {args.label} peaks: sides "
+                      f"{sorted(layer.profile)}")
             print("    composition                     ref_rt  test_rt  ratio   FLD_ref  "
-                  "FLD_test  FLD_expected  used")
+                  "FLD_test  FLD_expected  FLD_tail  used")
             for r in layer.pairs:
                 print(f"    {r['name']:<30} {r['ref_rt']:7.3f} {r['test_rt']:8.3f} {r['ratio']:6.3f} "
-                      f"{r['fld_ref']:9.3g} {r['fld_test']:9.3g} {r['fld_expected']:13.3g}  "
+                      f"{r['fld_ref']:9.3g} {r['fld_test']:9.3g} {r['fld_expected']:13.3g} "
+                      f"{r['fld_tail']:9.3g}  "
                       f"{'yes' if r['used'] else 'no'}")
         for e in ev:
             by_key[e.feature_id].flags.append(f"side_product:{test}")

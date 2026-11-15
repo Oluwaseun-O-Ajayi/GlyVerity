@@ -101,7 +101,8 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     parent's plus any mixture of up to ``max_adducts`` Na+/K+/NH4+ exchanges (sialic acid salts
     allow more exchanges than the charge) plus 0 to 4 13C steps (monoisotopic peak picked one
     or more isotopes too high), or minus a common in-source neutral loss (with 0 to 2 13C
-    steps). Absorbed members keep the relation as their ion form, so in-source fragments
+    steps), or twice the parent (a non-covalent [2M + ...] dimer, with the same exchanges and
+    isotope errors; tried last). Absorbed members keep the relation as their ion form, so in-source fragments
     are classified separately from adduct and isotope ions.
 
     ``decoy_shift`` (Da) is added to every pass-2 relation offset. With a shift that matches no
@@ -127,18 +128,25 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
         species.append(s)
 
     # pass 2: absorb adduct and isotope-error species into stronger co-eluting parents
-    relations = []
+    relations = []  # (rank, label, offset, multiple of the parent mass)
     for n in range(5):
         if n:
-            relations.append((n, f"isotope+{n}", n * ISOTOPE_SPACING))
+            relations.append((n, f"isotope+{n}", n * ISOTOPE_SPACING, 1))
         for counts, off in exchange_combos(max_adducts):
             label = "+".join(f"{v}{k}" for k, v in counts.items()) + (f" M+{n}" if n else "")
-            relations.append((sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING))
+            relations.append((sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING, 1))
     for loss, m in NEUTRAL_LOSSES.items():  # in-source fragments, with isotope error 0..2
         for n in range(3):
             relations.append((2 + n, f"isf:-{loss}" + (f" M+{n}" if n else ""),
-                              -m + n * ISOTOPE_SPACING))
-    relations = [(rank, label, off + decoy_shift) for rank, label, off in relations]
+                              -m + n * ISOTOPE_SPACING, 1))
+    # non-covalent dimers [2M + ...], tried only after every single-molecule relation
+    dimer_ex = [({}, 0.0), *exchange_combos(max_adducts)]
+    for n in range(5):
+        for counts, off in dimer_ex:
+            label = "+".join(f"{v}{k}" for k, v in counts.items())
+            label = "dimer:2M" + (f"+{label}" if label else "") + (f" M+{n}" if n else "")
+            relations.append((100 + sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING, 2))
+    relations = [(rank, label, off + decoy_shift, k) for rank, label, off, k in relations]
     relations.sort(key=lambda r: r[0])
     parents = sorted(species, key=lambda s: -s.intensity)
     absorbed: set[int] = set()
@@ -156,8 +164,9 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                 trial += [(f1.mz * z - z * ch.PROTON_MASS, f" (read as {z}+)") for z in (2, 3)]
             hit = None
             for mass, note in trial:
-                for _, label, off in relations:
-                    if abs(mass - (parent.neutral_mass + off)) / parent.neutral_mass * 1e6 <= ppm:
+                for _, label, off, k in relations:
+                    target = k * parent.neutral_mass + off
+                    if abs(mass - target) / target * 1e6 <= ppm:
                         hit = label + note
                         break
                 if hit:
@@ -270,7 +279,7 @@ def reclassify_oxonium(assignments: Sequence[Assignment], classes: dict[int, str
 
 
 CLASSES = ("labelled glycan", "other end group", "side-product series", "in-source fragment",
-           "adduct/isotope", "adduct ion of a species", "ambiguous", "unassigned")
+           "adduct/isotope", "adduct ion of a species", "dimer ion", "ambiguous", "unassigned")
 ADDUCT_ION = "adduct ion of a species"  # adduct, salt or isotope-error ion of a stronger species
 
 
@@ -299,6 +308,8 @@ def classify(assignments: Sequence[Assignment], label: str) -> dict[int, str]:
                 out[f.feature_id] = cls
             elif form.startswith("isf:"):
                 out[f.feature_id] = "in-source fragment"
+            elif form.startswith("dimer:"):
+                out[f.feature_id] = "dimer ion"
             else:
                 out[f.feature_id] = ADDUCT_ION
     return out

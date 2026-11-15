@@ -399,3 +399,24 @@
   decide it. Needs the isotope pattern (37Cl, 41K) of those features.
 * NH3-RA: the fluorescence test is not being adjusted again to change its answer. Added
   `--series-detail` to print each pair's FLD values for inspection.
+
+## 2026-11-15 (late, 3): decoy result, dimers, FLD tail correction
+
+* Decoy grouping (offset shifts 0.23/0.41/0.59/0.77 Da): 38.0 of 665 absorbed features
+  (5.7%), 3.1% of absorbed intensity, are chance matches; re-read 1+ features 10.5 of 117
+  (9.0%). Absorbed intensity is 51.0% of total, of which about 1.6 points are chance. The
+  grouping step holds; the re-read rule is the weakest part and stays reported separately.
+* 2008.3909 (3+, 36.837 min) = [2M+Na+2H]3+ of Hex6HexNAc5NeuAc3 2-AB picked at M+2,
+  0.3 ppm, co-eluting with the monomer (36.790 min). Added non-covalent dimer relations
+  (2M plus the same exchanges and isotope errors, tried after all monomer relations) and a
+  "dimer ion" class. Covered by the decoy shift.
+* NH3-RA pair table: high fluorescence fractions sit on tails of strong 2-AB peaks
+  (31.269 min is 0.46 min after A3S2 2-AB, FLD 6.36; reads 1.76 vs 0.38 expected). The two
+  pairs about 2 min or more from any paired 2-AB apex (41.586, 44.492 min) read 7% and 13% of
+  expected. The fixed 0.3 min clearance is narrower than the detector's tailing.
+* Replaced the fixed clearance with a tail correction: median normalised FLD peak shape from
+  isolated 2-AB peaks (each side separately), neighbours' predicted tails subtracted at the
+  test apex; a pair is used only when the predicted tail is no larger than the FLD expected
+  from the test form. Rule set from 2-AB peaks only; applies to both series. Tests cover a
+  non-fluorescent form on a tail (accepted) and a fluorescent one (rejected).
+* Tests: 65 passed.
