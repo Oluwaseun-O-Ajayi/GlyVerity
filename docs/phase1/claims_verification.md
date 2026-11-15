@@ -89,7 +89,10 @@ Checked 2026-11-14. Each claim is marked VERIFIED, CORRECTED or UNVERIFIED.
   version v1, published 20 April 2021; concept DOI 10.5281/zenodo.4705545. Data prepared by the
   Biologics MS group, Charles River Labs. Licence CC BY 4.0.
 * Samples: 2-AB labelled N-glycans from human serum IgG and from fetuin (fetal bovine serum),
-  released with PNGase F. The record holds several runs on Agilent Q-TOF and Orbitrap.
+  released with PNGase F. Three files (998.5 MB): fetuin Agilent run
+  `MASOP00220_AB_CRL_07JAN2021_Fetuin_001.d.zip` (384.9 MB), IgG Agilent run (11.9 MB) and
+  fetuin Orbitrap run `AB_23Apr20_0074_test_Fetuin.raw` (601.8 MB). MD5 sums are in
+  `data/catalog/checksums/zenodo_4705546.md5`.
 * The IgG Agilent run (`MASOP00011_AB_0332_16DEC2020_hIgG_NoDE_40ul_001.d.zip`) contains a
   fluorescence channel (`FLD1.cg`) and MS data (`MSPeak.bin`). The fetuin run's file list is
   still to be checked for an FLD channel.
