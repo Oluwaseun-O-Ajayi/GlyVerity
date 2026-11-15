@@ -64,9 +64,15 @@
   own summary line mixes in that interference and is not to be quoted.
 * Full record: `docs/findings/2026-11-15_zenodo4705546_fetuin.md`.
 
+* Added `glyverity.candidates` (targeted candidates, single-pass XIC extraction) and
+  `glyverity.layers` with two registered evidence layers: `AdductIsotopeIsobar` (k Na/K/NH4
+  exchanges plus n 13C, co-elution, stronger partner) and `LabelSideProductSeries` (ratio CV,
+  same-sign RT shift, fluorescence fraction). Tests reproduce the fetuin relations.
+  `scripts/run_layers.py` applies both over 350 compositions x 3 end groups.
+
 **Next**
-* Turn the two artifact types into evidence layers: label side-product series (constant mass
-  delta, constant RT shift, no FLD) and adduct-isotope isobars (co-elution plus mass relation).
+* Run `run_layers.py` on the fetuin run; check that the six free + dHex hits and the
+  C3H9N-RA series are flagged and that the main 2-AB glycans are not.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
@@ -140,9 +146,15 @@
   own summary line mixes in that interference and is not to be quoted.
 * Full record: `docs/findings/2026-11-15_zenodo4705546_fetuin.md`.
 
+* Added `glyverity.candidates` (targeted candidates, single-pass XIC extraction) and
+  `glyverity.layers` with two registered evidence layers: `AdductIsotopeIsobar` (k Na/K/NH4
+  exchanges plus n 13C, co-elution, stronger partner) and `LabelSideProductSeries` (ratio CV,
+  same-sign RT shift, fluorescence fraction). Tests reproduce the fetuin relations.
+  `scripts/run_layers.py` applies both over 350 compositions x 3 end groups.
+
 **Next**
-* Turn the two artifact types into evidence layers: label side-product series (constant mass
-  delta, constant RT shift, no FLD) and adduct-isotope isobars (co-elution plus mass relation).
+* Run `run_layers.py` on the fetuin run; check that the six free + dHex hits and the
+  C3H9N-RA series are flagged and that the main 2-AB glycans are not.
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.

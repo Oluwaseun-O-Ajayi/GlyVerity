@@ -50,8 +50,8 @@ class EvidenceLayer(ABC):
     version: str = "0"
 
     @abstractmethod
-    def evaluate(self, features: Sequence[Feature]) -> list[Evidence]:
-        """Return evidence for the given features."""
+    def evaluate(self, features: Sequence[Any]) -> list[Evidence]:
+        """Return evidence for the given features or candidates."""
 
 
 _REGISTRY: dict[str, type[EvidenceLayer]] = {}
