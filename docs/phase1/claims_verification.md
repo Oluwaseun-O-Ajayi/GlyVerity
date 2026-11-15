@@ -83,14 +83,16 @@ Checked 2026-11-14. Each claim is marked VERIFIED, CORRECTED or UNVERIFIED.
 * Raw data availability: not found yet. Next step is to read the data availability statement
   and supplementary files.
 
-## 8. Zenodo 2-AB set (doi:10.5281/zenodo.4705546): CORRECTED (sample)
+## 8. Zenodo 2-AB set (doi:10.5281/zenodo.4705546): VERIFIED
 
-* Licence: CC BY 4.0. One Agilent run, `MASOP00011_AB_0332_16DEC2020_hIgG_NoDE_40ul_001.d.zip`,
-  acquired with method `AB_18DEC2020_HILIC_2AB`.
-* The sample is human IgG, not fetuin as the brief stated.
-* The .d folder holds a fluorescence channel (`FLD1.cg`), a DAD channel and MS data
-  (`MSPeak.bin`). No profile-mode MS file is listed, so the MS data are likely centroided.
-* Title and authors still to be recorded from the record page.
+* Smith R., "Released N-glycans from IgG and Fetuin on Agilent QTOF and Orbitrap", Zenodo,
+  version v1, published 20 April 2021; concept DOI 10.5281/zenodo.4705545. Data prepared by the
+  Biologics MS group, Charles River Labs. Licence CC BY 4.0.
+* Samples: 2-AB labelled N-glycans from human serum IgG and from fetuin (fetal bovine serum),
+  released with PNGase F. The record holds several runs on Agilent Q-TOF and Orbitrap.
+* The IgG Agilent run (`MASOP00011_AB_0332_16DEC2020_hIgG_NoDE_40ul_001.d.zip`) contains a
+  fluorescence channel (`FLD1.cg`) and MS data (`MSPeak.bin`). The fetuin run's file list is
+  still to be checked for an FLD channel.
 
 ## 9. Brief's problem statement: CORRECTED
 
