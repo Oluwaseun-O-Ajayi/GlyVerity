@@ -55,6 +55,7 @@ class Candidate:
     fld_at_apex: float = float("nan")
     flags: list[str] = field(default_factory=list)
     alternatives: list[dict[str, int]] = field(default_factory=list)
+    uid: str = ""
 
     @property
     def name(self) -> str:
@@ -66,7 +67,7 @@ class Candidate:
 
     @property
     def key(self) -> str:
-        return f"{self.name}|{self.end_group}"
+        return self.uid or f"{self.name}|{self.end_group}"
 
 
 def target_mzs(neutral: float, charges: Sequence[int] = (2, 3), isotopes: int = 2) -> list[float]:

@@ -189,8 +189,16 @@ class LabelSideProductSeries(EvidenceLayer):
         self.summary: SeriesSummary | None = None
 
     def evaluate(self, features: Sequence[Candidate]) -> list[Evidence]:
-        ref = {c.name: c for c in features if c.end_group == self.reference and c.area > 0}
-        tst = {c.name: c for c in features if c.end_group == self.test and c.area > 0}
+        def strongest(group):
+            best: dict[str, Candidate] = {}
+            for c in features:
+                if c.end_group == group and c.area > 0 and (
+                        c.name not in best or c.area > best[c.name].area):
+                    best[c.name] = c
+            return best
+
+        ref = strongest(self.reference)
+        tst = strongest(self.test)
         top = max((c.area for c in ref.values()), default=0.0)
         pairs = [(ref[k], tst[k]) for k in sorted(ref.keys() & tst.keys())
                  if ref[k].area >= self.min_ref_fraction * top

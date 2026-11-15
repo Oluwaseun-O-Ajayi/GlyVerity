@@ -121,6 +121,14 @@
   candidates depend on the search space (adduct/isotope 22% -> 32% when the space grew), because
   one ion can fall in several candidates' windows. Not a census metric.
 
+* Feature-first pipeline built: `glyverity.features` (MS1 scans -> OpenMS MSExperiment;
+  MassTraceDetection, ElutionPeakDetection, FeatureFindingMetabo; mzML export; works with old
+  and new pyOpenMS call styles), `glyverity.census` (species grouping over charge states and
+  Na/K/NH4 adduct ions, composition assignment, one class per feature), and
+  `scripts/census_run.py`. pyOpenMS 3.6.0 finding: with the noise threshold above all
+  background, MassTraceDetection returns no traces (min_sample_rate); keep noise below
+  background. Synthetic end-to-end test classifies every planted feature correctly.
+
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then
   classify it (labelled glycan, side product, adduct/isotope, in-source fragment, unexplained).
@@ -257,6 +265,14 @@
   are exact; evidence is co-elution plus the 10 ppm XIC window. (2) Area shares summed over
   candidates depend on the search space (adduct/isotope 22% -> 32% when the space grew), because
   one ion can fall in several candidates' windows. Not a census metric.
+
+* Feature-first pipeline built: `glyverity.features` (MS1 scans -> OpenMS MSExperiment;
+  MassTraceDetection, ElutionPeakDetection, FeatureFindingMetabo; mzML export; works with old
+  and new pyOpenMS call styles), `glyverity.census` (species grouping over charge states and
+  Na/K/NH4 adduct ions, composition assignment, one class per feature), and
+  `scripts/census_run.py`. pyOpenMS 3.6.0 finding: with the noise threshold above all
+  background, MassTraceDetection returns no traces (min_sample_rate); keep noise below
+  background. Synthetic end-to-end test classifies every planted feature correctly.
 
 **Next (Phase 2 design correction)**
 * Feature-first census: detect each MS1 feature once (isotope envelope, charge, apex), then

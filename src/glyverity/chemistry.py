@@ -161,3 +161,38 @@ def mz(neutral_mass: float, charge: int, carriers: Mapping[str, int] | None = No
         raise ValueError("carrier counts must sum to the charge state")
     added = sum(CHARGE_CARRIERS[name] * n for name, n in carriers.items())
     return (neutral_mass + added) / charge
+
+
+def label_net_formula(label: str) -> dict[str, int]:
+    """Net elemental change a reducing-end label makes to the free glycan.
+
+    Reductive amination adds ``reagent - O`` (reagent - H2O + H2). ``free`` adds nothing and
+    ``reduced`` adds H2.
+    """
+    if label == "free":
+        return {}
+    if label == "reduced":
+        return {"H": 2}
+    reagent = LABELS[label].reagent_formula
+    if reagent is None:
+        raise ValueError(f"no reagent formula recorded for label {label}")
+    net = dict(reagent)
+    net["O"] = net.get("O", 0) - 1
+    return {k: v for k, v in net.items() if v}
+
+
+def glycan_formula(composition: Mapping[str, int], extra: Mapping[str, int] | None = None) -> dict[str, int]:
+    """Elemental formula of a free released glycan (residues + H2O) plus ``extra`` atoms."""
+    total: dict[str, int] = {"H": 2, "O": 1}
+    for residue, n in composition.items():
+        for el, k in RESIDUE_FORMULA[residue].items():
+            total[el] = total.get(el, 0) + k * n
+    for el, k in (extra or {}).items():
+        total[el] = total.get(el, 0) + k
+    return {k: v for k, v in total.items() if v}
+
+
+def formula_string(formula: Mapping[str, int]) -> str:
+    """Hill-order formula string accepted by OpenMS (negative counts allowed, e.g. ``O-1``)."""
+    order = ["C", "H"] + sorted(k for k in formula if k not in ("C", "H"))
+    return "".join(f"{el}{formula[el]}" for el in order if formula.get(el))
