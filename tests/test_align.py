@@ -17,7 +17,7 @@ def test_recovers_known_lag():
     lag, r = estimate_lag(t1, _peaks(t1, centres), t2, _peaks(t2, [c + 0.12 for c in centres]),
                           window=(15, 45), max_lag=0.5, step=0.002)
     assert lag == pytest.approx(0.12, abs=0.004)
-    assert r > 0.9
+    assert 0.9 < r <= 1.0 + 1e-9
 
 
 def test_bad_window():

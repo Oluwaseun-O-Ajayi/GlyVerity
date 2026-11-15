@@ -7,7 +7,7 @@ import numpy as np
 
 def _resample(times: np.ndarray, values: np.ndarray, grid: np.ndarray) -> np.ndarray:
     y = np.interp(grid, times, values)
-    y = y - np.median(y)
+    y = y - np.mean(y)
     s = np.std(y)
     return y / s if s > 0 else y
 
@@ -26,8 +26,8 @@ def estimate_lag(
     A positive lag means features appear later in ``other`` than in ``ref``;
     subtract it from ``other`` times to align. Both traces are resampled on a
     common grid of spacing ``step`` (min) inside ``window``, centred on their
-    median and scaled to unit standard deviation, then cross-correlated over
-    lags from ``-max_lag`` to ``+max_lag``.
+    mean and scaled to unit standard deviation, so the returned value is the
+    Pearson correlation (between -1 and 1) at the best lag.
     """
     lo, hi = window
     if hi <= lo:

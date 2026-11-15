@@ -72,8 +72,13 @@
 * Added `glyverity.align.estimate_lag` (cross-correlation; tested on a known 0.12 min shift)
   and lag reporting in the inspect script. pyproject licence moved to SPDX form.
 
+* Fetuin run: MS lags FLD by +0.037 min (2.2 s). The printed correlation (1.021) was wrong:
+  the estimator centred on the median, not the mean. Fixed to a Pearson correlation; re-run due.
+* IgG run confirmed: no MSScan files in AcqData.
+* Added `glyverity.annotate` and `scripts/peak_spectra.py`: summed MS1 spectra per window,
+  isotope flags, and composition matching (free and 2-AB; H+, Na+, K+, NH4+; z 1 to 3).
+
 **Next**
-* Measure the FLD to MS lag on the fetuin run.
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
