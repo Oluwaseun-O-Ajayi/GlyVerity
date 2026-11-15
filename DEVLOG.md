@@ -81,9 +81,19 @@
 * Lead: two improbable 2-AB hits (Hex3HexNAc6NeuAc2/3NeuGc1) co-elute with the two main
   glycans at +24.011 Da; no adduct-isotope relation within 5 ppm.
 
+* Re-run: C3H9N-RA vs 2-AB is a SERIES (n=24, ratio median 0.381, MAD log10 0.069, shift
+  median -0.93 min, same sign 1.00, fluorescence fraction 0.43); free vs 2-AB n=0. Main 2-AB
+  glycans unflagged. Hex8HexNAc6 2-AB flagged as Na adduct of the C3H9N-RA form of
+  Hex6HexNAc5NeuAc2 (+0.9 ppm).
+* Isotope shadow found: Hex6HexNAc6dHex1NeuAc1 and Hex5HexNAc6NeuAc1NeuGc1 (27.817 min, same
+  area) differ by dHex + Hex - NeuGc = 1.0204 Da, 6 ppm from one 13C step (1.0034 Da), inside
+  the 10 ppm XIC window. Isobar tolerance now defaults to the XIC tolerance.
+  Hypothesis to test on GPST000788: part of the +1.020 Da series may be this composition
+  coincidence rather than a label side-product.
+* Summary now split by artifact type; added `recurring_deltas` (report-only).
+
 **Next**
-* Re-run `run_layers.py` on the fetuin run.
-* Delta-mining layer: recurring neutral mass differences between co-eluting candidates.
+* Re-run `run_layers.py`; read the recurring-delta list (expect +24.011 Da x2).
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.
 * Browse GlycoPOST and MassIVE; add rows to the catalog.
 * Count fluorescence-paired and standards-based ground truth sets (go/no-go condition 1).
@@ -174,9 +184,19 @@
 * Lead: two improbable 2-AB hits (Hex3HexNAc6NeuAc2/3NeuGc1) co-elute with the two main
   glycans at +24.011 Da; no adduct-isotope relation within 5 ppm.
 
+* Re-run: C3H9N-RA vs 2-AB is a SERIES (n=24, ratio median 0.381, MAD log10 0.069, shift
+  median -0.93 min, same sign 1.00, fluorescence fraction 0.43); free vs 2-AB n=0. Main 2-AB
+  glycans unflagged. Hex8HexNAc6 2-AB flagged as Na adduct of the C3H9N-RA form of
+  Hex6HexNAc5NeuAc2 (+0.9 ppm).
+* Isotope shadow found: Hex6HexNAc6dHex1NeuAc1 and Hex5HexNAc6NeuAc1NeuGc1 (27.817 min, same
+  area) differ by dHex + Hex - NeuGc = 1.0204 Da, 6 ppm from one 13C step (1.0034 Da), inside
+  the 10 ppm XIC window. Isobar tolerance now defaults to the XIC tolerance.
+  Hypothesis to test on GPST000788: part of the +1.020 Da series may be this composition
+  coincidence rather than a label side-product.
+* Summary now split by artifact type; added `recurring_deltas` (report-only).
+
 **Next**
-* Re-run `run_layers.py` on the fetuin run.
-* Delta-mining layer: recurring neutral mass differences between co-eluting candidates.
+* Re-run `run_layers.py`; read the recurring-delta list (expect +24.011 Da x2).
 * Extract the m/z values under the MS-only peaks and check them against labelled and
   unlabelled glycan compositions, adducts and in-source fragments.
 * Download one glycan raw file each from PXD077477 and PXD078897; check for a fluorescence channel.

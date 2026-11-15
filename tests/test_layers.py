@@ -115,3 +115,23 @@ def test_series_ignores_far_and_weak_pairs():
     layer.evaluate(cands)
     assert layer.summary.n == 4
     assert layer.summary.is_series
+
+
+def test_isotope_shadow_flagged_at_10ppm():
+    real = _cand({"Hex": 5, "HexNAc": 6, "NeuAc": 1, "NeuGc": 1}, "2-AB", 27.817, 5.07e4)
+    shadow = _cand({"Hex": 6, "HexNAc": 6, "dHex": 1, "NeuAc": 1}, "2-AB", 27.817, 5.06e4)
+    assert AdductIsotopeIsobar(ppm=5).evaluate([real, shadow]) == []
+    ev = AdductIsotopeIsobar(ppm=10).evaluate([real, shadow])
+    assert ev[0].detail["relation"] == "M+1"
+
+
+def test_recurring_deltas_finds_repeated_pair():
+    from glyverity.layers import recurring_deltas
+    cands = []
+    for s, rt in [(2, 31.7), (3, 36.8)]:
+        base = _cand({"Hex": 6, "HexNAc": 5, "NeuAc": s}, "2-AB", rt, 2e5)
+        other = Candidate({"X": 1}, "2-AB", base.neutral_mass + 24.011, rt + 0.05, 5e4, 5e4)
+        cands += [base, other]
+    out = recurring_deltas(cands)
+    assert out[0].count == 2
+    assert out[0].delta == pytest.approx(24.011, abs=1e-3)

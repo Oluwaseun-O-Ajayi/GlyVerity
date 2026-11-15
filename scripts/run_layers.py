@@ -25,7 +25,7 @@ from glyverity import annotate as an
 from glyverity import chemistry as ch
 from glyverity.candidates import extract_candidates
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
-from glyverity.layers import AdductIsotopeIsobar, LabelSideProductSeries
+from glyverity.layers import AdductIsotopeIsobar, LabelSideProductSeries, recurring_deltas
 
 TAG_C3H9N = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
 SEARCH = {"Hex": (3, 9), "HexNAc": (2, 6), "dHex": (0, 1), "NeuAc": (0, 4), "NeuGc": (0, 1)}
@@ -40,6 +40,8 @@ def main(argv=None) -> int:
     ap.add_argument("--lag", type=float, default=0.0)
     ap.add_argument("--ppm", type=float, default=10.0, help="XIC tolerance")
     ap.add_argument("--min-area", type=float, default=1000.0)
+    ap.add_argument("--isobar-ppm", type=float, default=None,
+                    help="adduct/isotope relation tolerance (default: same as --ppm)")
     args = ap.parse_args(argv)
 
     import rainbow
@@ -62,7 +64,7 @@ def main(argv=None) -> int:
     live = [c for c in cands if c.area >= args.min_area]
     print(f"{len(live)} candidates with area >= {args.min_area:g}")
 
-    isobar = AdductIsotopeIsobar(ppm=5.0, rt_tol=0.15)
+    isobar = AdductIsotopeIsobar(ppm=args.isobar_ppm or args.ppm, rt_tol=0.15)
     by_key = {c.key: c for c in live}
     for e in isobar.evaluate(live):
         by_key[e.feature_id].flags.append(
@@ -93,13 +95,25 @@ def main(argv=None) -> int:
     tot_all = sum(c.area for c in live)
     for g in groups:
         sub = [c for c in live if c.end_group == g]
-        fl_sub = [c for c in sub if c.flags]
-        a, af = sum(c.area for c in sub), sum(c.area for c in fl_sub)
-        print(f"  {g:9s} {len(sub):4d} candidates, {len(fl_sub):4d} flagged | area {a:12.0f}, "
-              f"flagged {af:12.0f}")
-    flagged = sum(c.area for c in live if c.flags)
-    print(f"\nflagged as artifacts: {flagged:.0f} of {tot_all:.0f} candidate MS1 area "
-          f"({100 * flagged / tot_all:.1f}%)" if tot_all else "no signal")
+        a = sum(c.area for c in sub)
+        iso = sum(c.area for c in sub if any(f.startswith("isobar") for f in c.flags))
+        side = sum(c.area for c in sub if any(f.startswith("side_product") for f in c.flags)
+                   and not any(f.startswith("isobar") for f in c.flags))
+        print(f"  {g:9s} {len(sub):4d} candidates | area {a:12.0f} | adduct/isotope {iso:10.0f} | "
+              f"side-product series {side:10.0f}")
+    iso_all = sum(c.area for c in live if any(f.startswith("isobar") for f in c.flags))
+    side_all = sum(c.area for c in live if any(f.startswith("side_product") for f in c.flags)
+                   and not any(f.startswith("isobar") for f in c.flags))
+    if tot_all:
+        print(f"\nof {tot_all:.0f} candidate MS1 area: adduct/isotope {100 * iso_all / tot_all:.1f}%, "
+              f"side-product series {100 * side_all / tot_all:.1f}%, "
+              f"unflagged {100 * (tot_all - iso_all - side_all) / tot_all:.1f}%")
+
+    print("\nrecurring mass differences between co-eluting unflagged candidates (top 10):")
+    for r in recurring_deltas(live)[:10]:
+        ex = ", ".join(f"{a.split('|')[0]}({a.split('|')[1]}) vs {b.split('|')[0]}({b.split('|')[1]})"
+                       for a, b in r.pairs[:3])
+        print(f"  {r.delta:+10.4f} Da  x{r.count}:  {ex}")
     print(f"table: {path}")
     return 0
 

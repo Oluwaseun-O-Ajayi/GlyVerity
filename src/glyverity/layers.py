@@ -159,3 +159,41 @@ class LabelSideProductSeries(EvidenceLayer):
         return [Evidence(t.key, self.name, "side_product_of", float(t.area / r.area),
                          {"reference": r.key, "rt_shift": t.apex_time - r.apex_time})
                 for r, t in pairs]
+
+
+@dataclass(frozen=True)
+class RecurringDelta:
+    """A neutral mass difference seen between several co-eluting candidate pairs."""
+
+    delta: float
+    count: int
+    pairs: tuple[tuple[str, str], ...]
+
+
+def recurring_deltas(candidates: Sequence[Candidate], rt_tol: float = 0.15, tol_da: float = 0.005,
+                     min_count: int = 2, min_abs_delta: float = 0.5) -> list[RecurringDelta]:
+    """Cluster neutral mass differences (weaker minus stronger) between co-eluting candidates.
+
+    Only unflagged candidates with signal are used. Differences closer than ``tol_da`` join a
+    cluster; clusters with at least ``min_count`` pairs are returned, most frequent first. This
+    reports relations for inspection and flags nothing.
+    """
+    live = [c for c in candidates if c.area > 0 and np.isfinite(c.apex_time) and not c.flags]
+    live.sort(key=lambda c: -c.area)
+    diffs = []
+    for i, c in enumerate(live):
+        for d in live[:i]:
+            if abs(c.apex_time - d.apex_time) <= rt_tol:
+                delta = c.neutral_mass - d.neutral_mass
+                if abs(delta) >= min_abs_delta:
+                    diffs.append((delta, (c.key, d.key)))
+    diffs.sort()
+    clusters: list[list[tuple[float, tuple[str, str]]]] = []
+    for item in diffs:
+        if clusters and item[0] - clusters[-1][-1][0] <= tol_da:
+            clusters[-1].append(item)
+        else:
+            clusters.append([item])
+    out = [RecurringDelta(float(np.mean([x[0] for x in cl])), len(cl), tuple(x[1] for x in cl))
+           for cl in clusters if len(cl) >= min_count]
+    return sorted(out, key=lambda r: (-r.count, abs(r.delta)))
