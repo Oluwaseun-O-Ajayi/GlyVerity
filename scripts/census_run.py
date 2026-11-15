@@ -30,6 +30,7 @@ from glyverity.census import (
     absorption_stats,
     assign_species,
     classify,
+    family_cutoffs,
     group_species,
     reclassify_oxonium,
     repair_charges,
@@ -59,6 +60,8 @@ def main(argv=None) -> int:
     ap.add_argument("--mzml", action="store_true", help="also write the MS1 window as mzML")
     ap.add_argument("--decoy-shifts", default="0.23,0.41,0.59,0.77",
                     help="comma-separated Da shifts for decoy grouping runs ('' to skip)")
+    ap.add_argument("--relation-fdr", type=float, default=0.05,
+                    help="largest chance share allowed per relation family")
     ap.add_argument("--series-detail", action="store_true",
                     help="print every label/side-product pair with its fluorescence values")
     args = ap.parse_args(argv)
@@ -79,33 +82,43 @@ def main(argv=None) -> int:
     feats = find_features(exp, ppm=args.ppm, noise=args.noise)
     n_raw = len(feats)
     feats, n_fix = repair_charges(feats, ppm=args.ppm)
-    species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol)
+    rec: list = []
+    species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, record=rec)
     print(f"{exp.getNrSpectra()} MS1 scans -> {n_raw} features ({n_fix} split envelopes "
-          f"re-merged, {len(feats)} after repair) -> {len(species)} species")
+          f"re-merged, {len(feats)} after repair) -> {len(species)} species at {args.ppm:g} ppm")
     total = sum(f.intensity for f in feats)
-    tgt = absorption_stats(species)
-    print(f"absorbed as adduct/isotope/ISF ions (target): {tgt['n']} features, "
-          f"{100 * tgt['intensity'] / total:.1f}% of intensity; re-read 1+: {tgt['n_reread']}, "
-          f"{100 * tgt['intensity_reread'] / total:.1f}%")
     shifts = [float(x) for x in args.decoy_shifts.split(",") if x.strip()]
     if shifts:
-        dec = [absorption_stats(group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol,
-                                              decoy_shift=d)) for d in shifts]
-        dn = np.mean([d["n"] for d in dec])
-        di = np.mean([d["intensity"] for d in dec])
-        dr = np.mean([d["n_reread"] for d in dec])
-        dri = np.mean([d["intensity_reread"] for d in dec])
-        print(f"absorbed (decoy, mean of {len(shifts)} shifts): {dn:.1f} features, "
-              f"{100 * di / total:.1f}% of intensity; re-read 1+: {dr:.1f}, {100 * dri / total:.1f}%")
-        print(f"estimated chance absorptions: {dn / max(tgt['n'], 1):.1%} of absorbed features, "
-              f"{di / max(tgt['intensity'], 1e-12):.1%} of absorbed intensity; re-read 1+: "
-              f"{dr / max(tgt['n_reread'], 1):.1%} of features")
-        print("    by relation family (target features / decoy mean / estimated chance share):")
+        tgt = absorption_stats(species)
+        drecs, dec = [], []
+        for d in shifts:
+            r: list = []
+            dec.append(absorption_stats(group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol,
+                                                      decoy_shift=d, record=r)))
+            drecs.append(r)
+        cut = family_cutoffs(rec, drecs, fdr=args.relation_fdr, max_ppm=args.ppm)
+        print(f"relation families at {args.ppm:g} ppm (target / decoy mean / chance share) and "
+              f"tolerance for <= {args.relation_fdr:.0%} chance:")
         for fam in FAMILIES:
             tn = tgt[f"n:{fam}"]
             dm = float(np.mean([d[f"n:{fam}"] for d in dec]))
-            share = f"{dm / tn:.1%}" if tn else "-"
-            print(f"      {fam:<8} {tn:5d} {dm:7.1f}  {share}")
+            share = f"{dm / tn:6.1%}" if tn else "     -"
+            print(f"      {fam:<8} {tn:5d} {dm:7.1f}  {share}   -> {cut[fam]:.2f} ppm")
+        rec = []
+        species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, family_ppm=cut,
+                                record=rec)
+        drecs = []
+        for d in shifts:
+            r = []
+            group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
+                          family_ppm=cut, record=r)
+            drecs.append(r)
+        nt = len(rec)
+        nd = float(np.mean([len(r) for r in drecs]))
+        tgt = absorption_stats(species)
+        print(f"after family tolerances: {len(species)} species; {nt} absorptions "
+              f"({100 * tgt['intensity'] / total:.1f}% of intensity), decoy mean {nd:.1f} "
+              f"-> estimated chance share {nd / max(nt, 1):.1%}")
 
     groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N,
               "NH3-RA": NH3_RA}
@@ -137,6 +150,8 @@ def main(argv=None) -> int:
               f"spread {s.ratio_spread:.3f}, shift {s.rt_shift_median:+.2f} min, {fl_txt} -> "
               f"{'SERIES' if s.is_series else 'not a series'}")
         if args.series_detail and layer.pairs:
+            print(f"    FLD peaks detected: {layer.n_fld_peaks}; tail shape "
+                  f"{'measured' if layer.profile else 'not measurable (no isolated peaks), fixed clearance used'}")
             if layer.profile:
                 sides = ", ".join(f"{'trailing' if k > 0 else 'leading'} from {v[2]} peaks"
                                   for k, v in sorted(layer.profile.items()))

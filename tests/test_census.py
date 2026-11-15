@@ -1,5 +1,6 @@
 """Tests for glyverity.census on hand-built features."""
 
+import numpy as np
 import pytest
 
 from glyverity import chemistry as ch
@@ -219,3 +220,25 @@ def test_family_counts():
     st = absorption_stats(group_species(feats))
     assert st["n:adduct"] == 1
     assert st["n:isotope"] == 1
+
+
+def test_family_cutoffs_tighten_a_chance_dominated_family():
+    from glyverity.census import family_cutoffs
+    rng = np.random.default_rng(0)
+    # adduct: 100 true matches within 2 ppm, decoys uniform; isf: target looks like decoys
+    target = [("adduct", e) for e in rng.uniform(0, 2, 100)] + \
+             [("isf", e) for e in rng.uniform(0, 10, 20)]
+    decoys = [[("adduct", e) for e in rng.uniform(0, 10, 5)] +
+              [("isf", e) for e in rng.uniform(0, 10, 18)] for _ in range(4)]
+    cut = family_cutoffs(target, decoys, fdr=0.05)
+    assert 1.5 <= cut["adduct"] <= 2.0
+    assert cut["isf"] < 1.0
+    assert cut["dimer"] == 0.0
+
+
+def test_family_ppm_limits_absorption():
+    m = ch.glycan_neutral_mass(A3S2, "2-AB")
+    na = m + (ch.ATOMIC_MASS["Na"] - ch.ATOMIC_MASS["H"]) + m * 4e-6  # 4 ppm off
+    feats = [_f(0, m, 2, 31.70, 5e6), _f(1, na, 2, 31.70, 8e5)]
+    assert len(group_species(feats)) == 1
+    assert len(group_species(feats, family_ppm={"adduct": 2.0})) == 2

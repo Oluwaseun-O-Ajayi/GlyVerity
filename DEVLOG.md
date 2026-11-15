@@ -440,3 +440,21 @@
   correction. The raw NH3-RA values at the two pairs far from strong peaks stand on their
   own: 41.586 min FLD 0.092 vs 1.29 expected; 44.492 min 0.032 vs 0.236.
 * Tests: 69 passed.
+
+## 2026-11-15 (late, 5): per-family tolerances from decoys
+
+* Run 7 (dimer fix, trace-based FLD peaks): 390 species. Decoy chance share by relation
+  family at 10 ppm: adduct 497 / 30.5 (6.1%), isotope 47 / 0.5 (1.1%), in-source fragment
+  56 / 24.8 (44.2%), dimer 103 / 10.2 (10.0%). In-source fragment grouping at 10 ppm is close
+  to half chance.
+* FLD tail shape could not be measured: no FLD peak in this dense trace is isolated within
+  2.5 min on either side, so the fixed 0.3 min clearance was used (FLD_tail nan). NH3-RA
+  verdict returns to run 5 (FF 2.47, 6 pairs). Decision: stop changing the fluorescence test
+  on this run. NH3-RA stays classed as "other end group" (conservative). Status: MS2 Y1 223.128
+  and ratio/shift consistency support it; fluorescence inconclusive (the two pairs far from
+  strong peaks read 7% and 13% of expected; the rest sit on tails).
+* Added decoy-calibrated tolerances: each absorption records (family, ppm error) in target
+  and decoy runs; per family, the largest ppm cutoff with decoy/target <= 5% is used for the
+  final grouping, and the chance share is re-estimated after. Lone 1+ re-reads are their own
+  family. This is target-decoy FDR control on the cleaning step, ahead of composition q-values.
+* Tests: 71 passed.

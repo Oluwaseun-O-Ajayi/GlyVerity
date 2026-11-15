@@ -92,7 +92,9 @@ def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
 
 
 def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.25,
-                  max_adducts: int = 4, decoy_shift: float = 0.0) -> list[Species]:
+                  max_adducts: int = 4, decoy_shift: float = 0.0,
+                  family_ppm: Mapping[str, float] | None = None,
+                  record: list[tuple[str, float]] | None = None) -> list[Species]:
     """Group co-eluting features into species.
 
     Pass 1: features whose protonated neutral masses agree within ``ppm`` and whose apexes are
@@ -109,6 +111,10 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     ``decoy_shift`` (Da) is added to every pass-2 relation offset. With a shift that matches no
     chemistry, every absorption is a chance match, so decoy runs estimate how many target
     absorptions are coincidences (see :func:`absorption_stats`).
+
+    ``family_ppm`` sets a tighter mass tolerance per relation family (see
+    :func:`relation_family` and :func:`family_cutoffs`); ``record`` collects (family, ppm error)
+    for every absorption, for target and decoy runs alike.
     """
     feats = sorted(features, key=lambda f: -f.intensity)
     species: list[Species] = []
@@ -171,8 +177,13 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                     if k == 2 and (note or not measured):
                         continue
                     target = k * parent.neutral_mass + off
-                    if abs(mass - target) / target * 1e6 <= ppm:
+                    err = abs(mass - target) / target * 1e6
+                    fam = relation_family(label + note)
+                    limit = ppm if family_ppm is None else min(ppm, family_ppm.get(fam, ppm))
+                    if err <= limit:
                         hit = label + note
+                        if record is not None:
+                            record.append((fam, err))
                         break
                 if hit:
                     break
@@ -183,11 +194,14 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     return [s for s in species if s.species_id not in absorbed]
 
 
-FAMILIES = ("adduct", "isotope", "isf", "dimer")
+FAMILIES = ("adduct", "isotope", "isf", "dimer", "reread")
 
 
 def relation_family(form: str) -> str:
-    """Relation family of an absorbed ion form."""
+    """Relation family of an absorbed ion form. Lone 1+ features re-read at a higher charge
+    form their own family whatever the relation, because their charge was not measured."""
+    if "(read as" in form:
+        return "reread"
     if form.startswith("isf:"):
         return "isf"
     if form.startswith("dimer:"):
@@ -195,6 +209,28 @@ def relation_family(form: str) -> str:
     if form.startswith("isotope+"):
         return "isotope"
     return "adduct"
+
+
+def family_cutoffs(target: Sequence[tuple[str, float]],
+                   decoys: Sequence[Sequence[tuple[str, float]]], fdr: float = 0.05,
+                   max_ppm: float = 10.0) -> dict[str, float]:
+    """Largest ppm tolerance per relation family whose estimated chance share is <= ``fdr``.
+
+    For a cutoff c, the chance share is the mean number of decoy absorptions with error <= c
+    over the number of target absorptions with error <= c. Candidate cutoffs are the target
+    errors. A family with no cutoff meeting ``fdr`` gets 0 (no absorptions allowed).
+    """
+    out: dict[str, float] = {}
+    for fam in FAMILIES:
+        te = np.sort([e for f, e in target if f == fam and e <= max_ppm])
+        de = [np.array([e for f, e in d if f == fam]) for d in decoys]
+        best = 0.0
+        for i, c in enumerate(te):
+            nd = float(np.mean([np.sum(d <= c) for d in de])) if de else 0.0
+            if nd / (i + 1) <= fdr:
+                best = float(c)
+        out[fam] = best
+    return out
 
 
 def absorption_stats(species: Sequence[Species]) -> dict[str, float]:
