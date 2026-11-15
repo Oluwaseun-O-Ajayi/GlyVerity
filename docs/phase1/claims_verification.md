@@ -75,11 +75,14 @@ Checked 2026-11-14. Each claim is marked VERIFIED, CORRECTED or UNVERIFIED.
 * Raw data availability: not found yet. Next step is to read the data availability statement
   and supplementary files.
 
-## 8. Smith 2021 2-AB fetuin set (doi:10.5281/zenodo.4705546): UNVERIFIED
+## 8. Zenodo 2-AB set (doi:10.5281/zenodo.4705546): CORRECTED (sample)
 
-* Zenodo could not be opened from this workspace. Please open the record in a browser and
-  confirm title, authors, licence, file list, and that both the MS file and the fluorescence
-  trace are present.
+* Licence: CC BY 4.0. One Agilent run, `MASOP00011_AB_0332_16DEC2020_hIgG_NoDE_40ul_001.d.zip`,
+  acquired with method `AB_18DEC2020_HILIC_2AB`.
+* The sample is human IgG, not fetuin as the brief stated.
+* The .d folder holds a fluorescence channel (`FLD1.cg`), a DAD channel and MS data
+  (`MSPeak.bin`). No profile-mode MS file is listed, so the MS data are likely centroided.
+* Title and authors still to be recorded from the record page.
 
 ## 9. Brief's problem statement: CORRECTED
 
