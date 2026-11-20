@@ -50,6 +50,7 @@ from glyverity.fdr import (
 from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
+from glyverity.validate import log_ratio_slope, shares, total_variation, windows_for
 
 TAG_C3H9N = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
 NH3_RA = ch.formula_mass({"N": 1, "H": 3}) - ch.ATOMIC_MASS["O"]  # amino-alditol (hypothesis)
@@ -266,6 +267,9 @@ def main(argv=None) -> int:
         rest = sum(s.intensity for s in sub) - ok
         print(f"  {k:24s} q<=0.05 {100 * ok / tot_int:5.1f}%   other {100 * rest / tot_int:5.1f}%")
 
+    if fl:
+        validate_fld(asg, species, sp_cls, q_of, fl[0], args)
+
     print("\nstrongest unassigned features (delta = neutral minus co-eluting assigned species):")
     for f, delta, near in unassigned_report(asg, cls):
         d = f"{delta:+10.4f}" if np.isfinite(delta) else "         -"
@@ -285,6 +289,58 @@ def main(argv=None) -> int:
                         "" if np.isnan(q_of[sid][1]) else f"{q_of[sid][1]:.4f}"])
     print(f"table: {args.out / 'census_features.tsv'}")
     return 0
+
+
+def validate_fld(asg, species, sp_cls, q_of, trace, args) -> None:
+    """Compare MS shares of confident labelled glycans with FLD peak-area shares."""
+    by_id = {a.species.species_id: a for a in asg}
+    rows = []
+    for s in species:
+        if sp_cls.get(s.species_id) != "labelled glycan" or not q_of[s.species_id][1] <= 0.05:
+            continue
+        live = [c for c in by_id[s.species_id].matches if not c.flags and c.end_group == args.label]
+        if len(live) != 1:
+            continue
+        prot = [f.intensity for f, form in s.members if form == "H"]
+        rows.append((s, live[0], sum(prot), max(prot), s.intensity))
+    if len(rows) < 3:
+        print("\nFLD validation: fewer than 3 confident labelled glycans, skipped")
+        return
+    times, values = np.asarray(trace.times), np.asarray(trace.values)
+    wins = windows_for(times, values, [r[0].rt - args.lag for r in rows])
+    wins = [w for w in wins if w.area > 0]
+    fld = [w.area for w in wins]
+    meas = {}
+    for k, name in ((3, "strongest ion"), (2, "protonated ions"), (4, "all assigned ions")):
+        meas[name] = [sum(rows[i][k] for i in w.members) for w in wins]
+    sia = []
+    for w in wins:
+        top = max(w.members, key=lambda i: rows[i][4])
+        comp = rows[top][1].composition
+        sia.append(comp.get("NeuAc", 0) + comp.get("NeuGc", 0))
+    print(f"\nFLD validation: {len(rows)} confident {args.label} glycans (q <= 0.05) in "
+          f"{len(wins)} FLD peaks")
+    print("  MS measure            TV distance to FLD   slope log10(MS/FLD) per sialic acid")
+    for name, v in meas.items():
+        print(f"  {name:<20}  {total_variation(v, fld):18.3f}   "
+              f"{log_ratio_slope(v, fld, sia):+10.3f}")
+    fs = shares(fld)
+    ps, al = shares(meas["protonated ions"]), shares(meas["all assigned ions"])
+    path = args.out / "fld_validation.tsv"
+    with path.open("w", newline="") as fh:
+        w = csv.writer(fh, delimiter="\t")
+        w.writerow(["fld_start", "fld_end", "fld_apex", "species", "sialic_acids",
+                    "fld_share", "ms_protonated_share", "ms_all_share"])
+        for k, win in enumerate(wins):
+            names = "; ".join(f"{rows[i][1].name}@{rows[i][0].rt:.2f}" for i in win.members)
+            w.writerow([f"{win.start:.3f}", f"{win.end:.3f}", f"{win.apex:.3f}", names, sia[k],
+                        f"{fs[k]:.4f}", f"{ps[k]:.4f}", f"{al[k]:.4f}"])
+    print("  FLD peak  sialic  FLD share  MS protonated  MS all ions   species")
+    for k in np.argsort(-fs):
+        names = ", ".join(rows[i][1].name for i in wins[k].members)
+        print(f"  {wins[k].apex:7.3f}  {sia[k]:6d}  {fs[k]:9.3f}  {ps[k]:13.3f}  {al[k]:11.3f}   "
+              f"{names}")
+    print(f"  table: {path}")
 
 
 if __name__ == "__main__":

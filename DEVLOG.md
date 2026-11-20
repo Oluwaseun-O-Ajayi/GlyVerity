@@ -639,3 +639,18 @@
   at sub-ppm errors. q <= 0.01 is limited by decoy count granularity on one run.
 * Exchangeability 17 vs 12.0 (1.42). go_no_go.md updated: condition 3 design done,
   exchangeability not yet shown.
+
+## 2026-11-20 (8): FLD validation built
+
+* New module validate.py: FLD windows valley to valley around each species apex (FLD clock =
+  MS time - lag), straight-line baseline, area above it; species in one FLD peak share it.
+  Agreement measures: total variation distance between MS and FLD share vectors, and slope of
+  log10(MS share / FLD share) against sialic acid count.
+* census_run.py: for 2-AB labelled-glycan species with q <= 0.05 and one live match, compares
+  three MS measures with FLD: strongest single ion, protonated charge states, all ions
+  assigned to the species (salts, isotope picks, fragments, dimers). fld_validation.tsv.
+* Prediction: if cleaning is right, "all assigned ions" has the smallest TV distance and the
+  flattest sialic acid slope. Known limits: MS response still differs by structure; dimer ions
+  are counted once though they carry two molecules; weak side-product fluorescence can sit in
+  a window.
+* Tests: 82 passed.
