@@ -654,3 +654,19 @@
   are counted once though they carry two molecules; weak side-product fluorescence can sit in
   a window.
 * Tests: 82 passed.
+
+## 2026-11-20 (9): first FLD validation result, controls added
+
+* 21 confident 2-AB glycans (q <= 0.05) in 13 FLD peaks. TV distance to FLD shares:
+  strongest ion 0.140, protonated ions 0.092, all assigned ions 0.055. Slope of
+  log10(MS/FLD) per sialic acid: -0.026, +0.006, +0.052.
+* Supports cleaning on the distance measure (all assigned ions 40% closer than protonated).
+  The slope prediction failed: protonated ions were already flat and all assigned ions
+  over-weight sialylated glycans (+0.052 per sialic acid, about 13%). Sialic acid salts add
+  more ions to highly sialylated species; whether this is over-absorption or a real
+  ionization difference is open.
+* Shared FLD peaks to inspect: 36.73 min (A3S3 with a Hex5HexNAc4NeuAc2 assignment) and
+  23.60 min (A2S2 with Hex8HexNAc4NeuAc2; MS share 0.124-0.128 vs FLD 0.081).
+* Controls added: bootstrap 95% interval over FLD peaks for TV(protonated) - TV(all), and a
+  decoy-grouping control (species built with every relation shifted, so absorbed ions are
+  chance) that must do worse than real grouping. Tests: 83 passed.

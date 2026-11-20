@@ -50,7 +50,13 @@ from glyverity.fdr import (
 from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
-from glyverity.validate import log_ratio_slope, shares, total_variation, windows_for
+from glyverity.validate import (
+    bootstrap_tv_difference,
+    log_ratio_slope,
+    shares,
+    total_variation,
+    windows_for,
+)
 
 TAG_C3H9N = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
 NH3_RA = ch.formula_mass({"N": 1, "H": 3}) - ch.ATOMIC_MASS["O"]  # amino-alditol (hypothesis)
@@ -268,7 +274,10 @@ def main(argv=None) -> int:
         print(f"  {k:24s} q<=0.05 {100 * ok / tot_int:5.1f}%   other {100 * rest / tot_int:5.1f}%")
 
     if fl:
-        validate_fld(asg, species, sp_cls, q_of, fl[0], args)
+        dec_species = [group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
+                                     family_cut=cut if shifts else None)
+                       for d in (shifts or [0.41])]
+        validate_fld(asg, species, sp_cls, q_of, fl[0], args, dec_species)
 
     print("\nstrongest unassigned features (delta = neutral minus co-eluting assigned species):")
     for f, delta, near in unassigned_report(asg, cls):
@@ -291,7 +300,7 @@ def main(argv=None) -> int:
     return 0
 
 
-def validate_fld(asg, species, sp_cls, q_of, trace, args) -> None:
+def validate_fld(asg, species, sp_cls, q_of, trace, args, dec_species=()) -> None:
     """Compare MS shares of confident labelled glycans with FLD peak-area shares."""
     by_id = {a.species.species_id: a for a in asg}
     rows = []
@@ -302,7 +311,14 @@ def validate_fld(asg, species, sp_cls, q_of, trace, args) -> None:
         if len(live) != 1:
             continue
         prot = [f.intensity for f, form in s.members if form == "H"]
-        rows.append((s, live[0], sum(prot), max(prot), s.intensity))
+        anchor = max((f for f, form in s.members if form == "H"), key=lambda f: f.intensity)
+        dec = []
+        for dsp in dec_species:  # intensity of the decoy-grouped species holding the same ion
+            hold = next((x for x in dsp if any(f.feature_id == anchor.feature_id
+                                                for f, _ in x.members)), None)
+            dec.append(hold.intensity if hold is not None else anchor.intensity)
+        rows.append((s, live[0], sum(prot), max(prot), s.intensity,
+                     float(np.mean(dec)) if dec else float("nan")))
     if len(rows) < 3:
         print("\nFLD validation: fewer than 3 confident labelled glycans, skipped")
         return
@@ -311,7 +327,8 @@ def validate_fld(asg, species, sp_cls, q_of, trace, args) -> None:
     wins = [w for w in wins if w.area > 0]
     fld = [w.area for w in wins]
     meas = {}
-    for k, name in ((3, "strongest ion"), (2, "protonated ions"), (4, "all assigned ions")):
+    for k, name in ((3, "strongest ion"), (2, "protonated ions"), (4, "all assigned ions"),
+                    (5, "decoy-grouped ions")):
         meas[name] = [sum(rows[i][k] for i in w.members) for w in wins]
     sia = []
     for w in wins:
@@ -324,6 +341,12 @@ def validate_fld(asg, species, sp_cls, q_of, trace, args) -> None:
     for name, v in meas.items():
         print(f"  {name:<20}  {total_variation(v, fld):18.3f}   "
               f"{log_ratio_slope(v, fld, sia):+10.3f}")
+    d, lo, hi = bootstrap_tv_difference(meas["protonated ions"], meas["all assigned ions"], fld)
+    print(f"  TV(protonated) - TV(all assigned) = {d:+.3f} (95% bootstrap over peaks "
+          f"{lo:+.3f} to {hi:+.3f}); positive = cleaning moves MS toward FLD")
+    d, lo, hi = bootstrap_tv_difference(meas["decoy-grouped ions"], meas["all assigned ions"], fld)
+    print(f"  TV(decoy-grouped) - TV(all assigned) = {d:+.3f} ({lo:+.3f} to {hi:+.3f}); "
+          f"positive = real relations beat chance relations")
     fs = shares(fld)
     ps, al = shares(meas["protonated ions"]), shares(meas["all assigned ions"])
     path = args.out / "fld_validation.tsv"

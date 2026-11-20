@@ -35,3 +35,12 @@ def test_total_variation_and_slope():
     fld = [1.0, 1.0, 1.0]
     ms = [1.0, 0.5, 0.25]  # each extra sialic acid halves the protonated MS response
     assert log_ratio_slope(ms, fld, [1, 2, 3]) == pytest.approx(np.log10(0.5))
+
+
+def test_bootstrap_tv_difference_sign():
+    from glyverity.validate import bootstrap_tv_difference
+    ref = [5, 3, 2, 1, 1, 0.5]
+    close = [5.1, 2.9, 2.1, 1.0, 0.9, 0.5]
+    far = [2, 4, 4, 0.2, 2, 2]
+    d, lo, hi = bootstrap_tv_difference(far, close, ref)
+    assert d > 0 and lo > 0 and hi >= d

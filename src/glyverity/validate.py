@@ -101,3 +101,21 @@ def log_ratio_slope(ms: Sequence[float], fld: Sequence[float], x: Sequence[float
     if ok.sum() < 2 or np.ptp(xx[ok]) == 0:
         return float("nan")
     return float(np.polyfit(xx[ok], r[ok], 1)[0])
+
+
+def bootstrap_tv_difference(a: Sequence[float], b: Sequence[float], ref: Sequence[float],
+                            n: int = 2000, seed: int = 0) -> tuple[float, float, float]:
+    """TV(a, ref) - TV(b, ref) with a 95% percentile interval from resampling peaks.
+
+    Positive means ``b`` is closer to ``ref`` than ``a``. Peaks are resampled with replacement
+    and shares recomputed in each resample.
+    """
+    a, b, r = (np.asarray(x, float) for x in (a, b, ref))
+    rng = np.random.default_rng(seed)
+    k = a.size
+    d = np.empty(n)
+    for i in range(n):
+        idx = rng.integers(0, k, k)
+        d[i] = total_variation(a[idx], r[idx]) - total_variation(b[idx], r[idx])
+    return total_variation(a, r) - total_variation(b, r), float(np.percentile(d, 2.5)), \
+        float(np.percentile(d, 97.5))
