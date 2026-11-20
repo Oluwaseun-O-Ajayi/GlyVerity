@@ -527,3 +527,18 @@
 * Next: sialic-acid loss sub-family for in-source fragments (1355.5004, 904.0043 still
   unassigned); dimer member check; +217.88 delta isotope patterns; then composition decoys
   and q-values.
+
+## 2026-11-20: dimer check, in-source fragment sub-families
+
+* Dimer ions from run 10 by charge: z=1 2, z=2 7, z=3 66, z=4 25. Of the first 39 listed,
+  33 are dimers of the two most intense species (species 0 = A3S3 2-AB, 2-AB at 36.6 to
+  37.0 min; species 1 = A3S2 2-AB at 31.6 to 31.9 min) and 3 are dimers of unassigned
+  species with no composition. Dimer formation scales with the square of concentration, so
+  concentration in the two strongest glycans is the expected pattern; chance matches would
+  scatter across species. 3+ dimers cannot coincide with any monomer charge state; 4+ dimers
+  carrying an odd number of Na/K cannot either. Class kept.
+* Chained forms ("... via 1Na") reach 5 to 6 exchanges in total; covered by the decoy shift,
+  but report the count of chained dimers separately in the paper.
+* In-source fragment family split: sialic acid losses (NeuAc, NeuGc, 2NeuAc, Hex+NeuAc,
+  NeuAc+H2O) vs other losses (Hex, HexNAc, dHex, Hex+HexNAc, H2O), each with its own decoy
+  cutoff. Tests: 73 passed.

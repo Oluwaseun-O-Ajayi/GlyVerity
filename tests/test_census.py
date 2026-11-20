@@ -227,12 +227,12 @@ def test_family_cutoffs_tighten_a_chance_dominated_family():
     rng = np.random.default_rng(0)
     # adduct: 100 true matches within 2 ppm, decoys uniform; isf: target looks like decoys
     target = [("adduct", e) for e in rng.uniform(0, 0.2, 100)] + \
-             [("isf", e) for e in rng.uniform(0, 1, 20)]
+             [("isf_other", e) for e in rng.uniform(0, 1, 20)]
     decoys = [[("adduct", e) for e in rng.uniform(0, 1, 5)] +
-              [("isf", e) for e in rng.uniform(0, 1, 18)] for _ in range(4)]
+              [("isf_other", e) for e in rng.uniform(0, 1, 18)] for _ in range(4)]
     cut = family_cutoffs(target, decoys, fdr=0.05)
     assert 0.15 <= cut["adduct"] <= 0.2
-    assert cut["isf"] < 0.1
+    assert cut["isf_other"] < 0.1
     assert cut["dimer"] == 0.0
 
 
@@ -260,3 +260,12 @@ def test_absorbed_member_does_not_block_reread_and_keeps_its_form():
     forms = {f.feature_id: form for f, form in sp[0].members}
     assert "read as 2+" in forms[2]
     assert forms[3].startswith("isotope+1 via ")
+
+
+def test_isf_families_split_by_loss():
+    from glyverity.census import relation_family
+    assert relation_family("isf:-NeuAc M+1") == "isf_sia"
+    assert relation_family("isf:-Hex+NeuAc") == "isf_sia"
+    assert relation_family("isf:-Hex") == "isf_other"
+    assert relation_family("isf:-H2O M+2") == "isf_other"
+    assert relation_family("isf:-NeuAc (read as 2+)") == "reread"

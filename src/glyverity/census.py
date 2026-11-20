@@ -207,7 +207,8 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     return [s for s in species if s.species_id not in absorbed]
 
 
-FAMILIES = ("adduct", "isotope", "isf", "dimer", "reread")
+FAMILIES = ("adduct", "isotope", "isf_sia", "isf_other", "dimer", "reread")
+SIALIC_LOSSES = ("NeuAc", "NeuGc", "2NeuAc", "Hex+NeuAc", "NeuAc+H2O")
 
 
 def relation_family(form: str) -> str:
@@ -216,7 +217,11 @@ def relation_family(form: str) -> str:
     if "(read as" in form:
         return "reread"
     if form.startswith("isf:"):
-        return "isf"
+        loss = form[4:].split(" ")[0].lstrip("-")
+        # sialic acid losses are the labile in-source losses; Hex, HexNAc, dHex and water
+        # losses also equal the mass gaps between biosynthetic neighbours, so they get their
+        # own decoy-set cutoff
+        return "isf_sia" if loss in SIALIC_LOSSES else "isf_other"
     if form.startswith("dimer:"):
         return "dimer"
     if form.startswith("isotope+"):
