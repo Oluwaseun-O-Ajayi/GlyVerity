@@ -670,3 +670,16 @@
 * Controls added: bootstrap 95% interval over FLD peaks for TV(protonated) - TV(all), and a
   decoy-grouping control (species built with every relation shifted, so absorbed ions are
   chance) that must do worse than real grouping. Tests: 83 passed.
+
+## 2026-11-20 (10): FLD controls, run 1
+
+* TV(protonated) - TV(all assigned) = +0.037, 95% bootstrap over 13 peaks +0.002 to +0.086.
+  Decoy-grouped ions TV 0.091 (protonated 0.092): chance relations absorb almost nothing, so
+  this control only repeats the protonated comparison; it does not test whether adding the
+  same signal to the wrong peaks would help as much.
+* Added a shuffle control: the extra signal per peak (all assigned minus protonated) is moved
+  to random peaks 5000 times; one-sided p = fraction of shuffles at least as close to FLD.
+* Window note: several FLD windows run the full +/-1 min from the apex (e.g. 35.741-37.728),
+  so valleys were not found within 1 min and neighbouring peaks may share a window.
+* Status: support is positive but marginal on one run (lower bound +0.002). Needs more runs
+  with FLD before it can be claimed. Tests: 84 passed.

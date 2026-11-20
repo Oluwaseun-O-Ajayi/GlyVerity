@@ -53,6 +53,7 @@ from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSidePro
 from glyverity.validate import (
     bootstrap_tv_difference,
     log_ratio_slope,
+    permutation_test,
     shares,
     total_variation,
     windows_for,
@@ -347,6 +348,11 @@ def validate_fld(asg, species, sp_cls, q_of, trace, args, dec_species=()) -> Non
     d, lo, hi = bootstrap_tv_difference(meas["decoy-grouped ions"], meas["all assigned ions"], fld)
     print(f"  TV(decoy-grouped) - TV(all assigned) = {d:+.3f} ({lo:+.3f} to {hi:+.3f}); "
           f"positive = real relations beat chance relations")
+    base = np.asarray(meas["protonated ions"])
+    extra = np.asarray(meas["all assigned ions"]) - base
+    obs, med, pval = permutation_test(base, extra, fld)
+    print(f"  shuffle control: extra ions moved to random peaks give median TV {med:.3f} vs "
+          f"{obs:.3f} as assigned (p = {pval:.4f}, 5000 shuffles); small p = assignment matters")
     fs = shares(fld)
     ps, al = shares(meas["protonated ions"]), shares(meas["all assigned ions"])
     path = args.out / "fld_validation.tsv"

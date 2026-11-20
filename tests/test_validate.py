@@ -44,3 +44,12 @@ def test_bootstrap_tv_difference_sign():
     far = [2, 4, 4, 0.2, 2, 2]
     d, lo, hi = bootstrap_tv_difference(far, close, ref)
     assert d > 0 and lo > 0 and hi >= d
+
+
+def test_permutation_test_detects_correct_assignment():
+    from glyverity.validate import permutation_test
+    ref = np.array([10.0, 6.0, 4.0, 3.0, 2.0, 1.0, 1.0, 0.5])
+    base = ref * np.array([0.5, 0.6, 0.4, 0.7, 0.5, 0.6, 0.5, 0.4])
+    extra = ref - base  # exactly what each peak is missing
+    obs, med, p = permutation_test(base, extra, ref)
+    assert obs < 1e-9 and med > obs and p < 0.01

@@ -119,3 +119,19 @@ def bootstrap_tv_difference(a: Sequence[float], b: Sequence[float], ref: Sequenc
         d[i] = total_variation(a[idx], r[idx]) - total_variation(b[idx], r[idx])
     return total_variation(a, r) - total_variation(b, r), float(np.percentile(d, 2.5)), \
         float(np.percentile(d, 97.5))
+
+
+def permutation_test(base: Sequence[float], extra: Sequence[float], ref: Sequence[float],
+                     n: int = 5000, seed: int = 0) -> tuple[float, float, float]:
+    """Does the assignment of the extra signal matter, or only its amount?
+
+    ``base`` is the protonated MS signal per peak and ``extra`` the signal the cleaning step
+    added to each peak (salts, isotope picks, fragments, dimers). The extra amounts are shuffled
+    across peaks ``n`` times. Returns the observed TV(base + extra, ref), the median shuffled TV,
+    and the one-sided p-value (fraction of shuffles at least as close to ``ref``).
+    """
+    b, e, r = (np.asarray(x, float) for x in (base, extra, ref))
+    rng = np.random.default_rng(seed)
+    obs = total_variation(b + e, r)
+    sims = np.array([total_variation(b + rng.permutation(e), r) for _ in range(n)])
+    return obs, float(np.median(sims)), float((np.sum(sims <= obs) + 1) / (n + 1))
