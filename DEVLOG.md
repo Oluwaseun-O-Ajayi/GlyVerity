@@ -542,3 +542,17 @@
 * In-source fragment family split: sialic acid losses (NeuAc, NeuGc, 2NeuAc, Hex+NeuAc,
   NeuAc+H2O) vs other losses (Hex, HexNAc, dHex, Hex+HexNAc, H2O), each with its own decoy
   cutoff. Tests: 73 passed.
+
+## 2026-11-20 (2): decoy design fault, fixed
+
+* Run 11 (ISF split): isf_sia 32 target / 22.5 decoy (70.3%), isf_other 20 / 1.0 (5.0%,
+  cutoff 0.915). Final chance 4.5%, unassigned 10.9%; 1355.5004 and 904.0043 still unassigned.
+* 22.5 decoys from 15 sialic-loss offsets, against 21.8 from about 200 adduct offsets, is not
+  a chance rate. Cause: every family was shifted at once, so no feature was absorbed as an
+  adduct in decoy runs; features that real adducts claim in the target run stayed free and
+  were matched by families tested later. Late families (ISF, re-read) had inflated decoy
+  counts; earlier per-family cutoffs are biased low for them. The pooled estimate was
+  conservative.
+* Fix: one family shifted at a time, the others real, so the decoy sees the target's
+  candidate pool. Final chance share = sum of per-family decoy counts over target absorptions.
+  Grouping now runs 1 + 24 + 1 + 24 times. Tests: 74 passed.

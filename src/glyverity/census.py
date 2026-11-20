@@ -93,6 +93,7 @@ def repair_charges(features: Sequence[MSFeature], ppm: float = 10.0,
 
 def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: float = 0.25,
                   max_adducts: int = 4, decoy_shift: float = 0.0,
+                  decoy_families: Sequence[str] | None = None,
                   family_cut: Mapping[str, float] | None = None,
                   record: list[tuple[str, float]] | None = None) -> list[Species]:
     """Group co-eluting features into species.
@@ -110,7 +111,11 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     is absorbed in turn (form "<own> via <species relation>"). Absorbed members keep the relation as their ion form, so in-source fragments
     are classified separately from adduct and isotope ions.
 
-    ``decoy_shift`` (Da) is added to every pass-2 relation offset. With a shift that matches no
+    ``decoy_shift`` (Da) is added to the pass-2 relation offsets of the families in
+    ``decoy_families`` (all families when None). Shifting one family while the others stay
+    real keeps the decoy's pool of candidate features the same as the target's; shifting all
+    at once leaves features free that real adducts would claim, which inflates the decoy count
+    of families tested later. With a shift that matches no
     chemistry, every absorption is a chance match, so decoy runs estimate how many target
     absorptions are coincidences (see :func:`absorption_stats`).
 
@@ -158,7 +163,7 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
             label = "+".join(f"{v}{k}" for k, v in counts.items())
             label = "dimer:2M" + (f"+{label}" if label else "") + (f" M+{n}" if n else "")
             relations.append((100 + sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING, 2))
-    relations = [(rank, label, off + decoy_shift, k) for rank, label, off, k in relations]
+    shifted = set(FAMILIES if decoy_families is None else decoy_families)
     relations.sort(key=lambda r: r[0])
     parents = sorted(species, key=lambda s: -s.intensity)
     absorbed: set[int] = set()
@@ -184,11 +189,11 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
                     # a dimer needs a measured charge: [2M+2zH]2z+ sits at the m/z of [M+zH]z+
                     if k == 2 and (note or not measured):
                         continue
-                    target = k * parent.neutral_mass + off
+                    fam = relation_family(label + note)
+                    target = k * parent.neutral_mass + off + (decoy_shift if fam in shifted else 0.0)
                     err = abs(mass - target) / target * 1e6
                     if err > ppm:
                         continue
-                    fam = relation_family(label + note)
                     score = max(err / ppm, abs(parent.rt - s.rt) / rt_tol)
                     limit = 1.0 if family_cut is None else family_cut.get(fam, 1.0)
                     if score <= limit:

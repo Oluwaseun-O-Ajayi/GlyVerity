@@ -269,3 +269,13 @@ def test_isf_families_split_by_loss():
     assert relation_family("isf:-Hex") == "isf_other"
     assert relation_family("isf:-H2O M+2") == "isf_other"
     assert relation_family("isf:-NeuAc (read as 2+)") == "reread"
+
+
+def test_single_family_decoy_keeps_real_adducts():
+    from glyverity.census import absorption_stats
+    m = ch.glycan_neutral_mass(A3S2, "2-AB")
+    feats = [_f(0, m, 2, 31.70, 5e6), _f(1, m, 2, 31.70, 8e5, {"H+": 1, "Na+": 1})]
+    st = absorption_stats(group_species(feats, decoy_shift=0.41, decoy_families=["isf_sia"]))
+    assert st["n:adduct"] == 1
+    st = absorption_stats(group_species(feats, decoy_shift=0.41, decoy_families=["adduct"]))
+    assert st["n:adduct"] == 0

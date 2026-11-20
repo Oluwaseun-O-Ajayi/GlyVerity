@@ -90,37 +90,41 @@ def main(argv=None) -> int:
     shifts = [float(x) for x in args.decoy_shifts.split(",") if x.strip()]
     if shifts:
         tgt = absorption_stats(species)
-        drecs, dec = [], []
-        for d in shifts:
-            r: list = []
-            dec.append(absorption_stats(group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol,
-                                                      decoy_shift=d, record=r)))
-            drecs.append(r)
+        # one decoy family at a time, the other families real (same candidate pool as target)
+        drecs = [[] for _ in shifts]
+        for fam in FAMILIES:
+            for i, d in enumerate(shifts):
+                r: list = []
+                group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
+                              decoy_families=[fam], record=r)
+                drecs[i].extend(x for x in r if x[0] == fam)
         cut = family_cutoffs(rec, drecs, fdr=args.relation_fdr)
         print(f"relation families at {args.ppm:g} ppm / {args.rt_tol:g} min (target / decoy mean / "
-              f"chance share) and score cutoff for <= {args.relation_fdr:.0%} chance "
-              f"(score = max(ppm/{args.ppm:g}, dRT/{args.rt_tol:g})):")
+              f"chance share; decoy shifts one family at a time) and score cutoff for <= "
+              f"{args.relation_fdr:.0%} chance (score = max(ppm/{args.ppm:g}, dRT/{args.rt_tol:g})):")
         for fam in FAMILIES:
             tn = tgt[f"n:{fam}"]
-            dm = float(np.mean([d[f"n:{fam}"] for d in dec]))
+            dm = float(np.mean([sum(1 for f, _ in r if f == fam) for r in drecs]))
             share = f"{dm / tn:6.1%}" if tn else "     -"
-            print(f"      {fam:<8} {tn:5d} {dm:7.1f}  {share}   -> {cut[fam]:.3f} "
+            print(f"      {fam:<9} {tn:5d} {dm:7.1f}  {share}   -> {cut[fam]:.3f} "
                   f"({cut[fam] * args.ppm:.1f} ppm, {cut[fam] * args.rt_tol:.3f} min)")
         rec = []
         species = group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, family_cut=cut,
                                 record=rec)
-        drecs = []
-        for d in shifts:
-            r = []
-            group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
-                          family_cut=cut, record=r)
-            drecs.append(r)
+        nd_fam = 0.0
+        for fam in FAMILIES:
+            counts = []
+            for d in shifts:
+                r = []
+                group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
+                              decoy_families=[fam], family_cut=cut, record=r)
+                counts.append(sum(1 for f, _ in r if f == fam))
+            nd_fam += float(np.mean(counts))
         nt = len(rec)
-        nd = float(np.mean([len(r) for r in drecs]))
         tgt = absorption_stats(species)
         print(f"after family tolerances: {len(species)} species; {nt} absorptions "
-              f"({100 * tgt['intensity'] / total:.1f}% of intensity), decoy mean {nd:.1f} "
-              f"-> estimated chance share {nd / max(nt, 1):.1%}")
+              f"({100 * tgt['intensity'] / total:.1f}% of intensity), decoy sum over families "
+              f"{nd_fam:.1f} -> estimated chance share {nd_fam / max(nt, 1):.1%}")
 
     groups = {args.label: ch.LABELS[args.label].added_mass, "free": 0.0, "C3H9N-RA": TAG_C3H9N,
               "NH3-RA": NH3_RA}
