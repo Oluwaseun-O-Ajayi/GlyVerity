@@ -34,8 +34,10 @@ from glyverity.census import (
     group_species,
     reclassify_oxonium,
     repair_charges,
+    target_table,
     unassigned_report,
 )
+from glyverity.fdr import best_errors, decoy_libraries, exchangeability, odd_h_shifts, qvalues
 from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
@@ -132,6 +134,27 @@ def main(argv=None) -> int:
              if c.get("HexNAc", 0) >= 2 and c.get("Hex", 0) >= 3
              and c.get("NeuAc", 0) + c.get("NeuGc", 0) <= c["HexNAc"] - 1]
     asg = assign_species(species, comps, groups, ppm=args.ppm)
+
+    # composition q-values: odd-hydrogen decoys (octet-rule violations), separate search
+    tmass = np.array([m for m, _, _ in target_table(comps, groups)])
+    shifts_h = odd_h_shifts()
+    libs, removed = decoy_libraries(tmass, shifts_h, ppm=args.ppm)
+    smass = np.array([s.neutral_mass for s in species])
+    te = best_errors(smass, np.sort(tmass))
+    des = [best_errors(smass, lib) for lib in libs]
+    qv = qvalues(te, des, max_ppm=args.ppm)
+    q_of = {s.species_id: (te[i], qv[i]) for i, s in enumerate(species)}
+    n_t, n_d, ratio = exchangeability(te, des, (15.0, 30.0))
+    print(f"\ncomposition FDR: {len(tmass)} target masses, {len(libs)} odd-H decoy libraries "
+          f"(+/-3,5,7,9 H; {sum(removed)} decoys within {args.ppm:g} ppm of a target removed)")
+    print(f"  exchangeability, best error 15-30 ppm: target {n_t}, decoy mean {n_d:.1f}, "
+          f"ratio {ratio:.2f} (1 expected)")
+    sp_int = np.array([s.intensity for s in species])
+    tot_int = sum(f.intensity for f in feats)
+    for label, mask in (("target match", te <= args.ppm), ("q <= 0.05", qv <= 0.05),
+                        ("q <= 0.01", qv <= 0.01)):
+        print(f"  species with {label:<12}: {int(mask.sum()):4d} of {len(species)}, "
+              f"{100 * sp_int[mask].sum() / tot_int:5.1f}% of feature intensity")
     cands = [c for a in asg for c in a.matches]
     by_key = {c.key: c for c in cands}
     fl = fld_traces(files)
@@ -183,6 +206,17 @@ def main(argv=None) -> int:
         share = 100 * sum(f.intensity for f in sub) / total if total else 0.0
         print(f"  {k:24s} {len(sub):5d}  {share:5.1f}%")
 
+    sp_cls = {a.species.species_id: cls[a.species.members[0][0].feature_id] for a in asg}
+    print("\nspecies intensity by class of its own ions, split at q = 0.05:")
+    for k in CLASSES:
+        ids = [sid for sid, c in sp_cls.items() if c == k]
+        if not ids:
+            continue
+        sub = [s for s in species if s.species_id in ids]
+        ok = sum(s.intensity for s in sub if q_of[s.species_id][1] <= 0.05)
+        rest = sum(s.intensity for s in sub) - ok
+        print(f"  {k:24s} q<=0.05 {100 * ok / tot_int:5.1f}%   other {100 * rest / tot_int:5.1f}%")
+
     print("\nstrongest unassigned features (delta = neutral minus co-eluting assigned species):")
     for f, delta, near in unassigned_report(asg, cls):
         d = f"{delta:+10.4f}" if np.isfinite(delta) else "         -"
@@ -194,11 +228,12 @@ def main(argv=None) -> int:
     with (args.out / "census_features.tsv").open("w", newline="") as fh:
         w = csv.writer(fh, delimiter="\t")
         w.writerow(["feature_id", "mz", "charge", "rt_min", "intensity", "species", "ion_form",
-                    "class", "matches"])
+                    "class", "matches", "species_target_ppm", "species_q"])
         for f in sorted(feats, key=lambda f: -f.intensity):
             sid, form = sp_of[f.feature_id]
             w.writerow([f.feature_id, f"{f.mz:.4f}", f.charge, f"{f.rt:.3f}", f"{f.intensity:.0f}",
-                        sid, form, cls[f.feature_id], best[sid]])
+                        sid, form, cls[f.feature_id], best[sid], f"{q_of[sid][0]:.2f}",
+                        "" if np.isnan(q_of[sid][1]) else f"{q_of[sid][1]:.4f}"])
     print(f"table: {args.out / 'census_features.tsv'}")
     return 0
 

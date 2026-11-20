@@ -290,17 +290,24 @@ class Assignment:
     matches: list[Candidate]
 
 
+def target_table(compositions: Sequence[Mapping[str, int]],
+                 end_groups: Mapping[str, float]) -> list[tuple[float, list, str]]:
+    """(neutral mass, isomeric compositions, end group) for every formula x end group."""
+    table = []
+    for iso in group_isomeric(compositions):
+        base = ch.composition_mass(iso[0]) + ch.WATER
+        for group, added in end_groups.items():
+            table.append((base + added, iso, group))
+    return table
+
+
 def assign_species(species: Sequence[Species], compositions: Sequence[Mapping[str, int]],
                    end_groups: Mapping[str, float], ppm: float = 10.0) -> list[Assignment]:
     """Match each species' neutral mass to every composition x end group within ``ppm``.
 
     Isomeric compositions are merged first, so one formula gives one match per end group.
     """
-    table = []
-    for iso in group_isomeric(compositions):
-        base = ch.composition_mass(iso[0]) + ch.WATER
-        for group, added in end_groups.items():
-            table.append((base + added, iso, group))
+    table = target_table(compositions, end_groups)
     masses = np.array([t[0] for t in table])
     order = np.argsort(masses)
     masses = masses[order]

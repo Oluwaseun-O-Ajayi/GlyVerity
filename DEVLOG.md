@@ -572,3 +572,21 @@
 * Grouping step settled for this run: every tolerance set by decoys, chance share 3.7%.
 * Next: composition decoys and q-values (go/no-go condition 3); +217.88 delta isotope
   patterns; second dataset.
+
+## 2026-11-20 (4): composition q-values
+
+* Literature check on decoys for MS1 formula assignment: JUMPm (Wang et al., J. Proteome Res.
+  2018, 17, 2328-2334, doi:10.1021/acs.jproteome.8b00019) adds odd numbers of H (octet-rule
+  violation; +1H, and +3H to +9H tested); pySM (Palmer et al., Nat. Methods 2017,
+  doi:10.1038/nmeth.4072) uses implausible adducts. Odd-H decoys keep the mass defect of CHNO
+  molecules, which fractional shifts do not; glycans occupy a narrow mass-defect band, so a
+  fractional-shift decoy would under-sample chance matches and make q-values optimistic.
+  (Same question applies to the grouping decoys; to check.)
+* New module fdr.py: decoy libraries target +/- 3, 5, 7, 9 H (decoys within the search
+  tolerance of any target removed), separate-search FDR, monotone q-values, and an
+  exchangeability check (target vs decoy match counts at 15-30 ppm, where true matches are
+  rare; ratio 1 expected).
+* census_run.py: q-value per species after grouping; counts and intensity shares at q <= 0.05
+  and 0.01; class shares split at q = 0.05; species_target_ppm and species_q columns in the TSV.
+* Tests: 77 passed (simulated data: q <= 0.05 gives observed FDR < 10% and > 80% recall;
+  exchangeability ratio within 0.8 to 1.25).
