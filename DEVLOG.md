@@ -556,3 +556,19 @@
 * Fix: one family shifted at a time, the others real, so the decoy sees the target's
   candidate pool. Final chance share = sum of per-family decoy counts over target absorptions.
   Grouping now runs 1 + 24 + 1 + 24 times. Tests: 74 passed.
+
+## 2026-11-20 (3): run 12, per-family decoys
+
+* Families (target / decoy / chance -> cutoff): adduct 359 / 11.0 / 3.1% -> 0.998
+  (10.0 ppm, 0.250 min); isotope 39 / 0.2 / 0.6% -> 0.869; isf_sia 32 / 9.0 / 28.1% -> 0.217
+  (2.2 ppm, 0.054 min); isf_other 20 / 0.2 / 1.2% -> 0.915; dimer 101 / 6.5 / 6.4% -> 0.857;
+  re-read 160 / 10.8 / 6.7% -> 0.619 (6.2 ppm, 0.155 min).
+* With one family shifted at a time, the adduct decoy count halved (21.8 -> 11.0) and isf_sia
+  fell from 22.5 to 9.0, confirming the pool bias.
+* Final: 424 species, 639 absorptions (51.2% of intensity), per-family decoy sum 23.5,
+  estimated chance share 3.7%. Shares: labelled 21.4%, other end group 6.9%, side-product
+  7.7%, ISF 4.6%, adduct/isotope 0.1%, adduct ion 46.1%, dimer 2.9%, ambiguous 0.1%,
+  unassigned 10.1%. 1355.5004 and 904.0043 now absorbed as A3S3 - NeuAc.
+* Grouping step settled for this run: every tolerance set by decoys, chance share 3.7%.
+* Next: composition decoys and q-values (go/no-go condition 3); +217.88 delta isotope
+  patterns; second dataset.
