@@ -104,3 +104,21 @@ these are.
 ## Things to do outside the code
 
 * Decide whether to shorten the GPST000788 embargo or arrange reviewer access.
+
+## Update 2026-11-20: condition 3 (decoy design), first result
+
+* Composition decoys: target formula masses plus or minus 3, 5, 7 or 9 H (octet-rule
+  violation; JUMPm, Wang et al., J. Proteome Res. 2018, doi:10.1021/acs.jproteome.8b00019).
+  They keep the CHNO mass defect, and their isotope patterns are those of the target
+  formulas, so isotope-pattern scoring cannot reject them trivially (the concern raised for
+  +11 Da decoys above). Separate-search FDR, decoy counts scaled for decoys removed near
+  targets.
+* Relation (cleaning) decoys: per-family offset shifts, one family at a time; tolerances set at
+  <= 5% chance per family; final chance share 3.7% on the fetuin run.
+* Fetuin run after recalibration on 21 multi-charge anchors (+1.68 ppm offset; anchor error
+  1.68 -> 0.32 ppm): 56 of 424 species at q <= 0.05 carry 81.3% of feature intensity;
+  labelled-glycan species 50.0% at q <= 0.05 vs 0.6% above.
+* Exchangeability check (15-30 ppm band): 17 target vs 12.0 decoy (ratio 1.42). Not settled
+  on one run; band species include a recurring unknown near 2883 to 2884 Da. Test across
+  datasets; if the ratio stays above 1, add entrapment compositions (the stated fallback).
+* Status: design decided and implemented; exchangeability not yet shown.

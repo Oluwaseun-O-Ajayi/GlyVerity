@@ -628,3 +628,14 @@
   within 10 ppm; composition assignment and q-values on recalibrated masses; raw q kept for
   comparison; strongest matched species printed with raw and recalibrated errors.
 * Tests: 79 passed.
+
+## 2026-11-20 (7): recalibration result
+
+* 21 anchors; offset +1.68 ppm at 2 kDa, slope -0.05 ppm/kDa; anchor |error| median
+  1.68 -> 0.32 ppm. Major fetuin glycans now within 1 ppm.
+* q <= 0.05: 56 species, 81.3% of intensity (raw: 68, 70.0%); q <= 0.01: 7 species, 14.5%.
+  Labelled-glycan species 50.0% at q <= 0.05 vs 0.6% above (13.0% before recalibration).
+* q of the top glycans clusters at 0.012: one scaled decoy hit (0.14) over about 12 targets
+  at sub-ppm errors. q <= 0.01 is limited by decoy count granularity on one run.
+* Exchangeability 17 vs 12.0 (1.42). go_no_go.md updated: condition 3 design done,
+  exchangeability not yet shown.
