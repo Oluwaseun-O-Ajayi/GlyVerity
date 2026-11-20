@@ -611,3 +611,20 @@
     has an FDR floor of a few percent at this search-space size. Other evidence (isotope fit,
     retention, series, MS2) is needed for 1%. Paper point, not a bug.
 * Tests: 78 passed.
+
+## 2026-11-20 (6): scaled decoys, band species, recalibration
+
+* With decoy counts scaled for removed decoys: exchangeability 18 vs 11.4 (ratio 1.58);
+  q <= 0.05: 68 species, 70.0% of intensity; labelled glycan class 37.6% at q <= 0.05 vs
+  13.0% above.
+* Band (15-30 ppm) species are not fetuin glycans with poor accuracy: assignments such as
+  Hex8HexNAc6NeuGc1(C3H9N-RA) and Hex9HexNAc6dHex1(C3H9N-RA); masses near 2883 to 2884 Da
+  recur at 32.7, 44.3 and 44.6 min (1442.5236 2+ is among the strongest unassigned). A
+  structured unknown family repeated at several retention times raises variance of the band
+  count; 18 vs 11.4 does not establish a decoy bias on one run. Re-test across datasets.
+* Losing 13% of intensity from labelled-glycan species above q = 0.05 points to the score:
+  ppm error alone ranks an intense glycan at 6 ppm below a weak unknown at 1 ppm. First fix:
+  mass recalibration (Theil-Sen, linear in mass) on anchor species seen in 2+ charge states
+  within 10 ppm; composition assignment and q-values on recalibrated masses; raw q kept for
+  comparison; strongest matched species printed with raw and recalibrated errors.
+* Tests: 79 passed.

@@ -63,6 +63,45 @@ def best_errors(query: np.ndarray, library: np.ndarray) -> np.ndarray:
     return d / q * 1e6
 
 
+def signed_errors(query: np.ndarray, library: np.ndarray) -> np.ndarray:
+    """Signed ppm error (query minus nearest library mass) for each query mass."""
+    q = np.asarray(query, float)
+    lib = np.asarray(library, float)
+    i = np.clip(np.searchsorted(lib, q), 1, lib.size - 1)
+    lo, hi = lib[i - 1], lib[i]
+    near = np.where(np.abs(q - lo) <= np.abs(q - hi), lo, hi)
+    return (q - near) / near * 1e6
+
+
+def recalibrate(masses: np.ndarray, errors: np.ndarray,
+                anchors: np.ndarray) -> tuple[np.ndarray, float, float, int]:
+    """Remove a systematic mass error, linear in mass, fitted on anchor species.
+
+    Theil-Sen fit (median of pairwise slopes, then median intercept) of signed ppm error against
+    mass over the anchors; with fewer than 5 anchors only the median offset is removed. Returns
+    corrected masses, the slope (ppm per kDa), the intercept at 2 kDa (ppm) and the anchor count.
+    The same correction is applied to every query mass, so targets and decoys are scored alike.
+    """
+    m = np.asarray(masses, float)
+    e = np.asarray(errors, float)
+    a = np.asarray(anchors, bool)
+    n = int(a.sum())
+    if n == 0:
+        return m.copy(), 0.0, 0.0, 0
+    x = m[a] / 1000.0 - 2.0
+    y = e[a]
+    if n >= 5:
+        i, j = np.triu_indices(n, 1)
+        dx = x[j] - x[i]
+        ok = np.abs(dx) > 0.05
+        slope = float(np.median((y[j] - y[i])[ok] / dx[ok])) if ok.any() else 0.0
+    else:
+        slope = 0.0
+    icpt = float(np.median(y - slope * x))
+    corr = icpt + slope * (m / 1000.0 - 2.0)
+    return m * (1 - corr * 1e-6), slope, icpt, n
+
+
 def qvalues(target_err: np.ndarray, decoy_errs: Sequence[np.ndarray],
             max_ppm: float, scale: Sequence[float] | None = None) -> np.ndarray:
     """q-value for each query whose best target error is within ``max_ppm`` (nan otherwise).

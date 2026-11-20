@@ -51,3 +51,18 @@ def test_scale_restores_thinned_library_count():
     q_thin = qvalues(te, [best_errors(query, thin)], max_ppm=10, scale=[full.size / thin.size])
     ok = ~np.isnan(q_full)
     assert np.nanmedian(np.abs(q_full[ok] - q_thin[ok])) < 0.02
+
+
+def test_recalibrate_removes_linear_drift():
+    from glyverity.fdr import recalibrate, signed_errors
+    targets, _, _ = _sim(seed=2)
+    rng = np.random.default_rng(2)
+    true = rng.choice(targets, 40)
+    drift = 4.0 + 2.0 * (true / 1000 - 2.0)  # ppm
+    meas = true * (1 + (drift + rng.normal(0, 0.5, 40)) * 1e-6)
+    e = signed_errors(meas, targets)
+    fixed, slope, icpt, n = recalibrate(meas, e, np.ones(40, bool))
+    assert n == 40
+    assert slope == pytest.approx(2.0, abs=0.5)
+    assert icpt == pytest.approx(4.0, abs=0.5)
+    assert np.median(np.abs(signed_errors(fixed, targets))) < 0.7

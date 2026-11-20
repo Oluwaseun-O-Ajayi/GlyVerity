@@ -38,7 +38,15 @@ from glyverity.census import (
     target_table,
     unassigned_report,
 )
-from glyverity.fdr import best_errors, decoy_libraries, exchangeability, odd_h_shifts, qvalues
+from glyverity.fdr import (
+    best_errors,
+    decoy_libraries,
+    exchangeability,
+    odd_h_shifts,
+    qvalues,
+    recalibrate,
+    signed_errors,
+)
 from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
@@ -140,12 +148,29 @@ def main(argv=None) -> int:
     tmass = np.array([m for m, _, _ in target_table(comps, groups)])
     shifts_h = odd_h_shifts()
     libs, removed = decoy_libraries(tmass, shifts_h, ppm=args.ppm)
-    smass = np.array([s.neutral_mass for s in species])
-    te = best_errors(smass, np.sort(tmass))
+    smass_raw = np.array([s.neutral_mass for s in species])
+    tsort = np.sort(tmass)
+    # anchors: species seen in two or more charge states, matching a target within the
+    # search tolerance; their charge states confirm the neutral mass independently
+    nz = np.array([len({f.charge for f, form in s.members if form == "H"}) for s in species])
+    se_raw = signed_errors(smass_raw, tsort)
+    anchors = (nz >= 2) & (np.abs(se_raw) <= args.ppm)
+    smass, slope, icpt, n_anc = recalibrate(smass_raw, se_raw, anchors)
+    se = signed_errors(smass, tsort)
+    print(f"\nmass recalibration on {n_anc} anchor species (2+ charge states, target within "
+          f"{args.ppm:g} ppm): offset {icpt:+.2f} ppm at 2 kDa, slope {slope:+.2f} ppm/kDa; "
+          f"anchor error median|abs| {np.median(np.abs(se_raw[anchors])):.2f} -> "
+          f"{np.median(np.abs(se[anchors])):.2f} ppm")
+    for s, m in zip(species, smass):  # composition assignment on recalibrated masses
+        s.neutral_mass = float(m)
+    asg = assign_species(species, comps, groups, ppm=args.ppm)
+    te = np.abs(se)
     des = [best_errors(smass, lib) for lib in libs]
     scale = [len(tmass) / max(len(lib), 1) for lib in libs]
     qv = qvalues(te, des, max_ppm=args.ppm, scale=scale)
-    q_of = {s.species_id: (te[i], qv[i]) for i, s in enumerate(species)}
+    q_raw = qvalues(np.abs(se_raw), [best_errors(smass_raw, lib) for lib in libs],
+                    max_ppm=args.ppm, scale=scale)
+    q_of = {s.species_id: (se[i], qv[i]) for i, s in enumerate(species)}
     n_t, n_d, ratio = exchangeability(te, des, (15.0, 30.0), scale=scale)
     print(f"\ncomposition FDR: {len(tmass)} target masses, {len(libs)} odd-H decoy libraries "
           f"(+/-3,5,7,9 H; {sum(removed)} decoys within {args.ppm:g} ppm of a target removed)")
@@ -159,17 +184,25 @@ def main(argv=None) -> int:
         print("  target matches in the 15-30 ppm band (strongest first):")
         for i in band[:12]:
             s = species[i]
-            j = int(np.argmin(np.abs(tm - s.neutral_mass)))
+            j = int(np.argmin(np.abs(tm - smass[i])))
             m, iso, grp = tsorted[j]
             zs = ",".join(sorted({str(f.charge) for f, form in s.members if form == "H"}))
             nm = composition_string(iso[0])
-            print(f"    {s.neutral_mass:10.4f} {s.rt:7.3f} min z={zs:<5} {s.intensity:10.0f} "
-                  f"{(s.neutral_mass - m) / m * 1e6:+6.1f} ppm  {nm}({grp})")
+            print(f"    {smass[i]:10.4f} {s.rt:7.3f} min z={zs:<5} {s.intensity:10.0f} "
+                  f"{(smass[i] - m) / m * 1e6:+6.1f} ppm  {nm}({grp})")
+    top = [i for i in np.argsort(-np.array([s.intensity for s in species])) if te[i] <= args.ppm]
+    print("  strongest target-matched species: signed error raw -> recalibrated, q")
+    for i in top[:12]:
+        s = species[i]
+        j = int(np.argmin(np.abs(tm - smass[i])))
+        print(f"    {smass_raw[i]:10.4f} {s.rt:7.3f} min z={nz[i]} {s.intensity:10.0f} "
+              f"{se_raw[i]:+6.1f} -> {se[i]:+6.1f} ppm  q={qv[i]:.3f}  "
+              f"{composition_string(tsorted[j][1][0])}({tsorted[j][2]})")
     sp_int = np.array([s.intensity for s in species])
     tot_int = sum(f.intensity for f in feats)
-    for label, mask in (("target match", te <= args.ppm), ("q <= 0.05", qv <= 0.05),
-                        ("q <= 0.01", qv <= 0.01)):
-        print(f"  species with {label:<12}: {int(mask.sum()):4d} of {len(species)}, "
+    for label, mask in (("target match", te <= args.ppm), ("q <= 0.05 (raw)", q_raw <= 0.05),
+                        ("q <= 0.05", qv <= 0.05), ("q <= 0.01", qv <= 0.01)):
+        print(f"  species with {label:<15}: {int(mask.sum()):4d} of {len(species)}, "
               f"{100 * sp_int[mask].sum() / tot_int:5.1f}% of feature intensity")
     cands = [c for a in asg for c in a.matches]
     by_key = {c.key: c for c in cands}
