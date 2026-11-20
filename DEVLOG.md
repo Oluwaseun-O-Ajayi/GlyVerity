@@ -683,3 +683,16 @@
   so valleys were not found within 1 min and neighbouring peaks may share a window.
 * Status: support is positive but marginal on one run (lower bound +0.002). Needs more runs
   with FLD before it can be claimed. Tests: 84 passed.
+
+## 2026-11-20 (11): shuffle control result
+
+* Extra signal (all assigned minus protonated) moved to random peaks: median TV 0.389 vs
+  0.055 as assigned; p = 0.0002 (1/5001, no shuffle as close; the smallest p this test can
+  give with 5000 shuffles).
+* Reading: two nulls bracket the result. Random placement of the extra signal (shuffle) is an
+  easy null, because the extra signal is large and misplacing it distorts the profile badly
+  (0.389, worse than protonated ions alone). Placement proportional to each peak's
+  protonated signal leaves shares unchanged, i.e. TV = protonated 0.092; against that null the
+  gain is +0.037 (95% bootstrap +0.002 to +0.086). Claim for one run: the assigned ions go to
+  the right peaks (strong evidence), and they improve agreement with FLD beyond what scaling
+  protonated signal gives (marginal evidence).
