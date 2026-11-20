@@ -590,3 +590,24 @@
   and 0.01; class shares split at q = 0.05; species_target_ppm and species_q columns in the TSV.
 * Tests: 77 passed (simulated data: q <= 0.05 gives observed FDR < 10% and > 80% recall;
   exchangeability ratio within 0.8 to 1.25).
+
+## 2026-11-20 (5): first composition q-values on fetuin
+
+* 1568 target masses; 8 odd-H libraries, 1400 of 12544 decoys removed (within 10 ppm of a
+  target). Exchangeability at 15-30 ppm: target 18, decoy mean 10.0, ratio 1.80.
+* 97 of 424 species match a target (85.1% of feature intensity); q <= 0.05: 73 species
+  (82.9%); q <= 0.01: 3 species (0.3%).
+* Class split at q = 0.05 (species intensity incl. absorbed ions): labelled glycan 50.5% vs
+  0.2%; other end group 13.7 vs 1.9; side-product 17.9 vs 0.0; ISF 0.8 vs 2.3; unassigned
+  0 vs 12.6.
+* Faults and reading:
+  - Removing decoys thinned the libraries by 11% without correction (optimistic). Fixed:
+    decoy counts scaled by target size / decoy library size.
+  - Ratio 1.80 on 18 vs 10 counts. Either the decoys under-sample chance matches, or true
+    glycans with poor mass accuracy fall in 15-30 ppm. Added a listing of the band species
+    to tell these apart.
+  - q <= 0.01 is nearly unreachable: with about 0.5 target masses per Da and ~330 non-glycan
+    species, chance matches within 1-2 ppm occur in every decoy library. Accurate mass alone
+    has an FDR floor of a few percent at this search-space size. Other evidence (isotope fit,
+    retention, series, MS2) is needed for 1%. Paper point, not a bug.
+* Tests: 78 passed.

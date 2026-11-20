@@ -40,3 +40,14 @@ def test_qvalues_track_true_fdr_and_exchangeability_near_one():
     assert accepted[:n_true].mean() > 0.8
     _, _, ratio = exchangeability(te, des, (15, 30))
     assert 0.8 < ratio < 1.25
+
+
+def test_scale_restores_thinned_library_count():
+    targets, query, _ = _sim(seed=1)
+    full = np.sort(targets + 5 * 1.00782503207)
+    thin = full[::2]
+    te = best_errors(query, targets)
+    q_full = qvalues(te, [best_errors(query, full)], max_ppm=10)
+    q_thin = qvalues(te, [best_errors(query, thin)], max_ppm=10, scale=[full.size / thin.size])
+    ok = ~np.isnan(q_full)
+    assert np.nanmedian(np.abs(q_full[ok] - q_thin[ok])) < 0.02

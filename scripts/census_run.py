@@ -24,6 +24,7 @@ import numpy as np
 
 from glyverity import annotate as an
 from glyverity import chemistry as ch
+from glyverity.annotate import composition_string
 from glyverity.census import (
     CLASSES,
     FAMILIES,
@@ -142,13 +143,28 @@ def main(argv=None) -> int:
     smass = np.array([s.neutral_mass for s in species])
     te = best_errors(smass, np.sort(tmass))
     des = [best_errors(smass, lib) for lib in libs]
-    qv = qvalues(te, des, max_ppm=args.ppm)
+    scale = [len(tmass) / max(len(lib), 1) for lib in libs]
+    qv = qvalues(te, des, max_ppm=args.ppm, scale=scale)
     q_of = {s.species_id: (te[i], qv[i]) for i, s in enumerate(species)}
-    n_t, n_d, ratio = exchangeability(te, des, (15.0, 30.0))
+    n_t, n_d, ratio = exchangeability(te, des, (15.0, 30.0), scale=scale)
     print(f"\ncomposition FDR: {len(tmass)} target masses, {len(libs)} odd-H decoy libraries "
           f"(+/-3,5,7,9 H; {sum(removed)} decoys within {args.ppm:g} ppm of a target removed)")
     print(f"  exchangeability, best error 15-30 ppm: target {n_t}, decoy mean {n_d:.1f}, "
-          f"ratio {ratio:.2f} (1 expected)")
+          f"ratio {ratio:.2f} (1 expected; decoy counts scaled for removed decoys)")
+    tsorted = sorted(target_table(comps, groups), key=lambda r: r[0])
+    tm = np.array([r[0] for r in tsorted])
+    band = [i for i in np.argsort(-np.array([s.intensity for s in species]))
+            if 15.0 < te[i] <= 30.0]
+    if band:
+        print("  target matches in the 15-30 ppm band (strongest first):")
+        for i in band[:12]:
+            s = species[i]
+            j = int(np.argmin(np.abs(tm - s.neutral_mass)))
+            m, iso, grp = tsorted[j]
+            zs = ",".join(sorted({str(f.charge) for f, form in s.members if form == "H"}))
+            nm = composition_string(iso[0])
+            print(f"    {s.neutral_mass:10.4f} {s.rt:7.3f} min z={zs:<5} {s.intensity:10.0f} "
+                  f"{(s.neutral_mass - m) / m * 1e6:+6.1f} ppm  {nm}({grp})")
     sp_int = np.array([s.intensity for s in species])
     tot_int = sum(f.intensity for f in feats)
     for label, mask in (("target match", te <= args.ppm), ("q <= 0.05", qv <= 0.05),

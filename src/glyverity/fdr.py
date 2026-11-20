@@ -6,7 +6,8 @@ hydrogen atoms. These formulas cannot exist as closed-shell molecules, but they 
 defect of real CHNO molecules, so a decoy library samples the same region of the mass axis as
 the targets. Decoy masses that fall within the search tolerance of any target are removed.
 
-FDR is estimated by separate search: for a score cutoff t (ppm error), the mean number of
+Decoy counts are scaled by target library size over decoy library size, so removing decoys
+does not make the estimate optimistic. FDR is estimated by separate search: for a score cutoff t (ppm error), the mean number of
 species whose best decoy match is within t, over the number whose best target match is within
 t, across the decoy libraries. q-values are the running minimum of FDR from the largest cutoff
 down. Exchangeability (decoys behave like random target matches) is checked in an error band
@@ -63,8 +64,12 @@ def best_errors(query: np.ndarray, library: np.ndarray) -> np.ndarray:
 
 
 def qvalues(target_err: np.ndarray, decoy_errs: Sequence[np.ndarray],
-            max_ppm: float) -> np.ndarray:
-    """q-value for each query whose best target error is within ``max_ppm`` (nan otherwise)."""
+            max_ppm: float, scale: Sequence[float] | None = None) -> np.ndarray:
+    """q-value for each query whose best target error is within ``max_ppm`` (nan otherwise).
+
+    ``scale`` multiplies each library's decoy count, normally target library size over decoy
+    library size, so libraries thinned by :func:`decoy_libraries` are not under-counted.
+    """
     te = np.asarray(target_err, float)
     q = np.full(te.shape, np.nan)
     hit = te <= max_ppm
@@ -72,7 +77,9 @@ def qvalues(target_err: np.ndarray, decoy_errs: Sequence[np.ndarray],
         return q
     cut = np.sort(te[hit])
     n_t = np.arange(1, cut.size + 1)
-    n_d = np.mean([np.searchsorted(np.sort(d), cut, side="right") for d in decoy_errs], axis=0)
+    sc = np.ones(len(decoy_errs)) if scale is None else np.asarray(scale, float)
+    n_d = np.mean([k * np.searchsorted(np.sort(d), cut, side="right")
+                   for k, d in zip(sc, decoy_errs)], axis=0)
     fdr = np.minimum(n_d / n_t, 1.0)
     qcum = np.minimum.accumulate(fdr[::-1])[::-1]
     idx = np.searchsorted(cut, te[hit], side="right") - 1
@@ -81,7 +88,8 @@ def qvalues(target_err: np.ndarray, decoy_errs: Sequence[np.ndarray],
 
 
 def exchangeability(target_err: np.ndarray, decoy_errs: Sequence[np.ndarray],
-                    band: tuple[float, float]) -> tuple[int, float, float]:
+                    band: tuple[float, float],
+                    scale: Sequence[float] | None = None) -> tuple[int, float, float]:
     """Target and mean decoy match counts with best error inside ``band`` (ppm), and their ratio.
 
     Only queries with no target match below the band's lower edge are counted, so true matches
@@ -92,6 +100,7 @@ def exchangeability(target_err: np.ndarray, decoy_errs: Sequence[np.ndarray],
     te = np.asarray(target_err, float)
     free = te > lo
     n_t = int(np.sum(free & (te <= hi)))
-    n_d = float(np.mean([np.sum(free & (np.asarray(d) > lo) & (np.asarray(d) <= hi))
-                         for d in decoy_errs]))
+    sc = np.ones(len(decoy_errs)) if scale is None else np.asarray(scale, float)
+    n_d = float(np.mean([k * np.sum(free & (np.asarray(d) > lo) & (np.asarray(d) <= hi))
+                         for k, d in zip(sc, decoy_errs)]))
     return n_t, n_d, (n_t / n_d if n_d else np.inf)
