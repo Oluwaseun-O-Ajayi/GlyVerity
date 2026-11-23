@@ -696,3 +696,14 @@
   gain is +0.037 (95% bootstrap +0.002 to +0.086). Claim for one run: the assigned ions go to
   the right peaks (strong evidence), and they improve agreement with FLD beyond what scaling
   protonated signal gives (marginal evidence).
+
+## 2026-11-23: second run, fetuin on Thermo Orbitrap
+
+* IgG Agilent run ruled out: in MassHunter data, MSPeak.bin holds (m/z, intensity) pairs
+  only; scan offsets, retention times and MS level are in MSScan.bin, absent from the deposit
+  (checked in rainbow 1.5.5 masshunter.py). Retention times cannot be recovered.
+* Fetuin Thermo .raw (Zenodo 4705546, 601,751,870 bytes) converted on the cluster with
+  ThermoRawFileParser 1.4.5 (bioconda, mono 6.12.0.199 from conda-forge; Miniforge3/24.11.3-0
+  module): indexed mzML, peak picking on, metadata JSON; 44,946 scans, 0 errors, 0 warnings.
+* census_run.py reads .mzML input (MS1 in the time window; no FLD, so FLD steps are skipped).
+  Tests: 85 passed.

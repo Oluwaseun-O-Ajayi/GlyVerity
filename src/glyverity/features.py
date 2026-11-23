@@ -62,6 +62,28 @@ def scans_from_centroid(centroid_file, keep: np.ndarray | None, t_lo: float | No
         yield float(t), np.asarray(mz, float), np.asarray(it, float)
 
 
+def load_mzml_ms1(path: str, t_lo: float | None = None, t_hi: float | None = None):
+    """Load MS1 spectra of an mzML file inside a time window (minutes) as an ``MSExperiment``.
+
+    Spectra are kept when their MS level is 1 and their retention time falls in the window;
+    the file's own retention times (seconds) are kept unchanged.
+    """
+    import pyopenms as oms
+
+    src = oms.MSExperiment()
+    oms.MzMLFile().load(str(path), src)
+    out = oms.MSExperiment()
+    for s in src.getSpectra():
+        if s.getMSLevel() != 1:
+            continue
+        t = s.getRT() / 60.0
+        if (t_lo is not None and t < t_lo) or (t_hi is not None and t > t_hi):
+            continue
+        out.addSpectrum(s)
+    out.updateRanges()
+    return out
+
+
 def find_features(exp, ppm: float = 10.0, noise: float = 100.0, chrom_fwhm_s: float = 10.0,
                   charges: tuple[int, int] = (1, 4), min_trace_length_s: float = 5.0,
                   min_sample_rate: float = 0.5,

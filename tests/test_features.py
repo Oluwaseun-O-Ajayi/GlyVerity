@@ -57,3 +57,20 @@ def test_label_net_formula_matches_mass():
     assert ch.formula_mass(net) == pytest.approx(ch.LABELS["2-AB"].added_mass, abs=1e-9)
     f = ch.glycan_formula({"Hex": 5, "HexNAc": 2})
     assert ch.formula_mass(f) == pytest.approx(ch.glycan_neutral_mass({"Hex": 5, "HexNAc": 2}))
+
+
+def test_load_mzml_ms1_keeps_ms1_in_window(tmp_path):
+    oms = pytest.importorskip("pyopenms")
+    from glyverity.features import load_mzml_ms1
+
+    exp = oms.MSExperiment()
+    for i, (t_min, level) in enumerate([(10.0, 1), (20.0, 1), (20.05, 2), (30.0, 1), (60.0, 1)]):
+        s = oms.MSSpectrum()
+        s.setRT(t_min * 60.0)
+        s.setMSLevel(level)
+        s.set_peaks(([500.0 + i], [1000.0]))
+        exp.addSpectrum(s)
+    path = tmp_path / "x.mzML"
+    oms.MzMLFile().store(str(path), exp)
+    out = load_mzml_ms1(str(path), 15.0, 50.0)
+    assert [round(s.getRT() / 60.0, 2) for s in out.getSpectra()] == [20.0, 30.0]

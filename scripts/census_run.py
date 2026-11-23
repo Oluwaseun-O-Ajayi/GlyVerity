@@ -47,7 +47,13 @@ from glyverity.fdr import (
     recalibrate,
     signed_errors,
 )
-from glyverity.features import find_features, scans_from_centroid, to_msexperiment, write_mzml
+from glyverity.features import (
+    find_features,
+    load_mzml_ms1,
+    scans_from_centroid,
+    to_msexperiment,
+    write_mzml,
+)
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
 from glyverity.validate import (
@@ -85,14 +91,18 @@ def main(argv=None) -> int:
                     help="print every label/side-product pair with its fluorescence values")
     args = ap.parse_args(argv)
 
-    import rainbow
-
     args.out.mkdir(parents=True, exist_ok=True)
-    files = list(rainbow.read(str(args.run), centroid=True).datafiles)
-    ms = next(df for df in files if str(df.detector) == "MS" and hasattr(df, "scan"))
-    keep = ms1_mask(scan_records(os.path.join(str(args.run), "AcqData")))
     lo, hi = args.window
-    exp = to_msexperiment(list(scans_from_centroid(ms, keep, lo, hi)))
+    if args.run.suffix.lower() == ".mzml":  # converted vendor file (e.g. Thermo .raw); no FLD
+        files = []
+        exp = load_mzml_ms1(str(args.run), lo, hi)
+    else:
+        import rainbow
+
+        files = list(rainbow.read(str(args.run), centroid=True).datafiles)
+        ms = next(df for df in files if str(df.detector) == "MS" and hasattr(df, "scan"))
+        keep = ms1_mask(scan_records(os.path.join(str(args.run), "AcqData")))
+        exp = to_msexperiment(list(scans_from_centroid(ms, keep, lo, hi)))
     if args.mzml:
         path = args.out / "ms1_window.mzML"
         write_mzml(exp, str(path))
