@@ -741,3 +741,17 @@
   glycan census.
 * Bug: recalibration ran on 1 anchor (+9.01 ppm) and that anchor then scored q = 0 against its
   own correction. Fixed: at least 5 anchors, otherwise no correction. Tests: 110 passed.
+
+## 2026-11-23 (4): Orbitrap file is not released glycans
+
+* ms2_mzml_check.py: 38,256 MS2, 22,922 with low mass recorded. At 20 ppm: HexNAc oxonium in
+  8,244; HexHexNAc 6,529; NeuAc 5,462; 2-AB Y1 342.1660 in 182; oxonium-positive with Y1: 49 of
+  8,244 (0.6%). Oxonium-positive precursor charges: 2+ 1,396; 3+ 2,353; 4+ 2,006; 5+ 1,752;
+  6+ 737. At 0.3 Da (looser): 953 of 12,149 (7.8%).
+* Reading: glycan-containing spectra are plentiful, but almost none carry the labelled reducing
+  end, and most precursors are 3+ to 6+. Consistent with glycopeptides (the GYPeptideID method),
+  not released 2-AB glycans. Excluded from the census; catalog note updated. A positive control
+  (share of 342.166 in oxonium-positive MS2 of the Agilent released-glycan run) would make the
+  test quantitative; to do.
+* Second FLD run still needed: next candidates PXD077477 and PXD078897 (Thermo; FLD in the
+  raw files unverified), then GlycoPOST and MassIVE searches.
