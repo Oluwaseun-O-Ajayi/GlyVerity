@@ -812,3 +812,21 @@
   partner in the run. Tests: 113 passed.
 * Feature count too low (96): MS1 intensities sit near the floor (median 1200); rerun with
   noise 500.
+
+## 2026-11-23 (9): reruns at commit 516dc67
+
+* PXD077477 2-AB, noise 500 (job 50516741): 185 features -> 92 species; relation chance
+  1.9%; 12 species resolved by labelled-glycan support; 34 of 92 species at q <= 0.05 (60.8%).
+  Feature intensity: labelled glycan 7.0%, other end group 26.6%, adduct ions 31.3%, dimer
+  3.0%, ambiguous 4.2%, unassigned 26.2%. NH3-RA forms outweigh 2-AB forms in MS signal; not
+  a molar statement (primary amine vs 2-AB amide ionize differently; no FLD for NH3-RA).
+* Retention offsets 2-AB -> NH3-RA: FA2 26.22 -> 38.17 (+12.0); A2G2S1F 32.04 -> 42.41-44.68;
+  A2G2S2F 37.62 -> 47.01 / 48.51. Series test n = 0 because max_shift was 6 min (set on the
+  fetuin gradient). Rerun with --max-shift 15.
+* FA2 NH3-RA form shows two peaks (38.17, 40.01 min) though FA2 has no linkage isomers.
+  Test with MS2: Y1 amino-alditol + Fuc 369.1867 (core-fucosylated reading) vs Y1 C3H9N tag
+  265.1758 (other reading); scripts/ms2_precursor_ions.py.
+* FLD validation, 8 glycans in 8 peaks: TV strongest 0.262, protonated 0.352, all ions 0.275
+  (difference +0.078, 95% -0.108 to +0.190; shuffle p = 0.19). Inconclusive.
+* Fetuin rerun (job 50516755): unchanged except 3 species resolved by support; ambiguous
+  0.1% -> 0.0%.
