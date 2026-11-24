@@ -763,3 +763,16 @@
   NCS-3500RS nano pump (pressure and flow channels); 1 MS analog device with channel "UV 214"
   (volts); no UV, PDA or fluorescence device. A nano-LC run with 214 nm UV fits the
   glycopeptide reading; no FLD ground truth in this file.
+
+## 2026-11-23 (6): second FLD run found (PXD077477)
+
+* PXD077477 (Moon, BI-NEX; interferon-beta R27T, PNGase F): three released-glycan .raw files
+  (2-AB 40C 600-2500; procainamide 40C 600-2500; procainamide 40C); the rest are peptide maps.
+  Downloaded 20231212_R27T_2AB_40C_600-2500.raw over HTTPS, 331,967,983 bytes (matches PRIDE).
+* Detectors (tools/thermo_channels): MS; Dionex DGP-3600RS pump pressures; Dionex FLD-3400RS
+  with UV-type channel Emission_1 (28,501 points, 0-95 min) and analog FLD_FlowCell; TCC-3200
+  oven and cooler temperatures. SDRF: R27T_IFNB_PNGaseF_2AB_glycan, technical replicate 1.
+* census_run.py: --fld-csv/--fld-column read an exported trace; --lag auto estimates the
+  FLD-to-MS delay by cross-correlation with the MS1 TIC (align.estimate_lag, +/-2 min).
+  New io_traces.read_trace_csv (a row with an empty value used to desynchronise time and
+  value lists; caught by its test). Tests: 111 passed.

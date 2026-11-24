@@ -26,6 +26,7 @@ import numpy as np
 
 from glyverity import annotate as an
 from glyverity import chemistry as ch
+from glyverity.align import estimate_lag
 from glyverity.annotate import composition_string
 from glyverity.census import (
     CLASSES,
@@ -57,6 +58,7 @@ from glyverity.features import (
     write_mzml,
 )
 from glyverity.io_agilent import fld_traces, ms1_mask, scan_records
+from glyverity.io_traces import read_trace_csv
 from glyverity.layers import AdductIsotopeIsobar, InSourceFragment, LabelSideProductSeries
 from glyverity.validate import (
     bootstrap_tv_difference,
@@ -80,7 +82,11 @@ def main(argv=None) -> int:
     ap.add_argument("--window", nargs=2, type=float, default=(15.0, 50.0))
     ap.add_argument("--ppm", type=float, default=10.0)
     ap.add_argument("--noise", type=float, default=100.0)
-    ap.add_argument("--lag", type=float, default=0.0, help="MS minus FLD time (min)")
+    ap.add_argument("--lag", default="0",
+                    help="MS minus FLD time (min), or 'auto' to estimate it from FLD and MS TIC")
+    ap.add_argument("--fld-csv", type=Path, default=None,
+                    help="FLD trace as CSV (time_min, signal), e.g. from tools/thermo_channels")
+    ap.add_argument("--fld-column", default=None, help="signal column in --fld-csv")
     ap.add_argument("--rt-tol", type=float, default=0.25, help="co-elution tolerance (min)")
     ap.add_argument("--max-shift", type=float, default=6.0,
                     help="largest retention shift between a label and a side-product form (min)")
@@ -239,7 +245,18 @@ def main(argv=None) -> int:
               f"{100 * sp_int[mask].sum() / tot_int:5.1f}% of feature intensity")
     cands = [c for a in asg for c in a.matches]
     by_key = {c.key: c for c in cands}
-    fl = fld_traces(files)
+    fl = [read_trace_csv(args.fld_csv, args.fld_column)] if args.fld_csv else fld_traces(files)
+    if args.lag == "auto":
+        if not fl:
+            raise SystemExit("--lag auto needs an FLD trace")
+        tic_t = np.array([s.getRT() / 60.0 for s in exp.getSpectra()])
+        tic_y = np.array([float(np.sum(s.get_peaks()[1])) for s in exp.getSpectra()])
+        lag, r = estimate_lag(np.asarray(fl[0].times), np.asarray(fl[0].values), tic_t, tic_y,
+                              window=tuple(args.window), max_lag=2.0)
+        print(f"FLD-to-MS lag estimated: {lag:+.3f} min (Pearson r {r:.3f} with MS1 TIC)")
+        args.lag = float(lag)
+    else:
+        args.lag = float(args.lag)
     if fl:
         for c in cands:
             c.fld_at_apex = float(np.interp(c.apex_time - args.lag, fl[0].times, fl[0].values))
