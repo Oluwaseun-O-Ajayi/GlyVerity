@@ -723,3 +723,21 @@
 * census_run.py prints stage times to stderr and flushes output lines; scripts/slurm/
   census.sbatch runs a census as a Sapelo2 batch job (partition batch, 8 GB, 12 h).
 * Tests: 109 passed.
+
+## 2026-11-23 (3): Orbitrap fetuin census, job 50515340
+
+* 1880 MS1 scans (10-70 min) -> 8103 features -> 2778 species; run time 6.6 min on a compute
+  node. Relation decoys: adduct 14.3%, isotope 28.2%, isf_sia 98.6%, isf_other 16.8%, dimer
+  54.1%, re-read 39.9% chance at full width; after cutoffs 43.2% chance share overall.
+  Unassigned 92.6% of intensity; one species at q <= 0.05.
+* Strongest features (654.3154 3+, 635.3317 2+, 840.4513 3+, 865.6773 4+ with 1153.8997 3+)
+  do not look like released glycans. With the method name (AB_22Apr20_GYPeptideID_100min),
+  MS2 precursor charges 2-6 and A3S3 2-AB 2+ at about 1e-4 of the top features, the file may
+  be a fetuin glycopeptide run. Hypothesis only; the Zenodo title says released glycans on both
+  instruments. Test: scripts/ms2_mzml_check.py (share of HexNAc-oxonium MS2 that also show the
+  2-AB Y1 ion 342.1660).
+* Reading if confirmed: the decoys refused to certify relations on non-glycan-dominated data
+  (a negative control for the cleaning step), and the run is out of scope for the released-
+  glycan census.
+* Bug: recalibration ran on 1 anchor (+9.01 ppm) and that anchor then scored q = 0 against its
+  own correction. Fixed: at least 5 anchors, otherwise no correction. Tests: 110 passed.

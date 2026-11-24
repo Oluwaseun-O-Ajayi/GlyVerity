@@ -187,10 +187,13 @@ def main(argv=None) -> int:
     anchors = (nz >= 2) & (np.abs(se_raw) <= args.ppm)
     smass, slope, icpt, n_anc = recalibrate(smass_raw, se_raw, anchors)
     se = signed_errors(smass, tsort)
-    print(f"\nmass recalibration on {n_anc} anchor species (2+ charge states, target within "
-          f"{args.ppm:g} ppm): offset {icpt:+.2f} ppm at 2 kDa, slope {slope:+.2f} ppm/kDa; "
-          f"anchor error median|abs| {np.median(np.abs(se_raw[anchors])):.2f} -> "
-          f"{np.median(np.abs(se[anchors])):.2f} ppm")
+    if n_anc < 5:
+        print(f"\nmass recalibration skipped: {n_anc} anchor species (5 needed)")
+    else:
+        print(f"\nmass recalibration on {n_anc} anchor species (2+ charge states, target "
+              f"within {args.ppm:g} ppm): offset {icpt:+.2f} ppm at 2 kDa, slope {slope:+.2f} "
+              f"ppm/kDa; anchor error median|abs| {np.median(np.abs(se_raw[anchors])):.2f} -> "
+              f"{np.median(np.abs(se[anchors])):.2f} ppm")
     for s, m in zip(species, smass):  # composition assignment on recalibrated masses
         s.neutral_mass = float(m)
     asg = assign_species(species, comps, groups, ppm=args.ppm)

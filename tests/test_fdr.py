@@ -66,3 +66,11 @@ def test_recalibrate_removes_linear_drift():
     assert slope == pytest.approx(2.0, abs=0.5)
     assert icpt == pytest.approx(4.0, abs=0.5)
     assert np.median(np.abs(signed_errors(fixed, targets))) < 0.7
+
+
+def test_recalibrate_needs_enough_anchors():
+    from glyverity.fdr import recalibrate
+    m = np.array([2000.0, 2500.0, 3000.0])
+    e = np.array([9.0, 1.0, -2.0])
+    fixed, _, icpt, n = recalibrate(m, e, np.array([True, False, False]))
+    assert n == 1 and icpt == 0.0 and np.array_equal(fixed, m)

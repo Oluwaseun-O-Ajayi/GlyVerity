@@ -73,21 +73,24 @@ def signed_errors(query: np.ndarray, library: np.ndarray) -> np.ndarray:
     return (q - near) / near * 1e6
 
 
-def recalibrate(masses: np.ndarray, errors: np.ndarray,
-                anchors: np.ndarray) -> tuple[np.ndarray, float, float, int]:
+def recalibrate(masses: np.ndarray, errors: np.ndarray, anchors: np.ndarray,
+                min_anchors: int = 5) -> tuple[np.ndarray, float, float, int]:
     """Remove a systematic mass error, linear in mass, fitted on anchor species.
 
     Theil-Sen fit (median of pairwise slopes, then median intercept) of signed ppm error against
     mass over the anchors; with fewer than 5 anchors only the median offset is removed. Returns
     corrected masses, the slope (ppm per kDa), the intercept at 2 kDa (ppm) and the anchor count.
+    With fewer than ``min_anchors`` anchors nothing is corrected: one or two anchors would set
+    the correction from the very species being scored, and that species would then match its
+    own correction exactly.
     The same correction is applied to every query mass, so targets and decoys are scored alike.
     """
     m = np.asarray(masses, float)
     e = np.asarray(errors, float)
     a = np.asarray(anchors, bool)
     n = int(a.sum())
-    if n == 0:
-        return m.copy(), 0.0, 0.0, 0
+    if n < min_anchors:
+        return m.copy(), 0.0, 0.0, n
     x = m[a] / 1000.0 - 2.0
     y = e[a]
     if n >= 5:
