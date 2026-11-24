@@ -411,11 +411,13 @@ def validate_fld(asg, species, sp_cls, q_of, trace, args, dec_species=()) -> Non
     with path.open("w", newline="") as fh:
         w = csv.writer(fh, delimiter="\t")
         w.writerow(["fld_start", "fld_end", "fld_apex", "species", "sialic_acids",
-                    "fld_share", "ms_protonated_share", "ms_all_share"])
+                    "fld_share", "ms_protonated_share", "ms_all_share", "fld_area",
+                    "ms_protonated", "ms_all"])
         for k, win in enumerate(wins):
             names = "; ".join(f"{rows[i][1].name}@{rows[i][0].rt:.2f}" for i in win.members)
             w.writerow([f"{win.start:.3f}", f"{win.end:.3f}", f"{win.apex:.3f}", names, sia[k],
-                        f"{fs[k]:.4f}", f"{ps[k]:.4f}", f"{al[k]:.4f}"])
+                        f"{fs[k]:.4f}", f"{ps[k]:.4f}", f"{al[k]:.4f}", f"{fld[k]:.6g}",
+                        f"{meas['protonated ions'][k]:.6g}", f"{meas['all assigned ions'][k]:.6g}"])
     print("  FLD peak  sialic  FLD share  MS protonated  MS all ions   species")
     for k in np.argsort(-fs):
         names = ", ".join(rows[i][1].name for i in wins[k].members)

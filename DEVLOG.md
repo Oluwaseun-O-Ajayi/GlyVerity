@@ -891,3 +891,15 @@
   15-30 ppm). The band holds an intense series 2955.15 / 3101.22 / 3392.32 / 3683.41
   (NeuAc steps) about +17 to +19 ppm from C3H9N-RA readings, at several retention times; a
   real unexplained species family, not chance. Open.
+
+## 2026-11-23 (14): FLD validation figure
+
+* scripts/fig_fld_validation.py -> docs/figures/fig_fld_validation.{pdf,png,svg} (7.0 in wide,
+  600 dpi PNG, fonts embedded). Panels A-D: MS share vs FLD share per FLD peak (sqrt scale),
+  protonated vs all assigned ions; panel E: TV difference with 95% bootstrap intervals.
+  Colours #2a78d6 / #eb6834 checked with the dataviz palette validator (light surface: all
+  checks pass; CVD dE 24.7).
+* Input tables copied into data/results/fld_validation/ (four runs). Bootstrap values
+  reproduce the census logs exactly. Shuffle p cannot be recomputed from shares (the census
+  shuffles raw intensities), so the figure omits it; census_run.py now also writes fld_area,
+  ms_protonated and ms_all to fld_validation.tsv.
