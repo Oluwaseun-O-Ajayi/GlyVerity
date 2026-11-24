@@ -7,8 +7,13 @@ DLL_DIR="$(dirname "$(find "$ENV" -name ThermoFisher.CommonCore.RawFileReader.dl
 if [ -z "$DLL_DIR" ] || [ "$DLL_DIR" = "." ]; then
   echo "RawFileReader DLLs not found under $ENV" >&2; exit 1
 fi
+# Thermo's DLLs target .NET Standard 2.0, so the netstandard facade must be referenced too
+NETSTD="$(find "$ENV/lib/mono" -path "*Facades/netstandard.dll" 2>/dev/null | sort | tail -1)"
+if [ -z "$NETSTD" ]; then
+  echo "netstandard.dll facade not found under $ENV/lib/mono" >&2; exit 1
+fi
 HERE="$(cd "$(dirname "$0")" && pwd)"
-"$ENV/bin/mcs" -r:"$DLL_DIR/ThermoFisher.CommonCore.Data.dll" \
+"$ENV/bin/mcs" -r:"$NETSTD" -r:"$DLL_DIR/ThermoFisher.CommonCore.Data.dll" \
   -r:"$DLL_DIR/ThermoFisher.CommonCore.RawFileReader.dll" \
   "$HERE/thermo_channels.cs" -out:"$HERE/thermo_channels.exe"
 echo "$DLL_DIR" > "$HERE/dll_dir.txt"
