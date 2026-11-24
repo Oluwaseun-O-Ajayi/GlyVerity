@@ -755,3 +755,11 @@
   test quantitative; to do.
 * Second FLD run still needed: next candidates PXD077477 and PXD078897 (Thermo; FLD in the
   raw files unverified), then GlycoPOST and MassIVE searches.
+
+## 2026-11-23 (5): Thermo detector lister works
+
+* tools/thermo_channels built on the cluster (mcs from the trfp environment, netstandard facade
+  referenced). Fetuin Orbitrap .raw: 1 MS device; 4 analog devices, all from a Dionex
+  NCS-3500RS nano pump (pressure and flow channels); 1 MS analog device with channel "UV 214"
+  (volts); no UV, PDA or fluorescence device. A nano-LC run with 214 nm UV fits the
+  glycopeptide reading; no FLD ground truth in this file.
