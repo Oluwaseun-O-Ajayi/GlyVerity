@@ -858,3 +858,36 @@
 * Moon et al. IJMS 2026 (PXD077477): glycans dried after EB10 clean-up and labelled with Ludger
   kits; no hydrolysis step stated.
 * The IgG .d zip uploaded again is the deposit already examined (no MSScan files); not used.
+
+## 2026-11-23 (13): PXD077477 procainamide runs (jobs 50517803, 50517804)
+
+* 20231212_R27T_PROC_40C_600-2500: 444 features -> 198 species; relation chance 1.1%;
+  recalibration on 12 anchors (0.41 -> 0.43 ppm). 69 species at q <= 0.05 (82.6% of
+  intensity). Lag -0.008 min (r 0.611 glycan current; TIC r 0.736 here). Labelled glycan
+  55.4% of feature intensity, adduct ions 27.1%, unassigned 10.0%.
+  FLD validation: 53 glycans in 38 peaks. TV strongest 0.346, protonated 0.361, all ions
+  0.295; difference +0.066 (95% +0.027 to +0.111); shuffle p = 0.0028. Sialic slope
+  -0.400 -> -0.340.
+* 20231120_R27T_PROC_40C: 585 features -> 221 species; relation chance 5.1% (isf_sia off,
+  55.6% chance); recalibration on 17 anchors (0.67 -> 0.28 ppm); 91 species at q <= 0.05
+  (76.6%). FLD validation: 53 glycans in 35 peaks. TV 0.319 / 0.355 / 0.299; difference
+  +0.056 (95% +0.025 to +0.101); shuffle p = 0.018. Sialic slope -0.279 -> -0.211.
+* FLD validation across runs, TV(protonated) - TV(all assigned):
+  fetuin 2-AB +0.037 (+0.002, +0.085), p 0.0002, 13 peaks;
+  IFN-beta 2-AB +0.078 (-0.108, +0.190), p 0.19, 8 peaks;
+  IFN-beta ProA a +0.066 (+0.027, +0.111), p 0.0028, 38 peaks;
+  IFN-beta ProA b +0.056 (+0.025, +0.101), p 0.018, 35 peaks.
+  Same sign in 4 of 4; interval above zero in 3 of 4. Residual MS-vs-FLD distance after
+  cleaning stays large for ProA (about 0.30): cleaning reduces, does not remove, MS bias.
+  Sialic acid trend: fetuin +0.052 after cleaning; IFN-beta ProA -0.34 and -0.21
+  (sialylated glycans under-represented in MS); direction depends on run.
+* NH3-RA vs ProA: run a n = 7, ratio 0.072, MAD 0.102, shift +8.49 min, FLD fraction 0.29
+  (1 clear pair); run b n = 15, ratio 0.173, MAD 0.108, shift +8.22 min, FLD fraction 0.37
+  (7 clear pairs). Both "not a series" only because MAD exceeds the preset 0.10. Threshold
+  not changed after seeing data. Form present under procainamide with a consistent shift, so
+  it does not depend on the 2-AB reagent. Ratio to the label form is much lower with ProA
+  (0.07-0.17) than with 2-AB (1.8): ProA carries a tertiary amine and ionizes far better.
+* Exchangeability 3.13 and 2.95 in ProA runs (24 and 23 target vs 7.7 and 7.8 decoy in
+  15-30 ppm). The band holds an intense series 2955.15 / 3101.22 / 3392.32 / 3683.41
+  (NeuAc steps) about +17 to +19 ppm from C3H9N-RA readings, at several retention times; a
+  real unexplained species family, not chance. Open.
