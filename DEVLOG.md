@@ -846,3 +846,15 @@
   isolated FLD peaks) -> SERIES. 8 species resolved by labelled-glycan support. Findings doc
   updated. Evidence in this run: mass (<0.5 ppm), retention offset, no fluorescence, MS2 Y1.
 * Results now copied to the user's PC with scp via xfer.gacrc.uga.edu.
+
+## 2026-11-23 (12): literature, full texts
+
+* Wang et al. J Proteomics 2018 (doi:10.1016/j.jprot.2018.06.002): glycosylamine -> open-ring
+  imine -> NaBH3CN -> 1-amino-alditol; also ammonium acetate + NaBH3CN at 70 C.
+* Figl and Altmann, Proteomics 2018: fetuin trisialo 1-amino-1-deoxy-glycitol at m/z 961.02
+  (3+), the same ion as the fetuin census species.
+* Cosenza et al. ARKIVOC 2011: Amadori route to epimeric aminoalditols in acetic acid; a
+  hypothesis for the paired NH3-RA peaks.
+* Moon et al. IJMS 2026 (PXD077477): glycans dried after EB10 clean-up and labelled with Ludger
+  kits; no hydrolysis step stated.
+* The IgG .d zip uploaded again is the deposit already examined (no MSScan files); not used.

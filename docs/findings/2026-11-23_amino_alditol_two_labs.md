@@ -63,11 +63,35 @@ before the glycosylamine hydrolyses, the reductant can reduce it to the 1-amino-
 release chemistry: Figl R, Altmann F, Proteomics 2018, doi:10.1002/pmic.201700330 (about one
 third of N-glycans as 1-amino-1-deoxy-glycitols after reductive alkaline release).
 
+## Literature check, round 3 (2026-11-23, full texts supplied by OOA)
+
+* Wang C, Qiang S, Jin W, Song X, Zhang Y, Huang L, Wang Z. J Proteomics 2018, 187, 47-58.
+  doi:10.1016/j.jprot.2018.06.002. Mechanism (section 3.1): the released glycosylamine is in
+  equilibrium with its open-ring imine form, which NaBH3CN reduces to the open-ring 1-amino
+  alditol. They also make 1-amino-alditols from reducing sugars with 1 M ammonium acetate and
+  NaBH3CN in 10% acetic acid at 70 C for 1 h (section 2.2). Both routes in this document are
+  therefore shown chemistry, under conditions close to 2-AB labelling (NaCNBH3, acetic acid,
+  about 65 C).
+* Figl R, Altmann F. Proteomics 2018, 18, 1700330. doi:10.1002/pmic.201700330. Under reductive
+  alkaline release, the reduced glycosylamine ("N-glyc-amine") is a main product, and "the
+  trisialo glycan from fetuin was primarily obtained as the 1-amino-1-deoxy-glycitol
+  (m/z = 961.02 for triply charged glycan)" (section 3.3). The fetuin census species 961.02
+  (3+, Hex6HexNAc5NeuAc3 NH3-RA, Y1 223.1278) is the same ion. They also note that the
+  glycosylamine readily converts to the reducing glycan on acidification.
+* Cosenza VA, Navarro DA, Stortz CA. ARKIVOC 2011 (vii) 182-194. Reductive amination of
+  monosaccharides with NaBH3CN or alpha-picoline borane gives 1-amino-1-deoxyalditols, and in
+  acetic acid also epimeric products through an Amadori rearrangement (1-amino-1-deoxyketose,
+  reduced to two epimeric aminoalditols). Hypothesis for the paired retention peaks of each
+  NH3-RA composition in PXD077477 (FA2 at 38.17 and 40.01 min, which has no linkage isomers):
+  C2 epimers formed through an Amadori intermediate. Untested. The imidazoline by-product of
+  IgG glycan labelling is reported in a different paper (to find).
+
 ## Literature check, round 2 (2026-11-23)
 
 * Wang et al. (corresponding author wangzhf@nwu.edu.cn), "Reductive chemical release of
   N-glycans as 1-amino-alditols and subsequent 9-fluorenylmethyloxycarbonyl labeling for MS and
-  LC/MS analysis", J Proteomics 2018, 187: 47-58 (PMID 29885470; DOI to confirm). Aqueous
+  LC/MS analysis", J Proteomics 2018, 187: 47-58 (PMID 29885470; doi:10.1016/j.jprot.2018.06.002,
+  confirmed from the full text). Aqueous
   ammonia with NaBH3CN releases N-glycans as 1-amino-alditols on purpose. So NaBH3CN with
   ammonia converts N-glycans to exactly this product.
 * This opens a second route besides direct glycosylamine reduction: reductive amination of
