@@ -38,7 +38,8 @@ class ThermoChannels
                 Console.WriteLine($"  {kind} {k}: name '{info.Name}', model '{info.Model}', units {info.Units}, " +
                                   $"channels [{string.Join(", ", labels)}], scans {hdr.FirstSpectrum}-{hdr.LastSpectrum}, " +
                                   $"time {hdr.StartTime:F2}-{hdr.EndTime:F2} min");
-                if (outDir == null || hdr.LastSpectrum < hdr.FirstSpectrum) continue;
+                // devices without scans (e.g. an empty "Other" device reports -1) are listed, not read
+                if (outDir == null || hdr.FirstSpectrum < 1 || hdr.LastSpectrum < hdr.FirstSpectrum) continue;
                 string path = Path.Combine(outDir, $"{Path.GetFileNameWithoutExtension(args[0])}_{kind}{k}.csv");
                 using (var w = new StreamWriter(path))
                 {

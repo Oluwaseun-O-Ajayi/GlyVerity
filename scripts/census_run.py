@@ -26,7 +26,7 @@ import numpy as np
 
 from glyverity import annotate as an
 from glyverity import chemistry as ch
-from glyverity.align import estimate_lag
+from glyverity.align import estimate_lag, targeted_ion_current
 from glyverity.annotate import composition_string
 from glyverity.census import (
     CLASSES,
@@ -249,11 +249,18 @@ def main(argv=None) -> int:
     if args.lag == "auto":
         if not fl:
             raise SystemExit("--lag auto needs an FLD trace")
-        tic_t = np.array([s.getRT() / 60.0 for s in exp.getSpectra()])
-        tic_y = np.array([float(np.sum(s.get_peaks()[1])) for s in exp.getSpectra()])
-        lag, r = estimate_lag(np.asarray(fl[0].times), np.asarray(fl[0].values), tic_t, tic_y,
-                              window=tuple(args.window), max_lag=2.0)
-        print(f"FLD-to-MS lag estimated: {lag:+.3f} min (Pearson r {r:.3f} with MS1 TIC)")
+        spectra = [(s.getRT() / 60.0, *s.get_peaks()) for s in exp.getSpectra()]
+        tic_t = np.array([x[0] for x in spectra])
+        tic_y = np.array([float(np.sum(x[2])) for x in spectra])
+        lab_mass = {"2-AB": ch.LABELS["2-AB"].added_mass, "ProA": ch.LABELS["ProA"].added_mass}
+        tmz = [(ch.composition_mass(c) + ch.WATER + lab_mass[args.label] + z * ch.PROTON_MASS) / z
+               for c in comps for z in (1, 2, 3)]
+        gt, gy = targeted_ion_current(spectra, np.array(tmz), ppm=args.ppm)
+        fx, fy = np.asarray(fl[0].times), np.asarray(fl[0].values)
+        _, r_tic = estimate_lag(fx, fy, tic_t, tic_y, window=tuple(args.window), max_lag=2.0)
+        lag, r = estimate_lag(fx, fy, gt, gy, window=tuple(args.window), max_lag=2.0)
+        print(f"FLD-to-MS lag estimated: {lag:+.3f} min (Pearson r {r:.3f} with the {args.label} "
+              f"glycan ion current; r with MS1 TIC {r_tic:.3f})")
         args.lag = float(lag)
     else:
         args.lag = float(args.lag)

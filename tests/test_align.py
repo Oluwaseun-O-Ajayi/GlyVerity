@@ -24,3 +24,13 @@ def test_bad_window():
     t = np.linspace(0, 1, 10)
     with pytest.raises(ValueError):
         estimate_lag(t, t, t, t, window=(5, 5))
+
+
+def test_targeted_ion_current_sums_only_targets():
+    from glyverity.align import targeted_ion_current
+    spectra = [(1.0, [500.0, 1000.0, 1500.0], [5.0, 7.0, 11.0]),
+               (2.0, [1000.004, 1200.0], [3.0, 100.0]),
+               (3.0, [], [])]
+    t, y = targeted_ion_current(spectra, np.array([1000.0, 1500.0]), ppm=10)
+    assert list(t) == [1.0, 2.0, 3.0]
+    assert list(y) == [18.0, 3.0, 0.0]

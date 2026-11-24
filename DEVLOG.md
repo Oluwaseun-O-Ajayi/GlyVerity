@@ -776,3 +776,16 @@
   FLD-to-MS delay by cross-correlation with the MS1 TIC (align.estimate_lag, +/-2 min).
   New io_traces.read_trace_csv (a row with an empty value used to desynchronise time and
   value lists; caught by its test). Tests: 111 passed.
+
+## 2026-11-23 (7): PXD077477 2-AB run inspected
+
+* Traces exported (FLD Emission_1 28,501 points, 0-95 min). Lister crashed on the empty
+  "Other" device (scans -1); fixed to skip devices without scans. mzML: 9,356 scans
+  (9,201 MS1, 155 MS2), 0 errors.
+* FLD: injection front 1.33e7 at 0-5 min, baseline 2.6e3-6.6e3, glycan peaks 25-75 min
+  (max 3.7e4-1.6e5 per 5-min bin). MS1 peak intensities low (percentiles 1/10/50/90/99:
+  722/855/1200/1752/2705) and the MS1 TIC nearly flat 0-65 min (2.2e8-3.4e8 per 5 min), so
+  background dominates the TIC.
+* --lag auto now aligns FLD with a glycan-targeted ion current (summed MS1 intensity within
+  10 ppm of candidate labelled-glycan m/z, 1+ to 3+), and prints the TIC correlation for
+  comparison. Tests: 112 passed.
