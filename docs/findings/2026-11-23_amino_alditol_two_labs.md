@@ -81,6 +81,33 @@ third of N-glycans as 1-amino-1-deoxy-glycitols after reductive alkaline release
   N-glycans was reported in work on alpha-picoline borane for reductive amination (seen as a
   ResearchGate record only; full reference to obtain before citing).
 
+## PXD077477 sample preparation (from the paper)
+
+Moon D, Kim G, Park M, Park B, Kim NY, Son W, Shin YK, Song K. Relative quantitative analysis
+of site-specific N-linked glycosylation in hyperglycosylated interferon-beta via mass
+spectrometry. Int J Mol Sci 2026, 27, 7828. doi:10.3390/ijms27177828 (section 4.2):
+
+* R27T produced in CHO cells. 0.2 mg protein, 1 uL 0.5 M DTT and 10 uL 1% RapiGest SF,
+  65 C for 30 min; then 2 uL PNGase F (NEB P0705L). No release buffer, incubation time or
+  temperature is stated.
+* Products purified on a Ludger EB10 cartridge, eluted glycans dried in a centrifugal
+  evaporator, then labelled with a Ludger kit (2-AB LT-KAB-A2 or procainamide LT-KPROC-24).
+  No glycosylamine hydrolysis step (for example a mild acid step) is described between
+  release and labelling. Reductant in these kits: to confirm from the kit sheets.
+* HILIC: Waters BEH Glycan Amide 2.1 x 150 mm; A = 100 mM ammonium formate in water,
+  B = acetonitrile; 25 to 40% A over 60 min; 0.5 mL/min; 60 C for 2-AB, 40 C for
+  procainamide. FLD Ex/Em 330/420 (2-AB) and 310/370 (procainamide). Orbitrap Fusion,
+  "resolution 120,000, scan range 600-2500 m/z"; top 15, precursor charge 1-3, HCD.
+* The paper reports no unlabelled, +1 Da or amino-alditol species; quantification used FLD and
+  XICs of labelled glycans.
+
+Reading: released glycosylamines were dried and labelled with no stated hydrolysis step, which
+fits direct reduction of the glycosylamine. No ammonium buffer is stated for the release, so
+the ammonia route is not supported by the methods text (ammonium formate is only in the
+LC mobile phase, after labelling). The amino-alditol forms carry no fluorophore, so the
+paper's FLD-based quantification is unaffected; MS-based (XIC) shares of labelled glycans
+would not include them either.
+
 ## Limits
 
 * MS intensity is not molar amount; the amine ionizes differently from the 2-AB amide and the
