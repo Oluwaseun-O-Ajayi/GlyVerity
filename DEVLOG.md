@@ -830,3 +830,11 @@
   (difference +0.078, 95% -0.108 to +0.190; shuffle p = 0.19). Inconclusive.
 * Fetuin rerun (job 50516755): unchanged except 3 species resolved by support; ambiguous
   0.1% -> 0.0%.
+
+## 2026-11-23 (10): MS2 supports the amino-alditol reading in PXD077477
+
+* PXD077477 MS2 are HCD with a low-resolution readout (e.g. HexNAc oxonium at 203.86-203.93,
+  HexHexNAc at 365.90-366.02). At 20 ppm nothing matched; at +/-1000 ppm (about +/-0.3 Da):
+  2-AB FA2 control shows Y1 2-AB 342 (0.148) and 488 (0.071), no 223/369; 2078.78 and
+  2369.87 (8 spectra) show 223.13 (0.076-0.106) and 369.19 (0.049-0.130), 265 at most 0.012,
+  342 at most 0.004. Written up in docs/findings/2026-11-23_amino_alditol_two_labs.md.
