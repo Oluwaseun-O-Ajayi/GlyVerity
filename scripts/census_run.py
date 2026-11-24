@@ -18,6 +18,8 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -90,6 +92,11 @@ def main(argv=None) -> int:
     ap.add_argument("--series-detail", action="store_true",
                     help="print every label/side-product pair with its fluorescence values")
     args = ap.parse_args(argv)
+    sys.stdout.reconfigure(line_buffering=True)  # lines appear as they are printed, even in a pipe
+    t0 = time.time()
+
+    def stage(msg: str) -> None:
+        print(f"[{time.time() - t0:7.0f} s] {msg}", file=sys.stderr, flush=True)
 
     args.out.mkdir(parents=True, exist_ok=True)
     lo, hi = args.window
@@ -108,7 +115,9 @@ def main(argv=None) -> int:
         write_mzml(exp, str(path))
         print(f"mzML: {path}")
 
+    stage(f"loaded {exp.getNrSpectra()} MS1 scans")
     feats = find_features(exp, ppm=args.ppm, noise=args.noise)
+    stage(f"feature finding done: {len(feats)} features")
     n_raw = len(feats)
     feats, n_fix = repair_charges(feats, ppm=args.ppm)
     rec: list = []
@@ -122,11 +131,13 @@ def main(argv=None) -> int:
         # one decoy family at a time, the other families real (same candidate pool as target)
         drecs = [[] for _ in shifts]
         for fam in FAMILIES:
+            stage(f"decoy grouping, family {fam}")
             for i, d in enumerate(shifts):
                 r: list = []
                 group_species(feats, ppm=args.ppm, rt_tol=args.rt_tol, decoy_shift=d,
                               decoy_families=[fam], record=r)
                 drecs[i].extend(x for x in r if x[0] == fam)
+        stage("decoy calibration of relation families done")
         cut = family_cutoffs(rec, drecs, fdr=args.relation_fdr)
         print(f"relation families at {args.ppm:g} ppm / {args.rt_tol:g} min (target / decoy mean / "
               f"chance share; decoy shifts one family at a time) and score cutoff for <= "
@@ -160,6 +171,7 @@ def main(argv=None) -> int:
     comps = [c for c in an.enumerate_compositions(SEARCH)
              if c.get("HexNAc", 0) >= 2 and c.get("Hex", 0) >= 3
              and c.get("NeuAc", 0) + c.get("NeuGc", 0) <= c["HexNAc"] - 1]
+    stage("grouping done; assigning compositions")
     asg = assign_species(species, comps, groups, ppm=args.ppm)
 
     # composition q-values: odd-hydrogen decoys (octet-rule violations), separate search

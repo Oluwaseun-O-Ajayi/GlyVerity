@@ -707,3 +707,19 @@
   module): indexed mzML, peak picking on, metadata JSON; 44,946 scans, 0 errors, 0 warnings.
 * census_run.py reads .mzML input (MS1 in the time window; no FLD, so FLD steps are skipped).
   Tests: 85 passed.
+
+## 2026-11-23 (2): grouping speed, stage log, batch job
+
+* Orbitrap fetuin census (window 10-70 min, noise 3000) still running after 40 min on the
+  login node at full CPU, 0.95 GB. Cause: group_species compared every feature with every
+  other in Python loops (pass 1) and tested ~380 relations one at a time per species pair
+  (pass 2), and the decoy calibration repeats grouping about 50 times.
+* Rewrote group_species: candidates found through a retention-time index (window widened by
+  1e-9 min, exact test kept), relations tested as arrays, intensities kept in a running
+  table. The loop version is frozen in tests/_ref and an equivalence test compares species,
+  ion forms and absorption records on 24 synthetic cases (6 seeds x 4 settings: plain,
+  all-family decoy, single-family decoy, family cutoffs). 2,568 synthetic features: 5.19 s ->
+  0.45 s, identical species.
+* census_run.py prints stage times to stderr and flushes output lines; scripts/slurm/
+  census.sbatch runs a census as a Sapelo2 batch job (partition batch, 8 GB, 12 h).
+* Tests: 109 passed.

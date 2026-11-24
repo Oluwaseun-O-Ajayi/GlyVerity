@@ -129,16 +129,24 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
     feats = sorted(features, key=lambda f: -f.intensity)
     species: list[Species] = []
     used: set[int] = set()
-    for f in feats:  # pass 1: charge states
+    # pass 1: charge states (candidates restricted to the co-elution window by a time index)
+    by_rt = sorted(range(len(feats)), key=lambda i: feats[i].rt)
+    rts = np.array([feats[i].rt for i in by_rt])
+    neutral = [neutral_for(f) for f in feats]
+    for i, f in enumerate(feats):
         if f.feature_id in used:
             continue
-        m = neutral_for(f)
+        m = neutral[i]
         s = Species(len(species), m, f.rt, [(f, "H")])
         used.add(f.feature_id)
-        for g in feats:
+        # index bounds widened by 1e-9 min; the exact test below decides
+        lo = np.searchsorted(rts, f.rt - rt_tol - 1e-9, side="left")
+        hi = np.searchsorted(rts, f.rt + rt_tol + 1e-9, side="right")
+        for j in sorted(by_rt[lo:hi]):  # same order as a scan of feats by intensity
+            g = feats[j]
             if g.feature_id in used or g.charge == f.charge or abs(g.rt - f.rt) > rt_tol:
                 continue
-            if abs(neutral_for(g) - m) / m * 1e6 <= ppm:
+            if abs(neutral[j] - m) / m * 1e6 <= ppm:
                 s.members.append((g, "H"))
                 used.add(g.feature_id)
         _refresh(s)
@@ -165,48 +173,66 @@ def group_species(features: Sequence[MSFeature], ppm: float = 10.0, rt_tol: floa
             relations.append((100 + sum(counts.values()) + n, label, off + n * ISOTOPE_SPACING, 2))
     shifted = set(FAMILIES if decoy_families is None else decoy_families)
     relations.sort(key=lambda r: r[0])
+    labels = [r[1] for r in relations]
+    off = np.array([r[2] for r in relations])
+    mult = np.array([r[3] for r in relations], float)
+    is_dimer = mult == 2
+    fams = [relation_family(lb) for lb in labels]
+
+    def _vec(fam_list):
+        sh = np.array([decoy_shift if f in shifted else 0.0 for f in fam_list])
+        lim = np.array([1.0 if family_cut is None else family_cut.get(f, 1.0) for f in fam_list])
+        return sh, lim
+
+    shift_base, lim_base = _vec(fams)
+    shift_rr, lim_rr = _vec(["reread"] * len(fams))  # every relation of a re-read is "reread"
+
+    inten = {s.species_id: s.intensity for s in species}  # kept current as species absorb
     parents = sorted(species, key=lambda s: -s.intensity)
+    p_rt_idx = sorted(range(len(parents)), key=lambda k: parents[k].rt)
+    p_rts = np.array([parents[k].rt for k in p_rt_idx])
     absorbed: set[int] = set()
     for s in sorted(species, key=lambda s: s.intensity):
         if s.species_id in absorbed:
             continue
-        for parent in parents:
+        lo = np.searchsorted(p_rts, s.rt - rt_tol - 1e-9, side="left")
+        hi = np.searchsorted(p_rts, s.rt + rt_tol + 1e-9, side="right")
+        cand = sorted(p_rt_idx[lo:hi])  # parent order (initial intensity, descending)
+        own = [f for f, form in s.members if form == "H"]
+        trial = [(s.neutral_mass, "")]
+        if len(own) == 1 and own[0].charge == 1:
+            f1 = own[0]
+            trial += [(f1.mz * z - z * ch.PROTON_MASS, f" (read as {z}+)") for z in (2, 3)]
+        own_measured = all(f.n_isotopes >= 2 for f in own)
+        s_int = inten[s.species_id]
+        for k in cand:
+            parent = parents[k]
             if (parent.species_id == s.species_id or parent.species_id in absorbed
-                    or parent.intensity <= s.intensity or abs(parent.rt - s.rt) > rt_tol):
+                    or inten[parent.species_id] <= s_int or abs(parent.rt - s.rt) > rt_tol):
                 continue
-            # a lone 1+ feature may be a multiply charged ion whose partner peaks were missed;
-            # "lone" counts pass-1 members only, so ions already absorbed into s do not block it
-            own = [f for f, form in s.members if form == "H"]
-            trial = [(s.neutral_mass, "")]
-            if len(own) == 1 and own[0].charge == 1:
-                f1 = own[0]
-                trial += [(f1.mz * z - z * ch.PROTON_MASS, f" (read as {z}+)") for z in (2, 3)]
-            hit = None
-            measured = all(f.n_isotopes >= 2 for f in own) and all(
+            measured = own_measured and all(
                 f.n_isotopes >= 2 for f, form in parent.members if form == "H")
+            drt = abs(parent.rt - s.rt) / rt_tol
+            hit = None
             for mass, note in trial:
-                for _, label, off, k in relations:
-                    # a dimer needs a measured charge: [2M+2zH]2z+ sits at the m/z of [M+zH]z+
-                    if k == 2 and (note or not measured):
-                        continue
-                    fam = relation_family(label + note)
-                    target = k * parent.neutral_mass + off + (decoy_shift if fam in shifted else 0.0)
-                    err = abs(mass - target) / target * 1e6
-                    if err > ppm:
-                        continue
-                    score = max(err / ppm, abs(parent.rt - s.rt) / rt_tol)
-                    limit = 1.0 if family_cut is None else family_cut.get(fam, 1.0)
-                    if score <= limit:
-                        hit = label + note
-                        if record is not None:
-                            record.append((fam, score))
-                        break
-                if hit:
+                sh, lim = (shift_rr, lim_rr) if note else (shift_base, lim_base)
+                target = mult * parent.neutral_mass + off + sh
+                err = np.abs(mass - target) / target * 1e6
+                score = np.maximum(err / ppm, drt)
+                ok = (err <= ppm) & (score <= lim)
+                if note or not measured:
+                    ok &= ~is_dimer  # [2M+2zH]2z+ sits at the m/z of [M+zH]z+
+                if ok.any():
+                    r = int(np.argmax(ok))
+                    hit = labels[r] + note
+                    if record is not None:
+                        record.append(("reread" if note else fams[r], float(score[r])))
                     break
             if hit:
                 # members s had absorbed keep their own relation, chained to s's relation
                 parent.members.extend((f, hit if form == "H" else f"{form} via {hit}")
                                       for f, form in s.members)
+                inten[parent.species_id] += s_int
                 absorbed.add(s.species_id)
                 break
     return [s for s in species if s.species_id not in absorbed]
