@@ -45,6 +45,24 @@ before the glycosylamine hydrolyses, the reductant can reduce it to the 1-amino-
 release chemistry: Figl R, Altmann F, Proteomics 2018, doi:10.1002/pmic.201700330 (about one
 third of N-glycans as 1-amino-1-deoxy-glycitols after reductive alkaline release).
 
+## Literature check, round 2 (2026-11-23)
+
+* Wang et al. (corresponding author wangzhf@nwu.edu.cn), "Reductive chemical release of
+  N-glycans as 1-amino-alditols and subsequent 9-fluorenylmethyloxycarbonyl labeling for MS and
+  LC/MS analysis", J Proteomics 2018, 187: 47-58 (PMID 29885470; DOI to confirm). Aqueous
+  ammonia with NaBH3CN releases N-glycans as 1-amino-alditols on purpose. So NaBH3CN with
+  ammonia converts N-glycans to exactly this product.
+* This opens a second route besides direct glycosylamine reduction: reductive amination of
+  the free glycan by ammonia or ammonium (from glycosylamine hydrolysis, or from ammonium
+  buffers often used with PNGase F) competing with 2-AB during labelling. Both routes give
+  the same 1-amino-1-deoxy-glycitol (+1.0316 Da), so MS cannot separate them; sample
+  preparation records (buffers, clean-up before labelling) could.
+* Still not found: a report of this product as an artifact in PNGase F + 2-AB (or other
+  reductive amination) released-glycan profiles. Two search rounds so far.
+* Also noted: an imidazoline by-product of fluorescent labelling of PNGase F-released IgG
+  N-glycans was reported in work on alpha-picoline borane for reductive amination (seen as a
+  ResearchGate record only; full reference to obtain before citing).
+
 ## Limits
 
 * MS intensity is not molar amount; the amine ionizes differently from the 2-AB amide and the
