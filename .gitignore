@@ -41,3 +41,5 @@ data/raw/
 logs/
 *.out
 *.err
+tools/thermo_channels/*.exe
+tools/thermo_channels/dll_dir.txt
