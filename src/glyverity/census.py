@@ -396,6 +396,33 @@ CLASSES = ("labelled glycan", "other end group", "side-product series", "in-sour
 ADDUCT_ION = "adduct ion of a species"  # adduct, salt or isotope-error ion of a stronger species
 
 
+def resolve_by_label_support(assignments: Sequence[Assignment], label: str) -> int:
+    """Break ties between end-group readings using the run's own labelled glycans.
+
+    End-group hypotheses can produce identical formulas (e.g. NeuGc + C3H9N - O equals HexNAc +
+    dHex + NH3 - O, both C14H26N2O8), so one species can match several (composition, end group)
+    readings exactly. A reading is "supported" when its composition is also seen in the run as
+    the labelled glycan (the label's own reading is supported by definition). When a species
+    has both supported and unsupported live readings, the unsupported ones are flagged
+    "unsupported" and drop out. Species whose readings are all supported, or all unsupported,
+    are left as they are. Returns the number of species changed.
+    """
+    supported = {c.name for a in assignments for c in a.matches
+                 if not c.flags and c.end_group == label}
+    changed = 0
+    for a in assignments:
+        live = [c for c in a.matches if not c.flags]
+        if len(live) < 2:
+            continue
+        ok = [c for c in live if c.end_group == label or c.name in supported]
+        if ok and len(ok) < len(live):
+            for c in live:
+                if c not in ok:
+                    c.flags.append("unsupported:no labelled partner")
+            changed += 1
+    return changed
+
+
 def classify(assignments: Sequence[Assignment], label: str) -> dict[int, str]:
     """Class of each feature (by feature_id) after the layers have set candidate flags.
 

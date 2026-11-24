@@ -789,3 +789,26 @@
 * --lag auto now aligns FLD with a glycan-targeted ion current (summed MS1 intensity within
   10 ppm of candidate labelled-glycan m/z, 1+ to 3+), and prints the TIC correlation for
   comparison. Tests: 112 passed.
+
+## 2026-11-23 (8): PXD077477 2-AB census, job 50516575
+
+* 5,429 MS1 scans (22-78 min), noise 1000 -> 96 features -> 47 species; relation decoys all
+  0.0 (too few features to calibrate); recalibration on 8 anchors (+0.57 ppm, anchors 0.48 ->
+  0.16 ppm). 33 of 47 species at q <= 0.05 (79.8% of intensity); 25 at q <= 0.01 (71.8%).
+  Lag from glycan ion current -0.010 min (r 0.560; TIC r 0.299).
+* FLD validation, 6 glycans in 6 peaks: TV strongest ion 0.234, protonated 0.330, all ions
+  0.266; difference +0.064 (95% -0.081 to +0.184); shuffle p = 0.27. Inconclusive at n = 6.
+  Sialic acid slope: protonated -0.233, all ions -0.127 (cleaning flattens it here; in the
+  fetuin run it overshot to +0.052).
+* Finding: the C3H9N-RA and NH3-RA end groups give identical formulas through
+  NeuGc + C3H9N - O = HexNAc + dHex + NH3 - O (C14H26N2O8). The strongest species,
+  1787.6822 (1+, 38.17 and 40.02 min), 2078.7786 and 2369.8735 differ by NeuAc
+  (291.0964, 291.0949) and read as the NH3-RA forms of FA2, A2G2S1F and A2G2S2F, the 2-AB
+  series of this protein. A second lab's data (Korean lab, IFN-beta) showing the +1.0316 Da
+  series supports the amino-alditol hypothesis. Proposed mechanism: PNGase F glycosylamine
+  reduced by NaCNBH3 during labelling. Precedent for the product class: Figl and Altmann,
+  Proteomics 2018 (doi:10.1002/pmic.201700330), under reductive alkaline release.
+* New: resolve_by_label_support flags isomeric readings whose composition has no labelled
+  partner in the run. Tests: 113 passed.
+* Feature count too low (96): MS1 intensities sit near the floor (median 1200); rerun with
+  noise 500.

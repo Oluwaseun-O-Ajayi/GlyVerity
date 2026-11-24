@@ -279,3 +279,24 @@ def test_single_family_decoy_keeps_real_adducts():
     assert st["n:adduct"] == 1
     st = absorption_stats(group_species(feats, decoy_shift=0.41, decoy_families=["adduct"]))
     assert st["n:adduct"] == 0
+
+
+def test_isomeric_end_group_readings_resolved_by_label_support():
+    from glyverity.census import resolve_by_label_support
+    tag = ch.formula_mass({"C": 3, "H": 9, "N": 1}) - ch.ATOMIC_MASS["O"]
+    nh3 = ch.formula_mass({"N": 1, "H": 3}) - ch.ATOMIC_MASS["O"]
+    fa2 = {"Hex": 5, "HexNAc": 4, "dHex": 1}
+    odd = {"Hex": 5, "HexNAc": 3, "NeuGc": 1}
+    m_fa2 = ch.composition_mass(fa2) + ch.WATER
+    m_odd = ch.composition_mass(odd) + ch.WATER
+    assert abs((m_fa2 + nh3) - (m_odd + tag)) < 1e-6  # identical formulas
+    groups = {"2-AB": ch.LABELS["2-AB"].added_mass, "NH3-RA": nh3, "C3H9N-RA": tag}
+    lab = ch.glycan_neutral_mass(fa2, "2-AB")
+    feats = [_f(0, lab, 2, 26.2, 5e6), _f(1, lab, 3, 26.2, 2e6),
+             _f(2, m_fa2 + nh3, 2, 38.2, 4e5), _f(3, m_fa2 + nh3, 3, 38.2, 1e5)]
+    asg = assign_species(group_species(feats), [fa2, odd], groups)
+    assert resolve_by_label_support(asg, "2-AB") == 1
+    cls = classify(asg, "2-AB")
+    assert cls[2] == "other end group"
+    live = [c for a in asg for c in a.matches if not c.flags and c.end_group != "2-AB"]
+    assert [(c.name, c.end_group) for c in live] == [("Hex5HexNAc4dHex1", "NH3-RA")]

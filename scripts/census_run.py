@@ -38,6 +38,7 @@ from glyverity.census import (
     group_species,
     reclassify_oxonium,
     repair_charges,
+    resolve_by_label_support,
     target_table,
     unassigned_report,
 )
@@ -302,6 +303,8 @@ def main(argv=None) -> int:
         for e in ev:
             by_key[e.feature_id].flags.append(f"side_product:{test}")
 
+    n_sup = resolve_by_label_support(asg, args.label)
+    print(f"isomeric end-group readings resolved by labelled-glycan support: {n_sup} species")
     cls = classify(asg, args.label)
     n_ox = reclassify_oxonium(asg, cls, ppm=args.ppm)
     print(f"oxonium ions reclassified as in-source fragments: {n_ox}")

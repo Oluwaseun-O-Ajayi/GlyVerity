@@ -65,3 +65,16 @@ nQuant, GlyGen and GlyCosmos analysis tools. These go on the Phase 1 task list b
   q-values whose calibration is tested against independent ground truth. This is the defensible
   gap, stated in `go_no_go.md`.
 * Absence in our search is not proof of absence. The statement is limited to the tools listed.
+
+## Update 2026-11-23: amino-alditol (+NH3 - O) side product
+
+* Background, verified: PNGase F releases N-glycans as glycosylamines (e.g. US 12,092,644;
+  Tarentino et al. cited there). Reductive amination labels such as 2-AB use NaCNBH3.
+* Closest precedent found: Figl R, Altmann F. Reductive alkaline release of N-glycans
+  generates a variety of unexpected, useful products. Proteomics 2018.
+  doi:10.1002/pmic.201700330. Under reductive alkaline release (1 M NaBH4), about one third of
+  N-glycans appeared as 1-amino-1-deoxy-glycitols, and glycosylamines were seen when acidic
+  conditions were avoided.
+* Not found yet: a report of 1-amino-1-deoxy-glycitols formed during PNGase F release
+  followed by 2-AB reductive amination (glycosylamine reduced by NaCNBH3 before hydrolysis).
+  Quick search only; search further before any novelty claim.
