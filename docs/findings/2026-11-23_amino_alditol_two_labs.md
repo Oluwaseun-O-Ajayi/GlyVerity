@@ -13,6 +13,24 @@ species whose neutral masses equal the free glycan + 1.0316 Da (net +NH3 - O), i
 | Zenodo 4705546 (Charles River) | Agilent Q-TOF, HILIC-FLD-MS | bovine fetuin | 8 pairs with the 2-AB series; area ratio 0.17-0.18, spread 0.03-0.04, shift +4.57 min; MS2 of 961.02 (3+): Y1 223.1278, no 342.166 |
 | PXD077477 (Moon, BI-NEX) | Orbitrap Fusion, HILIC-FLD-MS | interferon-beta R27T | FA2, A2G2S1F, A2G2S2F forms (1787.6822, 2078.7786, 2369.8735; NeuAc steps 291.0964, 291.0949); retention +9 to +12 min after the 2-AB forms; MS2 below |
 
+## Series and fluorescence test (PXD077477, job 50517166, --max-shift 15)
+
+LabelSideProductSeries NH3-RA vs 2-AB: n = 5, median ratio 1.817 (per pair 0.910 to 8.616;
+MAD of log10 0.074), median shift +9.40 min, fluorescence fraction 0.09 over 5 clear pairs
+(tail shape measured from 3 isolated FLD peaks) -> SERIES.
+
+| Composition | 2-AB RT | NH3-RA RT | MS ratio | FLD at test apex | FLD expected if fluorescent |
+|---|---|---|---|---|---|
+| Hex5HexNAc4dHex1 | 26.219 | 38.166 | 1.817 | 9.95e3 | 2.08e5 |
+| Hex5HexNAc4dHex1NeuAc1 | 32.042 | 44.683 | 0.910 | 1.13e4 | 1.27e5 |
+| Hex5HexNAc4dHex1NeuAc2 | 37.609 | 47.014 | 2.084 | 4.05e4 | 3.01e5 |
+| Hex7HexNAc6dHex1NeuAc2 | 50.230 | 59.631 | 8.616 | 2.93e4 | 5.99e5 |
+| Hex7HexNAc6dHex1NeuAc3 | 54.086 | 62.858 | 1.533 | 2.87e4 | 1.29e5 |
+
+The forms carry about 9% of the fluorescence a 2-AB-like form would give: consistent with no
+fluorophore. In the fetuin run the same test was inconclusive (no isolated FLD peaks; the
+fixed-clearance fallback gave 2.64 on peaks that sit on 2-AB tails).
+
 ## MS2 test (PXD077477, HCD, low-resolution readout; fragment tolerance about +/-0.3 Da)
 
 Fragment ions relative to base peak. Readings: Y1 amino-alditol 223.1288 and + Fuc 369.1867

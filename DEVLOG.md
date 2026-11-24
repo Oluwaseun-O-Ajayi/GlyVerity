@@ -838,3 +838,11 @@
   2-AB FA2 control shows Y1 2-AB 342 (0.148) and 488 (0.071), no 223/369; 2078.78 and
   2369.87 (8 spectra) show 223.13 (0.076-0.106) and 369.19 (0.049-0.130), 265 at most 0.012,
   342 at most 0.004. Written up in docs/findings/2026-11-23_amino_alditol_two_labs.md.
+
+## 2026-11-23 (11): NH3-RA series passes in PXD077477 (job 50517166)
+
+* With --max-shift 15: NH3-RA vs 2-AB n = 5, median ratio 1.817 (pairs 0.910-8.616), MAD
+  0.074, shift +9.40 min, fluorescence fraction 0.09 (5 clear pairs; tail shape from 3
+  isolated FLD peaks) -> SERIES. 8 species resolved by labelled-glycan support. Findings doc
+  updated. Evidence in this run: mass (<0.5 ppm), retention offset, no fluorescence, MS2 Y1.
+* Results now copied to the user's PC with scp via xfer.gacrc.uga.edu.
