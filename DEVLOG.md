@@ -914,3 +914,10 @@
   added by reductive amination. census_run --label RFMS. Tests: 114 passed.
 * Prediction for PXD078897: no reductant in RFMS labelling, so the amino-alditol series should
   be absent or weak.
+
+## 2026-11-26: PXD078897 has no FLD in the checked file
+
+* 71 raw files; groups MS113 (aflibercept RFMS glycans, noSPE, 40/60/80 C, 30/90/240 min),
+  MS119/MS137 "Joined" (deglycosylated peptides + glycans), DD033 (glycans, additives).
+  MS113 30minGr 40C 02 downloaded (239,058,686 bytes, matches PRIDE): no FLD channel.
+  Condition 1 third lab still open. Run used for the RFMS amino-alditol test (MS only).
