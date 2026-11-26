@@ -79,7 +79,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("run", type=Path)
     ap.add_argument("out", type=Path)
-    ap.add_argument("--label", default="2-AB", choices=["2-AB", "ProA"])
+    ap.add_argument("--label", default="2-AB", choices=["2-AB", "ProA", "RFMS"])
     ap.add_argument("--window", nargs=2, type=float, default=(15.0, 50.0))
     ap.add_argument("--ppm", type=float, default=10.0)
     ap.add_argument("--noise", type=float, default=100.0)
@@ -253,8 +253,7 @@ def main(argv=None) -> int:
         spectra = [(s.getRT() / 60.0, *s.get_peaks()) for s in exp.getSpectra()]
         tic_t = np.array([x[0] for x in spectra])
         tic_y = np.array([float(np.sum(x[2])) for x in spectra])
-        lab_mass = {"2-AB": ch.LABELS["2-AB"].added_mass, "ProA": ch.LABELS["ProA"].added_mass}
-        tmz = [(ch.composition_mass(c) + ch.WATER + lab_mass[args.label] + z * ch.PROTON_MASS) / z
+        tmz = [(ch.composition_mass(c) + ch.WATER + ch.LABELS[args.label].added_mass + z * ch.PROTON_MASS) / z
                for c in comps for z in (1, 2, 3)]
         gt, gy = targeted_ion_current(spectra, np.array(tmz), ppm=args.ppm)
         fx, fy = np.asarray(fl[0].times), np.asarray(fl[0].values)

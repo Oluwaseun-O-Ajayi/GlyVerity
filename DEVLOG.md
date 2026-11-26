@@ -903,3 +903,14 @@
   reproduce the census logs exactly. Shuffle p cannot be recomputed from shares (the census
   shuffles raw intensities), so the figure omits it; census_run.py now also writes fld_area,
   ms_protonated and ms_all to fld_validation.tsv.
+
+## 2026-11-25: go/no-go update; RapiFluor-MS label
+
+* go_no_go.md: status of conditions 1-3 with the four FLD runs; recommendation GO for
+  Phase 2. Condition 1 met as written (3 references, 2 labels, but 2 labs); condition 3 design
+  done, exchangeability open (ProA ratio about 3 from one real unexplained family).
+* chemistry: RFMS label. Waters: +312.1586 Da on the glycosylamine (C17H20N4O2), so net vs the
+  free glycan C17H21N5O, +311.1746 Da. ReducingEndLabel gains net_formula for labels not
+  added by reductive amination. census_run --label RFMS. Tests: 114 passed.
+* Prediction for PXD078897: no reductant in RFMS labelling, so the amino-alditol series should
+  be absent or weak.

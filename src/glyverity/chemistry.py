@@ -76,6 +76,7 @@ class ReducingEndLabel:
     name: str
     added_mass: float
     reagent_formula: Mapping[str, int] | None = None
+    net_formula: Mapping[str, int] | None = None  # set for labels not added by reductive amination
 
 
 def reductive_amination_label(name: str, reagent_formula: Mapping[str, int]) -> ReducingEndLabel:
@@ -95,6 +96,11 @@ LABELS: Mapping[str, ReducingEndLabel] = MappingProxyType(
         "2-AB": reductive_amination_label("2-AB", {"C": 7, "H": 8, "N": 2, "O": 1}),
         # procainamide, 4-amino-N-[2-(diethylamino)ethyl]benzamide, C13H21N3O
         "ProA": reductive_amination_label("ProA", {"C": 13, "H": 21, "N": 3, "O": 1}),
+        # RapiFluor-MS: NHS carbamate that acylates the PNGase F glycosylamine (urea link), no
+        # reductant. Waters gives +312.1586 Da on the glycosylamine (C17H20N4O2); the
+        # glycosylamine is the free glycan + NH3 - H2O, so the net change is C17H21N5O.
+        "RFMS": ReducingEndLabel("RFMS", formula_mass({"C": 17, "H": 21, "N": 5, "O": 1}),
+                                 net_formula={"C": 17, "H": 21, "N": 5, "O": 1}),
     }
 )
 
@@ -173,6 +179,8 @@ def label_net_formula(label: str) -> dict[str, int]:
         return {}
     if label == "reduced":
         return {"H": 2}
+    if LABELS[label].net_formula is not None:
+        return dict(LABELS[label].net_formula)
     reagent = LABELS[label].reagent_formula
     if reagent is None:
         raise ValueError(f"no reagent formula recorded for label {label}")

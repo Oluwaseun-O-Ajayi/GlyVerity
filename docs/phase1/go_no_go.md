@@ -122,3 +122,73 @@ these are.
   on one run; band species include a recurring unknown near 2883 to 2884 Da. Test across
   datasets; if the ratio stays above 1, add entrapment compositions (the stated fallback).
 * Status: design decided and implemented; exchangeability not yet shown.
+
+## Update 2026-11-25: status of the three conditions before Dec 1
+
+### Condition 1, ground truth: met as written, narrow
+
+Fluorescence traces are stored in the deposited files and are read by GlyVerity (Agilent .d
+directly; Thermo .raw through tools/thermo_channels). Four runs with FLD and MS on the same LC:
+
+| Run | Lab | Instrument | Label | FLD peaks | TV(protonated) - TV(all assigned), 95% CI | Shuffle p |
+|---|---|---|---|---|---|---|
+| Fetuin, Zenodo 4705546 | Charles River | Agilent Q-TOF | 2-AB | 13 | +0.037 (+0.002, +0.085) | 0.0002 |
+| IFN-beta, PXD077477 | BI-NEX | Orbitrap Fusion | 2-AB | 8 | +0.078 (-0.108, +0.190) | 0.19 |
+| IFN-beta, PXD077477 (a) | BI-NEX | Orbitrap Fusion | ProA | 38 | +0.066 (+0.027, +0.111) | 0.0028 |
+| IFN-beta, PXD077477 (b) | BI-NEX | Orbitrap Fusion | ProA | 35 | +0.056 (+0.025, +0.101) | 0.018 |
+
+Three independent references (fetuin 2-AB; IFN-beta 2-AB; IFN-beta ProA) across two labels:
+the stated bar. Only two laboratories, though. PXD078897 (RapiFluor-MS, Q Exactive HF-X, a
+third lab and label) is next. Figure: docs/figures/fig_fld_validation.pdf.
+
+Result: summing the ions GlyVerity assigns to each species moves MS shares toward FLD shares
+in 4 of 4 runs; the interval excludes zero in 3 of 4, and moving the same ions to random
+peaks makes agreement worse. Limits: after cleaning, MS still differs from FLD by TV about
+0.30 in the ProA runs, and the MS bias with sialic acid count changes sign between runs, so
+cleaning reduces MS bias but does not remove it.
+
+### Condition 2, census size: catalog met, census not yet run
+
+17 in-scope PRIDE projects, 2016 to 2026 (2019 missing); GlycoPOST and MassIVE not yet
+searched. One file was out of scope on inspection (Zenodo 4705546 Orbitrap file:
+glycopeptide-like MS2, nano-LC with UV 214, no FLD). Thermo .raw files are now handled on the
+cluster (ThermoRawFileParser 1.4.5, mzML input, batch script), which most of the catalog needs.
+
+### Condition 3, decoy design: design done, exchangeability not yet shown
+
+* Relation (cleaning) decoys: offsets shifted one family at a time, tolerance per family set
+  at <= 5% chance on a score combining ppm error and retention difference. Achieved chance
+  share: 3.7%, 1.9%, 1.1%, 5.1% (four FLD runs). A run dominated by non-glycan features
+  (glycopeptide file) gave 43%, i.e. the method declined to certify relations there.
+* Composition decoys: odd-hydrogen (JUMPm design), counts scaled for removed decoys, mass
+  recalibration on >= 5 multi-charge anchors. q <= 0.05 species carry 81.3%, 60.8%, 82.6%,
+  76.6% of feature intensity.
+* Exchangeability (15-30 ppm band, ratio 1 expected): 1.42, 0.31, 3.13, 2.95. In the ProA runs
+  the excess comes from one intense family (2955.15, 3101.22, 3392.32, 3683.41 Da; NeuAc steps;
+  17-19 ppm from the nearest reading), real chemistry outside the search space, not chance.
+  The check must exclude explained-but-unlisted families or the search space must cover them.
+  Open; the stated fallback (entrapment compositions) remains available.
+
+### Finding that strengthens the case
+
+An unlabelled 1-amino-1-deoxy-glycitol series (+NH3 - O, +1.0316 Da on the free glycan) appears
+in both labs' data and under both reductive-amination labels. Evidence: mass (< 0.5 ppm),
+consistent retention offset (+4.6 min fetuin; +8 to +9.4 min IFN-beta), FLD at 9% of
+expectation where tails could be corrected (IFN-beta 2-AB), and MS2 Y1 ions 223.13 and
+369.19 absent from the in-run 2-AB control. In the IFN-beta 2-AB run these forms carry more MS
+signal than the labelled glycans (26.6% vs 7.0% of feature intensity) and are absent from the
+published profile. The product class and its NaBH3CN chemistry are known (Figl and Altmann
+2018; Wang et al. 2018); its presence as an unrecognized artifact of routine PNGase F +
+reductive-amination profiles is not reported in the papers checked so far. Details:
+docs/findings/2026-11-23_amino_alditol_two_labs.md.
+
+Testable prediction: RapiFluor-MS labels the glycosylamine directly with no reductant, so the
++1.0316 Da series should be absent or far weaker in PXD078897. A positive result there would
+argue against the reduction mechanism.
+
+### Recommendation: GO for Phase 2
+
+Conditions 1 and 3 have working implementations with real-data results; the remaining gaps
+(a third lab, exchangeability, census breadth) are Phase 2 and Phase 3 work, not reasons to
+stop. Phase 2 priorities in order: PXD078897 (RFMS, third lab); exchangeability check that
+handles unexplained real families; then the census pipeline over the catalog.

@@ -62,3 +62,11 @@ def test_mz_rejects_bad_input():
 def test_negative_count_rejected():
     with pytest.raises(ValueError):
         ch.composition_mass({"Hex": -1})
+
+
+def test_rapifluor_ms_mass():
+    # Waters: +312.1586 Da on the glycosylamine (free glycan + NH3 - H2O)
+    from glyverity import chemistry as ch
+    gamine = ch.formula_mass({"N": 1, "H": 3}) - ch.WATER
+    assert abs(ch.LABELS["RFMS"].added_mass - (312.1586 + gamine)) < 1e-3
+    assert ch.label_net_formula("RFMS") == {"C": 17, "H": 21, "N": 5, "O": 1}
