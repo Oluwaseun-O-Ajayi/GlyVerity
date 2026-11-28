@@ -937,3 +937,8 @@
   is not explained yet.
 * Log saved to data/results/census_logs/.
 
+* Third-lab candidate found by GlycoPOST search (cloud browser; "HILIC" returns 73 entries):
+  GPST000705, Garozzo lab (CNR Catania), RFMS kit, Vanquish FLD in series with an Orbitrap
+  Exploris 120, BEH Glycan Amide, two public Thermo raw files (doi:10.3390/biom16060760).
+  Added to the catalog. Gives a second RFMS amino-alditol check and, if the FLD channel is in
+  the raw file, a third-lab FLD validation.
