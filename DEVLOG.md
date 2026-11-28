@@ -921,3 +921,19 @@
   MS119/MS137 "Joined" (deglycosylated peptides + glycans), DD033 (glycans, additives).
   MS113 30minGr 40C 02 downloaded (239,058,686 bytes, matches PRIDE): no FLD channel.
   Condition 1 third lab still open. Run used for the RFMS amino-alditol test (MS only).
+
+## 2026-11-27: RFMS control for the amino-alditol series (job 50561880)
+
+* PXD078897 MS113 aflibercept RFMS run, commit a05159c. 86 of 404 species at q <= 0.05
+  (52.4% of feature intensity); recalibration on 31 anchors, median |error| 0.84 -> 0.28 ppm.
+* NH3-RA vs RFMS: n=0. C3H9N-RA vs RFMS: n=0. Free vs RFMS: n=2, ratio 0.002, not a series.
+* Fits the reduction mechanism (no reductant in RFMS). Weak as a control: lab, protein and
+  label all differ from the 2-AB and procainamide runs. Needs one lab with both chemistries.
+* Unassigned m/z 313.1659 (1+, 3.0e9) = [C17H20N4O2 + H]+, the RFMS tag formula; likely
+  reagent-derived. Candidate for a reagent-ion class.
+* Exchangeability ratio 1.93 here (25 target vs 13.0 decoy in the 15-30 ppm band), so the
+  composition q-values in this run may be optimistic; same open item as the ProA runs.
+* Strongest unassigned ion m/z 1122.9398 (2+, 23.3 min, 5.9e9; neutral 2243.8650 if [M+2H])
+  is not explained yet.
+* Log saved to data/results/census_logs/.
+

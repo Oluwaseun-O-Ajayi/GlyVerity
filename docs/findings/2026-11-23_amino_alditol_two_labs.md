@@ -132,6 +132,37 @@ LC mobile phase, after labelling). The amino-alditol forms carry no fluorophore,
 paper's FLD-based quantification is unaffected; MS-based (XIC) shares of labelled glycans
 would not include them either.
 
+## RFMS control (PXD078897, job 50561880, commit a05159c)
+
+Prediction: RapiFluor-MS labels the glycosylamine directly with no reductant, so the
+amino-alditol series should be absent or weak.
+
+Run: MS113_AfliberceptRFMS_noSPE_Final_30minGr_40C_02, `--label RFMS --window 1 35 --noise 3000
+--max-shift 10 --series-detail`. Log: `data/results/census_logs/PXD078897_MS113_rfms_job50561880.out`.
+
+* The label is read correctly: 86 of 404 species at q <= 0.05 carry 52.4% of feature intensity;
+  the ten strongest RFMS glycans sit within 0.7 ppm after recalibration (31 anchors).
+* `series NH3-RA vs RFMS: n=0`. No amino-alditol species pairs with any RFMS glycan.
+* `series C3H9N-RA vs RFMS: n=0`.
+* `series free vs RFMS: n=2, ratio 0.002`: two free-glycan readings at 0.1% and 0.3% of their
+  RFMS partners; not a series.
+* For scale: in the procainamide runs the NH3-RA series had 7 and 15 pairs at median ratios
+  0.072 and 0.173 (jobs 50517803, 50517804), and in IFN-b 2-AB 5 pairs at 1.817 (job 50517166).
+  The strongest RFMS glycan here is 7.0e9 counts, so a partner at 1% would be 7e7, well above
+  the 3000 noise floor.
+
+Reading: consistent with the prediction. The side-product appears in two labs that use
+reductive amination (2-AB, procainamide) and not in one RFMS run.
+
+Limits of this control: one file, a different lab, a different protein (aflibercept) and a
+30 min gradient. Lab, protein and label all change together, so this run cannot separate the
+reductant from the lab. The clean test is one lab running the same release with both
+chemistries.
+
+Side note: the second-strongest unassigned ion, m/z 313.1659 (1+, 10.6 min, 3.0e9), matches
+[C17H20N4O2 + H]+ (calc. 313.1659), the RFMS tag formula, so it is most likely reagent-derived.
+GlyVerity has no reagent-ion class yet; it counts this as unassigned.
+
 ## Limits
 
 * MS intensity is not molar amount; the amine ionizes differently from the 2-AB amide and the
