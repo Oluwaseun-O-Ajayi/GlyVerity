@@ -163,6 +163,13 @@ Side note: the second-strongest unassigned ion, m/z 313.1659 (1+, 10.6 min, 3.0e
 [C17H20N4O2 + H]+ (calc. 313.1659), the RFMS tag formula, so it is most likely reagent-derived.
 GlyVerity has no reagent-ion class yet; it counts this as unassigned.
 
+## Second RFMS lab (GPST000705, Garozzo lab, IgG; jobs 50615163 ctr, 50615164 Ring14)
+
+Window 8 to 40 min (void excluded), FLD lag 0.253 / 0.243 min from hand-matched IgG peaks.
+`series NH3-RA vs RFMS: n=0` in both runs; also n=0 for C3H9N-RA and free glycan. With
+PXD078897, the amino-alditol series is absent in three RFMS runs from two labs and present in
+reductive-amination runs (2-AB, procainamide) from two labs. Lab and label are still confounded.
+
 ## Limits
 
 * MS intensity is not molar amount; the amine ionizes differently from the 2-AB amide and the

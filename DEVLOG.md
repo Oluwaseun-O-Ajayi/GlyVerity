@@ -957,3 +957,27 @@
 * NH3-RA vs RFMS n=0 in both runs; provisional until the rerun.
 * Next: rerun with --window 8 40 (labelled glycans elute 15.8-30 min) and read the FLD peak
   times directly to check the lag by hand (G0F, G1F isomers, G2F).
+
+## 2026-11-28: GPST000705 clean runs (window 8-40 min)
+
+* Auto lag with the void excluded: +0.261 min (ctr, job 50615134, r 0.879) and +0.236 min
+  (Ring14, job 50615135, r 0.883), matching the hand-matched medians +0.253 and +0.243. The
+  auto-lag estimator works once the void is outside the window. Both auto-lag logs end after
+  the class tables with no FLD block and no "finished" line: check the .err files.
+* Fixed-lag runs (jobs 50615163 ctr, 50615164 Ring14): 21 and 24 confident RFMS glycans in 20 and
+  21 FLD peaks. TV(all assigned) 0.130 and 0.126; TV(protonated) - TV(all assigned) = -0.001
+  (-0.002 to +0.000) and -0.007 (-0.027 to +0.016); shuffle p 0.83 and 0.46.
+  Cleaning gives no gain here. Weakens any general claim that cleaning moves MS toward FLD.
+* Pattern across the six FLD runs (share of intensity absorbed into relations -> TV gain):
+  fetuin 2-AB 51.2% -> +0.037; IFN-b 2-AB 35.0% -> +0.078; IFN-b ProA 29.5% -> +0.066 and
+  33.3% -> +0.056; IgG RFMS 5.1% -> -0.007 and 0.7% -> -0.001. Working hypothesis: the gain scales
+  with how much signal sits in adducts/fragments; RFMS IgG has little. n = 6, not tested yet.
+* Residual MS/FLD bias is per sialic acid: slope log10(MS/FLD) -0.288 and -0.265 per NeuAc,
+  i.e. about half the MS response per sialic acid. Cleaning does not touch this.
+* Unassigned ions at +45.061 Da (neutral) beside each major IgG glycan, nearly as intense as
+  the parent (910.3971 2+ at 8.1e7 vs G0F 9.4e7). Matches C2H7N (45.0578), e.g. a
+  dimethyl- or ethylammonium adduct; not in the adduct list. A +45.053-45.055 series also
+  appears in the ProA runs; mass differs by about 7 mDa, so possibly a different species.
+* m/z 708.513 (1+) is a background ion across the whole gradient in GPST000705 and in PXD077477.
+* NH3-RA vs RFMS n=0 in both clean runs (see findings note).
+
