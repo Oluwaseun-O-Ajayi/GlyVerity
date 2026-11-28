@@ -986,3 +986,5 @@
   np.trapz; census.sbatch now prints the python and numpy it uses.
 * Rerun with the fix, auto lag (job 50615625, Ring14): venv numpy 2.4.6; lag +0.236 min;
   TV(protonated) - TV(all assigned) = -0.007 (-0.027 to +0.016); NH3-RA n=0. Same as the fixed-lag run.
+* Control auto-lag rerun (job 50615624): lag +0.261 min; TV difference -0.001 (-0.002 to +0.000).
+  Same as fixed lag. GPST000705 runs closed.
