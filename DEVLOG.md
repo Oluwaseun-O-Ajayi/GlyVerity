@@ -942,3 +942,18 @@
   Exploris 120, BEH Glycan Amide, two public Thermo raw files (doi:10.3390/biom16060760).
   Added to the catalog. Gives a second RFMS amino-alditol check and, if the FLD channel is in
   the raw file, a third-lab FLD validation.
+
+## 2026-11-27 (2): GPST000705 first pass (jobs 50614263 ctr, 50614264 Ring14), window 1-40 min
+
+* Not usable as run. Unretained material at 2.4-2.8 min dominates: 95.6% (ctr) and 90.0% (Ring14)
+  of feature intensity is unassigned, most of it co-eluting at 2.66 / 2.75 min
+  (e.g. m/z 737.2831 2+ at 1.7e10).
+* Consequences: ctr has 0 species at q <= 0.05 (the void species flood the decoy competition);
+  Ring14 has 22. The lag estimate (+0.60 / +0.67 min, r 0.50 / 0.47) is fitted against a
+  glycan ion current that includes void-region false matches.
+* Ring14 FLD validation (16 glycans, 15 peaks) gives TV 0.70 with peak-to-species matches that
+  do not look right: MS has Hex3HexNAc4dHex1 (G0F) at 16.43 min as the largest MS share (0.383),
+  but the FLD peak it is paired with (15.785 min) has FLD share 0.000. Lag is probably wrong.
+* NH3-RA vs RFMS n=0 in both runs; provisional until the rerun.
+* Next: rerun with --window 8 40 (labelled glycans elute 15.8-30 min) and read the FLD peak
+  times directly to check the lag by hand (G0F, G1F isomers, G2F).
