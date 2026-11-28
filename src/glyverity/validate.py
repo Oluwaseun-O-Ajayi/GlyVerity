@@ -15,6 +15,9 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
+# numpy < 2.0 has trapz only; numpy >= 2.0 renames it trapezoid.
+_trapezoid = getattr(np, "trapezoid", None) or np.trapz
+
 
 @dataclass
 class FLDWindow:
@@ -61,7 +64,7 @@ def fld_area(times: np.ndarray, values: np.ndarray, start: float, end: float) ->
         return 0.0
     xs, ys = x[m], y[m]
     base = np.interp(xs, [xs[0], xs[-1]], [ys[0], ys[-1]])
-    return float(np.trapezoid(np.clip(ys - base, 0.0, None), xs))
+    return float(_trapezoid(np.clip(ys - base, 0.0, None), xs))
 
 
 def windows_for(times: np.ndarray, values: np.ndarray, apexes: Sequence[float],

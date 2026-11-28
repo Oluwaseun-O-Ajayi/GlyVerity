@@ -980,4 +980,7 @@
   appears in the ProA runs; mass differs by about 7 mDa, so possibly a different species.
 * m/z 708.513 (1+) is a background ion across the whole gradient in GPST000705 and in PXD077477.
 * NH3-RA vs RFMS n=0 in both clean runs (see findings note).
-
+* Jobs 50615134 / 50615135 crashed in fld_area: numpy has no attribute 'trapezoid'. The traceback
+  shows numpy from /apps/eb/SciPy-bundle/2023.11 (numpy < 2.0), so a cluster module was loaded
+  in the submitting shell and leaked into the job. Fix: validate.py and xic.py fall back to
+  np.trapz; census.sbatch now prints the python and numpy it uses.

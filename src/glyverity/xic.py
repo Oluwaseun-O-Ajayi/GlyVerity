@@ -7,6 +7,9 @@ from dataclasses import dataclass
 
 import numpy as np
 
+# numpy < 2.0 has trapz only; numpy >= 2.0 renames it trapezoid.
+_trapezoid = getattr(np, "trapezoid", None) or np.trapz
+
 
 def xic(centroid_file, keep: np.ndarray | None, targets: Sequence[float], ppm: float = 10.0,
         t_lo: float | None = None, t_hi: float | None = None) -> tuple[np.ndarray, np.ndarray]:
@@ -57,4 +60,4 @@ def summarise(times: np.ndarray, trace: np.ndarray) -> PeakSummary:
     if trace.size == 0 or not np.any(trace > 0):
         return PeakSummary(float("nan"), 0.0, 0.0)
     k = int(np.argmax(trace))
-    return PeakSummary(float(times[k]), float(trace[k]), float(np.trapezoid(trace, times)))
+    return PeakSummary(float(times[k]), float(trace[k]), float(_trapezoid(trace, times)))
